@@ -16,10 +16,10 @@ export function GET() {
     });
   } catch (error) {
     return NextResponse.json({
-      status: "error",
+      status: "degraded",
       database: "unavailable",
       message: error instanceof Error ? error.message : "Unknown database error",
       timestamp: new Date().toISOString(),
-    }, { status: 503 });
+    });
   }
 }

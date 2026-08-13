@@ -20,7 +20,7 @@
     "susa:quality": "node scripts/susa-quality.mjs",
     "setup:v07": "npm run db:migrate:v06 && npm run db:migrate:v07",
     "susa:update": "node scripts/sync-susa.mjs && node scripts/relink-susa.mjs",
-    "start:prod": "node scripts/production-bootstrap.mjs && next start",
+    "start:prod": "node scripts/production-bootstrap.mjs && next start -H 0.0.0.0",
     "prod:init": "node scripts/production-bootstrap.mjs",
     "prod:sync": "node scripts/sync-susa.mjs --full && node scripts/relink-susa.mjs",
     "prod:update": "node scripts/sync-susa.mjs && node scripts/relink-susa.mjs",
