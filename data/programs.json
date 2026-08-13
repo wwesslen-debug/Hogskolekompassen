@@ -33,7 +33,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20ekonomi%20och%20IT"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20ekonomi%20och%20IT"
   },
   {
     "title": "Data- och systemvetenskapligt kandidatprogram",
@@ -69,7 +69,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Data-%20och%20systemvetenskapligt%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Data-%20och%20systemvetenskapligt%20kandidatprogram"
   },
   {
     "title": "Systemvetenskapligt kandidatprogram",
@@ -104,7 +104,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Systemvetenskapligt%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Systemvetenskapligt%20kandidatprogram"
   },
   {
     "title": "Systemvetenskap",
@@ -140,7 +140,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Systemvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Systemvetenskap"
   },
   {
     "title": "Civilingenjör i datateknik",
@@ -176,7 +176,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenjör%20i%20datateknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenjör%20i%20datateknik"
   },
   {
     "title": "Civilingenjör i informationsteknik",
@@ -212,7 +212,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenjör%20i%20informationsteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenjör%20i%20informationsteknik"
   },
   {
     "title": "Civilingenjör i datateknik",
@@ -248,7 +248,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenjör%20i%20datateknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenjör%20i%20datateknik"
   },
   {
     "title": "Datavetenskap, kandidatprogram",
@@ -284,7 +284,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Datavetenskap,%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Datavetenskap,%20kandidatprogram"
   },
   {
     "title": "Civilingenjör i industriell ekonomi",
@@ -320,7 +320,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenjör%20i%20industriell%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenjör%20i%20industriell%20ekonomi"
   },
   {
     "title": "Civilingenjör i industriell ekonomi",
@@ -356,7 +356,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenjör%20i%20industriell%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenjör%20i%20industriell%20ekonomi"
   },
   {
     "title": "Civilingenjör i industriell ekonomi",
@@ -392,7 +392,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenjör%20i%20industriell%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenjör%20i%20industriell%20ekonomi"
   },
   {
     "title": "Ekonomie kandidatprogram",
@@ -427,7 +427,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Ekonomie%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Ekonomie%20kandidatprogram"
   },
   {
     "title": "Ekonomie kandidatprogram",
@@ -462,7 +462,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Ekonomie%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Ekonomie%20kandidatprogram"
   },
   {
     "title": "Företagsekonomi, kandidatprogram",
@@ -498,7 +498,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Företagsekonomi,%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Företagsekonomi,%20kandidatprogram"
   },
   {
     "title": "Juristprogrammet",
@@ -534,7 +534,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Juristprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Juristprogrammet"
   },
   {
     "title": "Juristprogrammet",
@@ -569,7 +569,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Juristprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Juristprogrammet"
   },
   {
     "title": "Juristprogrammet",
@@ -604,7 +604,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Juristprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Juristprogrammet"
   },
   {
     "title": "Statsvetarprogrammet",
@@ -640,7 +640,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Statsvetarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Statsvetarprogrammet"
   },
   {
     "title": "Statsvetenskap, kandidatprogram",
@@ -676,7 +676,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Statsvetenskap,%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Statsvetenskap,%20kandidatprogram"
   },
   {
     "title": "Politices kandidatprogram",
@@ -712,7 +712,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Politices%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Politices%20kandidatprogram"
   },
   {
     "title": "Psykologprogrammet",
@@ -748,7 +748,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Psykologprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Psykologprogrammet"
   },
   {
     "title": "Psykologprogrammet",
@@ -783,7 +783,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Psykologprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Psykologprogrammet"
   },
   {
     "title": "Psykologprogrammet",
@@ -818,7 +818,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Psykologprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Psykologprogrammet"
   },
   {
     "title": "Läkarprogrammet",
@@ -854,7 +854,7 @@
       "langstudie": 0.98
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Läkarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Läkarprogrammet"
   },
   {
     "title": "Läkarprogrammet",
@@ -890,7 +890,7 @@
       "langstudie": 0.98
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Läkarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Läkarprogrammet"
   },
   {
     "title": "Läkarprogrammet",
@@ -926,7 +926,7 @@
       "langstudie": 0.98
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Läkarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Läkarprogrammet"
   },
   {
     "title": "Sjuksköterskeprogrammet",
@@ -962,7 +962,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Sjuksköterskeprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Sjuksköterskeprogrammet"
   },
   {
     "title": "Sjuksköterskeprogrammet",
@@ -998,7 +998,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Sjuksköterskeprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Sjuksköterskeprogrammet"
   },
   {
     "title": "Fysioterapeutprogrammet",
@@ -1034,7 +1034,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Fysioterapeutprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Fysioterapeutprogrammet"
   },
   {
     "title": "Fysioterapeutprogrammet",
@@ -1069,7 +1069,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Fysioterapeutprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Fysioterapeutprogrammet"
   },
   {
     "title": "Biologi, kandidatprogram",
@@ -1105,7 +1105,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Biologi,%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Biologi,%20kandidatprogram"
   },
   {
     "title": "Biologi, kandidatprogram",
@@ -1141,7 +1141,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Biologi,%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Biologi,%20kandidatprogram"
   },
   {
     "title": "Miljövetenskap, kandidatprogram",
@@ -1177,7 +1177,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Miljövetenskap,%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Miljövetenskap,%20kandidatprogram"
   },
   {
     "title": "Civilingenjör i energi och miljö",
@@ -1213,7 +1213,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenjör%20i%20energi%20och%20miljö"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenjör%20i%20energi%20och%20miljö"
   },
   {
     "title": "Arkitektutbildning",
@@ -1249,7 +1249,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Arkitektutbildning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Arkitektutbildning"
   },
   {
     "title": "Arkitektutbildning",
@@ -1285,7 +1285,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Arkitektutbildning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Arkitektutbildning"
   },
   {
     "title": "Industridesign, kandidatprogram",
@@ -1321,7 +1321,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Industridesign,%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Industridesign,%20kandidatprogram"
   },
   {
     "title": "Medie- och kommunikationsvetenskap",
@@ -1357,7 +1357,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Medie-%20och%20kommunikationsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Medie-%20och%20kommunikationsvetenskap"
   },
   {
     "title": "Strategisk kommunikation",
@@ -1393,7 +1393,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Strategisk%20kommunikation"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Strategisk%20kommunikation"
   },
   {
     "title": "Grundlärarprogrammet",
@@ -1429,7 +1429,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Grundlärarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Grundlärarprogrammet"
   },
   {
     "title": "Ämneslärarprogrammet",
@@ -1464,7 +1464,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Ämneslärarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Ämneslärarprogrammet"
   },
   {
     "title": "Socionomprogrammet",
@@ -1500,7 +1500,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Socionomprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Socionomprogrammet"
   },
   {
     "title": "Socionomprogrammet",
@@ -1535,7 +1535,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Socionomprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Socionomprogrammet"
   },
   {
     "title": "Kriminologiprogrammet",
@@ -1571,7 +1571,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kriminologiprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kriminologiprogrammet"
   },
   {
     "title": "Personalvetarprogrammet",
@@ -1607,7 +1607,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Personalvetarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Personalvetarprogrammet"
   },
   {
     "title": "Personalvetarprogrammet",
@@ -1643,7 +1643,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Personalvetarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Personalvetarprogrammet"
   },
   {
     "title": "Logistik och ledning",
@@ -1679,7 +1679,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Logistik%20och%20ledning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Logistik%20och%20ledning"
   },
   {
     "title": "Högskoleingenjör i byggteknik",
@@ -1715,7 +1715,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "demo",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Högskoleingenjör%20i%20byggteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Högskoleingenjör%20i%20byggteknik"
   },
   {
     "title": "Civilingenjör i datateknik",
@@ -1751,7 +1751,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20datateknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20datateknik"
   },
   {
     "title": "Civilingenjör i informationsteknik",
@@ -1787,7 +1787,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20informationsteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20informationsteknik"
   },
   {
     "title": "Civilingenjör i mjukvaruteknik",
@@ -1823,7 +1823,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20mjukvaruteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20mjukvaruteknik"
   },
   {
     "title": "Civilingenjör i medieteknik",
@@ -1859,7 +1859,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20medieteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20medieteknik"
   },
   {
     "title": "Civilingenjör i teknisk datavetenskap",
@@ -1895,7 +1895,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20teknisk%20datavetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20teknisk%20datavetenskap"
   },
   {
     "title": "Civilingenjör i artificiell intelligens",
@@ -1931,7 +1931,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20artificiell%20intelligens"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20artificiell%20intelligens"
   },
   {
     "title": "Civilingenjör i teknisk matematik",
@@ -1967,7 +1967,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20teknisk%20matematik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20teknisk%20matematik"
   },
   {
     "title": "Civilingenjör i teknisk fysik",
@@ -2003,7 +2003,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20teknisk%20fysik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20teknisk%20fysik"
   },
   {
     "title": "Civilingenjör i rymdteknik",
@@ -2039,7 +2039,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20rymdteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20rymdteknik"
   },
   {
     "title": "Civilingenjör i cybersäkerhet",
@@ -2075,7 +2075,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20cybers%C3%A4kerhet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20cybers%C3%A4kerhet"
   },
   {
     "title": "Civilingenjör i informationssäkerhet",
@@ -2111,7 +2111,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20informationss%C3%A4kerhet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20informationss%C3%A4kerhet"
   },
   {
     "title": "Civilingenjör i elektroteknik",
@@ -2147,7 +2147,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20elektroteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20elektroteknik"
   },
   {
     "title": "Civilingenjör i maskinteknik",
@@ -2183,7 +2183,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20maskinteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20maskinteknik"
   },
   {
     "title": "Civilingenjör i mekatronik",
@@ -2219,7 +2219,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20mekatronik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20mekatronik"
   },
   {
     "title": "Civilingenjör i automation och robotik",
@@ -2255,7 +2255,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20automation%20och%20robotik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20automation%20och%20robotik"
   },
   {
     "title": "Civilingenjör i farkostteknik",
@@ -2291,7 +2291,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20farkostteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20farkostteknik"
   },
   {
     "title": "Civilingenjör i materialdesign",
@@ -2327,7 +2327,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20materialdesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20materialdesign"
   },
   {
     "title": "Civilingenjör i nanoteknik",
@@ -2363,7 +2363,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20nanoteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20nanoteknik"
   },
   {
     "title": "Civilingenjör i teknisk nanovetenskap",
@@ -2399,7 +2399,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20teknisk%20nanovetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20teknisk%20nanovetenskap"
   },
   {
     "title": "Civilingenjör i energi- och miljöteknik",
@@ -2435,7 +2435,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20energi-%20och%20milj%C3%B6teknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20energi-%20och%20milj%C3%B6teknik"
   },
   {
     "title": "Civilingenjör i energisystem",
@@ -2471,7 +2471,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20energisystem"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20energisystem"
   },
   {
     "title": "Civilingenjör i medicinsk teknik",
@@ -2507,7 +2507,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20medicinsk%20teknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20medicinsk%20teknik"
   },
   {
     "title": "Civilingenjör i produktutveckling",
@@ -2543,7 +2543,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20produktutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20produktutveckling"
   },
   {
     "title": "Civilingenjör i industriell design och produktutveckling",
@@ -2579,7 +2579,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20industriell%20design%20och%20produktutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20industriell%20design%20och%20produktutveckling"
   },
   {
     "title": "Civilingenjör i industriell ekonomi",
@@ -2615,7 +2615,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20industriell%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20industriell%20ekonomi"
   },
   {
     "title": "Civilingenjör i industriell produktion",
@@ -2651,7 +2651,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20industriell%20produktion"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20industriell%20produktion"
   },
   {
     "title": "Civilingenjör i industriell teknik och hållbarhet",
@@ -2687,7 +2687,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20industriell%20teknik%20och%20h%C3%A5llbarhet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20industriell%20teknik%20och%20h%C3%A5llbarhet"
   },
   {
     "title": "Högskoleingenjör i datateknik",
@@ -2723,7 +2723,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20datateknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20datateknik"
   },
   {
     "title": "Högskoleingenjör i elektroteknik",
@@ -2759,7 +2759,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20elektroteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20elektroteknik"
   },
   {
     "title": "Högskoleingenjör i maskinteknik",
@@ -2795,7 +2795,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20maskinteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20maskinteknik"
   },
   {
     "title": "Högskoleingenjör i mekatronik",
@@ -2831,7 +2831,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20mekatronik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20mekatronik"
   },
   {
     "title": "Högskoleingenjör i automationsteknik",
@@ -2867,7 +2867,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20automationsteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20automationsteknik"
   },
   {
     "title": "Högskoleingenjör i energiteknik",
@@ -2903,7 +2903,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20energiteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20energiteknik"
   },
   {
     "title": "Högskoleingenjör i medicinsk teknik",
@@ -2939,7 +2939,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20medicinsk%20teknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20medicinsk%20teknik"
   },
   {
     "title": "Högskoleingenjör i elektronik och datorteknik",
@@ -2975,7 +2975,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20elektronik%20och%20datorteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20elektronik%20och%20datorteknik"
   },
   {
     "title": "Högskoleingenjör i produktutveckling",
@@ -3011,7 +3011,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20produktutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20produktutveckling"
   },
   {
     "title": "Högskoleingenjör i innovationsteknik",
@@ -3047,7 +3047,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20innovationsteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20innovationsteknik"
   },
   {
     "title": "Kandidatprogram i datavetenskap",
@@ -3083,7 +3083,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20datavetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20datavetenskap"
   },
   {
     "title": "Kandidatprogram i systemvetenskap",
@@ -3119,7 +3119,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20systemvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20systemvetenskap"
   },
   {
     "title": "Kandidatprogram i programvaruteknik",
@@ -3155,7 +3155,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20programvaruteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20programvaruteknik"
   },
   {
     "title": "Kandidatprogram i informatik",
@@ -3191,7 +3191,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20informatik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20informatik"
   },
   {
     "title": "Kandidatprogram i informationssystem",
@@ -3227,7 +3227,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20informationssystem"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20informationssystem"
   },
   {
     "title": "Kandidatprogram i webbutveckling",
@@ -3263,7 +3263,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20webbutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20webbutveckling"
   },
   {
     "title": "Kandidatprogram i apputveckling",
@@ -3299,7 +3299,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20apputveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20apputveckling"
   },
   {
     "title": "Kandidatprogram i spelutveckling – programmering",
@@ -3335,7 +3335,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20spelutveckling%20%E2%80%93%20programmering"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20spelutveckling%20%E2%80%93%20programmering"
   },
   {
     "title": "Kandidatprogram i datorgrafik och visualisering",
@@ -3371,7 +3371,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20datorgrafik%20och%20visualisering"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20datorgrafik%20och%20visualisering"
   },
   {
     "title": "Kandidatprogram i människa-datorinteraktion",
@@ -3407,7 +3407,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20m%C3%A4nniska-datorinteraktion"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20m%C3%A4nniska-datorinteraktion"
   },
   {
     "title": "Kandidatprogram i artificiell intelligens",
@@ -3443,7 +3443,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20artificiell%20intelligens"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20artificiell%20intelligens"
   },
   {
     "title": "Kandidatprogram i data science",
@@ -3479,7 +3479,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20data%20science"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20data%20science"
   },
   {
     "title": "Kandidatprogram i matematisk dataanalys",
@@ -3515,7 +3515,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20matematisk%20dataanalys"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20matematisk%20dataanalys"
   },
   {
     "title": "Kandidatprogram i cybersäkerhet",
@@ -3551,7 +3551,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20cybers%C3%A4kerhet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20cybers%C3%A4kerhet"
   },
   {
     "title": "Kandidatprogram i nätverk och IT-säkerhet",
@@ -3587,7 +3587,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20n%C3%A4tverk%20och%20IT-s%C3%A4kerhet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20n%C3%A4tverk%20och%20IT-s%C3%A4kerhet"
   },
   {
     "title": "Kandidatprogram i digital forensik",
@@ -3623,7 +3623,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20digital%20forensik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20digital%20forensik"
   },
   {
     "title": "Civilingenjör i bioteknik",
@@ -3659,7 +3659,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20bioteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20bioteknik"
   },
   {
     "title": "Civilingenjör i molekylär bioteknik",
@@ -3695,7 +3695,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20molekyl%C3%A4r%20bioteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20molekyl%C3%A4r%20bioteknik"
   },
   {
     "title": "Civilingenjör i teknisk biologi",
@@ -3731,7 +3731,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20teknisk%20biologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20teknisk%20biologi"
   },
   {
     "title": "Civilingenjör i kemisk biologi",
@@ -3767,7 +3767,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20kemisk%20biologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20kemisk%20biologi"
   },
   {
     "title": "Civilingenjör i bioprocessteknik",
@@ -3803,7 +3803,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20bioprocessteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20bioprocessteknik"
   },
   {
     "title": "Civilingenjör i biomaterial",
@@ -3839,7 +3839,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20biomaterial"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20biomaterial"
   },
   {
     "title": "Civilingenjör i bioinformatik",
@@ -3875,7 +3875,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20bioinformatik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20bioinformatik"
   },
   {
     "title": "Civilingenjör i medicinsk bioteknik",
@@ -3911,7 +3911,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20medicinsk%20bioteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20medicinsk%20bioteknik"
   },
   {
     "title": "Civilingenjör i kemiteknik",
@@ -3947,7 +3947,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20kemiteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20kemiteknik"
   },
   {
     "title": "Civilingenjör i teknisk kemi",
@@ -3983,7 +3983,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20teknisk%20kemi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20teknisk%20kemi"
   },
   {
     "title": "Kandidatprogram i biokemi",
@@ -4019,7 +4019,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20biokemi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20biokemi"
   },
   {
     "title": "Kandidatprogram i biologi",
@@ -4055,7 +4055,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20biologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20biologi"
   },
   {
     "title": "Kandidatprogram i molekylärbiologi",
@@ -4091,7 +4091,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20molekyl%C3%A4rbiologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20molekyl%C3%A4rbiologi"
   },
   {
     "title": "Kandidatprogram i biomedicin",
@@ -4127,7 +4127,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20biomedicin"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20biomedicin"
   },
   {
     "title": "Kandidatprogram i cell- och molekylärbiologi",
@@ -4163,7 +4163,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20cell-%20och%20molekyl%C3%A4rbiologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20cell-%20och%20molekyl%C3%A4rbiologi"
   },
   {
     "title": "Kandidatprogram i mikrobiologi",
@@ -4199,7 +4199,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20mikrobiologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20mikrobiologi"
   },
   {
     "title": "Kandidatprogram i genetik och genomik",
@@ -4235,7 +4235,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20genetik%20och%20genomik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20genetik%20och%20genomik"
   },
   {
     "title": "Kandidatprogram i neurovetenskap",
@@ -4271,7 +4271,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20neurovetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20neurovetenskap"
   },
   {
     "title": "Kandidatprogram i marinbiologi",
@@ -4307,7 +4307,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20marinbiologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20marinbiologi"
   },
   {
     "title": "Kandidatprogram i ekologisk biologi",
@@ -4343,7 +4343,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20ekologisk%20biologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20ekologisk%20biologi"
   },
   {
     "title": "Kandidatprogram i biologisk mångfald",
@@ -4379,7 +4379,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20biologisk%20m%C3%A5ngfald"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20biologisk%20m%C3%A5ngfald"
   },
   {
     "title": "Kandidatprogram i bioteknik",
@@ -4415,7 +4415,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20bioteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20bioteknik"
   },
   {
     "title": "Kandidatprogram i bioinformatik",
@@ -4451,7 +4451,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20bioinformatik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20bioinformatik"
   },
   {
     "title": "Kandidatprogram i livsmedelsvetenskap",
@@ -4487,7 +4487,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20livsmedelsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20livsmedelsvetenskap"
   },
   {
     "title": "Kandidatprogram i fysik",
@@ -4523,7 +4523,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20fysik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20fysik"
   },
   {
     "title": "Kandidatprogram i astronomi",
@@ -4559,7 +4559,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20astronomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20astronomi"
   },
   {
     "title": "Kandidatprogram i astrofysik",
@@ -4595,7 +4595,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20astrofysik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20astrofysik"
   },
   {
     "title": "Kandidatprogram i matematik",
@@ -4631,7 +4631,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20matematik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20matematik"
   },
   {
     "title": "Kandidatprogram i tillämpad matematik",
@@ -4667,7 +4667,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20till%C3%A4mpad%20matematik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20till%C3%A4mpad%20matematik"
   },
   {
     "title": "Kandidatprogram i matematisk statistik",
@@ -4703,7 +4703,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20matematisk%20statistik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20matematisk%20statistik"
   },
   {
     "title": "Kandidatprogram i kemi",
@@ -4739,7 +4739,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kemi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kemi"
   },
   {
     "title": "Kandidatprogram i analytisk kemi",
@@ -4775,7 +4775,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20analytisk%20kemi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20analytisk%20kemi"
   },
   {
     "title": "Kandidatprogram i materialkemi",
@@ -4811,7 +4811,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20materialkemi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20materialkemi"
   },
   {
     "title": "Kandidatprogram i läkemedelskemi",
@@ -4847,7 +4847,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20l%C3%A4kemedelskemi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20l%C3%A4kemedelskemi"
   },
   {
     "title": "Kandidatprogram i geovetenskap",
@@ -4883,7 +4883,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20geovetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20geovetenskap"
   },
   {
     "title": "Kandidatprogram i geologi",
@@ -4919,7 +4919,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20geologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20geologi"
   },
   {
     "title": "Kandidatprogram i naturgeografi",
@@ -4955,7 +4955,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20naturgeografi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20naturgeografi"
   },
   {
     "title": "Kandidatprogram i meteorologi",
@@ -4991,7 +4991,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20meteorologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20meteorologi"
   },
   {
     "title": "Kandidatprogram i oceanografi",
@@ -5027,7 +5027,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20oceanografi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20oceanografi"
   },
   {
     "title": "Kandidatprogram i hydrologi",
@@ -5063,7 +5063,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20hydrologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20hydrologi"
   },
   {
     "title": "Kandidatprogram i geofysik",
@@ -5099,7 +5099,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20geofysik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20geofysik"
   },
   {
     "title": "Kandidatprogram i GIS och geodata",
@@ -5135,7 +5135,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20GIS%20och%20geodata"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20GIS%20och%20geodata"
   },
   {
     "title": "Civilekonomprogrammet",
@@ -5171,7 +5171,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilekonomprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilekonomprogrammet"
   },
   {
     "title": "Ekonomie kandidatprogram",
@@ -5207,7 +5207,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Ekonomie%20kandidatprogram"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Ekonomie%20kandidatprogram"
   },
   {
     "title": "Kandidatprogram i företagsekonomi",
@@ -5243,7 +5243,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20f%C3%B6retagsekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20f%C3%B6retagsekonomi"
   },
   {
     "title": "Kandidatprogram i internationell ekonomi",
@@ -5279,7 +5279,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20internationell%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20internationell%20ekonomi"
   },
   {
     "title": "Kandidatprogram i international business",
@@ -5315,7 +5315,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20international%20business"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20international%20business"
   },
   {
     "title": "Kandidatprogram i entreprenörskap och innovation",
@@ -5351,7 +5351,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20entrepren%C3%B6rskap%20och%20innovation"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20entrepren%C3%B6rskap%20och%20innovation"
   },
   {
     "title": "Kandidatprogram i management",
@@ -5387,7 +5387,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20management"
   },
   {
     "title": "Kandidatprogram i organisation och ledarskap",
@@ -5423,7 +5423,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20organisation%20och%20ledarskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20organisation%20och%20ledarskap"
   },
   {
     "title": "Kandidatprogram i projektledning",
@@ -5459,7 +5459,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20projektledning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20projektledning"
   },
   {
     "title": "Kandidatprogram i digital business",
@@ -5495,7 +5495,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20digital%20business"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20digital%20business"
   },
   {
     "title": "Kandidatprogram i e-handel",
@@ -5531,7 +5531,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20e-handel"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20e-handel"
   },
   {
     "title": "Kandidatprogram i handel och retail management",
@@ -5567,7 +5567,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20handel%20och%20retail%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20handel%20och%20retail%20management"
   },
   {
     "title": "Kandidatprogram i fastighetsekonomi",
@@ -5603,7 +5603,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20fastighetsekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20fastighetsekonomi"
   },
   {
     "title": "Fastighetsmäklarprogrammet",
@@ -5639,7 +5639,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Fastighetsm%C3%A4klarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Fastighetsm%C3%A4klarprogrammet"
   },
   {
     "title": "Kandidatprogram i agrar ekonomi",
@@ -5675,7 +5675,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20agrar%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20agrar%20ekonomi"
   },
   {
     "title": "Kandidatprogram i finans",
@@ -5711,7 +5711,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20finans"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20finans"
   },
   {
     "title": "Kandidatprogram i redovisning och revision",
@@ -5747,7 +5747,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20redovisning%20och%20revision"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20redovisning%20och%20revision"
   },
   {
     "title": "Kandidatprogram i nationalekonomi",
@@ -5783,7 +5783,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20nationalekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20nationalekonomi"
   },
   {
     "title": "Kandidatprogram i business analytics",
@@ -5819,7 +5819,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20business%20analytics"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20business%20analytics"
   },
   {
     "title": "Kandidatprogram i ekonomisk statistik",
@@ -5855,7 +5855,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20ekonomisk%20statistik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20ekonomisk%20statistik"
   },
   {
     "title": "Kandidatprogram i försäkringsmatematik",
@@ -5891,7 +5891,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20f%C3%B6rs%C3%A4kringsmatematik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20f%C3%B6rs%C3%A4kringsmatematik"
   },
   {
     "title": "Kandidatprogram i marknadsföring",
@@ -5927,7 +5927,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20marknadsf%C3%B6ring"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20marknadsf%C3%B6ring"
   },
   {
     "title": "Kandidatprogram i strategisk marknadsföring",
@@ -5963,7 +5963,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20strategisk%20marknadsf%C3%B6ring"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20strategisk%20marknadsf%C3%B6ring"
   },
   {
     "title": "Kandidatprogram i reklam och PR",
@@ -5999,7 +5999,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20reklam%20och%20PR"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20reklam%20och%20PR"
   },
   {
     "title": "Kandidatprogram i försäljning och affärsutveckling",
@@ -6035,7 +6035,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20f%C3%B6rs%C3%A4ljning%20och%20aff%C3%A4rsutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20f%C3%B6rs%C3%A4ljning%20och%20aff%C3%A4rsutveckling"
   },
   {
     "title": "Kandidatprogram i logistik",
@@ -6071,7 +6071,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20logistik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20logistik"
   },
   {
     "title": "Kandidatprogram i supply chain management",
@@ -6107,7 +6107,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20supply%20chain%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20supply%20chain%20management"
   },
   {
     "title": "Kandidatprogram i inköp och upphandling",
@@ -6143,7 +6143,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20ink%C3%B6p%20och%20upphandling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20ink%C3%B6p%20och%20upphandling"
   },
   {
     "title": "Kandidatprogram i transportekonomi",
@@ -6179,7 +6179,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20transportekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20transportekonomi"
   },
   {
     "title": "Kandidatprogram i statsvetenskap",
@@ -6215,7 +6215,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20statsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20statsvetenskap"
   },
   {
     "title": "Kandidatprogram i internationella relationer",
@@ -6251,7 +6251,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20internationella%20relationer"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20internationella%20relationer"
   },
   {
     "title": "Kandidatprogram i freds- och konfliktvetenskap",
@@ -6287,7 +6287,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20freds-%20och%20konfliktvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20freds-%20och%20konfliktvetenskap"
   },
   {
     "title": "Kandidatprogram i globala studier",
@@ -6323,7 +6323,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20globala%20studier"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20globala%20studier"
   },
   {
     "title": "Kandidatprogram i utvecklingsstudier",
@@ -6359,7 +6359,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20utvecklingsstudier"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20utvecklingsstudier"
   },
   {
     "title": "Kandidatprogram i Europastudier",
@@ -6395,7 +6395,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20Europastudier"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20Europastudier"
   },
   {
     "title": "Kandidatprogram i mänskliga rättigheter",
@@ -6431,7 +6431,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20m%C3%A4nskliga%20r%C3%A4ttigheter"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20m%C3%A4nskliga%20r%C3%A4ttigheter"
   },
   {
     "title": "Kandidatprogram i migration och integration",
@@ -6467,7 +6467,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20migration%20och%20integration"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20migration%20och%20integration"
   },
   {
     "title": "Kandidatprogram i genusvetenskap",
@@ -6503,7 +6503,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20genusvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20genusvetenskap"
   },
   {
     "title": "Kandidatprogram i offentlig förvaltning",
@@ -6539,7 +6539,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20offentlig%20f%C3%B6rvaltning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20offentlig%20f%C3%B6rvaltning"
   },
   {
     "title": "Kandidatprogram i samhällsplanering",
@@ -6575,7 +6575,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20samh%C3%A4llsplanering"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20samh%C3%A4llsplanering"
   },
   {
     "title": "Kandidatprogram i sociologi",
@@ -6611,7 +6611,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20sociologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20sociologi"
   },
   {
     "title": "Kandidatprogram i socialantropologi",
@@ -6647,7 +6647,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20socialantropologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20socialantropologi"
   },
   {
     "title": "Kandidatprogram i kulturgeografi",
@@ -6683,7 +6683,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kulturgeografi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kulturgeografi"
   },
   {
     "title": "Kandidatprogram i demografi",
@@ -6719,7 +6719,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20demografi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20demografi"
   },
   {
     "title": "Kandidatprogram i arbetslivsvetenskap",
@@ -6755,7 +6755,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20arbetslivsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20arbetslivsvetenskap"
   },
   {
     "title": "Juristprogrammet",
@@ -6791,7 +6791,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Juristprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Juristprogrammet"
   },
   {
     "title": "Kandidatprogram i rättsvetenskap",
@@ -6827,7 +6827,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20r%C3%A4ttsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20r%C3%A4ttsvetenskap"
   },
   {
     "title": "Kandidatprogram i affärsjuridik",
@@ -6863,7 +6863,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20aff%C3%A4rsjuridik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20aff%C3%A4rsjuridik"
   },
   {
     "title": "Kandidatprogram i handelsrätt",
@@ -6899,7 +6899,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20handelsr%C3%A4tt"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20handelsr%C3%A4tt"
   },
   {
     "title": "Kandidatprogram i skatterätt och ekonomi",
@@ -6935,7 +6935,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20skatter%C3%A4tt%20och%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20skatter%C3%A4tt%20och%20ekonomi"
   },
   {
     "title": "Kandidatprogram i arbetsrätt och arbetsliv",
@@ -6971,7 +6971,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20arbetsr%C3%A4tt%20och%20arbetsliv"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20arbetsr%C3%A4tt%20och%20arbetsliv"
   },
   {
     "title": "Psykologprogrammet",
@@ -7007,7 +7007,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Psykologprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Psykologprogrammet"
   },
   {
     "title": "Kandidatprogram i psykologi",
@@ -7043,7 +7043,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20psykologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20psykologi"
   },
   {
     "title": "Kandidatprogram i beteendevetenskap",
@@ -7079,7 +7079,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20beteendevetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20beteendevetenskap"
   },
   {
     "title": "Kandidatprogram i kognitionsvetenskap",
@@ -7115,7 +7115,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kognitionsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kognitionsvetenskap"
   },
   {
     "title": "Kandidatprogram i socialpsykologi",
@@ -7151,7 +7151,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20socialpsykologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20socialpsykologi"
   },
   {
     "title": "Kandidatprogram i personalvetenskap",
@@ -7187,7 +7187,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20personalvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20personalvetenskap"
   },
   {
     "title": "Personalvetarprogrammet",
@@ -7223,7 +7223,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Personalvetarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Personalvetarprogrammet"
   },
   {
     "title": "Kandidatprogram i arbets- och organisationspsykologi",
@@ -7259,7 +7259,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20arbets-%20och%20organisationspsykologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20arbets-%20och%20organisationspsykologi"
   },
   {
     "title": "Kandidatprogram i pedagogik",
@@ -7295,7 +7295,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20pedagogik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20pedagogik"
   },
   {
     "title": "Socionomprogrammet",
@@ -7331,7 +7331,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Socionomprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Socionomprogrammet"
   },
   {
     "title": "Kandidatprogram i socialt arbete",
@@ -7367,7 +7367,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20socialt%20arbete"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20socialt%20arbete"
   },
   {
     "title": "Kandidatprogram i social omsorg",
@@ -7403,7 +7403,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20social%20omsorg"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20social%20omsorg"
   },
   {
     "title": "Läkarprogrammet",
@@ -7439,7 +7439,7 @@
       "langstudie": 0.98
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=L%C3%A4karprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=L%C3%A4karprogrammet"
   },
   {
     "title": "Tandläkarprogrammet",
@@ -7475,7 +7475,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Tandl%C3%A4karprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Tandl%C3%A4karprogrammet"
   },
   {
     "title": "Sjuksköterskeprogrammet",
@@ -7511,7 +7511,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Sjuksk%C3%B6terskeprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Sjuksk%C3%B6terskeprogrammet"
   },
   {
     "title": "Röntgensjuksköterskeprogrammet",
@@ -7547,7 +7547,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=R%C3%B6ntgensjuksk%C3%B6terskeprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=R%C3%B6ntgensjuksk%C3%B6terskeprogrammet"
   },
   {
     "title": "Tandhygienistprogrammet",
@@ -7583,7 +7583,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Tandhygienistprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Tandhygienistprogrammet"
   },
   {
     "title": "Fysioterapeutprogrammet",
@@ -7619,7 +7619,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Fysioterapeutprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Fysioterapeutprogrammet"
   },
   {
     "title": "Arbetsterapeutprogrammet",
@@ -7655,7 +7655,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Arbetsterapeutprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Arbetsterapeutprogrammet"
   },
   {
     "title": "Audionomprogrammet",
@@ -7691,7 +7691,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Audionomprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Audionomprogrammet"
   },
   {
     "title": "Optikerprogrammet",
@@ -7727,7 +7727,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Optikerprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Optikerprogrammet"
   },
   {
     "title": "Ortopedingenjörsprogrammet",
@@ -7763,7 +7763,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Ortopedingenj%C3%B6rsprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Ortopedingenj%C3%B6rsprogrammet"
   },
   {
     "title": "Logopedprogrammet",
@@ -7799,7 +7799,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Logopedprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Logopedprogrammet"
   },
   {
     "title": "Apotekarprogrammet",
@@ -7835,7 +7835,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Apotekarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Apotekarprogrammet"
   },
   {
     "title": "Receptarieprogrammet",
@@ -7871,7 +7871,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Receptarieprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Receptarieprogrammet"
   },
   {
     "title": "Biomedicinska analytikerprogrammet",
@@ -7907,7 +7907,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Biomedicinska%20analytikerprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Biomedicinska%20analytikerprogrammet"
   },
   {
     "title": "Kandidatprogram i biomedicinsk vetenskap",
@@ -7943,7 +7943,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20biomedicinsk%20vetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20biomedicinsk%20vetenskap"
   },
   {
     "title": "Kandidatprogram i medicinsk vetenskap",
@@ -7979,7 +7979,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20medicinsk%20vetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20medicinsk%20vetenskap"
   },
   {
     "title": "Kandidatprogram i folkhälsovetenskap",
@@ -8015,7 +8015,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20folkh%C3%A4lsovetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20folkh%C3%A4lsovetenskap"
   },
   {
     "title": "Kandidatprogram i hälsovetenskap",
@@ -8051,7 +8051,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20h%C3%A4lsovetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20h%C3%A4lsovetenskap"
   },
   {
     "title": "Kandidatprogram i nutrition",
@@ -8087,7 +8087,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20nutrition"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20nutrition"
   },
   {
     "title": "Dietistprogrammet",
@@ -8123,7 +8123,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Dietistprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Dietistprogrammet"
   },
   {
     "title": "Kandidatprogram i grafisk design",
@@ -8159,7 +8159,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20grafisk%20design"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20grafisk%20design"
   },
   {
     "title": "Kandidatprogram i industridesign",
@@ -8195,7 +8195,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20industridesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20industridesign"
   },
   {
     "title": "Kandidatprogram i produktdesign",
@@ -8231,7 +8231,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20produktdesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20produktdesign"
   },
   {
     "title": "Kandidatprogram i interaktionsdesign",
@@ -8267,7 +8267,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20interaktionsdesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20interaktionsdesign"
   },
   {
     "title": "Kandidatprogram i visuell kommunikation",
@@ -8303,7 +8303,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20visuell%20kommunikation"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20visuell%20kommunikation"
   },
   {
     "title": "Kandidatprogram i textildesign",
@@ -8339,7 +8339,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20textildesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20textildesign"
   },
   {
     "title": "Kandidatprogram i modedesign",
@@ -8375,7 +8375,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20modedesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20modedesign"
   },
   {
     "title": "Kandidatprogram i speldesign",
@@ -8411,7 +8411,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20speldesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20speldesign"
   },
   {
     "title": "Kandidatprogram i animation",
@@ -8447,7 +8447,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20animation"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20animation"
   },
   {
     "title": "Kandidatprogram i fotografi",
@@ -8483,7 +8483,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20fotografi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20fotografi"
   },
   {
     "title": "Kandidatprogram i medie- och kommunikationsvetenskap",
@@ -8519,7 +8519,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20medie-%20och%20kommunikationsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20medie-%20och%20kommunikationsvetenskap"
   },
   {
     "title": "Kandidatprogram i strategisk kommunikation",
@@ -8555,7 +8555,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20strategisk%20kommunikation"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20strategisk%20kommunikation"
   },
   {
     "title": "Kandidatprogram i digitala medier",
@@ -8591,7 +8591,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20digitala%20medier"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20digitala%20medier"
   },
   {
     "title": "Kandidatprogram i kommunikation och PR",
@@ -8627,7 +8627,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kommunikation%20och%20PR"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kommunikation%20och%20PR"
   },
   {
     "title": "Kandidatprogram i film- och medieproduktion",
@@ -8663,7 +8663,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20film-%20och%20medieproduktion"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20film-%20och%20medieproduktion"
   },
   {
     "title": "Kandidatprogram i digital innehållsproduktion",
@@ -8699,7 +8699,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20digital%20inneh%C3%A5llsproduktion"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20digital%20inneh%C3%A5llsproduktion"
   },
   {
     "title": "Kandidatprogram i copywriting och konceptutveckling",
@@ -8735,7 +8735,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20copywriting%20och%20konceptutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20copywriting%20och%20konceptutveckling"
   },
   {
     "title": "Journalistprogrammet",
@@ -8771,7 +8771,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Journalistprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Journalistprogrammet"
   },
   {
     "title": "Kandidatprogram i journalistik",
@@ -8807,7 +8807,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20journalistik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20journalistik"
   },
   {
     "title": "Kandidatprogram i historia",
@@ -8843,7 +8843,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20historia"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20historia"
   },
   {
     "title": "Kandidatprogram i idéhistoria",
@@ -8879,7 +8879,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20id%C3%A9historia"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20id%C3%A9historia"
   },
   {
     "title": "Kandidatprogram i filosofi",
@@ -8915,7 +8915,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20filosofi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20filosofi"
   },
   {
     "title": "Kandidatprogram i litteraturvetenskap",
@@ -8951,7 +8951,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20litteraturvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20litteraturvetenskap"
   },
   {
     "title": "Kandidatprogram i arkeologi",
@@ -8987,7 +8987,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20arkeologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20arkeologi"
   },
   {
     "title": "Kandidatprogram i antikens kultur och samhällsliv",
@@ -9023,7 +9023,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20antikens%20kultur%20och%20samh%C3%A4llsliv"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20antikens%20kultur%20och%20samh%C3%A4llsliv"
   },
   {
     "title": "Kandidatprogram i etnologi",
@@ -9059,7 +9059,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20etnologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20etnologi"
   },
   {
     "title": "Kandidatprogram i kulturvetenskap",
@@ -9095,7 +9095,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kulturvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kulturvetenskap"
   },
   {
     "title": "Kandidatprogram i konstvetenskap",
@@ -9131,7 +9131,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20konstvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20konstvetenskap"
   },
   {
     "title": "Kandidatprogram i religionsvetenskap",
@@ -9167,7 +9167,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20religionsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20religionsvetenskap"
   },
   {
     "title": "Kandidatprogram i retorik",
@@ -9203,7 +9203,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20retorik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20retorik"
   },
   {
     "title": "Kandidatprogram i biblioteks- och informationsvetenskap",
@@ -9239,7 +9239,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20biblioteks-%20och%20informationsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20biblioteks-%20och%20informationsvetenskap"
   },
   {
     "title": "Kandidatprogram i svenska språket",
@@ -9275,7 +9275,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20svenska%20spr%C3%A5ket"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20svenska%20spr%C3%A5ket"
   },
   {
     "title": "Kandidatprogram i engelska",
@@ -9311,7 +9311,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20engelska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20engelska"
   },
   {
     "title": "Kandidatprogram i franska",
@@ -9347,7 +9347,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20franska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20franska"
   },
   {
     "title": "Kandidatprogram i tyska",
@@ -9383,7 +9383,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20tyska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20tyska"
   },
   {
     "title": "Kandidatprogram i spanska",
@@ -9419,7 +9419,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20spanska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20spanska"
   },
   {
     "title": "Kandidatprogram i italienska",
@@ -9455,7 +9455,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20italienska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20italienska"
   },
   {
     "title": "Kandidatprogram i japanska",
@@ -9491,7 +9491,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20japanska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20japanska"
   },
   {
     "title": "Kandidatprogram i kinesiska",
@@ -9527,7 +9527,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kinesiska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kinesiska"
   },
   {
     "title": "Kandidatprogram i arabiska",
@@ -9563,7 +9563,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20arabiska"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20arabiska"
   },
   {
     "title": "Kandidatprogram i lingvistik",
@@ -9599,7 +9599,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20lingvistik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20lingvistik"
   },
   {
     "title": "Kandidatprogram i språkvetenskap",
@@ -9635,7 +9635,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20spr%C3%A5kvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20spr%C3%A5kvetenskap"
   },
   {
     "title": "Kandidatprogram i översättning",
@@ -9671,7 +9671,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20%C3%B6vers%C3%A4ttning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20%C3%B6vers%C3%A4ttning"
   },
   {
     "title": "Kandidatprogram i språk och interkulturell kommunikation",
@@ -9707,7 +9707,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20spr%C3%A5k%20och%20interkulturell%20kommunikation"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20spr%C3%A5k%20och%20interkulturell%20kommunikation"
   },
   {
     "title": "Förskollärarprogrammet",
@@ -9743,7 +9743,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=F%C3%B6rskoll%C3%A4rarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=F%C3%B6rskoll%C3%A4rarprogrammet"
   },
   {
     "title": "Grundlärarprogrammet – fritidshem",
@@ -9779,7 +9779,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Grundl%C3%A4rarprogrammet%20%E2%80%93%20fritidshem"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Grundl%C3%A4rarprogrammet%20%E2%80%93%20fritidshem"
   },
   {
     "title": "Grundlärarprogrammet – förskoleklass och årskurs 1–3",
@@ -9815,7 +9815,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Grundl%C3%A4rarprogrammet%20%E2%80%93%20f%C3%B6rskoleklass%20och%20%C3%A5rskurs%201%E2%80%933"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Grundl%C3%A4rarprogrammet%20%E2%80%93%20f%C3%B6rskoleklass%20och%20%C3%A5rskurs%201%E2%80%933"
   },
   {
     "title": "Grundlärarprogrammet – årskurs 4–6",
@@ -9851,7 +9851,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Grundl%C3%A4rarprogrammet%20%E2%80%93%20%C3%A5rskurs%204%E2%80%936"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Grundl%C3%A4rarprogrammet%20%E2%80%93%20%C3%A5rskurs%204%E2%80%936"
   },
   {
     "title": "Studie- och yrkesvägledarprogrammet",
@@ -9887,7 +9887,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Studie-%20och%20yrkesv%C3%A4gledarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Studie-%20och%20yrkesv%C3%A4gledarprogrammet"
   },
   {
     "title": "Ämneslärarprogrammet – årskurs 7–9",
@@ -9923,7 +9923,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20%C3%A5rskurs%207%E2%80%939"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20%C3%A5rskurs%207%E2%80%939"
   },
   {
     "title": "Ämneslärarprogrammet – gymnasiet",
@@ -9959,7 +9959,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20gymnasiet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20gymnasiet"
   },
   {
     "title": "Ämneslärarprogrammet – matematik och naturvetenskap",
@@ -9995,7 +9995,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20matematik%20och%20naturvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20matematik%20och%20naturvetenskap"
   },
   {
     "title": "Ämneslärarprogrammet – svenska och språk",
@@ -10031,7 +10031,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20svenska%20och%20spr%C3%A5k"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20svenska%20och%20spr%C3%A5k"
   },
   {
     "title": "Ämneslärarprogrammet – samhällskunskap och historia",
@@ -10067,7 +10067,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20samh%C3%A4llskunskap%20och%20historia"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20samh%C3%A4llskunskap%20och%20historia"
   },
   {
     "title": "Ämneslärarprogrammet – idrott och hälsa",
@@ -10103,7 +10103,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20idrott%20och%20h%C3%A4lsa"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20idrott%20och%20h%C3%A4lsa"
   },
   {
     "title": "Ämneslärarprogrammet – musik",
@@ -10139,7 +10139,7 @@
       "langstudie": 0.71
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20musik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=%C3%84mnesl%C3%A4rarprogrammet%20%E2%80%93%20musik"
   },
   {
     "title": "Yrkeslärarprogrammet",
@@ -10175,7 +10175,7 @@
       "langstudie": 0.12
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Yrkesl%C3%A4rarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Yrkesl%C3%A4rarprogrammet"
   },
   {
     "title": "Arkitektprogrammet",
@@ -10211,7 +10211,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Arkitektprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Arkitektprogrammet"
   },
   {
     "title": "Landskapsarkitektprogrammet",
@@ -10247,7 +10247,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Landskapsarkitektprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Landskapsarkitektprogrammet"
   },
   {
     "title": "Civilingenjör i samhällsbyggnad",
@@ -10283,7 +10283,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20samh%C3%A4llsbyggnad"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20samh%C3%A4llsbyggnad"
   },
   {
     "title": "Civilingenjör i väg- och vattenbyggnad",
@@ -10319,7 +10319,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20v%C3%A4g-%20och%20vattenbyggnad"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20v%C3%A4g-%20och%20vattenbyggnad"
   },
   {
     "title": "Civilingenjör i lantmäteri",
@@ -10355,7 +10355,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20lantm%C3%A4teri"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20lantm%C3%A4teri"
   },
   {
     "title": "Civilingenjör i byggteknik",
@@ -10391,7 +10391,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20byggteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20byggteknik"
   },
   {
     "title": "Högskoleingenjör i byggteknik",
@@ -10427,7 +10427,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20byggteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20byggteknik"
   },
   {
     "title": "Högskoleingenjör i byggteknik och arkitektur",
@@ -10463,7 +10463,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20byggteknik%20och%20arkitektur"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20byggteknik%20och%20arkitektur"
   },
   {
     "title": "Högskoleingenjör i lantmäteriteknik",
@@ -10499,7 +10499,7 @@
       "langstudie": 0.48
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20lantm%C3%A4teriteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=H%C3%B6gskoleingenj%C3%B6r%20i%20lantm%C3%A4teriteknik"
   },
   {
     "title": "Kandidatprogram i fysisk planering",
@@ -10535,7 +10535,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20fysisk%20planering"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20fysisk%20planering"
   },
   {
     "title": "Kandidatprogram i stadsplanering",
@@ -10571,7 +10571,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20stadsplanering"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20stadsplanering"
   },
   {
     "title": "Kandidatprogram i fastighetsutveckling",
@@ -10607,7 +10607,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20fastighetsutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20fastighetsutveckling"
   },
   {
     "title": "Kandidatprogram i lantmäteri",
@@ -10643,7 +10643,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20lantm%C3%A4teri"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20lantm%C3%A4teri"
   },
   {
     "title": "Kandidatprogram i geomatik",
@@ -10679,7 +10679,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20geomatik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20geomatik"
   },
   {
     "title": "Kandidatprogram i byggprojektledning",
@@ -10715,7 +10715,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20byggprojektledning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20byggprojektledning"
   },
   {
     "title": "Kandidatprogram i trafikplanering",
@@ -10751,7 +10751,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20trafikplanering"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20trafikplanering"
   },
   {
     "title": "Civilingenjör i ekosystemteknik",
@@ -10787,7 +10787,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20ekosystemteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20ekosystemteknik"
   },
   {
     "title": "Civilingenjör i miljö- och vattenteknik",
@@ -10823,7 +10823,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20milj%C3%B6-%20och%20vattenteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20milj%C3%B6-%20och%20vattenteknik"
   },
   {
     "title": "Civilingenjör i hållbar energiteknik",
@@ -10859,7 +10859,7 @@
       "langstudie": 0.9
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Civilingenj%C3%B6r%20i%20h%C3%A5llbar%20energiteknik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Civilingenj%C3%B6r%20i%20h%C3%A5llbar%20energiteknik"
   },
   {
     "title": "Kandidatprogram i miljövetenskap",
@@ -10895,7 +10895,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20milj%C3%B6vetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20milj%C3%B6vetenskap"
   },
   {
     "title": "Kandidatprogram i miljö- och hälsoskydd",
@@ -10931,7 +10931,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20milj%C3%B6-%20och%20h%C3%A4lsoskydd"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20milj%C3%B6-%20och%20h%C3%A4lsoskydd"
   },
   {
     "title": "Kandidatprogram i hållbar utveckling",
@@ -10967,7 +10967,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20h%C3%A5llbar%20utveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20h%C3%A5llbar%20utveckling"
   },
   {
     "title": "Kandidatprogram i klimatvetenskap",
@@ -11003,7 +11003,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20klimatvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20klimatvetenskap"
   },
   {
     "title": "Kandidatprogram i ekologi och naturvård",
@@ -11039,7 +11039,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20ekologi%20och%20naturv%C3%A5rd"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20ekologi%20och%20naturv%C3%A5rd"
   },
   {
     "title": "Kandidatprogram i energi och miljö",
@@ -11075,7 +11075,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20energi%20och%20milj%C3%B6"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20energi%20och%20milj%C3%B6"
   },
   {
     "title": "Kandidatprogram i förnybar energi",
@@ -11111,7 +11111,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20f%C3%B6rnybar%20energi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20f%C3%B6rnybar%20energi"
   },
   {
     "title": "Kandidatprogram i cirkulär ekonomi",
@@ -11147,7 +11147,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20cirkul%C3%A4r%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20cirkul%C3%A4r%20ekonomi"
   },
   {
     "title": "Kandidatprogram i miljöekonomi",
@@ -11183,7 +11183,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20milj%C3%B6ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20milj%C3%B6ekonomi"
   },
   {
     "title": "Kandidatprogram i miljöpolicy och samhälle",
@@ -11219,7 +11219,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20milj%C3%B6policy%20och%20samh%C3%A4lle"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20milj%C3%B6policy%20och%20samh%C3%A4lle"
   },
   {
     "title": "Veterinärprogrammet",
@@ -11255,7 +11255,7 @@
       "langstudie": 0.95
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Veterin%C3%A4rprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Veterin%C3%A4rprogrammet"
   },
   {
     "title": "Agronomprogrammet – ekonomi",
@@ -11291,7 +11291,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Agronomprogrammet%20%E2%80%93%20ekonomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Agronomprogrammet%20%E2%80%93%20ekonomi"
   },
   {
     "title": "Agronomprogrammet – livsmedel",
@@ -11327,7 +11327,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Agronomprogrammet%20%E2%80%93%20livsmedel"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Agronomprogrammet%20%E2%80%93%20livsmedel"
   },
   {
     "title": "Agronomprogrammet – mark och växt",
@@ -11363,7 +11363,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Agronomprogrammet%20%E2%80%93%20mark%20och%20v%C3%A4xt"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Agronomprogrammet%20%E2%80%93%20mark%20och%20v%C3%A4xt"
   },
   {
     "title": "Agronomprogrammet – husdjur",
@@ -11399,7 +11399,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Agronomprogrammet%20%E2%80%93%20husdjur"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Agronomprogrammet%20%E2%80%93%20husdjur"
   },
   {
     "title": "Jägmästarprogrammet",
@@ -11435,7 +11435,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=J%C3%A4gm%C3%A4starprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=J%C3%A4gm%C3%A4starprogrammet"
   },
   {
     "title": "Kandidatprogram i skogsvetenskap",
@@ -11471,7 +11471,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20skogsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20skogsvetenskap"
   },
   {
     "title": "Skogsmästarprogrammet",
@@ -11507,7 +11507,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Skogsm%C3%A4starprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Skogsm%C3%A4starprogrammet"
   },
   {
     "title": "Kandidatprogram i husdjursvetenskap",
@@ -11543,7 +11543,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20husdjursvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20husdjursvetenskap"
   },
   {
     "title": "Kandidatprogram i etologi och djurskydd",
@@ -11579,7 +11579,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20etologi%20och%20djurskydd"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20etologi%20och%20djurskydd"
   },
   {
     "title": "Kandidatprogram i lantbruksvetenskap",
@@ -11615,7 +11615,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20lantbruksvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20lantbruksvetenskap"
   },
   {
     "title": "Kandidatprogram i trädgårdsvetenskap",
@@ -11651,7 +11651,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20tr%C3%A4dg%C3%A5rdsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20tr%C3%A4dg%C3%A5rdsvetenskap"
   },
   {
     "title": "Landskapsingenjörsprogrammet",
@@ -11687,7 +11687,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Landskapsingenj%C3%B6rsprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Landskapsingenj%C3%B6rsprogrammet"
   },
   {
     "title": "Hippologprogrammet",
@@ -11723,7 +11723,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Hippologprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Hippologprogrammet"
   },
   {
     "title": "Kandidatprogram i fri konst",
@@ -11759,7 +11759,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20fri%20konst"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20fri%20konst"
   },
   {
     "title": "Kandidatprogram i musik – klassisk inriktning",
@@ -11795,7 +11795,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20musik%20%E2%80%93%20klassisk%20inriktning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20musik%20%E2%80%93%20klassisk%20inriktning"
   },
   {
     "title": "Kandidatprogram i musik – jazz",
@@ -11831,7 +11831,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20musik%20%E2%80%93%20jazz"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20musik%20%E2%80%93%20jazz"
   },
   {
     "title": "Kandidatprogram i komposition",
@@ -11867,7 +11867,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20komposition"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20komposition"
   },
   {
     "title": "Kandidatprogram i musikalisk gestaltning",
@@ -11903,7 +11903,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20musikalisk%20gestaltning"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20musikalisk%20gestaltning"
   },
   {
     "title": "Skådespelarprogrammet",
@@ -11939,7 +11939,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Sk%C3%A5despelarprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Sk%C3%A5despelarprogrammet"
   },
   {
     "title": "Kandidatprogram i regi",
@@ -11975,7 +11975,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20regi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20regi"
   },
   {
     "title": "Kandidatprogram i scenografi",
@@ -12011,7 +12011,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20scenografi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20scenografi"
   },
   {
     "title": "Kandidatprogram i dans",
@@ -12047,7 +12047,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20dans"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20dans"
   },
   {
     "title": "Kandidatprogram i koreografi",
@@ -12083,7 +12083,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20koreografi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20koreografi"
   },
   {
     "title": "Kandidatprogram i opera",
@@ -12119,7 +12119,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20opera"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20opera"
   },
   {
     "title": "Kandidatprogram i filmskapande",
@@ -12155,7 +12155,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20filmskapande"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20filmskapande"
   },
   {
     "title": "Kandidatprogram i manus för film och TV",
@@ -12191,7 +12191,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20manus%20f%C3%B6r%20film%20och%20TV"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20manus%20f%C3%B6r%20film%20och%20TV"
   },
   {
     "title": "Kandidatprogram i musikproduktion",
@@ -12227,7 +12227,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20musikproduktion"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20musikproduktion"
   },
   {
     "title": "Kandidatprogram i ljuddesign",
@@ -12263,7 +12263,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20ljuddesign"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20ljuddesign"
   },
   {
     "title": "Kandidatprogram i idrottsvetenskap",
@@ -12299,7 +12299,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20idrottsvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20idrottsvetenskap"
   },
   {
     "title": "Kandidatprogram i tränarprogrammet",
@@ -12335,7 +12335,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20tr%C3%A4narprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20tr%C3%A4narprogrammet"
   },
   {
     "title": "Kandidatprogram i sport management",
@@ -12371,7 +12371,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20sport%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20sport%20management"
   },
   {
     "title": "Kandidatprogram i fysisk aktivitet och hälsa",
@@ -12407,7 +12407,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20fysisk%20aktivitet%20och%20h%C3%A4lsa"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20fysisk%20aktivitet%20och%20h%C3%A4lsa"
   },
   {
     "title": "Kandidatprogram i träningsfysiologi",
@@ -12443,7 +12443,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20tr%C3%A4ningsfysiologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20tr%C3%A4ningsfysiologi"
   },
   {
     "title": "Kandidatprogram i idrottspsykologi",
@@ -12479,7 +12479,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20idrottspsykologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20idrottspsykologi"
   },
   {
     "title": "Kandidatprogram i friluftsliv",
@@ -12515,7 +12515,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20friluftsliv"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20friluftsliv"
   },
   {
     "title": "Kandidatprogram i turismvetenskap",
@@ -12551,7 +12551,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20turismvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20turismvetenskap"
   },
   {
     "title": "Kandidatprogram i turism och destinationsutveckling",
@@ -12587,7 +12587,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20turism%20och%20destinationsutveckling"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20turism%20och%20destinationsutveckling"
   },
   {
     "title": "Kandidatprogram i hospitality management",
@@ -12623,7 +12623,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20hospitality%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20hospitality%20management"
   },
   {
     "title": "Kandidatprogram i service management",
@@ -12659,7 +12659,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20service%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20service%20management"
   },
   {
     "title": "Kandidatprogram i event management",
@@ -12695,7 +12695,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20event%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20event%20management"
   },
   {
     "title": "Kandidatprogram i gastronomi",
@@ -12731,7 +12731,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20gastronomi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20gastronomi"
   },
   {
     "title": "Kandidatprogram i måltidsekologi",
@@ -12767,7 +12767,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20m%C3%A5ltidsekologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20m%C3%A5ltidsekologi"
   },
   {
     "title": "Kandidatprogram i kostvetenskap",
@@ -12803,7 +12803,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kostvetenskap"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kostvetenskap"
   },
   {
     "title": "Kandidatprogram i livsmedel och nutrition",
@@ -12839,7 +12839,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20livsmedel%20och%20nutrition"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20livsmedel%20och%20nutrition"
   },
   {
     "title": "Kandidatprogram i kriminologi",
@@ -12875,7 +12875,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20kriminologi"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20kriminologi"
   },
   {
     "title": "Kandidatprogram i risk- och krishantering",
@@ -12911,7 +12911,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20risk-%20och%20krishantering"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20risk-%20och%20krishantering"
   },
   {
     "title": "Kandidatprogram i samhällssäkerhet",
@@ -12947,7 +12947,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20samh%C3%A4llss%C3%A4kerhet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20samh%C3%A4llss%C3%A4kerhet"
   },
   {
     "title": "Kandidatprogram i säkerhetsstudier",
@@ -12983,7 +12983,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20s%C3%A4kerhetsstudier"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20s%C3%A4kerhetsstudier"
   },
   {
     "title": "Kandidatprogram i krisberedskap och civilt försvar",
@@ -13019,7 +13019,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20krisberedskap%20och%20civilt%20f%C3%B6rsvar"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20krisberedskap%20och%20civilt%20f%C3%B6rsvar"
   },
   {
     "title": "Kandidatprogram i informationssäkerhet och risk",
@@ -13055,7 +13055,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20informationss%C3%A4kerhet%20och%20risk"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20informationss%C3%A4kerhet%20och%20risk"
   },
   {
     "title": "Brandingenjörsprogrammet",
@@ -13091,7 +13091,7 @@
       "langstudie": 0.83
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Brandingenj%C3%B6rsprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Brandingenj%C3%B6rsprogrammet"
   },
   {
     "title": "Sjökaptenprogrammet",
@@ -13127,7 +13127,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Sj%C3%B6kaptenprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Sj%C3%B6kaptenprogrammet"
   },
   {
     "title": "Sjöingenjörsprogrammet",
@@ -13163,7 +13163,7 @@
       "langstudie": 0.6
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Sj%C3%B6ingenj%C3%B6rsprogrammet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Sj%C3%B6ingenj%C3%B6rsprogrammet"
   },
   {
     "title": "Kandidatprogram i sjöfart och logistik",
@@ -13199,7 +13199,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20sj%C3%B6fart%20och%20logistik"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20sj%C3%B6fart%20och%20logistik"
   },
   {
     "title": "Kandidatprogram i transport management",
@@ -13235,7 +13235,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20transport%20management"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20transport%20management"
   },
   {
     "title": "Kandidatprogram i trafik och mobilitet",
@@ -13271,7 +13271,7 @@
       "langstudie": 0.36
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Kandidatprogram%20i%20trafik%20och%20mobilitet"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Kandidatprogram%20i%20trafik%20och%20mobilitet"
   },
   {
     "title": "Polisutbildningen",
@@ -13311,6 +13311,6 @@
       "langstudie": 0.34
     },
     "dataStatus": "education-type",
-    "antagningSearch": "https://www.antagning.se/se/search?period=HT&freeText=Polisutbildningen"
+    "antagningSearch": "https://www.antagning.se/se/search?freeText=Polisutbildningen"
   }
 ]
