@@ -1,0 +1,16 @@
+node_modules
+.next
+.env
+.env.local
+npm-debug.log*
+.DS_Store
+db/*.sqlite-wal
+db/*.sqlite-shm
+
+db/.susa-sync-cache/
+.env.*
+!.env.production.example
+
+# Local database backups
+db/*backup*.sqlite
+db/*backup*.sqlite

@@ -1,0 +1,104 @@
+{
+  "analys": {
+    "label": "Analys & problemlösning",
+    "short": "Analys",
+    "group": "core",
+    "description": "Logik, mönster och problemlösning"
+  },
+  "teknik": {
+    "label": "Teknik & digitalt",
+    "short": "Teknik",
+    "group": "core",
+    "description": "Tekniska system, digitalisering och innovation"
+  },
+  "manniskor": {
+    "label": "Människor & relationer",
+    "short": "Människor",
+    "group": "core",
+    "description": "Samarbete, relationer och mänskliga behov"
+  },
+  "kreativitet": {
+    "label": "Kreativitet & idéer",
+    "short": "Kreativitet",
+    "group": "core",
+    "description": "Nya idéer, form och öppna lösningar"
+  },
+  "affar": {
+    "label": "Affär & entreprenörskap",
+    "short": "Affär",
+    "group": "core",
+    "description": "Strategi, värdeskapande och företagande"
+  },
+  "samhalle": {
+    "label": "Samhälle & påverkan",
+    "short": "Samhälle",
+    "group": "core",
+    "description": "Policy, rättvisa och samhällsfrågor"
+  },
+  "natur": {
+    "label": "Naturvetenskap & forskning",
+    "short": "Naturvetenskap",
+    "group": "core",
+    "description": "Biologi, kemi, fysik och vetenskapligt undersökande"
+  },
+  "halsa": {
+    "label": "Hälsa & omsorg",
+    "short": "Hälsa",
+    "group": "core",
+    "description": "Hälsa, vård och välmående"
+  },
+  "praktik": {
+    "label": "Praktiskt & tillämpat",
+    "short": "Praktiskt",
+    "group": "core",
+    "description": "Bygga, testa och omsätta teori i praktik"
+  },
+  "struktur": {
+    "label": "Struktur & precision",
+    "short": "Struktur",
+    "group": "core",
+    "description": "Ordning, kvalitet och noggrannhet"
+  },
+  "matematik": {
+    "label": "Matematik & kvantitativt",
+    "short": "Matematik",
+    "group": "study",
+    "description": "Matematik, statistik och kvantitativa resonemang"
+  },
+  "programmering": {
+    "label": "Programmering & kod",
+    "short": "Programmering",
+    "group": "study",
+    "description": "Kod, algoritmer och digitalt skapande"
+  },
+  "teori": {
+    "label": "Teoretisk fördjupning",
+    "short": "Teori",
+    "group": "study",
+    "description": "Abstraktion, forskning och längre teoretiska resonemang"
+  },
+  "kommunikation": {
+    "label": "Kommunikation & språk",
+    "short": "Kommunikation",
+    "group": "study",
+    "description": "Skriva, presentera, argumentera och förklara"
+  },
+  "ledarskap": {
+    "label": "Ledarskap & ansvar",
+    "short": "Ledarskap",
+    "group": "study",
+    "description": "Ansvar, beslut och att leda andra"
+  },
+  "sjalvstandighet": {
+    "label": "Självständighet & frihet",
+    "short": "Självständighet",
+    "group": "study",
+    "description": "Eget ansvar, frihet och självstyrt arbete"
+  },
+  "langstudie": {
+    "label": "Lång utbildning & fördjupning",
+    "short": "Studielängd",
+    "group": "study",
+    "description": "Vilja att investera flera år i fördjupade studier"
+  }
+}

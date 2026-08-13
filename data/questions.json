@@ -1,0 +1,527 @@
+[
+  {
+    "id": 1,
+    "section": "Intressen",
+    "text": "Jag gillar att bryta ner svåra problem i mindre delar.",
+    "weights": {
+      "analys": 1,
+      "struktur": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 2,
+    "section": "Intressen",
+    "text": "Jag tycker om matematiska eller logiska utmaningar.",
+    "weights": {
+      "matematik": 1,
+      "analys": 0.7,
+      "natur": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 3,
+    "section": "Intressen",
+    "text": "Jag blir nyfiken på hur appar, system eller digitala tjänster byggs.",
+    "weights": {
+      "teknik": 0.9,
+      "programmering": 0.75,
+      "analys": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 4,
+    "section": "Intressen",
+    "text": "Jag tycker om biologi, kemi, fysik eller andra naturvetenskapliga frågor.",
+    "weights": {
+      "natur": 1,
+      "teori": 0.35,
+      "analys": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 5,
+    "section": "Intressen",
+    "text": "Jag får energi av att förstå och hjälpa andra människor.",
+    "weights": {
+      "manniskor": 1,
+      "halsa": 0.35
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 6,
+    "section": "Intressen",
+    "text": "Jag är nyfiken på kroppen, hälsa eller hur sjukdomar fungerar.",
+    "weights": {
+      "halsa": 1,
+      "natur": 0.55
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 7,
+    "section": "Intressen",
+    "text": "Jag tycker det är spännande hur företag, marknader och organisationer fungerar.",
+    "weights": {
+      "affar": 1,
+      "analys": 0.3,
+      "ledarskap": 0.2
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 8,
+    "section": "Intressen",
+    "text": "Jag är intresserad av politik, lagar, rättvisa eller hur samhället styrs.",
+    "weights": {
+      "samhalle": 1,
+      "kommunikation": 0.25,
+      "analys": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 9,
+    "section": "Intressen",
+    "text": "Jag tycker om design, visuellt uttryck, form eller att skapa något originellt.",
+    "weights": {
+      "kreativitet": 1,
+      "praktik": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 10,
+    "section": "Intressen",
+    "text": "Jag gillar att skriva, presentera, diskutera eller förklara idéer.",
+    "weights": {
+      "kommunikation": 1,
+      "kreativitet": 0.35,
+      "manniskor": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 11,
+    "section": "Sätt att tänka",
+    "text": "Jag tycker om att hitta mönster i data, siffror eller information.",
+    "weights": {
+      "analys": 0.9,
+      "matematik": 0.75,
+      "struktur": 0.2
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 12,
+    "section": "Sätt att tänka",
+    "text": "Jag vill förstå varför något fungerar, inte bara att det fungerar.",
+    "weights": {
+      "analys": 0.85,
+      "teori": 0.7,
+      "natur": 0.35
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 13,
+    "section": "Sätt att tänka",
+    "text": "Jag är noggrann och stör mig när detaljer inte stämmer.",
+    "weights": {
+      "struktur": 1,
+      "analys": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 14,
+    "section": "Sätt att tänka",
+    "text": "Jag får ofta idéer när det inte finns ett självklart rätt svar.",
+    "weights": {
+      "kreativitet": 1,
+      "sjalvstandighet": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 15,
+    "section": "Sätt att tänka",
+    "text": "Jag gillar att förstå hur komplexa system hänger ihop.",
+    "weights": {
+      "analys": 0.85,
+      "teknik": 0.65,
+      "teori": 0.4
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 16,
+    "section": "Sätt att tänka",
+    "text": "Jag tycker om att argumentera för en ståndpunkt med fakta och tydliga resonemang.",
+    "weights": {
+      "kommunikation": 0.8,
+      "analys": 0.75,
+      "samhalle": 0.35
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 17,
+    "section": "Sätt att tänka",
+    "text": "Jag tycker om statistik, modeller eller att räkna på olika scenarier.",
+    "weights": {
+      "matematik": 1,
+      "analys": 0.7,
+      "affar": 0.2
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 18,
+    "section": "Sätt att tänka",
+    "text": "Jag lär mig bäst när jag får omsätta en idé eller teori i något konkret.",
+    "weights": {
+      "praktik": 1,
+      "analys": 0.2
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 19,
+    "section": "Sätt att tänka",
+    "text": "Jag kan koncentrera mig länge på ett svårt ämne för att förstå det på djupet.",
+    "weights": {
+      "teori": 1,
+      "sjalvstandighet": 0.45,
+      "struktur": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 20,
+    "section": "Sätt att tänka",
+    "text": "Jag trivs med att väga flera alternativ och sedan fatta ett tydligt beslut.",
+    "weights": {
+      "ledarskap": 0.7,
+      "struktur": 0.55,
+      "analys": 0.5,
+      "affar": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 21,
+    "section": "Arbetssätt",
+    "text": "Jag känner mig trygg när det finns en tydlig plan, ordning och struktur.",
+    "weights": {
+      "struktur": 1
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 22,
+    "section": "Arbetssätt",
+    "text": "Jag gillar att få eget ansvar och själv bestämma hur jag löser en uppgift.",
+    "weights": {
+      "sjalvstandighet": 1,
+      "kreativitet": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 23,
+    "section": "Arbetssätt",
+    "text": "Jag vill gärna arbeta i en miljö där samarbete är centralt.",
+    "weights": {
+      "manniskor": 0.9,
+      "kommunikation": 0.6
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 24,
+    "section": "Arbetssätt",
+    "text": "Jag kan tänka mig att leda en grupp, ett projekt eller fatta beslut som påverkar andra.",
+    "weights": {
+      "ledarskap": 1,
+      "manniskor": 0.3,
+      "affar": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 25,
+    "section": "Arbetssätt",
+    "text": "Jag gillar att bygga, testa, felsöka eller förbättra saker i praktiken.",
+    "weights": {
+      "praktik": 1,
+      "teknik": 0.6,
+      "analys": 0.35
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 26,
+    "section": "Arbetssätt",
+    "text": "Laborationer, experiment eller fältarbete låter intressant.",
+    "weights": {
+      "natur": 0.8,
+      "praktik": 0.75,
+      "teori": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 27,
+    "section": "Arbetssätt",
+    "text": "Jag kan tänka mig ett yrke där jag möter många olika människor varje dag.",
+    "weights": {
+      "manniskor": 1,
+      "kommunikation": 0.65,
+      "halsa": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 28,
+    "section": "Arbetssätt",
+    "text": "Jag trivs när det finns utrymme att testa egna lösningar och vägar framåt.",
+    "weights": {
+      "kreativitet": 0.8,
+      "sjalvstandighet": 0.8
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 29,
+    "section": "Arbetssätt",
+    "text": "Jag uppskattar uppgifter där regler, kvalitet och precision är viktiga.",
+    "weights": {
+      "struktur": 0.95,
+      "teori": 0.3,
+      "analys": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 30,
+    "section": "Arbetssätt",
+    "text": "Jag klarar en vardag där förutsättningarna ändras och jag behöver prioritera om.",
+    "weights": {
+      "sjalvstandighet": 0.65,
+      "ledarskap": 0.55,
+      "praktik": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 31,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag vill gärna ha ett arbete där jag konkret förbättrar andra människors hälsa eller välmående.",
+    "weights": {
+      "halsa": 1,
+      "manniskor": 0.7
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 32,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag vill arbeta med frågor som påverkar samhället eller många människors villkor.",
+    "weights": {
+      "samhalle": 1,
+      "manniskor": 0.35,
+      "kommunikation": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 33,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag skulle tycka om att utveckla digitala produkter, program eller tekniska lösningar.",
+    "weights": {
+      "teknik": 1,
+      "programmering": 0.85,
+      "praktik": 0.35
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 34,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag lockas av forskning, upptäckter eller att bidra med ny kunskap.",
+    "weights": {
+      "teori": 1,
+      "natur": 0.75,
+      "analys": 0.55
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 35,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag kan tänka mig att arbeta med strategi, ekonomi, ledning eller företagande.",
+    "weights": {
+      "affar": 1,
+      "ledarskap": 0.7,
+      "analys": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 36,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag vill gärna skapa, kommunicera eller forma idéer som andra tar del av.",
+    "weights": {
+      "kreativitet": 0.9,
+      "kommunikation": 0.8
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 37,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag vill se ett tydligt och konkret resultat av mitt arbete.",
+    "weights": {
+      "praktik": 0.9,
+      "struktur": 0.35
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 38,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag skulle kunna trivas med att bli specialist inom ett smalt område.",
+    "weights": {
+      "teori": 0.8,
+      "sjalvstandighet": 0.6,
+      "analys": 0.4
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 39,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag vill gärna ha ansvar för beslut, projekt eller människor längre fram i karriären.",
+    "weights": {
+      "ledarskap": 1,
+      "affar": 0.35,
+      "struktur": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 40,
+    "section": "Framtid & yrkesvardag",
+    "text": "Jag vill kunna använda språk, presentation eller förhandling som en viktig del av mitt arbete.",
+    "weights": {
+      "kommunikation": 1,
+      "manniskor": 0.4,
+      "affar": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 41,
+    "section": "Studier & preferenser",
+    "text": "Jag vill helst undvika utbildningar med mycket matematik.",
+    "weights": {},
+    "reverseWeights": {
+      "matematik": 1
+    }
+  },
+  {
+    "id": 42,
+    "section": "Studier & preferenser",
+    "text": "Jag kan tänka mig flera kurser med avancerad matematik eller statistik.",
+    "weights": {
+      "matematik": 1,
+      "analys": 0.45
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 43,
+    "section": "Studier & preferenser",
+    "text": "Jag vill helst slippa programmering och kod i min utbildning.",
+    "weights": {},
+    "reverseWeights": {
+      "programmering": 1,
+      "teknik": 0.25
+    }
+  },
+  {
+    "id": 44,
+    "section": "Studier & preferenser",
+    "text": "Jag är bekväm med att läsa långa texter och arbeta med abstrakta teorier.",
+    "weights": {
+      "teori": 1,
+      "struktur": 0.3
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 45,
+    "section": "Studier & preferenser",
+    "text": "Jag föredrar praktiska moment framför långa teoretiska resonemang.",
+    "weights": {
+      "praktik": 0.85
+    },
+    "reverseWeights": {
+      "teori": 0.65
+    }
+  },
+  {
+    "id": 46,
+    "section": "Studier & preferenser",
+    "text": "Jag vill helst undvika att hålla presentationer eller argumentera inför andra.",
+    "weights": {},
+    "reverseWeights": {
+      "kommunikation": 1
+    }
+  },
+  {
+    "id": 47,
+    "section": "Studier & preferenser",
+    "text": "Jag vill ha stor frihet att planera min egen tid och mitt eget arbete.",
+    "weights": {
+      "sjalvstandighet": 1
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 48,
+    "section": "Studier & preferenser",
+    "text": "Jag föredrar tydliga instruktioner framför helt öppna uppgifter.",
+    "weights": {
+      "struktur": 0.8
+    },
+    "reverseWeights": {
+      "sjalvstandighet": 0.55,
+      "kreativitet": 0.25
+    }
+  },
+  {
+    "id": 49,
+    "section": "Studier & preferenser",
+    "text": "Jag kan tänka mig att studera fem år eller mer om utbildningen känns rätt.",
+    "weights": {
+      "langstudie": 1,
+      "teori": 0.25
+    },
+    "reverseWeights": {}
+  },
+  {
+    "id": 50,
+    "section": "Studier & preferenser",
+    "text": "Jag vill helst komma ut i arbetslivet så snabbt som möjligt.",
+    "weights": {},
+    "reverseWeights": {
+      "langstudie": 1
+    }
+  }
+]

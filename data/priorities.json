@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hjalpa",
+    "label": "Hjälpa människor",
+    "description": "Jag vill att arbetet ska göra konkret skillnad för andra.",
+    "traits": ["manniskor", "halsa", "samhalle"]
+  },
+  {
+    "id": "innovation",
+    "label": "Innovation & ny teknik",
+    "description": "Jag vill arbeta nära utveckling, teknik och nya lösningar.",
+    "traits": ["teknik", "programmering", "kreativitet", "analys"]
+  },
+  {
+    "id": "forskning",
+    "label": "Forskning & fördjupning",
+    "description": "Jag lockas av djup kunskap, upptäckter och specialistroller.",
+    "traits": ["teori", "natur", "analys"]
+  },
+  {
+    "id": "ledarskap",
+    "label": "Ledarskap & ansvar",
+    "description": "Jag vill kunna leda projekt, människor eller viktiga beslut.",
+    "traits": ["ledarskap", "affar", "manniskor"]
+  },
+  {
+    "id": "kreativt",
+    "label": "Kreativt skapande",
+    "description": "Jag vill ha utrymme för idéer, uttryck och egna lösningar.",
+    "traits": ["kreativitet", "kommunikation", "sjalvstandighet"]
+  },
+  {
+    "id": "samhallsnytta",
+    "label": "Samhällsnytta & påverkan",
+    "description": "Jag vill arbeta med frågor som påverkar samhället och människors villkor.",
+    "traits": ["samhalle", "manniskor", "kommunikation"]
+  },
+  {
+    "id": "praktiskt",
+    "label": "Praktiskt & konkret arbete",
+    "description": "Jag vill bygga, genomföra, testa eller se tydliga resultat.",
+    "traits": ["praktik", "teknik", "struktur"]
+  },
+  {
+    "id": "foretagande",
+    "label": "Företagande & affär",
+    "description": "Jag vill arbeta med strategi, affärer, tillväxt eller entreprenörskap.",
+    "traits": ["affar", "ledarskap", "analys"]
+  }
+]

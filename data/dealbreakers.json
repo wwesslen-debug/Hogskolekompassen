@@ -1,0 +1,8 @@
+[
+  {"id":"avoid_math","label":"Jag vill undvika mycket avancerad matematik","description":"Ger ett tydligt avdrag till utbildningar med mycket hög matematisk belastning.","kind":"trait","key":"matematik","threshold":0.7,"maxPenalty":0.14},
+  {"id":"avoid_programming","label":"Jag vill helst undvika programmering","description":"Ger avdrag till utbildningar där kod och programmering är en central del.","kind":"trait","key":"programmering","threshold":0.66,"maxPenalty":0.13},
+  {"id":"avoid_theory","label":"Jag vill undvika mycket teoretiska studier","description":"Ger avdrag till utbildningar med tydligt hög teoretisk profil.","kind":"trait","key":"teori","threshold":0.7,"maxPenalty":0.12},
+  {"id":"avoid_people","label":"Jag vill inte ha mycket människokontakt i vardagen","description":"Ger avdrag till utbildningar som tydligt leder mot människonära arbete.","kind":"trait","key":"manniskor","threshold":0.72,"maxPenalty":0.12},
+  {"id":"avoid_lab","label":"Jag vill helst undvika laborationer och mycket labb","description":"Ger avdrag till utbildningar med stark laborativ profil.","kind":"lab","threshold":0.65,"maxPenalty":0.12},
+  {"id":"avoid_long","label":"Jag vill helst inte studera fem år","description":"Ger avdrag till femåriga och längre utbildningar.","kind":"years","threshold":5,"maxPenalty":0.11}
+]
