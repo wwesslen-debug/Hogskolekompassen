@@ -1,44 +1,28 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import Database from "better-sqlite3";
 import { getBundledSeedDbPath, getDataDir, getDbPath } from "../lib/runtime-paths.mjs";
 
 const dataDir = getDataDir();
 const dbPath = getDbPath();
 const seedPath = getBundledSeedDbPath();
-const coreTables = ["questions", "programs"];
+const sqliteHeader = Buffer.from("SQLite format 3\0", "utf8");
 
-function inspectDatabase(file) {
-  let db;
+function hasSqliteHeader(file) {
   try {
     const stat = fs.statSync(file);
-    if (stat.size === 0) {
-      return { ready: false, reason: "database file is empty" };
+    if (stat.size < sqliteHeader.length) return false;
+
+    const handle = fs.openSync(file, "r");
+    try {
+      const header = Buffer.alloc(sqliteHeader.length);
+      fs.readSync(handle, header, 0, header.length, 0);
+      return header.equals(sqliteHeader);
+    } finally {
+      fs.closeSync(handle);
     }
-
-    db = new Database(file, { readonly: true, fileMustExist: true });
-    const tables = new Set(
-      db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map((row) => row.name),
-    );
-
-    for (const table of coreTables) {
-      if (!tables.has(table)) return { ready: false, reason: `missing required table: ${table}` };
-    }
-
-    for (const table of coreTables) {
-      const row = db.prepare(`SELECT COUNT(*) AS count FROM ${table}`).get();
-      if (Number(row?.count || 0) === 0) return { ready: false, reason: `required table is empty: ${table}` };
-    }
-
-    return { ready: true };
-  } catch (error) {
-    return {
-      ready: false,
-      reason: error instanceof Error ? error.message : "unknown database validation error",
-    };
-  } finally {
-    if (db) db.close();
+  } catch {
+    return false;
   }
 }
 
@@ -59,8 +43,8 @@ function archiveInvalidDatabase(reason) {
 }
 
 function copySeedDatabase() {
-  if (!fs.existsSync(seedPath)) {
-    console.error(`Production database is missing and bundled seed was not found: ${seedPath}`);
+  if (!hasSqliteHeader(seedPath)) {
+    console.error(`Production database is missing and bundled seed is not a valid SQLite file: ${seedPath}`);
     process.exit(1);
   }
 
@@ -70,26 +54,33 @@ function copySeedDatabase() {
   }
 }
 
+function runOptionalMigrations() {
+  if (process.env.HK_RUN_BOOT_MIGRATIONS !== "1") {
+    console.log("Skipping native SQLite migrations during web boot.");
+    return;
+  }
+
+  for (const script of ["scripts/migrate-v06.mjs", "scripts/migrate-v07.mjs"]) {
+    const result = spawnSync(process.execPath, [script], {
+      cwd: process.cwd(),
+      stdio: "inherit",
+      env: process.env,
+    });
+    if (result.status !== 0) process.exit(result.status ?? 1);
+  }
+}
+
 fs.mkdirSync(dataDir, { recursive: true });
 
-if (fs.existsSync(dbPath)) {
-  const inspection = inspectDatabase(dbPath);
-  if (!inspection.ready) {
-    archiveInvalidDatabase(inspection.reason);
-    copySeedDatabase();
-  }
-} else {
+if (fs.existsSync(dbPath) && !hasSqliteHeader(dbPath)) {
+  archiveInvalidDatabase("database file is empty or not SQLite");
+}
+
+if (!fs.existsSync(dbPath)) {
   copySeedDatabase();
 }
 
-for (const script of ["scripts/migrate-v06.mjs", "scripts/migrate-v07.mjs"]) {
-  const result = spawnSync(process.execPath, [script], {
-    cwd: process.cwd(),
-    stdio: "inherit",
-    env: process.env,
-  });
-  if (result.status !== 0) process.exit(result.status ?? 1);
-}
+runOptionalMigrations();
 
 console.log("Production bootstrap ready.");
 console.log(JSON.stringify({
@@ -97,4 +88,5 @@ console.log(JSON.stringify({
   dataDir,
   dbPath,
   persistentVolume: Boolean(process.env.RAILWAY_VOLUME_MOUNT_PATH || process.env.HK_DATA_DIR || process.env.HK_DB_PATH),
+  sqliteDisabledForWeb: process.env.HK_DISABLE_SQLITE === "1",
 }, null, 2));
