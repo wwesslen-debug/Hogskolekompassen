@@ -7,6 +7,10 @@ const { Pool } = pg;
 
 const args = process.argv.slice(2);
 const replace = args.includes("--replace");
+const argValue = (name, fallback = null) => {
+  const index = args.indexOf(name);
+  return index >= 0 && args[index + 1] ? args[index + 1] : fallback;
+};
 const connectionString = process.env.SUPABASE_DATABASE_URL;
 
 if (!connectionString) {
@@ -74,9 +78,11 @@ async function upsertRows(table, columns, rows) {
 }
 
 async function main() {
-  const db = new Database(getDbPath(), { readonly: true, fileMustExist: true });
+  const sourceDbPath = argValue("--db", getDbPath());
+  const db = new Database(sourceDbPath, { readonly: true, fileMustExist: true });
 
   try {
+    console.log(`Source SQLite database: ${sourceDbPath}`);
     if (replace) {
       console.log("Clearing Supabase live tables before upload…");
       await pool.query("TRUNCATE susa_education_events, susa_education_infos, susa_providers, susa_sync_state");
