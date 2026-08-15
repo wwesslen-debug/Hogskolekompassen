@@ -11,9 +11,9 @@ export const metadata = {
   alternates: { canonical: canonicalUrl("/om") },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
   const programCount = getProgramCount();
-  const liveStatus = getLiveDataStatus();
+  const liveStatus = await getLiveDataStatus();
 
   return (
     <main className="infoPage">

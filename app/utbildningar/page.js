@@ -12,9 +12,9 @@ export const metadata = {
   alternates: { canonical: canonicalUrl("/utbildningar") },
 };
 
-export default function ProgramsPage() {
+export default async function ProgramsPage() {
   const options = getFilterOptions();
-  const liveStatus = getLiveDataStatus();
+  const liveStatus = await getLiveDataStatus();
 
   return (
     <main className="browserPage">

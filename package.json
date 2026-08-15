@@ -25,11 +25,15 @@
     "prod:sync": "node scripts/sync-susa.mjs --full && node scripts/relink-susa.mjs",
     "prod:update": "node scripts/sync-susa.mjs && node scripts/relink-susa.mjs",
     "prod:status": "node scripts/susa-status.mjs",
-    "prod:db:info": "node scripts/production-db-info.mjs"
+    "prod:db:info": "node scripts/production-db-info.mjs",
+    "supabase:schema": "node scripts/apply-supabase-schema.mjs",
+    "supabase:push-live": "node scripts/push-live-to-supabase.mjs",
+    "susa:sync:supabase": "npm run susa:sync:full && npm run supabase:push-live -- --replace"
   },
   "dependencies": {
     "better-sqlite3": "13.0.3",
     "next": "16.3.0",
+    "pg": "^8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

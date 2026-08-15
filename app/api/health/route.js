@@ -8,6 +8,7 @@ export function GET() {
     status: "ok",
     service: "ready",
     database: process.env.HK_DISABLE_SQLITE === "1" ? "disabled_for_web_boot" : "not_checked",
+    liveDataSource: process.env.SUPABASE_DATABASE_URL ? "supabase" : "local",
     timestamp: new Date().toISOString(),
   });
 }

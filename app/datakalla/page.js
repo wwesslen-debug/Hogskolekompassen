@@ -11,9 +11,9 @@ export const metadata = {
   alternates: { canonical: canonicalUrl("/datakalla") },
 };
 
-export default function DataSourcePage() {
+export default async function DataSourcePage() {
   const programCount = getProgramCount();
-  const status = getLiveDataStatus();
+  const status = await getLiveDataStatus();
 
   return (
     <main className="infoPage">

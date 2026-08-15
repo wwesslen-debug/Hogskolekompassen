@@ -12,9 +12,11 @@ export const metadata = {
   alternates: { canonical: canonicalUrl("/aktuellt") },
 };
 
-export default function CurrentEducationPage() {
-  const status = getLiveDataStatus();
-  const options = getLiveFilterOptions();
+export default async function CurrentEducationPage() {
+  const [status, options] = await Promise.all([
+    getLiveDataStatus(),
+    getLiveFilterOptions(),
+  ]);
 
   return (
     <main className="browserPage liveBrowserPage">

@@ -15,9 +15,11 @@ function pct(part, total) {
   return total ? `${(part / total * 100).toFixed(1)}%` : "0%";
 }
 
-export default function DataQualityPage() {
-  const status = getLiveDataStatus();
-  const quality = getLiveLinkQuality(25);
+export default async function DataQualityPage() {
+  const [status, quality] = await Promise.all([
+    getLiveDataStatus(),
+    getLiveLinkQuality(25),
+  ]);
 
   return (
     <main className="qualityPage">

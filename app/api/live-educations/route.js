@@ -8,7 +8,7 @@ import {
 
 export const runtime = "nodejs";
 
-export function GET(request) {
+export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const includeOptions = searchParams.get("options") === "1";
   const limit = Math.min(200, Math.max(1, Number(searchParams.get("limit") || 80)));
@@ -24,20 +24,26 @@ export function GET(request) {
     upcoming: searchParams.get("upcoming") !== "0",
   };
 
-  const status = getLiveDataStatus();
+  const status = await getLiveDataStatus();
   if (!status.ready || status.eventCount === 0) {
     return NextResponse.json({
       offerings: [],
       total: 0,
       status,
-      options: includeOptions ? getLiveFilterOptions() : undefined,
+      options: includeOptions ? await getLiveFilterOptions() : undefined,
     });
   }
 
+  const [offerings, total, options] = await Promise.all([
+    getLiveOfferings({ ...filters, limit, offset }),
+    getLiveOfferingCount(filters),
+    includeOptions ? getLiveFilterOptions() : Promise.resolve(undefined),
+  ]);
+
   return NextResponse.json({
-    offerings: getLiveOfferings({ ...filters, limit, offset }),
-    total: getLiveOfferingCount(filters),
+    offerings,
+    total,
     status,
-    options: includeOptions ? getLiveFilterOptions() : undefined,
+    options,
   });
 }

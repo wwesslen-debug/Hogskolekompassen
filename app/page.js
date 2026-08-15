@@ -16,9 +16,9 @@ const dimensions = [
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
   const programCount = getProgramCount();
-  const liveStatus = getLiveDataStatus();
+  const liveStatus = await getLiveDataStatus();
 
   return (
     <main>

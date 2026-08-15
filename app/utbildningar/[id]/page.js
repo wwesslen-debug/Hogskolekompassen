@@ -45,6 +45,6 @@ export default async function ProgramPage({ params }) {
   const program = getProgramById(resolved?.id);
   if (!program) notFound();
   const related = getRelatedPrograms(program, 6);
-  const liveOfferings = getLiveOfferingsForProgram(program.id, 12);
+  const liveOfferings = await getLiveOfferingsForProgram(program.id, 12);
   return <ProgramDetail program={program} related={related} liveOfferings={liveOfferings} />;
 }
