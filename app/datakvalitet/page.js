@@ -15,6 +15,24 @@ function pct(part, total) {
   return total ? `${(part / total * 100).toFixed(1)}%` : "0%";
 }
 
+const methodLabels = {
+  "exact-title": "Exakt titelmatchning",
+  "title-containment": "Titelmatchning",
+  "title-tokens": "Gemensamma titelord",
+  "title-tags": "Titel + profilord",
+  "lexical": "Språklig likhet",
+  "lexical+subject": "Språklig likhet + ämneskod",
+  "okänd": "Äldre automatisk matchning",
+};
+
+const methodDescriptions = {
+  "okänd": "Metodmetadata saknas för de här äldre länkarna.",
+};
+
+function methodLabel(method) {
+  return methodLabels[method] || method || "Äldre automatisk matchning";
+}
+
 export default async function DataQualityPage() {
   const [status, quality] = await Promise.all([
     getLiveDataStatus(),
@@ -39,7 +57,7 @@ export default async function DataQualityPage() {
 
       <section className="shell qualitySection">
         <div className="qualityStatsGrid">
-          <article><span>Live-tillfällen</span><strong>{quality.total.toLocaleString("sv-SE")}</strong><small>HS-poster i lokal databas</small></article>
+          <article><span>Programstarter</span><strong>{quality.total.toLocaleString("sv-SE")}</strong><small>Grundnivå från Susa-navet</small></article>
           <article><span>Kopplade</span><strong>{quality.linked.toLocaleString("sv-SE")}</strong><small>{quality.linkRate}% av live-utbudet</small></article>
           <article><span>Hög länksäkerhet</span><strong>{quality.confidence.high.toLocaleString("sv-SE")}</strong><small>≥ 75% länkscore</small></article>
           <article><span>Omatchade</span><strong>{quality.unlinked.toLocaleString("sv-SE")}</strong><small>synliga, men utan profilkoppling</small></article>
@@ -62,7 +80,10 @@ export default async function DataQualityPage() {
             <div className="qualityCardHeader"><span className="eyebrow">Metod</span><h2>Hur länkarna hittades</h2></div>
             <div className="methodList">
               {quality.methods.length ? quality.methods.map((row) => (
-                <div key={row.method}><span>{row.method}</span><strong>{row.count.toLocaleString("sv-SE")}</strong></div>
+                <div key={row.method}>
+                  <span>{methodLabel(row.method)}{methodDescriptions[row.method] ? <small>{methodDescriptions[row.method]}</small> : null}</span>
+                  <strong>{row.count.toLocaleString("sv-SE")}</strong>
+                </div>
               )) : <p>Kör live-synk och relinkning för att skapa metadata.</p>}
             </div>
           </article>
