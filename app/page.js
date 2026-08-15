@@ -23,6 +23,20 @@ export default async function Home() {
   return (
     <main>
       <section className="hero">
+        <aside className="heroAdRail heroAdRailLeft" aria-label="Annonsplats vänster">
+          <a className="heroAdSlot" href="/kontakt" rel="nofollow">
+            <span>Annons</span>
+            <strong>Synas här?</strong>
+            <small>Partnerplats för utbildning, boende eller studentliv.</small>
+          </a>
+        </aside>
+        <aside className="heroAdRail heroAdRailRight" aria-label="Annonsplats höger">
+          <a className="heroAdSlot" href="/kontakt" rel="nofollow">
+            <span>Sponsrad yta</span>
+            <strong>Relevant för blivande studenter?</strong>
+            <small>Kontakta oss för en diskret plats i startvyn.</small>
+          </a>
+        </aside>
         <div className="shell heroGrid">
           <div className="heroCopy">
             <div className="eyebrow">Din väg efter gymnasiet</div>
