@@ -38,10 +38,16 @@ First make sure the local Susa database is synced and relinked:
 npm run susa:sync:full
 ```
 
-Then upload the live tables to Supabase:
+Then upload the public live catalog to Supabase. This keeps only entry-level higher-education programs and excludes courses, master's programmes, magister programmes, and advanced-level programmes:
 
 ```bash
-npm run supabase:push-live -- --replace
+npm run supabase:push-entry-programs
+```
+
+If you are uploading from a backup SQLite file, pass it through to the underlying script:
+
+```bash
+npm run supabase:push-live -- --replace --entry-programs-only --db db/hogskolekompassen-backup.sqlite
 ```
 
 Shortcut:
@@ -65,5 +71,5 @@ After redeploy, `/api/live-quality` should report `"source":"supabase"` and live
 ## Notes
 
 - The app still uses `data/programs.json` for the canonical match profiles during web boot.
-- Supabase stores only the live Susa tables and sync metadata.
+- Supabase stores only the public live Susa tables and sync metadata. The public upload is intentionally limited to programmes that look like first-cycle/entry programmes.
 - If `SUPABASE_DATABASE_URL` is missing or fails, the app falls back safely to the local/JSON catalog and shows no live events.

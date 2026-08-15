@@ -28,7 +28,8 @@
     "prod:db:info": "node scripts/production-db-info.mjs",
     "supabase:schema": "node scripts/apply-supabase-schema.mjs",
     "supabase:push-live": "node scripts/push-live-to-supabase.mjs",
-    "susa:sync:supabase": "npm run susa:sync:full && npm run supabase:push-live -- --replace"
+    "supabase:push-entry-programs": "node scripts/push-live-to-supabase.mjs --replace --entry-programs-only",
+    "susa:sync:supabase": "npm run susa:sync:full && npm run supabase:push-entry-programs"
   },
   "dependencies": {
     "better-sqlite3": "13.0.3",

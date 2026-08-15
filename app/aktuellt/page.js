@@ -6,9 +6,9 @@ import { canonicalUrl } from "@/lib/site";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Aktuellt utbildningsutbud",
+  title: "Aktuella programstarter",
   description:
-    "Filtrera aktuella svenska högskoleutbildningar från Susa-navet när livekatalogen är synkad i produktion.",
+    "Filtrera aktuella svenska högskoleprogram på grundnivå från Susa-navet när livekatalogen är synkad i produktion.",
   alternates: { canonical: canonicalUrl("/aktuellt") },
 };
 
@@ -23,11 +23,11 @@ export default async function CurrentEducationPage() {
       <section className="shell browserHeader liveBrowserHeader">
         <div className="liveTitleRow">
           <div>
-            <span className="eyebrow">Susa-navet · universitet & högskola · HS</span>
-            <h1>Aktuellt utbildningsutbud</h1>
+            <span className="eyebrow">Susa-navet · program på grundnivå</span>
+            <h1>Aktuella programstarter</h1>
             <p className="lead">
-              Här visas verkliga universitets- och högskoleutbildningar som har synkats från Skolverkets Susa-nav med skolformskoden HS. Filtrera på starttermin,
-              ansökningsläge, lärosäte, ort och utbildningstyp. Högskolekompassens egna profiler används fortfarande för själva
+              Här visas verkliga universitets- och högskoleprogram som ser ut att kunna börja på grundnivå. Master-, magister- och avancerade program filtreras bort. Filtrera på starttermin,
+              ansökningsläge, lärosäte och ort. Högskolekompassens egna profiler används fortfarande för själva
               matchningen; live-datan visar vilka utbildningar som faktiskt erbjuds.
             </p>
             {status.periods?.length ? (

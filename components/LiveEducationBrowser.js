@@ -36,6 +36,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
 
   const hasFilters = Boolean(search || period || city || provider || kind || applicationStatus || distance);
   const options = useMemo(() => initialOptions || { periods: [], cities: [], providers: [], kinds: [] }, [initialOptions]);
+  const kindOptions = options.kinds.filter(Boolean);
 
   useEffect(() => {
     const initialSearch = new URLSearchParams(window.location.search).get("search");
@@ -134,12 +135,12 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
             {options.cities.map((value) => <option key={value}>{value}</option>)}
           </select>
         </label>
-        {options.kinds.length ? (
+        {kindOptions.length > 1 ? (
           <label>
             <span>Typ</span>
             <select value={kind} onChange={(event) => setKind(event.target.value)}>
               <option value="">Alla typer</option>
-              {options.kinds.map((value) => <option key={value}>{value}</option>)}
+              {kindOptions.map((value) => <option key={value}>{value}</option>)}
             </select>
           </label>
         ) : null}
@@ -161,7 +162,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
 
       <div className="browserToolbar liveToolbar">
         <div>
-          <strong>{loading ? "Hämtar…" : `${total} aktuella utbildningstillfällen`}</strong>
+          <strong>{loading ? "Hämtar…" : `${total} aktuella programstarter`}</strong>
           <span> Källa: Skolverkets Susa-nav, lokalt synkad databas.</span>
         </div>
         {hasFilters ? <button className="textButton" type="button" onClick={clearFilters}>Rensa filter</button> : null}
