@@ -4,7 +4,7 @@ import { canonicalUrl, contactEmail } from "@/lib/site";
 export const metadata = {
   title: "Kontakt",
   description:
-    "Kontakta Högskolekompassen om fel, datafrågor, integritet eller feedback inför public beta.",
+    "Kontakta Högskolekompassen om fel, datafrågor, integritet eller feedback.",
   alternates: { canonical: canonicalUrl("/kontakt") },
 };
 
@@ -15,7 +15,7 @@ export default function ContactPage() {
         <span className="eyebrow">Kontakt</span>
         <h1>Hittat något som känns fel eller oklart?</h1>
         <p className="lead">
-          Skicka gärna felrapporter, datakorrigeringar och feedback. Särskilt värdefullt inför public beta är saker som
+          Skicka gärna felrapporter, datakorrigeringar och feedback. Särskilt värdefullt är saker som
           gör att en ny användare tappar förtroende eller inte kommer vidare.
         </p>
       </section>

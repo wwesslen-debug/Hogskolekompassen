@@ -22,7 +22,7 @@ export const metadata = {
     siteName,
     title: "Högskolekompassen – hitta utbildningar som passar dig",
     description:
-      "En public beta för dig som vill välja högskoleutbildning med mer struktur: kompass, förklarad matchning och länkar vidare till officiell information.",
+      "En oberoende tjänst för dig som vill välja högskoleutbildning med mer struktur: kompass, förklarad matchning och länkar vidare till officiell information.",
   },
   robots: {
     index: true,
@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
                 <span className="brandMark" aria-hidden="true"><span /><span /><span /></span>
                 <span>Högskolekompassen</span>
               </div>
-              <p>Oberoende public beta för smartare och mer personligt utbildningsval.</p>
+              <p>Oberoende vägledning för smartare och mer personligt utbildningsval.</p>
             </div>
             <nav className="footerLinks" aria-label="Sidinformation">
               <a href="/om">Om</a>

@@ -87,18 +87,6 @@ img { max-width: 100%; }
 .brandMark span:nth-child(2) { height: 13px; }
 .brandMark span:nth-child(3) { height: 17px; }
 
-.betaBadge {
-  margin-right: auto;
-  padding: 6px 10px;
-  border: 1px solid rgba(58,175,169,.24);
-  border-radius: 999px;
-  background: rgba(226,244,242,.7);
-  color: var(--teal-dark);
-  font-size: 11px;
-  font-weight: 850;
-  white-space: nowrap;
-}
-
 .mainNav {
   display: flex;
   align-items: center;
@@ -678,7 +666,6 @@ img { max-width: 100%; }
   .navShell { height: 68px; }
   .mainNav > a:not(.button) { display: none; }
   .brand { font-size: 16px; }
-  .betaBadge { display: none; }
   .hero { padding: 58px 0 70px; }
   .heroGrid { gap: 35px; }
   .heroCopy h1 { font-size: clamp(46px, 14vw, 66px); }

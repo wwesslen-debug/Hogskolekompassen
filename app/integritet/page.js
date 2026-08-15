@@ -4,7 +4,7 @@ import { canonicalUrl, contactEmail } from "@/lib/site";
 export const metadata = {
   title: "Integritet",
   description:
-    "Så hanterar Högskolekompassen dina svar, sparade utbildningar, jämförelser och enklare användningsstatistik i public beta.",
+    "Så hanterar Högskolekompassen dina svar, sparade utbildningar, jämförelser och enklare användningsstatistik.",
   alternates: { canonical: canonicalUrl("/integritet") },
 };
 
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
           Du kan rensa detta genom att tömma webbplatsdata i webbläsaren.
         </p>
 
-        <h2>Analytics i public beta</h2>
+        <h2>Analytics</h2>
         <p>
           Appen loggar enkla funnel-event, till exempel besök, startad kompass, slutförd kompass, öppnad utbildning,
           sparad/jämförd utbildning och klick vidare till ansökningsinformation. Eventen ska användas för att förstå vad

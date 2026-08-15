@@ -45,7 +45,7 @@ export default async function Home() {
             <div className="trustRow">
               <div><strong>17</strong><span>profildimensioner</span></div>
               <div><strong>{programCount}</strong><span>utbildningsposter</span></div>
-              <div><strong>{liveStatus.eventCount || "Beta"}</strong><span>{liveStatus.eventCount ? "live-tillfällen" : "public beta"}</span></div>
+              <div><strong>{liveStatus.eventCount || "Live"}</strong><span>{liveStatus.eventCount ? "programstarter" : "live-data"}</span></div>
             </div>
           </div>
 

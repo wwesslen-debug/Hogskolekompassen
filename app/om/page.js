@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Om Högskolekompassen",
   description:
-    "Högskolekompassen är en oberoende public beta som hjälper dig förstå din utbildningsprofil och hitta vägar vidare till officiell information.",
+    "Högskolekompassen är en oberoende tjänst som hjälper dig förstå din utbildningsprofil och hitta vägar vidare till officiell information.",
   alternates: { canonical: canonicalUrl("/om") },
 };
 
@@ -30,9 +30,9 @@ export default async function AboutPage() {
         <div className="infoGrid">
           <article className="infoCard">
             <span className="statusDot" />
-            <h2>Public beta</h2>
+            <h2>Lanserad tjänst</h2>
             <p>
-              Tjänsten är öppen för testning inför lansering. Matchningen kan redan användas som vägledning, men
+              Tjänsten är öppen och kan användas som vägledning, men
               antagningskrav, kursinnehåll, studieorter och datum ska alltid verifieras hos lärosäte och Antagning.se.
             </p>
           </article>

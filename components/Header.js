@@ -12,8 +12,6 @@ export default function Header() {
           </span>
           <span>Högskolekompassen</span>
         </Link>
-        <span className="betaBadge">Public beta</span>
-
         <nav className="mainNav" aria-label="Huvudnavigation">
           <Link href="/#hur">Så fungerar det</Link>
           <Link href="/utbildningar">Utbildningar</Link>
