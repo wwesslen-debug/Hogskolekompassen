@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { trackExternalClick } from "@/lib/analytics-client";
 
 function formatDate(value) {
   if (!value) return null;
@@ -92,7 +93,21 @@ export default function LiveResultRecommendations({ result }) {
                   {offering.linkScore ? <small>{offering.linkScore}% länksäkerhet</small> : null}
                 </div>
                 <div className="liveResultActions">
-                  {target ? <a href={target} target="_blank" rel="noreferrer" className="button buttonSmall">Utbildningssidan ↗</a> : null}
+                  {target ? (
+                    <a
+                      href={target}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="button buttonSmall"
+                      onClick={() => trackExternalClick(target, {
+                        source: "result_live_recommendation",
+                        offeringId: offering.id,
+                        programId: offering.canonicalProgramId,
+                      })}
+                    >
+                      Utbildningssidan ↗
+                    </a>
+                  ) : null}
                   <Link href={`/aktuellt?search=${encodeURIComponent(offering.title)}`} className="button buttonGhost buttonSmall">Liknande live</Link>
                 </div>
               </article>

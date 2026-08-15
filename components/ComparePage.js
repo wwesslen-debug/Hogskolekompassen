@@ -116,7 +116,7 @@ export default function ComparePage() {
       <section className="shell compareHeader">
         <span className="eyebrow">Jämför utbildningar</span>
         <h1>Vilken passar dig bäst – och varför?</h1>
-        <p className="lead">v0.7 kombinerar fakta sida vid sida med din senaste kompassprofil och visar var utbildningarna faktiskt skiljer sig för just dig.</p>
+        <p className="lead">Jämförelsen kombinerar fakta sida vid sida med din senaste kompassprofil och visar var utbildningarna faktiskt skiljer sig för just dig.</p>
       </section>
 
       <section className="shell compareSection">

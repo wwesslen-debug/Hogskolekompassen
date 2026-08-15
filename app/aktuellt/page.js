@@ -1,8 +1,16 @@
 import Link from "next/link";
 import LiveEducationBrowser from "@/components/LiveEducationBrowser";
 import { getLiveDataStatus, getLiveFilterOptions } from "@/lib/db";
+import { canonicalUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Aktuellt utbildningsutbud",
+  description:
+    "Filtrera aktuella svenska högskoleutbildningar från Susa-navet när livekatalogen är synkad i produktion.",
+  alternates: { canonical: canonicalUrl("/aktuellt") },
+};
 
 export default function CurrentEducationPage() {
   const status = getLiveDataStatus();

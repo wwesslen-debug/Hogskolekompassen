@@ -31,8 +31,8 @@ export default function Home() {
             </h1>
             <p className="lead">
               Svara på 50 genomtänkta grundfrågor i fem korta delar. Högskolekompassen analyserar dina
-              intressen, drivkrafter och arbetssätt, matchar dig mot utbildningsprofiler och visar sedan
-              verkliga aktuella högskoleutbildningar från den synkade livekatalogen.
+              intressen, drivkrafter och arbetssätt, matchar dig mot utbildningsprofiler och hjälper dig gå vidare
+              till utbildningar och officiell information med mer struktur.
             </p>
 
             <div className="heroActions">
@@ -45,7 +45,7 @@ export default function Home() {
             <div className="trustRow">
               <div><strong>17</strong><span>profildimensioner</span></div>
               <div><strong>{programCount}</strong><span>utbildningsposter</span></div>
-              <div><strong>{liveStatus.eventCount || "↻"}</strong><span>{liveStatus.eventCount ? "live-tillfällen" : "Susa-nav redo"}</span></div>
+              <div><strong>{liveStatus.eventCount || "Beta"}</strong><span>{liveStatus.eventCount ? "live-tillfällen" : "public beta"}</span></div>
             </div>
           </div>
 
@@ -95,8 +95,8 @@ export default function Home() {
 
       <section className="logoStrip">
         <div className="shell stripInner">
-          <span>Utforska utbildningar från lärosäten i hela Sverige</span>
-          <div>KTH</div><div>SU</div><div>UU</div><div>LU</div><div>GU</div><div>LiU</div>
+          <span>Oberoende vägledning · kontrollera alltid hos officiell källa</span>
+          <div>Antagning.se</div><div>Lärosäte</div><div>Susa-navet</div><div>Behörighet</div><div>Datum</div><div>Urval</div>
         </div>
       </section>
 
@@ -159,7 +159,7 @@ export default function Home() {
           <div>
             <span className="eyebrow">Redo?</span>
             <h2>Gör ditt utbildningsval lite mindre slumpmässigt.</h2>
-            <p>Du får en profil, adaptiva följdfrågor, transparenta delpoäng och aktuella utbildningstillfällen som är kopplade till dina starkaste matchningar.</p>
+            <p>Du får en profil, adaptiva följdfrågor, transparenta delpoäng och tydligare vägar vidare till utbildningar som är värda att kontrollera närmare.</p>
           </div>
           <div className="ctaButtonStack">
             <Link href="/kompass" className="button buttonLarge">Starta Högskolekompassen →</Link>

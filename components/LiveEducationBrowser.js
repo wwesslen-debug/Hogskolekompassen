@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { trackExternalClick } from "@/lib/analytics-client";
 
 function formatDate(value) {
   if (!value) return null;
@@ -90,7 +91,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         <div className="liveEmptyIcon">↻</div>
         <h2>Live-katalogen är redo – men ännu inte synkad</h2>
         <p>
-          v0.7 innehåller databas, API-klient, bättre länkning och hela visningslagret. Kör synken en gång på din dator så fylls sidan med
+          Appen innehåller databas, API-klient, länkning och hela visningslagret. Kör synken när produktionsdatan är redo så fylls sidan med
           aktuella poster från Susa-navet.
         </p>
         <div className="commandCard">
@@ -199,7 +200,21 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
                     <strong>{offering.linkScore ? `${offering.linkScore}% länksäkerhet` : "Visa profil"} →</strong>
                   </Link>
                 ) : <span className="liveUnlinked">Inte automatiskt kopplad till en profil ännu</span>}
-                {target ? <a href={target} target="_blank" rel="noreferrer" className="button buttonSmall">Öppna originalkälla ↗</a> : null}
+                {target ? (
+                  <a
+                    href={target}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="button buttonSmall"
+                    onClick={() => trackExternalClick(target, {
+                      source: "live_catalog",
+                      offeringId: offering.id,
+                      programId: offering.canonicalProgramId,
+                    })}
+                  >
+                    Öppna originalkälla ↗
+                  </a>
+                ) : null}
               </aside>
             </article>
           );

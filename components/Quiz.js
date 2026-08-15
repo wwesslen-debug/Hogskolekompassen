@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import priorityOptions from "@/data/priorities.json";
 import dealBreakerOptions from "@/data/dealbreakers.json";
+import { trackFunnelEvent } from "@/lib/analytics-client";
 
 const answerOptions = [
   { value: 1, label: "Stämmer inte" },
@@ -114,6 +115,12 @@ export default function Quiz({ questions }) {
       }
 
       const result = await response.json();
+      trackFunnelEvent("compass_completed", {
+        certainAnswers: result.certainAnswers,
+        adaptiveQuestionCount: result.adaptiveQuestionCount || 0,
+        selectedPriorities: result.selectedPriorities?.length || 0,
+        selectedDealBreakers: result.selectedDealBreakers?.length || 0,
+      });
       sessionStorage.setItem("hogskolekompassen-result", JSON.stringify(result));
       router.push("/resultat");
     } catch (err) {

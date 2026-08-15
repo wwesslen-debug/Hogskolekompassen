@@ -1,17 +1,40 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import CompareTray from "@/components/CompareTray";
+import AnalyticsEvents from "@/components/AnalyticsEvents";
+import { canonicalUrl, siteName, siteUrl } from "@/lib/site";
 
 export const metadata = {
-  title: "Högskolekompassen – hitta utbildningar som passar dig",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Högskolekompassen – hitta utbildningar som passar dig",
+    template: `%s | ${siteName}`,
+  },
   description:
-    "Svara på 50 frågor, få adaptiva följdfrågor vid behov och jämför transparenta matchningar mot svenska utbildningsområden och högskoleprogram.",
+    "Gör en transparent utbildningskompass, förstå din studieprofil och hitta svenska högskoleutbildningar att kontrollera hos officiella källor.",
+  alternates: {
+    canonical: canonicalUrl("/"),
+  },
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    url: canonicalUrl("/"),
+    siteName,
+    title: "Högskolekompassen – hitta utbildningar som passar dig",
+    description:
+      "En public beta för dig som vill välja högskoleutbildning med mer struktur: kompass, förklarad matchning och länkar vidare till officiell information.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="sv">
       <body>
+        <AnalyticsEvents />
         <Header />
         {children}
         <CompareTray />
@@ -22,10 +45,17 @@ export default function RootLayout({ children }) {
                 <span className="brandMark" aria-hidden="true"><span /><span /><span /></span>
                 <span>Högskolekompassen</span>
               </div>
-              <p>En prototyp för smartare och mer personligt utbildningsval.</p>
+              <p>Oberoende public beta för smartare och mer personligt utbildningsval.</p>
             </div>
+            <nav className="footerLinks" aria-label="Sidinformation">
+              <a href="/om">Om</a>
+              <a href="/datakalla">Datakälla</a>
+              <a href="/integritet">Integritet</a>
+              <a href="/kontakt">Kontakt</a>
+            </nav>
             <p className="footerNote">
-              Oberoende prototyp. Inte ansluten till UHR, Antagning.se eller något lärosäte.
+              Högskolekompassen är inte ansluten till UHR, Antagning.se, Skolverket eller något lärosäte.
+              Kontrollera alltid behörighet, kursinnehåll och ansökan hos officiell källa.
             </p>
           </div>
         </footer>

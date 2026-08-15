@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import traits from "@/data/traits.json";
+import { trackExternalClick } from "@/lib/analytics-client";
 
 const profileRows = [
   ["matematik", "Matematik"],
@@ -77,7 +78,15 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
               <p className="detailInstitution">{program.institution} · {program.city}</p>
               <p className="lead">{program.description}</p>
               <div className="detailHeroActions">
-                <a className="button" href={program.antagningSearch} target="_blank" rel="noreferrer">Kontrollera på Antagning.se ↗</a>
+                <a
+                  className="button"
+                  href={program.antagningSearch}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackExternalClick(program.antagningSearch, { source: "program_detail", programId: program.id })}
+                >
+                  Kontrollera på Antagning.se ↗
+                </a>
                 <CompareButton programId={program.id} />
                 <SaveProgramButton programId={program.id} />
               </div>
@@ -115,7 +124,7 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
         <div className="detailPanel">
           <span className="eyebrow">Studieprofil</span>
           <h2>Hur utbildningen lutar</h2>
-          <p>Skalorna är modellvärden för jämförelse i prototypen, inte officiella kursmått.</p>
+          <p>Skalorna är modellvärden för jämförelse, inte officiella kursmått.</p>
           <div className="detailProfileRows">
             {profileRows.map(([key, label]) => {
               const value = program.vector[key] ?? 0.5;
@@ -217,7 +226,19 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
                 {offering.applicationDeadline ? <small>Sista ansökningsdag: {offering.applicationDeadline}</small> : <small>Ansökningsdatum: kontrollera originalkällan.</small>}
                 <div className="programLiveActions">
                   {offering.applicationUrl || offering.sourceUrl ? (
-                    <a href={offering.applicationUrl || offering.sourceUrl} target="_blank" rel="noreferrer" className="cardLink">Öppna utbildningen ↗</a>
+                    <a
+                      href={offering.applicationUrl || offering.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="cardLink"
+                      onClick={() => trackExternalClick(offering.applicationUrl || offering.sourceUrl, {
+                        source: "program_live_offering",
+                        programId: program.id,
+                        offeringId: offering.id,
+                      })}
+                    >
+                      Öppna utbildningen ↗
+                    </a>
                   ) : null}
                   {offering.linkScore ? <span>{offering.linkScore}% länksäkerhet</span> : null}
                 </div>

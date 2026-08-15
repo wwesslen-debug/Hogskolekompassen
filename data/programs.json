@@ -7,7 +7,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på digitalisering, verksamhet, IT. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på digitalisering, verksamhet, IT. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "digitalisering",
       "verksamhet",
@@ -43,7 +43,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på systemvetenskap, programmering, verksamhet. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på systemvetenskap, programmering, verksamhet. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "systemvetenskap",
       "programmering",
@@ -79,7 +79,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på systemutveckling, organisation. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på systemutveckling, organisation. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "systemutveckling",
       "organisation"
@@ -114,7 +114,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på IT, verksamhet, projekt. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på IT, verksamhet, projekt. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "IT",
       "verksamhet",
@@ -150,7 +150,7 @@
     "years": 5,
     "degree": "Civilingenjör",
     "study": "Campus",
-    "description": "Civilingenjör med fokus på programmering, AI, matematik. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Civilingenjör med fokus på programmering, AI, matematik. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "programmering",
       "AI",
@@ -186,7 +186,7 @@
     "years": 5,
     "degree": "Civilingenjör",
     "study": "Campus",
-    "description": "Civilingenjör med fokus på programmering, matematik, system. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Civilingenjör med fokus på programmering, matematik, system. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "programmering",
       "matematik",
@@ -222,7 +222,7 @@
     "years": 5,
     "degree": "Civilingenjör",
     "study": "Campus",
-    "description": "Civilingenjör med fokus på mjukvara, algoritmer, teknik. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Civilingenjör med fokus på mjukvara, algoritmer, teknik. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "mjukvara",
       "algoritmer",
@@ -258,7 +258,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på programmering, algoritmer, data. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på programmering, algoritmer, data. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "programmering",
       "algoritmer",
@@ -294,7 +294,7 @@
     "years": 5,
     "degree": "Civilingenjör",
     "study": "Campus",
-    "description": "Civilingenjör med fokus på teknik, ekonomi, ledning. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Civilingenjör med fokus på teknik, ekonomi, ledning. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "teknik",
       "ekonomi",
@@ -330,7 +330,7 @@
     "years": 5,
     "degree": "Civilingenjör",
     "study": "Campus",
-    "description": "Civilingenjör med fokus på matematik, strategi, teknik. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Civilingenjör med fokus på matematik, strategi, teknik. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "matematik",
       "strategi",
@@ -366,7 +366,7 @@
     "years": 5,
     "degree": "Civilingenjör",
     "study": "Campus",
-    "description": "Civilingenjör med fokus på ekonomi, teknik, analys. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Civilingenjör med fokus på ekonomi, teknik, analys. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "ekonomi",
       "teknik",
@@ -402,7 +402,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på företagsekonomi, nationalekonomi. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på företagsekonomi, nationalekonomi. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "företagsekonomi",
       "nationalekonomi"
@@ -437,7 +437,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på företagsekonomi, analys. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på företagsekonomi, analys. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "företagsekonomi",
       "analys"
@@ -472,7 +472,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på marknadsföring, redovisning, ledning. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på marknadsföring, redovisning, ledning. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "marknadsföring",
       "redovisning",
@@ -508,7 +508,7 @@
     "years": 4.5,
     "degree": "Juristexamen",
     "study": "Campus",
-    "description": "Juristexamen med fokus på juridik, rätt, argumentation. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Juristexamen med fokus på juridik, rätt, argumentation. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "juridik",
       "rätt",
@@ -544,7 +544,7 @@
     "years": 4.5,
     "degree": "Juristexamen",
     "study": "Campus",
-    "description": "Juristexamen med fokus på lag, rättsvetenskap. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Juristexamen med fokus på lag, rättsvetenskap. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "lag",
       "rättsvetenskap"
@@ -579,7 +579,7 @@
     "years": 4.5,
     "degree": "Juristexamen",
     "study": "Campus",
-    "description": "Juristexamen med fokus på juridik, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Juristexamen med fokus på juridik, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "juridik",
       "samhälle"
@@ -614,7 +614,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på politik, förvaltning, analys. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på politik, förvaltning, analys. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "politik",
       "förvaltning",
@@ -650,7 +650,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på politik, policy, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på politik, policy, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "politik",
       "policy",
@@ -686,7 +686,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på politik, ekonomi, förvaltning. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på politik, ekonomi, förvaltning. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "politik",
       "ekonomi",
@@ -722,7 +722,7 @@
     "years": 5,
     "degree": "Psykologexamen",
     "study": "Campus",
-    "description": "Psykologexamen med fokus på beteende, människor, hälsa. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Psykologexamen med fokus på beteende, människor, hälsa. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "beteende",
       "människor",
@@ -758,7 +758,7 @@
     "years": 5,
     "degree": "Psykologexamen",
     "study": "Campus",
-    "description": "Psykologexamen med fokus på psykologi, beteende. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Psykologexamen med fokus på psykologi, beteende. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "psykologi",
       "beteende"
@@ -793,7 +793,7 @@
     "years": 5,
     "degree": "Psykologexamen",
     "study": "Campus",
-    "description": "Psykologexamen med fokus på psykologi, relationer. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Psykologexamen med fokus på psykologi, relationer. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "psykologi",
       "relationer"
@@ -828,7 +828,7 @@
     "years": 6,
     "degree": "Läkarexamen",
     "study": "Campus",
-    "description": "Läkarexamen med fokus på medicin, naturvetenskap, patient. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Läkarexamen med fokus på medicin, naturvetenskap, patient. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "medicin",
       "naturvetenskap",
@@ -864,7 +864,7 @@
     "years": 6,
     "degree": "Läkarexamen",
     "study": "Campus",
-    "description": "Läkarexamen med fokus på medicin, hälsa, vetenskap. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Läkarexamen med fokus på medicin, hälsa, vetenskap. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "medicin",
       "hälsa",
@@ -900,7 +900,7 @@
     "years": 6,
     "degree": "Läkarexamen",
     "study": "Campus",
-    "description": "Läkarexamen med fokus på medicin, klinisk, vetenskap. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Läkarexamen med fokus på medicin, klinisk, vetenskap. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "medicin",
       "klinisk",
@@ -936,7 +936,7 @@
     "years": 3,
     "degree": "Sjuksköterskeexamen",
     "study": "Campus",
-    "description": "Sjuksköterskeexamen med fokus på omvårdnad, patient, hälsa. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Sjuksköterskeexamen med fokus på omvårdnad, patient, hälsa. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "omvårdnad",
       "patient",
@@ -972,7 +972,7 @@
     "years": 3,
     "degree": "Sjuksköterskeexamen",
     "study": "Campus",
-    "description": "Sjuksköterskeexamen med fokus på vård, hälsa, människor. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Sjuksköterskeexamen med fokus på vård, hälsa, människor. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "vård",
       "hälsa",
@@ -1008,7 +1008,7 @@
     "years": 3,
     "degree": "Fysioterapeutexamen",
     "study": "Campus",
-    "description": "Fysioterapeutexamen med fokus på rehabilitering, rörelse, hälsa. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Fysioterapeutexamen med fokus på rehabilitering, rörelse, hälsa. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "rehabilitering",
       "rörelse",
@@ -1044,7 +1044,7 @@
     "years": 3,
     "degree": "Fysioterapeutexamen",
     "study": "Campus",
-    "description": "Fysioterapeutexamen med fokus på rehabilitering, praktik. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Fysioterapeutexamen med fokus på rehabilitering, praktik. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "rehabilitering",
       "praktik"
@@ -1079,7 +1079,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på biologi, forskning, natur. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på biologi, forskning, natur. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "biologi",
       "forskning",
@@ -1115,7 +1115,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på biologi, laboratorium, natur. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på biologi, laboratorium, natur. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "biologi",
       "laboratorium",
@@ -1151,7 +1151,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på hållbarhet, miljö, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på hållbarhet, miljö, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "hållbarhet",
       "miljö",
@@ -1187,7 +1187,7 @@
     "years": 5,
     "degree": "Civilingenjör",
     "study": "Campus",
-    "description": "Civilingenjör med fokus på energi, hållbarhet, teknik. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Civilingenjör med fokus på energi, hållbarhet, teknik. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "energi",
       "hållbarhet",
@@ -1223,7 +1223,7 @@
     "years": 5,
     "degree": "Arkitektexamen",
     "study": "Campus",
-    "description": "Arkitektexamen med fokus på arkitektur, design, teknik. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Arkitektexamen med fokus på arkitektur, design, teknik. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "arkitektur",
       "design",
@@ -1259,7 +1259,7 @@
     "years": 5,
     "degree": "Arkitektexamen",
     "study": "Campus",
-    "description": "Arkitektexamen med fokus på arkitektur, form, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Arkitektexamen med fokus på arkitektur, form, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "arkitektur",
       "form",
@@ -1295,7 +1295,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på design, produkt, form. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på design, produkt, form. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "design",
       "produkt",
@@ -1331,7 +1331,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på media, kommunikation, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på media, kommunikation, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "media",
       "kommunikation",
@@ -1367,7 +1367,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på kommunikation, organisation, varumärke. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på kommunikation, organisation, varumärke. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "kommunikation",
       "organisation",
@@ -1403,7 +1403,7 @@
     "years": 4,
     "degree": "Lärarexamen",
     "study": "Campus",
-    "description": "Lärarexamen med fokus på pedagogik, barn, kommunikation. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Lärarexamen med fokus på pedagogik, barn, kommunikation. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "pedagogik",
       "barn",
@@ -1439,7 +1439,7 @@
     "years": 5,
     "degree": "Lärarexamen",
     "study": "Campus",
-    "description": "Lärarexamen med fokus på pedagogik, undervisning. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Lärarexamen med fokus på pedagogik, undervisning. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "pedagogik",
       "undervisning"
@@ -1474,7 +1474,7 @@
     "years": 3.5,
     "degree": "Socionomexamen",
     "study": "Campus",
-    "description": "Socionomexamen med fokus på socialt arbete, människor, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Socionomexamen med fokus på socialt arbete, människor, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "socialt arbete",
       "människor",
@@ -1510,7 +1510,7 @@
     "years": 3.5,
     "degree": "Socionomexamen",
     "study": "Campus",
-    "description": "Socionomexamen med fokus på socialt arbete, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Socionomexamen med fokus på socialt arbete, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "socialt arbete",
       "samhälle"
@@ -1545,7 +1545,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på kriminologi, brott, samhälle. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på kriminologi, brott, samhälle. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "kriminologi",
       "brott",
@@ -1581,7 +1581,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på HR, organisation, arbetsliv. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på HR, organisation, arbetsliv. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "HR",
       "organisation",
@@ -1617,7 +1617,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på HR, ledarskap, arbetsliv. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på HR, ledarskap, arbetsliv. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "HR",
       "ledarskap",
@@ -1653,7 +1653,7 @@
     "years": 3,
     "degree": "Kandidatprogram",
     "study": "Campus",
-    "description": "Kandidatprogram med fokus på logistik, analys, ledning. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Kandidatprogram med fokus på logistik, analys, ledning. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "logistik",
       "analys",
@@ -1689,7 +1689,7 @@
     "years": 3,
     "degree": "Högskoleingenjör",
     "study": "Campus",
-    "description": "Högskoleingenjör med fokus på bygg, konstruktion, praktik. Uppgifterna i denna prototyp är demo-data och ska verifieras mot lärosätet/Antagning.se.",
+    "description": "Högskoleingenjör med fokus på bygg, konstruktion, praktik. Katalogposten används för matchning; aktuella program, behörighetskrav och studieorter ska verifieras på Antagning.se.",
     "tags": [
       "bygg",
       "konstruktion",

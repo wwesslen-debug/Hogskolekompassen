@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { getLiveDataStatus, getLiveLinkQuality } from "@/lib/db";
+import { canonicalUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Datakvalitet",
+  description:
+    "Följ hur Högskolekompassen länkar aktuella utbildningstillfällen från Susa-navet till matchningsprofiler.",
+  alternates: { canonical: canonicalUrl("/datakvalitet") },
+};
 
 function pct(part, total) {
   return total ? `${(part / total * 100).toFixed(1)}%` : "0%";
@@ -14,7 +22,7 @@ export default function DataQualityPage() {
   return (
     <main className="qualityPage">
       <section className="shell browserHeader qualityHeader">
-        <span className="eyebrow">v0.7 · Live Matching</span>
+        <span className="eyebrow">Datakvalitet · Live Matching</span>
         <h1>Datakvalitet & länkning</h1>
         <p className="lead">
           Här går det att följa hur stor del av Susa-navets högskoleutbud som Högskolekompassen kan koppla till de egna
@@ -53,7 +61,7 @@ export default function DataQualityPage() {
             <div className="methodList">
               {quality.methods.length ? quality.methods.map((row) => (
                 <div key={row.method}><span>{row.method}</span><strong>{row.count.toLocaleString("sv-SE")}</strong></div>
-              )) : <p>Kör <code>npm run db:migrate:v07</code> och <code>npm run susa:relink</code> för v0.7-metadata.</p>}
+              )) : <p>Kör live-synk och relinkning för att skapa metadata.</p>}
             </div>
           </article>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackFunnelEvent } from "@/lib/analytics-client";
 
 const STORAGE_KEY = "hogskolekompassen-compare";
 const EVENT_NAME = "hogskolekompassen-compare-change";
@@ -41,15 +42,18 @@ export default function CompareButton({ programId, compact = false }) {
       const next = current.filter((item) => item !== id);
       writeIds(next);
       setIds(next);
+      trackFunnelEvent("compare_remove", { programId: id });
       return;
     }
     if (current.length >= 3) {
       setMessage("Du kan jämföra högst tre utbildningar.");
+      trackFunnelEvent("compare_limit_reached", { programId: id, count: current.length });
       return;
     }
     const next = [...current, id];
     writeIds(next);
     setIds(next);
+    trackFunnelEvent("compare_add", { programId: id, count: next.length });
   }
 
   return (

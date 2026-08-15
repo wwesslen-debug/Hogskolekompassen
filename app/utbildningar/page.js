@@ -1,8 +1,16 @@
 import Link from "next/link";
 import ProgramBrowser from "@/components/ProgramBrowser";
 import { getFilterOptions, getLiveDataStatus } from "@/lib/db";
+import { canonicalUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Utbildningar",
+  description:
+    "Utforska Högskolekompassens utbildningsprofiler, jämför studieprofil och gå vidare till officiell information.",
+  alternates: { canonical: canonicalUrl("/utbildningar") },
+};
 
 export default function ProgramsPage() {
   const options = getFilterOptions();
@@ -15,8 +23,9 @@ export default function ProgramsPage() {
         <h1>Utforska utbildningstyper</h1>
         <p className="lead">
           Här finns Högskolekompassens profiler för hundratals utbildningsinriktningar. De används för att förklara
-          studiestil, karriärspår och personlig matchning. I v0.7 ligger det verkliga terminsutbudet separat och
-          synkas från Susa-navet, så en matchningsprofil kan kopplas till flera riktiga utbildningstillfällen.
+          studiestil, karriärspår och personlig matchning. Det verkliga terminsutbudet ligger separat och synkas från
+          Susa-navet när produktionsdatan är aktiverad, så en matchningsprofil kan kopplas till flera riktiga
+          utbildningstillfällen.
         </p>
         <div className="catalogModeActions">
           <Link href="/aktuellt" className="button buttonGhost">

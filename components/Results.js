@@ -83,7 +83,7 @@ export default function Results() {
             <h1>{result.profileTitle}</h1>
             <p className="lead">
               Dina svar pekar framför allt mot <strong>{result.areas.slice(0, 3).map((x) => x.category).join(", ")}</strong>.
-              I v0.7 kombineras profilmatchningen dessutom med aktuella utbildningstillfällen, samtidigt som delpoängen visar <em>varför</em> en utbildning hamnar högt.
+              Profilmatchningen kombineras med aktuella utbildningstillfällen när livekatalogen är synkad, samtidigt som delpoängen visar <em>varför</em> en utbildning hamnar högt.
             </p>
             <div className="resultSummaryStats">
               <div><strong>{result.certainAnswers}</strong><span>tydliga svar</span></div>
@@ -254,7 +254,7 @@ export default function Results() {
         </div>
 
         <div className="dataNotice dataNoticeV2">
-          <strong>Så ska resultatet tolkas:</strong> procenten är en profilmatch i prototypens modell – inte sannolikhet för trivsel, examen eller antagning. Aktuellt utbud, behörighet och antagningsinformation ska verifieras hos lärosätet och Antagning.se.
+          <strong>Så ska resultatet tolkas:</strong> procenten är en profilmatch i Högskolekompassens modell – inte sannolikhet för trivsel, examen eller antagning. Aktuellt utbud, behörighet och antagningsinformation ska verifieras hos lärosätet och Antagning.se.
         </div>
 
         <div className="centerActions">

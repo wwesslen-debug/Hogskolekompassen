@@ -87,6 +87,18 @@ img { max-width: 100%; }
 .brandMark span:nth-child(2) { height: 13px; }
 .brandMark span:nth-child(3) { height: 17px; }
 
+.betaBadge {
+  margin-right: auto;
+  padding: 6px 10px;
+  border: 1px solid rgba(58,175,169,.24);
+  border-radius: 999px;
+  background: rgba(226,244,242,.7);
+  color: var(--teal-dark);
+  font-size: 11px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
 .mainNav {
   display: flex;
   align-items: center;
@@ -436,6 +448,59 @@ img { max-width: 100%; }
 .footerBrand { margin-bottom: 14px; }
 .footerGrid p { color: var(--muted); max-width: 500px; line-height: 1.6; font-size: 13px; margin: 0; }
 .footerNote { text-align: right; }
+.footerLinks { display: flex; flex-wrap: wrap; gap: 10px 16px; color: var(--ink-2); font-size: 12px; font-weight: 800; }
+.footerLinks a { padding-bottom: 2px; border-bottom: 1px solid transparent; }
+.footerLinks a:hover { border-color: var(--teal); color: var(--ink); }
+
+.infoPage { min-height: 100vh; background: #f7f8f5; }
+.infoHero { padding: 76px 0 34px; }
+.infoHero h1 { max-width: 900px; margin: 12px 0 16px; font-size: clamp(46px, 6vw, 78px); line-height: .98; letter-spacing: -.058em; }
+.infoSection { padding: 18px 0 86px; }
+.infoGrid, .dataSourceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.infoCard, .dataSourcePanel, .contactPanel {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 14px 42px rgba(18,48,71,.06);
+}
+.infoCard h2, .dataSourcePanel h2, .contactPanel h2 { margin: 10px 0 9px; font-size: 25px; letter-spacing: -.035em; }
+.infoCard p, .dataSourcePanel p, .contactPanel p, .legalText p { color: var(--muted); line-height: 1.7; }
+.statusDot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 6px rgba(58,175,169,.12);
+}
+.launchChecklist {
+  margin-top: 16px;
+  padding: 28px;
+  border: 1px solid rgba(58,175,169,.22);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #eef9f7, #fff 62%);
+  display: grid;
+  grid-template-columns: .75fr 1.25fr;
+  gap: 28px;
+}
+.launchChecklist h2 { margin: 8px 0 0; font-size: 32px; letter-spacing: -.04em; }
+.launchChecklist ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.75; }
+.launchChecklist strong { color: var(--ink); }
+.infoActions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.publicNotice { margin-top: 16px; }
+.legalText {
+  max-width: 850px;
+  color: var(--ink);
+}
+.legalText h2 { margin: 28px 0 8px; font-size: 28px; letter-spacing: -.035em; }
+.legalText h2:first-child { margin-top: 0; }
+.legalText a, .contactPanel a { color: var(--teal-dark); font-weight: 850; }
+.contactPanel { max-width: 760px; }
 
 .quizPage { min-height: calc(100vh - 78px); padding: 62px 0 100px; }
 .quizWrap { width: min(890px, 100%); margin: 0 auto; }
@@ -598,6 +663,8 @@ img { max-width: 100%; }
   .dimensionIntro { position: static; }
   .stepGrid { grid-template-columns: 1fr; }
   .featuredStep { transform: none; }
+  .infoGrid, .dataSourceGrid { grid-template-columns: 1fr; }
+  .launchChecklist { grid-template-columns: 1fr; }
   .browserGrid { grid-template-columns: repeat(2, 1fr); }
   .areaGrid { grid-template-columns: repeat(2, 1fr); }
   .programResultCard { grid-template-columns: 62px minmax(0,1fr); }
@@ -611,6 +678,7 @@ img { max-width: 100%; }
   .navShell { height: 68px; }
   .mainNav > a:not(.button) { display: none; }
   .brand { font-size: 16px; }
+  .betaBadge { display: none; }
   .hero { padding: 58px 0 70px; }
   .heroGrid { gap: 35px; }
   .heroCopy h1 { font-size: clamp(46px, 14vw, 66px); }
@@ -632,6 +700,10 @@ img { max-width: 100%; }
   .ctaPanel { padding: 30px 25px; flex-direction: column; align-items: flex-start; }
   .footerGrid { flex-direction: column; align-items: flex-start; }
   .footerNote { text-align: left; }
+  .footerLinks { order: 3; }
+  .infoHero { padding: 52px 0 22px; }
+  .infoHero h1 { font-size: clamp(40px, 12vw, 60px); }
+  .infoCard, .dataSourcePanel, .contactPanel, .launchChecklist { padding: 22px; border-radius: 18px; }
   .quizPage { padding-top: 34px; }
   .quizCard { padding: 30px 20px; }
   .answerGrid { grid-template-columns: 1fr; }
@@ -1377,7 +1449,7 @@ img { max-width: 100%; }
 .livePeriodSummary > span { margin-right: 3px; color: var(--muted); font-size: 8px; text-transform: uppercase; letter-spacing: .07em; font-weight: 850; }
 .livePeriodSummary strong { padding: 6px 8px; border-radius: 999px; background: rgba(255,255,255,.75); border: 1px solid var(--line); font-size: 8px; }
 
-/* v0.7 · Live Matching & data quality */
+/* Live Matching & data quality */
 .livePersonalSection { padding-top: 8px; }
 .liveResultSection { padding: 28px; border: 1px solid #cfe0dc; border-radius: 22px; background: linear-gradient(180deg,#f7fbf9 0%,#fff 100%); box-shadow: 0 18px 50px rgba(18,48,71,.05); }
 .liveResultHeading { margin-bottom: 20px; }

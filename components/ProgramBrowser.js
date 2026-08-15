@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
+import { trackExternalClick } from "@/lib/analytics-client";
 
 export default function ProgramBrowser({ options }) {
   const [search, setSearch] = useState("");
@@ -139,7 +140,13 @@ export default function ProgramBrowser({ options }) {
                 <Link href={`/utbildningar/${program.id}`} className="button buttonGhost buttonSmall">Läs mer</Link>
                 <CompareButton programId={program.id} compact />
                 <SaveProgramButton programId={program.id} compact />
-                <a href={program.antagningSearch} target="_blank" rel="noreferrer" className="cardLink">
+                <a
+                  href={program.antagningSearch}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cardLink"
+                  onClick={() => trackExternalClick(program.antagningSearch, { source: "program_browser", programId: program.id })}
+                >
                   Antagning.se ↗
                 </a>
               </div>

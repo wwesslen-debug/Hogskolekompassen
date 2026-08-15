@@ -1,9 +1,11 @@
 import CareerExplorer from "@/components/CareerExplorer";
 import { getAllAreaInfo } from "@/lib/program-insights";
+import { canonicalUrl } from "@/lib/site";
 
 export const metadata = {
-  title: "Karriärspår | Högskolekompassen",
+  title: "Karriärspår",
   description: "Utforska breda arbetsområden och vilka utbildningsområden som kan leda dit.",
+  alternates: { canonical: canonicalUrl("/karriar") },
 };
 
 export default function CareersPage() {

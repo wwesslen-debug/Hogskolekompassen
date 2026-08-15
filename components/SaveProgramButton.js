@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackFunnelEvent } from "@/lib/analytics-client";
 
 const STORAGE_KEY = "hogskolekompassen-path";
 const EVENT_NAME = "hogskolekompassen-path-change";
@@ -42,9 +43,15 @@ export default function SaveProgramButton({ programId, compact = false }) {
 
   function choose(nextStatus) {
     const path = readPath();
-    if (!nextStatus || path[String(programId)] === nextStatus) delete path[String(programId)];
+    const previousStatus = path[String(programId)] || "";
+    const removing = !nextStatus || previousStatus === nextStatus;
+    if (removing) delete path[String(programId)];
     else path[String(programId)] = nextStatus;
     writePath(path);
+    trackFunnelEvent(removing ? "unsave_program" : "save_program", {
+      programId: Number(programId),
+      status: removing ? previousStatus : nextStatus,
+    });
     setOpen(false);
   }
 
