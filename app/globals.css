@@ -165,6 +165,11 @@ img { max-width: 100%; }
   color: var(--muted);
 }
 
+.manualAd[data-ad-status="unfilled"],
+.manualAd[data-ad-status="unfill-optimized"] {
+  display: none !important;
+}
+
 .manualAdLabel {
   display: block;
   margin-bottom: 8px;
