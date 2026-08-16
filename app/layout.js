@@ -3,6 +3,9 @@ import Header from "@/components/Header";
 import CompareTray from "@/components/CompareTray";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import { canonicalUrl, siteName, siteUrl } from "@/lib/site";
+import Script from "next/script";
+
+const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-7522543243781751";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -34,6 +37,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="sv">
       <body>
+        <Script
+          id="adsense-auto-ads"
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <AnalyticsEvents />
         <Header />
         {children}

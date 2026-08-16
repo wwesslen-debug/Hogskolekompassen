@@ -40,6 +40,13 @@ export default function PrivacyPage() {
           som behöver förbättras i nästa version, inte för att skapa personliga profiler.
         </p>
 
+        <h2>Annonser</h2>
+        <p>
+          Högskolekompassen kan visa annonser via Google AdSense. Google kan använda cookies eller liknande tekniker för
+          att visa och mäta annonser enligt sina egna villkor och integritetspolicy. Annonsformat styrs för att vara så
+          diskreta som möjligt och får inte påverka resultat, ranking eller utbildningsrekommendationer.
+        </p>
+
         <h2>Kontakt</h2>
         <p>
           Frågor om integritet eller rättelser kan skickas till <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
