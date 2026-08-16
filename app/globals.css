@@ -154,67 +154,6 @@ img { max-width: 100%; }
   background: radial-gradient(circle, rgba(58,175,169,.12), transparent 68%);
 }
 
-.heroAdRail {
-  display: none;
-  position: absolute;
-  top: 150px;
-  z-index: 2;
-  width: 220px;
-}
-
-.heroAdRailLeft {
-  left: max(28px, calc((100vw - 1180px) / 2 - 300px));
-}
-
-.heroAdRailRight {
-  right: max(28px, calc((100vw - 1180px) / 2 - 300px));
-}
-
-.heroAdSlot {
-  min-height: 330px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 11px;
-  padding: 18px;
-  border: 1px solid rgba(18, 48, 71, .1);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, .58);
-  color: var(--ink);
-  box-shadow: 0 18px 45px rgba(18, 48, 71, .08);
-  backdrop-filter: blur(12px);
-  transition: transform .16s ease, border-color .16s ease, background .16s ease;
-}
-
-.heroAdSlot:hover {
-  transform: translateY(-2px);
-  border-color: rgba(58, 175, 169, .24);
-  background: rgba(255, 255, 255, .78);
-}
-
-.heroAdSlot span {
-  align-self: flex-start;
-  padding: 5px 8px;
-  border-radius: 999px;
-  background: rgba(226, 244, 242, .84);
-  color: var(--teal-dark);
-  font-size: 10px;
-  font-weight: 850;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-.heroAdSlot strong {
-  font-size: 18px;
-  line-height: 1.18;
-}
-
-.heroAdSlot small {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.45;
-}
-
 .heroGrid {
   display: grid;
   grid-template-columns: 1.02fr .98fr;
@@ -705,26 +644,6 @@ img { max-width: 100%; }
 .browseCard > p { color: var(--muted); font-size: 13px; line-height: 1.55; }
 .browseCard .chipRow { margin-top: auto; padding-top: 14px; }
 .cardLink { margin-top: 18px; color: var(--teal-dark); font-size: 12px; font-weight: 820; }
-
-@media (min-width: 1540px) {
-  .heroAdRail {
-    display: block;
-  }
-}
-
-@media (min-width: 1840px) {
-  .heroAdRail {
-    width: 250px;
-  }
-
-  .heroAdRailLeft {
-    left: max(48px, calc((100vw - 1180px) / 2 - 340px));
-  }
-
-  .heroAdRailRight {
-    right: max(48px, calc((100vw - 1180px) / 2 - 340px));
-  }
-}
 
 @media (max-width: 980px) {
   .heroGrid, .resultHeroGrid, .dimensionGrid { grid-template-columns: 1fr; }
