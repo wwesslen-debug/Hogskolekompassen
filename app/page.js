@@ -1,4 +1,6 @@
 import { getLiveDataStatus, getProgramCount } from "@/lib/db";
+import { getAdSenseConfig } from "@/lib/ads";
+import AdSenseUnit from "@/components/AdSenseUnit";
 import Link from "next/link";
 
 const dimensions = [
@@ -19,10 +21,27 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const programCount = getProgramCount();
   const liveStatus = await getLiveDataStatus();
+  const homeLeftAd = getAdSenseConfig("homeLeft");
+  const homeRightAd = getAdSenseConfig("homeRight");
+  const homeInlineAd = getAdSenseConfig("homeInline");
 
   return (
     <main>
       <section className="hero">
+        <AdSenseUnit
+          {...homeLeftAd}
+          className="manualAdRail manualAdRailLeft"
+          label="Annonsplats vänster"
+          format="rectangle"
+          responsive={false}
+        />
+        <AdSenseUnit
+          {...homeRightAd}
+          className="manualAdRail manualAdRailRight"
+          label="Annonsplats höger"
+          format="rectangle"
+          responsive={false}
+        />
         <div className="shell heroGrid">
           <div className="heroCopy">
             <div className="eyebrow">Din väg efter gymnasiet</div>
@@ -99,6 +118,13 @@ export default async function Home() {
           <div>Antagning.se</div><div>Lärosäte</div><div>Susa-navet</div><div>Behörighet</div><div>Datum</div><div>Urval</div>
         </div>
       </section>
+
+      <AdSenseUnit
+        {...homeInlineAd}
+        className="shell manualAdInline manualAdAfterHero"
+        label="Annons efter introduktion"
+        format="horizontal"
+      />
 
       <section className="section shell" id="hur">
         <div className="sectionHeading">

@@ -161,6 +161,65 @@ img { max-width: 100%; }
   align-items: center;
 }
 
+.manualAd {
+  color: var(--muted);
+}
+
+.manualAdLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: #8ea0aa;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.manualAdInline {
+  padding: 18px 0;
+  min-height: 116px;
+}
+
+.manualAdInline .adsbygoogle {
+  min-height: 90px;
+}
+
+.manualAdAfterHero {
+  margin-top: 22px;
+  margin-bottom: -12px;
+}
+
+.manualAdBetweenSections {
+  margin-top: -18px;
+  margin-bottom: 28px;
+}
+
+.manualAdRail {
+  display: none;
+  position: absolute;
+  top: 164px;
+  z-index: 2;
+  width: 160px;
+  min-height: 280px;
+}
+
+.manualAdRailLeft {
+  left: max(28px, calc((100vw - 1180px) / 2 - 220px));
+}
+
+.manualAdRailRight {
+  right: max(28px, calc((100vw - 1180px) / 2 - 220px));
+}
+
+.manualAdRail .manualAdLabel {
+  text-align: left;
+}
+
+.manualAdRail .adsbygoogle {
+  min-height: 250px;
+}
+
 .heroCopy h1 {
   max-width: 710px;
   margin: 17px 0 22px;
@@ -645,6 +704,12 @@ img { max-width: 100%; }
 .browseCard .chipRow { margin-top: auto; padding-top: 14px; }
 .cardLink { margin-top: 18px; color: var(--teal-dark); font-size: 12px; font-weight: 820; }
 
+@media (min-width: 1580px) {
+  .manualAdRail {
+    display: block;
+  }
+}
+
 @media (max-width: 980px) {
   .heroGrid, .resultHeroGrid, .dimensionGrid { grid-template-columns: 1fr; }
   .heroVisual { min-height: 510px; }
@@ -672,6 +737,17 @@ img { max-width: 100%; }
   .lead { font-size: 16px; }
   .trustRow { gap: 20px; }
   .heroVisual { min-height: 470px; }
+  .manualAdInline {
+    padding: 14px 0;
+    min-height: 96px;
+  }
+  .manualAdInline .adsbygoogle {
+    min-height: 78px;
+  }
+  .manualAdAfterHero {
+    margin-top: 8px;
+    margin-bottom: -10px;
+  }
   .profilePreview { width: 94%; padding: 22px; }
   .floatingCard { min-width: 150px; }
   .floatingA { right: -6px; top: 48px; }

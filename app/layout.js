@@ -2,10 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import CompareTray from "@/components/CompareTray";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
-import AdSenseScript from "@/components/AdSenseScript";
 import { canonicalUrl, siteName, siteUrl } from "@/lib/site";
-
-const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-7522543243781751";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,7 +34,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="sv">
       <body>
-        <AdSenseScript client={adsenseClient} />
         <AnalyticsEvents />
         <Header />
         {children}

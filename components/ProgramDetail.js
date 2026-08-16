@@ -4,8 +4,15 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
+import AdSenseUnit from "@/components/AdSenseUnit";
 import traits from "@/data/traits.json";
 import { trackExternalClick } from "@/lib/analytics-client";
+
+const programAdClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-7522543243781751";
+const programAdSlot =
+  process.env.NEXT_PUBLIC_ADSENSE_PROGRAM_INLINE_SLOT ||
+  process.env.NEXT_PUBLIC_ADSENSE_DISPLAY_SLOT ||
+  "";
 
 const profileRows = [
   ["matematik", "Matematik"],
@@ -202,6 +209,14 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
           <p className="detailFootnote">Detta är breda exempel på områden, inte en garanti om yrke eller behörighet.</p>
         </div>
       </section>
+
+      <AdSenseUnit
+        client={programAdClient}
+        slot={programAdSlot}
+        className="shell manualAdInline manualAdBetweenSections"
+        label="Annons på utbildningssida"
+        format="horizontal"
+      />
 
       <section className="shell detailSection liveProgramSection" id="aktuellt">
         <div className="sectionHeading compactHeading">

@@ -2,6 +2,8 @@ import Link from "next/link";
 import ProgramBrowser from "@/components/ProgramBrowser";
 import { getFilterOptions, getLiveDataStatus } from "@/lib/db";
 import { canonicalUrl } from "@/lib/site";
+import { getAdSenseConfig } from "@/lib/ads";
+import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +17,7 @@ export const metadata = {
 export default async function ProgramsPage() {
   const options = getFilterOptions();
   const liveStatus = await getLiveDataStatus();
+  const catalogAd = getAdSenseConfig("catalogInline");
 
   return (
     <main className="browserPage">
@@ -34,6 +37,13 @@ export default async function ProgramsPage() {
           <Link href="/kompass" className="textButton">Gör kompassen</Link>
         </div>
       </section>
+
+      <AdSenseUnit
+        {...catalogAd}
+        className="shell manualAdInline manualAdBetweenSections"
+        label="Annons i utbildningskatalog"
+        format="horizontal"
+      />
 
       <section className="shell browserSection">
         <ProgramBrowser options={options} />

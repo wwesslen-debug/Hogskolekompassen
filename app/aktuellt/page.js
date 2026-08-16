@@ -2,6 +2,8 @@ import Link from "next/link";
 import LiveEducationBrowser from "@/components/LiveEducationBrowser";
 import { getLiveDataStatus, getLiveFilterOptions } from "@/lib/db";
 import { canonicalUrl } from "@/lib/site";
+import { getAdSenseConfig } from "@/lib/ads";
+import AdSenseUnit from "@/components/AdSenseUnit";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +19,7 @@ export default async function CurrentEducationPage() {
     getLiveDataStatus(),
     getLiveFilterOptions(),
   ]);
+  const catalogAd = getAdSenseConfig("catalogInline");
 
   return (
     <main className="browserPage liveBrowserPage">
@@ -48,6 +51,13 @@ export default async function CurrentEducationPage() {
           </div>
         </div>
       </section>
+
+      <AdSenseUnit
+        {...catalogAd}
+        className="shell manualAdInline manualAdBetweenSections"
+        label="Annons i aktuellt utbud"
+        format="horizontal"
+      />
 
       <section className="shell browserSection">
         <LiveEducationBrowser initialOptions={options} initialStatus={status} />
