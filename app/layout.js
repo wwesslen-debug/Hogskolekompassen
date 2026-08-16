@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import CompareTray from "@/components/CompareTray";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
+import { adsenseClient } from "@/lib/ads";
 import { canonicalUrl, siteName, siteUrl } from "@/lib/site";
 
 export const metadata = {
@@ -33,6 +34,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="sv">
+      <head>
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <AnalyticsEvents />
         <Header />

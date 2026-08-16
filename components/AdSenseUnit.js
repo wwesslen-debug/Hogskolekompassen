@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 
 function isValidSlot(slot) {
@@ -48,13 +47,6 @@ export default function AdSenseUnit({
   return (
     <aside className={`manualAd ${className}`} data-ad-status={adStatus} aria-label={label}>
       <span className="manualAdLabel">Annons</span>
-      <Script
-        id="adsense-pagead"
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
       <ins
         ref={adRef}
         className="adsbygoogle"
