@@ -69,7 +69,6 @@ export default function Results() {
   }
 
   const top = result.matches?.[0];
-  const topArea = result.areaGroups?.[0];
 
   return (
     <main>
@@ -108,6 +107,10 @@ export default function Results() {
             </div>
           ) : null}
         </div>
+      </section>
+
+      <section className="shell resultSection livePersonalSection livePersonalSectionPrimary">
+        <LiveResultRecommendations result={result} variant="primary" />
       </section>
 
       <section className="shell resultSection">
@@ -188,10 +191,6 @@ export default function Results() {
             ))}
           </div>
         </div>
-      </section>
-
-      <section className="shell resultSection livePersonalSection">
-        <LiveResultRecommendations result={result} />
       </section>
 
       <section className="shell resultSection">

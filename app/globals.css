@@ -1520,7 +1520,10 @@ img { max-width: 100%; }
 
 /* Live Matching & data quality */
 .livePersonalSection { padding-top: 8px; }
+.livePersonalSection:empty { display: none; }
+.livePersonalSectionPrimary { padding-top: 38px; padding-bottom: 28px; }
 .liveResultSection { padding: 28px; border: 1px solid #cfe0dc; border-radius: 22px; background: linear-gradient(180deg,#f7fbf9 0%,#fff 100%); box-shadow: 0 18px 50px rgba(18,48,71,.05); }
+.primaryLiveResults { border-color: #b9d9d2; background: linear-gradient(180deg,#eef8f5 0%,#fff 84%); box-shadow: 0 24px 60px rgba(18,48,71,.08); }
 .liveResultHeading { margin-bottom: 20px; }
 .liveResultLoading { padding: 24px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); font-size: 10px; }
 .liveResultGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }

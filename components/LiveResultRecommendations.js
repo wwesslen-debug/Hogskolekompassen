@@ -18,19 +18,20 @@ function applicationLabel(offering) {
   return { label: "Se ansökningsinfo", tone: "unknown" };
 }
 
-export default function LiveResultRecommendations({ result }) {
+export default function LiveResultRecommendations({ result, variant = "default" }) {
   const [offerings, setOfferings] = useState([]);
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(true);
+  const isPrimary = variant === "primary";
 
-  const ids = useMemo(() => (result?.matches || []).slice(0, 15).map((item) => item.id), [result]);
+  const ids = useMemo(() => (result?.matches || []).slice(0, 30).map((item) => item.id), [result]);
   const programById = useMemo(() => Object.fromEntries((result?.matches || []).map((item) => [item.id, item])), [result]);
 
   useEffect(() => {
     if (!ids.length) return;
     const controller = new AbortController();
     setLoading(true);
-    fetch(`/api/live-recommendations?ids=${ids.join(",")}&limit=15&perProgram=3`, { signal: controller.signal })
+    fetch(`/api/live-recommendations?ids=${ids.join(",")}&limit=24&perProgram=2`, { signal: controller.signal })
       .then((response) => response.ok ? response.json() : Promise.reject(new Error("live fetch failed")))
       .then((data) => {
         setStatus(data.status || null);
@@ -51,20 +52,22 @@ export default function LiveResultRecommendations({ result }) {
   if (!loading && !offerings.length) return null;
 
   return (
-    <section className="liveResultSection">
+    <section className={`liveResultSection ${isPrimary ? "primaryLiveResults" : ""}`}>
       <div className="sectionHeading liveResultHeading">
         <div>
-          <span className="eyebrow">Live från Susa-navet</span>
-          <h2>Aktuella utbildningar som matchar dig</h2>
+          <span className="eyebrow">{isPrimary ? "Huvudresultat från livekatalogen" : "Live från Susa-navet"}</span>
+          <h2>{isPrimary ? "Aktuella programstarter för dig" : "Aktuella utbildningar som matchar dig"}</h2>
         </div>
         <p>
-          Din personliga procent kommer från Högskolekompassens profilmodell. Live-posten visar det faktiska utbildningstillfället och lärosätet.
+          {isPrimary
+            ? "Här visas verkliga utbildningstillfällen från livedatan, sorterade efter din personliga matchprocent. Profilmodellen förklarar varför, liveposten visar var och när utbildningen faktiskt ges."
+            : "Din personliga procent kommer från Högskolekompassens profilmodell. Live-posten visar det faktiska utbildningstillfället och lärosätet."}
         </p>
       </div>
 
       {loading ? <div className="liveResultLoading">Hämtar aktuella utbildningstillfällen…</div> : (
         <div className="liveResultGrid">
-          {offerings.slice(0, 9).map((offering) => {
+          {offerings.slice(0, isPrimary ? 12 : 9).map((offering) => {
             const parent = programById[offering.canonicalProgramId];
             const personalScore = Number(result?.scoreById?.[offering.canonicalProgramId] || parent?.score || 0);
             const application = applicationLabel(offering);
