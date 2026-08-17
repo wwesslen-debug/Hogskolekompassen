@@ -21,33 +21,51 @@ function applicationLabel(offering) {
 export default function LiveResultRecommendations({ result, variant = "default" }) {
   const [offerings, setOfferings] = useState([]);
   const [status, setStatus] = useState(null);
+  const [coverage, setCoverage] = useState(null);
   const [loading, setLoading] = useState(true);
   const isPrimary = variant === "primary";
 
   const ids = useMemo(() => (result?.matches || []).slice(0, 30).map((item) => item.id), [result]);
   const programById = useMemo(() => Object.fromEntries((result?.matches || []).map((item) => [item.id, item])), [result]);
+  const idKey = ids.join(",");
 
   useEffect(() => {
-    if (!ids.length) return;
+    if (!result?.profile) {
+      setLoading(false);
+      setOfferings([]);
+      return;
+    }
     const controller = new AbortController();
     setLoading(true);
-    fetch(`/api/live-recommendations?ids=${ids.join(",")}&limit=24&perProgram=2`, { signal: controller.signal })
+    fetch("/api/live-recommendations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        ids,
+        limit: isPrimary ? 24 : 15,
+        profile: result.profile,
+        traitConfidence: result.traitConfidence,
+        scoreById: result.scoreById,
+        priorities: (result.selectedPriorities || []).map((item) => item.id || item),
+        dealBreakers: (result.selectedDealBreakers || []).map((item) => item.id || item),
+      }),
+    })
       .then((response) => response.ok ? response.json() : Promise.reject(new Error("live fetch failed")))
       .then((data) => {
         setStatus(data.status || null);
-        const sorted = [...(data.offerings || [])].sort((a, b) => {
-          const aScore = Number(result?.scoreById?.[a.canonicalProgramId] || 0);
-          const bScore = Number(result?.scoreById?.[b.canonicalProgramId] || 0);
-          return bScore - aScore || Number(b.linkScore || 0) - Number(a.linkScore || 0);
-        });
-        setOfferings(sorted);
+        setCoverage(data.coverage || null);
+        setOfferings(data.offerings || []);
       })
       .catch((error) => {
-        if (error?.name !== "AbortError") setOfferings([]);
+        if (error?.name !== "AbortError") {
+          setOfferings([]);
+          setCoverage(null);
+        }
       })
       .finally(() => setLoading(false));
     return () => controller.abort();
-  }, [ids.join(","), result]);
+  }, [idKey, result, isPrimary]);
 
   if (!loading && !offerings.length) return null;
 
@@ -60,8 +78,8 @@ export default function LiveResultRecommendations({ result, variant = "default" 
         </div>
         <p>
           {isPrimary
-            ? "Här visas verkliga utbildningstillfällen från livedatan, sorterade efter din personliga matchprocent. Profilmodellen förklarar varför, liveposten visar var och när utbildningen faktiskt ges."
-            : "Din personliga procent kommer från Högskolekompassens profilmodell. Live-posten visar det faktiska utbildningstillfället och lärosätet."}
+            ? "Här poängsätts verkliga utbildningstillfällen direkt mot din profil. Den gamla katalogkopplingen används bara som extra signal när den finns."
+            : "Din personliga procent kommer från profilen och livedatan. Live-posten visar det faktiska utbildningstillfället och lärosätet."}
         </p>
       </div>
 
@@ -69,13 +87,15 @@ export default function LiveResultRecommendations({ result, variant = "default" 
         <div className="liveResultGrid">
           {offerings.slice(0, isPrimary ? 12 : 9).map((offering) => {
             const parent = programById[offering.canonicalProgramId];
-            const personalScore = Number(result?.scoreById?.[offering.canonicalProgramId] || parent?.score || 0);
+            const personalScore = Math.round(Number(
+              offering.personalScore ?? result?.scoreById?.[offering.canonicalProgramId] ?? parent?.score ?? 0
+            ));
             const application = applicationLabel(offering);
             const target = offering.applicationUrl || offering.sourceUrl;
             return (
               <article className="liveResultCard" key={offering.id}>
                 <div className="liveResultCardTop">
-                  <div className="personalLiveScore"><strong>{personalScore}%</strong><span>din match</span></div>
+                  <div className="personalLiveScore"><strong>{personalScore}%</strong><span>{offering.matchLabel || "din match"}</span></div>
                   <span className={`applicationState ${application.tone}`}>{application.label}</span>
                 </div>
                 <div className="liveResultMeta">
@@ -92,8 +112,20 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                   {offering.level ? <span><small>Nivå</small><strong>{offering.level === "grund" ? "Grundnivå" : offering.level === "avancerad" ? "Avancerad" : offering.level}</strong></span> : null}
                 </div>
                 <div className="liveResultLinkInfo">
-                  <span>Kopplad till <Link href={`/utbildningar/${offering.canonicalProgramId}`}>{parent?.title || "kompassprofil"}</Link></span>
-                  {offering.linkScore ? <small>{offering.linkScore}% länksäkerhet</small> : null}
+                  {offering.canonicalProgramId ? (
+                    <>
+                      <span>Kopplad till <Link href={`/utbildningar/${offering.canonicalProgramId}`}>{parent?.title || "kompassprofil"}</Link></span>
+                      <small>
+                        {offering.linkScore ? `${offering.linkScore}% länksäkerhet` : "Katalogkoppling"}
+                        {offering.matchConfidence ? ` · ${offering.matchConfidence}% metodsäkerhet` : ""}
+                      </small>
+                    </>
+                  ) : (
+                    <>
+                      <span>Matchad direkt mot livedatan{offering.inferredCategory ? ` inom ${offering.inferredCategory.toLowerCase()}` : ""}</span>
+                      {offering.matchConfidence ? <small>{offering.matchConfidence}% metodsäkerhet</small> : null}
+                    </>
+                  )}
                 </div>
                 <div className="liveResultActions">
                   {target ? (
@@ -106,6 +138,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                         source: "result_live_recommendation",
                         offeringId: offering.id,
                         programId: offering.canonicalProgramId,
+                        matchSource: offering.matchSource,
                       })}
                     >
                       Utbildningssidan ↗
@@ -120,7 +153,13 @@ export default function LiveResultRecommendations({ result, variant = "default" 
       )}
 
       <div className="liveResultFooter">
-        <span>{status?.eventCount ? `${status.eventCount.toLocaleString("sv-SE")} synkade HS-tillfällen i databasen.` : "Livekatalog ansluten."}</span>
+        <span>
+          {coverage?.scoredCount
+            ? `${coverage.scoredCount.toLocaleString("sv-SE")} liveprogram poängsattes direkt.`
+            : status?.eventCount
+              ? `${status.eventCount.toLocaleString("sv-SE")} synkade HS-tillfällen i databasen.`
+              : "Livekatalog ansluten."}
+        </span>
         <Link href="/aktuellt" className="textButton">Utforska hela aktuella utbudet →</Link>
       </div>
     </section>
