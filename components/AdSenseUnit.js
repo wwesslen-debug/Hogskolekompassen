@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const EMPTY_AD_TIMEOUT_MS = 4000;
+
 function isValidSlot(slot) {
   return typeof slot === "string" && /^\d+$/.test(slot.trim());
 }
@@ -20,11 +22,19 @@ export default function AdSenseUnit({
   const shouldRender = client && isValidSlot(safeSlot);
 
   useEffect(() => {
-    if (!shouldRender) return;
+    if (!shouldRender) return undefined;
+    setAdStatus("pending");
+
+    const emptyTimer = window.setTimeout(() => {
+      setAdStatus((currentStatus) => (currentStatus === "pending" ? "empty" : currentStatus));
+    }, EMPTY_AD_TIMEOUT_MS);
+
     try {
       window.adsbygoogle = window.adsbygoogle || [];
       window.adsbygoogle.push({});
     } catch {}
+
+    return () => window.clearTimeout(emptyTimer);
   }, [shouldRender, safeSlot]);
 
   useEffect(() => {
@@ -32,7 +42,10 @@ export default function AdSenseUnit({
     if (!shouldRender || !adElement) return undefined;
 
     const syncStatus = () => {
-      setAdStatus(adElement.getAttribute("data-ad-status") || "pending");
+      const nextStatus = adElement.getAttribute("data-ad-status");
+      if (nextStatus) {
+        setAdStatus(nextStatus);
+      }
     };
 
     syncStatus();
@@ -46,7 +59,7 @@ export default function AdSenseUnit({
 
   return (
     <aside className={`manualAd ${className}`} data-ad-status={adStatus} aria-label={label}>
-      <span className="manualAdLabel">Annons</span>
+      {adStatus === "filled" ? <span className="manualAdLabel">Annons</span> : null}
       <ins
         ref={adRef}
         className="adsbygoogle"
