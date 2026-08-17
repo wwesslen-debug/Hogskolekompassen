@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import CompareButton from "@/components/CompareButton";
-import SaveProgramButton from "@/components/SaveProgramButton";
 import ProfileRadar from "@/components/ProfileRadar";
 import LiveResultRecommendations from "@/components/LiveResultRecommendations";
 
@@ -33,7 +31,6 @@ function ScoreBreakdown({ breakdown }) {
 
 export default function Results() {
   const [result, setResult] = useState(null);
-  const [openWhy, setOpenWhy] = useState(null);
 
   useEffect(() => {
     const stored = sessionStorage.getItem("hogskolekompassen-result");
@@ -68,7 +65,7 @@ export default function Results() {
     );
   }
 
-  const top = result.matches?.[0];
+  const topArea = result.areaGroups?.[0];
 
   return (
     <main>
@@ -87,29 +84,28 @@ export default function Results() {
             <div className="resultSummaryStats">
               <div><strong>{result.certainAnswers}</strong><span>tydliga svar</span></div>
               <div><strong>{result.adaptiveQuestionCount || 0}</strong><span>adaptiva frågor</span></div>
-              <div><strong>{result.catalogCount}</strong><span>utbildningar analyserade</span></div>
+              <div><strong>{result.catalogCount}</strong><span>matchprofiler analyserade</span></div>
             </div>
           </div>
 
-          {top ? (
+          {topArea ? (
             <div className="topMatchCard topMatchCardV3">
-              <div className="matchBadge">{top.score}% totalmatch</div>
-              <span className="cardKicker">Starkaste enskilda matchningen</span>
-              <h2>{top.title}</h2>
-              <p>{top.institution} · {top.city}</p>
-              <ScoreBreakdown breakdown={top.scoreBreakdown} />
-              {top.dealBreakerPenalty ? <div className="penaltyBadge">−{top.dealBreakerPenalty} p deal-breaker-avdrag</div> : null}
+              <div className="matchBadge">{topArea.score}% områdesmatch</div>
+              <span className="cardKicker">Starkaste riktning</span>
+              <h2>{topArea.category}</h2>
+              <p>{topArea.description}</p>
+              <ScoreBreakdown breakdown={topArea.scoreBreakdown} />
+              {topArea.liveOfferCount ? <div className="resultLiveBadge">● {topArea.liveOfferCount} aktuella live-tillfällen kopplade till området</div> : null}
               <div className="topMatchActions">
-                <Link className="button buttonSmall" href={`/utbildningar/${top.id}`}>Se utbildningen →</Link>
-                <CompareButton programId={top.id} compact />
-                <SaveProgramButton programId={top.id} compact />
+                <Link className="button buttonSmall" href="#live-resultat">Se aktuella programstarter →</Link>
+                <Link className="button buttonGhost buttonSmall" href="/aktuellt">Öppna livekatalogen</Link>
               </div>
             </div>
           ) : null}
         </div>
       </section>
 
-      <section className="shell resultSection livePersonalSection livePersonalSectionPrimary">
+      <section id="live-resultat" className="shell resultSection livePersonalSection livePersonalSectionPrimary">
         <LiveResultRecommendations result={result} variant="primary" />
       </section>
 
@@ -161,8 +157,8 @@ export default function Results() {
       <section className="areaResultsSection">
         <div className="shell resultSection">
           <div className="sectionHeading">
-            <div><span className="eyebrow">Utbildningsområden</span><h2>Börja brett – välj program sedan</h2></div>
-            <p>Varje område får nu även delpoäng så att du kan se om matchningen främst kommer från intresse, studiestil eller arbetssätt.</p>
+            <div><span className="eyebrow">Utbildningsområden</span><h2>Börja brett – gå vidare i liveutbudet</h2></div>
+            <p>Områdena visar varför vissa riktningar passar din profil. Själva utbildningarna i resultatet hämtas från den aktuella livekatalogen ovan.</p>
           </div>
 
           {result.topAreaGap != null && result.topAreaGap <= 4 ? (
@@ -181,11 +177,6 @@ export default function Results() {
                   <p>{area.description}</p>
                   <ScoreBreakdown breakdown={area.scoreBreakdown} />
                   <div className="whyMatchInline"><strong>Matchar särskilt genom:</strong><span>{area.reasons.join(" · ") || "en balanserad profil"}</span></div>
-                  <div className="areaPrograms">
-                    {area.programs.slice(0, 5).map((program) => (
-                      <Link href={`/utbildningar/${program.id}`} key={program.id} className="areaProgramPill"><span>{program.title}</span><strong>{program.score}%</strong></Link>
-                    ))}
-                  </div>
                 </div>
               </article>
             ))}
@@ -195,65 +186,12 @@ export default function Results() {
 
       <section className="shell resultSection">
         <div className="sectionHeading">
-          <div><span className="eyebrow">Utbildningsprofiler</span><h2>Dina mest intressanta utbildningstyper</h2></div>
-          <p>Öppna “Varför?” för att se vad som faktiskt drog matchningen upp eller ner.</p>
-        </div>
-
-        <div className="programResults programResultsV2">
-          {result.matches.map((program, i) => {
-            const whyOpen = openWhy === program.id;
-            return (
-              <article className="programResultCard programResultCardV3" key={program.id}>
-                <div className="programRank"><span>#{i + 1}</span><strong>{program.score}%</strong></div>
-                <div className="programBody">
-                  <div className="programMeta"><span>{program.category}</span><span>{program.degree}</span><span>{program.years} år</span></div>
-                  <h3>{program.title}</h3>
-                  {program.liveOfferCount ? <div className="resultLiveBadge">● {program.liveOfferCount} aktuella/synkade tillfällen</div> : null}
-                  <p className="institutionLine">{program.institution} · {program.city}</p>
-                  <p>{program.description}</p>
-
-                  <ScoreBreakdown breakdown={program.scoreBreakdown} />
-
-                  <div className="programStudyFacts">
-                    <span><small>Matematik</small><strong>{program.studySummary.math}</strong></span>
-                    <span><small>Teori</small><strong>{program.studySummary.theory}</strong></span>
-                    <span><small>Programmering</small><strong>{program.studySummary.programming}</strong></span>
-                    <span><small>Stil</small><strong>{program.studySummary.style}</strong></span>
-                  </div>
-
-                  <button type="button" className="whyToggle" onClick={() => setOpenWhy(whyOpen ? null : program.id)}>
-                    {whyOpen ? "Dölj förklaringen ↑" : "Varför den här matchningen? ↓"}
-                  </button>
-
-                  {whyOpen ? (
-                    <div className="explainabilityPanel">
-                      <div className="explainColumn positiveExplain">
-                        <strong>Det här drog upp</strong>
-                        {program.contributors?.positive?.length ? program.contributors.positive.map((item) => (
-                          <div key={item.key}><span>+</span><p>{item.text}</p></div>
-                        )) : <p>Matchningen är jämn över flera dimensioner.</p>}
-                      </div>
-                      <div className="explainColumn negativeExplain">
-                        <strong>Det här drog ner</strong>
-                        {program.contributors?.negative?.length ? program.contributors.negative.map((item) => (
-                          <div key={item.key}><span>−</span><p>{item.text}</p></div>
-                        )) : <p>Inga tydliga negativa signaler i din profil.</p>}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-                <div className="programCardActions">
-                  <Link className="button buttonGhost" href={`/utbildningar/${program.id}`}>Läs mer</Link>
-                  <CompareButton programId={program.id} />
-                  <SaveProgramButton programId={program.id} />
-                </div>
-              </article>
-            );
-          })}
+          <div><span className="eyebrow">Nästa steg</span><h2>Använd matchningen som urval, inte facit</h2></div>
+          <p>De gamla katalogprofilerna används nu som intern förklaringsmodell. När sidan visar utbildningar för dig prioriteras aktuella liveposter.</p>
         </div>
 
         <div className="dataNotice dataNoticeV2">
-          <strong>Så ska resultatet tolkas:</strong> procenten är en profilmatch i Högskolekompassens modell – inte sannolikhet för trivsel, examen eller antagning. Aktuellt utbud, behörighet och antagningsinformation ska verifieras hos lärosätet och Antagning.se.
+          <strong>Så ska resultatet tolkas:</strong> procenten är en profilmatch i Högskolekompassens modell – inte sannolikhet för trivsel, examen eller antagning. Liveposterna visar aktuella utbildningstillfällen, men behörighet och antagningsinformation ska alltid verifieras hos lärosätet och Antagning.se.
         </div>
 
         <div className="centerActions">
