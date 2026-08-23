@@ -83,6 +83,9 @@ export default function Results() {
               Dina svar pekar framför allt mot <strong>{result.areas.slice(0, 3).map((x) => x.category).join(", ")}</strong>.
               Profilmatchningen kombineras med aktuella utbildningstillfällen när livekatalogen är synkad, samtidigt som delpoängen visar <em>varför</em> en utbildning hamnar högt.
             </p>
+            <p className="resultHelperNotice">
+              Högskolekompassen är ett hjälpande verktyg för att utforska möjliga riktningar. Resultatet säger inte vad du borde eller inte borde plugga.
+            </p>
             {isQuickResult ? (
               <p className="resultModeNotice">
                 Snabbtestet ger en första riktning baserad på {result.baseQuestionCount} av {result.fullQuestionCount} grundfrågor. Hela kompassen gör profilen stabilare.
