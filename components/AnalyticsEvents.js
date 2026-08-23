@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { trackFunnelEvent } from "@/lib/analytics-client";
+import { useConsentState } from "@/lib/consent-client";
 
 function routeEvent(pathname) {
   if (pathname === "/") return { event: "visit" };
@@ -24,13 +25,14 @@ function routeEvent(pathname) {
 
 export default function AnalyticsEvents() {
   const pathname = usePathname();
+  const [consent] = useConsentState();
 
   useEffect(() => {
-    if (!pathname) return;
+    if (!pathname || !consent.analytics) return;
     trackFunnelEvent("page_view", { pathname });
     const funnel = routeEvent(pathname);
     if (funnel) trackFunnelEvent(funnel.event, funnel.properties || {});
-  }, [pathname]);
+  }, [pathname, consent.analytics]);
 
   return null;
 }

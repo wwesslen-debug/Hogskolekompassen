@@ -2,6 +2,9 @@ import "./globals.css";
 import Header from "@/components/Header";
 import CompareTray from "@/components/CompareTray";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
+import AdSenseLoader from "@/components/AdSenseLoader";
+import CookieConsent from "@/components/CookieConsent";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 import { adsenseClient } from "@/lib/ads";
 import { canonicalUrl, siteName, siteUrl } from "@/lib/site";
 
@@ -39,14 +42,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="sv">
-      <head>
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-          crossOrigin="anonymous"
-        />
-      </head>
       <body>
+        <CookieConsent />
+        <AdSenseLoader client={adsenseClient} />
         <AnalyticsEvents />
         <Header />
         {children}
@@ -65,6 +63,7 @@ export default function RootLayout({ children }) {
               <a href="/datakalla">Datakälla</a>
               <a href="/integritet">Integritet</a>
               <a href="/kontakt">Kontakt</a>
+              <CookieSettingsButton />
             </nav>
             <p className="footerNote">
               Högskolekompassen är inte ansluten till UHR, Antagning.se, Skolverket eller något lärosäte.

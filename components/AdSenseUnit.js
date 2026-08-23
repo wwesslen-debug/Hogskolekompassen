@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useConsentState } from "@/lib/consent-client";
 
 const EMPTY_AD_TIMEOUT_MS = 4000;
 
@@ -18,8 +19,9 @@ export default function AdSenseUnit({
 }) {
   const adRef = useRef(null);
   const [adStatus, setAdStatus] = useState("pending");
+  const [consent] = useConsentState();
   const safeSlot = slot?.trim();
-  const shouldRender = client && isValidSlot(safeSlot);
+  const shouldRender = consent.ads && client && isValidSlot(safeSlot);
 
   useEffect(() => {
     if (!shouldRender) return undefined;

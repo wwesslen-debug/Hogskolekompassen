@@ -58,7 +58,7 @@ export async function POST(request) {
       adaptiveQuestionCount: adaptiveQuestions.length,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Match calculation failed:", error?.message || error);
     return NextResponse.json(
       { error: "Kunde inte beräkna resultatet." },
       { status: 500 }

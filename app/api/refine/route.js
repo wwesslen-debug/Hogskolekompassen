@@ -36,7 +36,7 @@ export async function POST(request) {
     const programs = getPrograms({ limit: 1000 });
     return NextResponse.json(selectAdaptiveQuestions(profileResult, programs, modeConfig.adaptiveLimit));
   } catch (error) {
-    console.error(error);
+    console.error("Adaptive question selection failed:", error?.message || error);
     return NextResponse.json({ error: "Kunde inte skapa följdfrågor." }, { status: 500 });
   }
 }

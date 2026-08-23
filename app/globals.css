@@ -504,6 +504,8 @@ img { max-width: 100%; }
 .footerLinks { display: flex; flex-wrap: wrap; gap: 10px 16px; color: var(--ink-2); font-size: 12px; font-weight: 800; }
 .footerLinks a { padding-bottom: 2px; border-bottom: 1px solid transparent; }
 .footerLinks a:hover { border-color: var(--teal); color: var(--ink); }
+.footerConsentButton { border: 0; background: transparent; padding: 0 0 2px; border-bottom: 1px solid transparent; color: var(--ink-2); cursor: pointer; font-size: 12px; font-weight: 800; }
+.footerConsentButton:hover { border-color: var(--teal); color: var(--ink); }
 
 .infoPage { min-height: 100vh; background: #f7f8f5; }
 .infoHero { padding: 76px 0 34px; }
@@ -553,6 +555,58 @@ img { max-width: 100%; }
 .legalText h2 { margin: 28px 0 8px; font-size: 28px; letter-spacing: -.035em; }
 .legalText h2:first-child { margin-top: 0; }
 .legalText a, .contactPanel a { color: var(--teal-dark); font-weight: 850; }
+.privacyTableWrap { overflow-x: auto; margin: 18px 0 8px; border: 1px solid var(--line); border-radius: 16px; background: white; }
+.privacyTable { width: 100%; min-width: 780px; border-collapse: collapse; font-size: 12px; }
+.privacyTable th, .privacyTable td { padding: 14px 15px; border-bottom: 1px solid #edf1f1; text-align: left; vertical-align: top; line-height: 1.5; }
+.privacyTable th { color: var(--ink); background: #f6faf9; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+.privacyTable td { color: #536a77; }
+.privacyTable tr:last-child td { border-bottom: 0; }
+.privacyToolGrid { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 17px 0 8px; }
+.clearDataPanel { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.clearDataPanel span { color: var(--teal-dark); font-size: 12px; font-weight: 800; }
+
+.cookieConsent {
+  position: fixed;
+  inset: auto 18px 18px;
+  z-index: 80;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cookieConsentPanel {
+  width: min(1040px, 100%);
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid rgba(18,48,71,.16);
+  border-radius: 18px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 24px 80px rgba(18,48,71,.22);
+  backdrop-filter: blur(16px);
+  pointer-events: auto;
+}
+
+.cookieConsentCopy h2 { margin: 6px 0 8px; font-size: 24px; letter-spacing: -.04em; }
+.cookieConsentCopy p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.cookieConsentOptions { display: grid; gap: 9px; }
+.cookieChoice {
+  display: grid;
+  grid-template-columns: 20px minmax(0,1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid #e5eeee;
+  border-radius: 12px;
+  background: #f8fbfa;
+}
+.cookieChoice input { width: 18px; height: 18px; accent-color: var(--teal-dark); }
+.cookieChoice span { display: grid; gap: 2px; }
+.cookieChoice strong { font-size: 12px; color: var(--ink); }
+.cookieChoice small { color: var(--muted); font-size: 11px; line-height: 1.35; }
+.cookieChoice.disabled { opacity: .78; }
+.cookieConsentActions { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
 .contactPanel { max-width: 760px; }
 
 .quizPage { min-height: calc(100vh - 78px); padding: 62px 0 100px; }
@@ -765,6 +819,10 @@ img { max-width: 100%; }
   .navShell { height: 68px; }
   .mainNav > a:not(.button) { display: none; }
   .brand { font-size: 16px; }
+  .cookieConsent { inset: auto 10px 10px; }
+  .cookieConsentPanel { grid-template-columns: 1fr; max-height: calc(100vh - 20px); overflow: auto; padding: 16px; }
+  .cookieConsentActions { justify-content: stretch; }
+  .cookieConsentActions .button { flex: 1 1 100%; justify-content: center; }
   .hero { padding: 58px 0 70px; }
   .heroGrid { gap: 35px; }
   .heroCopy h1 { font-size: clamp(46px, 14vw, 66px); }
