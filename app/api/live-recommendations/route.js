@@ -54,14 +54,37 @@ function normalizeKey(value) {
 
 function offeringKey(offering) {
   return [
-    offering.educationInfoId || normalizeKey(offering.title),
+    normalizeKey(offering.title),
     offering.providerId || normalizeKey(offering.providerName),
     offering.period || offering.startDate || "",
+    normalizeKey(offering.city),
   ].join("|");
 }
 
+function demandPriority(offering) {
+  const text = normalizeKey([
+    offering.title,
+    offering.degree,
+    offering.inferredCategory,
+    offering.providerName,
+  ].join(" "));
+
+  let score = 0;
+  if (/(lakare|jurist|psykolog|sjukskoterska|sjukskoterske|socionom|civilingenjor|hogskoleingenjor|systemvetenskap|datavetenskap|dataingenjor|ekonom|ekonomi|foretagsekonomi|larare|amneslarare|grundlarare|forskollarare|arkitekt|fysioterapeut|biomedicinsk analytiker|tandlakare|apotekare|röntgensjukskoterska|rontgensjukskoterska)/.test(text)) score += 8;
+  if (/(kandidatprogram|programmet|program i|yrkesexamen|kandidatexamen|hogskoleexamen)/.test(text)) score += 3;
+  if (/(pianostamm|kyrkomusiker|opera|cirkus|dockteater|konsthantverk)/.test(text)) score -= 8;
+  if (/(senare del|utbytesstudier|exchange studies|later part)/.test(text)) score -= 20;
+
+  return Math.max(-10, Math.min(10, score));
+}
+
+function rankingScore(offering) {
+  return Number(offering.personalScore || 0) + demandPriority(offering);
+}
+
 function compareOfferings(a, b) {
-  return Number(b.personalScore || 0) - Number(a.personalScore || 0)
+  return rankingScore(b) - rankingScore(a)
+    || Number(b.personalScore || 0) - Number(a.personalScore || 0)
     || applicationRank(a) - applicationRank(b)
     || Number(b.matchConfidence || 0) - Number(a.matchConfidence || 0)
     || Number(b.linkScore || 0) - Number(a.linkScore || 0)
@@ -124,6 +147,9 @@ export async function POST(request) {
       selectedPriorities,
       selectedDealBreakers,
     }),
+  })).map((offering) => ({
+    ...offering,
+    demandPriority: demandPriority(offering),
   }));
 
   const preferredIds = new Set(ids);
