@@ -44,7 +44,7 @@ export default async function CurrentEducationPage() {
             <div className={`liveStatusCard ${status.eventCount ? "isLive" : "isEmpty"}`}>
               <span className="liveDot" />
               <strong>{status.eventCount ? `${status.eventCount} synkade tillfällen` : "Ingen livesynk ännu"}</strong>
-              <small>{status.lastSync?.value ? `Senast synkad ${new Date(status.lastSync.value).toLocaleString("sv-SE")}` : "Kör npm run susa:sync lokalt"}</small>
+              <small>{status.lastSync?.value ? `Senast synkad ${new Date(status.lastSync.value).toLocaleString("sv-SE")}` : "Kontrollera Supabase-konfigurationen"}</small>
               {status.linkedCount ? <small>{status.linkedCount.toLocaleString("sv-SE")} profilkopplade · {status.linkRate}% täckning</small> : null}
             </div>
             <Link href="/datakvalitet" className="qualityStatusLink">Se länk-kvalitet & täckning →</Link>

@@ -1,14 +1,22 @@
 import { NextResponse } from "next/server";
+import { getLiveDataStatus } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export function GET() {
+export async function GET() {
+  const liveData = await getLiveDataStatus();
+
   return NextResponse.json({
     status: "ok",
     service: "ready",
-    database: process.env.HK_DISABLE_SQLITE === "1" ? "disabled_for_web_boot" : "not_checked",
-    liveDataSource: process.env.SUPABASE_DATABASE_URL ? "supabase" : "local",
+    database: "supabase",
+    liveDataSource: "supabase",
+    liveDataReady: Boolean(liveData.ready),
+    supabaseConfigured: Boolean(process.env.SUPABASE_DATABASE_URL),
+    eventCount: liveData.eventCount || 0,
+    linkedCount: liveData.linkedCount || 0,
+    supabaseError: liveData.supabaseError || null,
     timestamp: new Date().toISOString(),
   });
 }

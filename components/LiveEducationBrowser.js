@@ -90,17 +90,17 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     return (
       <div className="liveEmptyState">
         <div className="liveEmptyIcon">↻</div>
-        <h2>Live-katalogen är redo – men ännu inte synkad</h2>
+        <h2>Live-katalogen är redo – men Supabase saknar data</h2>
         <p>
-          Appen innehåller databas, API-klient, länkning och hela visningslagret. Kör synken när produktionsdatan är redo så fylls sidan med
-          aktuella poster från Susa-navet.
+          Appen läser nu livekatalogen från Supabase. Kontrollera anslutningen och fyll Supabase-tabellerna med aktuella poster från
+          Susa-navet när produktionsdatan ska uppdateras.
         </p>
         <div className="commandCard">
-          <span>PowerShell / terminal</span>
-          <code>npm run susa:sync:full</code>
+          <span>Miljövariabel</span>
+          <code>SUPABASE_DATABASE_URL</code>
         </div>
         <p className="liveEmptyFootnote">
-          Efter första fullsynken kan du köra <code>npm run susa:sync</code> för förändringar sedan senaste lyckade synk.
+          Health-checken visar om Supabase är konfigurerat och hur många liveposter som kan läsas.
         </p>
         <Link href="/utbildningar" className="button buttonGhost">Utforska matchningskatalogen under tiden →</Link>
       </div>
@@ -163,7 +163,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       <div className="browserToolbar liveToolbar">
         <div>
           <strong>{loading ? "Hämtar…" : `${total} aktuella programstarter`}</strong>
-          <span> Källa: Skolverkets Susa-nav, lokalt synkad databas.</span>
+          <span> Källa: Skolverkets Susa-nav via Supabase.</span>
         </div>
         {hasFilters ? <button className="textButton" type="button" onClick={clearFilters}>Rensa filter</button> : null}
       </div>

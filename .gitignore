@@ -6,6 +6,8 @@ npm-debug.log*
 .DS_Store
 db/*.sqlite-wal
 db/*.sqlite-shm
+db/*.sqlite
+db/*.sqlite-*
 
 db/.susa-sync-cache/
 .env.*

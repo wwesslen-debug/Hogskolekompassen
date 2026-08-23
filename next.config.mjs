@@ -31,7 +31,6 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
-  serverExternalPackages: ["better-sqlite3"],
   // Keep Turbopack anchored to this project even if a parent folder contains another package-lock.json.
   turbopack: {
     root: process.cwd(),

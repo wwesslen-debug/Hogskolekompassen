@@ -1,116 +1,68 @@
-# Deploy Högskolekompassen v0.8 steg 1 på Railway
+# Deploy Högskolekompassen på Railway
 
-Den här versionen är anpassad för en enkel public-beta-arkitektur:
+Appen kör Next.js på Railway och läser livekatalogen från Supabase/Postgres. Ingen SQLite-fil eller Railway Volume behövs för webbruntime.
 
 ```text
 Railway service
   ├─ Next.js
   ├─ API routes
-  ├─ Susa sync/relink
-  └─ persistent Railway Volume /data
-       └─ hogskolekompassen.sqlite
+  └─ Supabase/Postgres
+       ├─ susa_providers
+       ├─ susa_education_infos
+       ├─ susa_education_events
+       └─ susa_sync_state
 ```
 
-## 1. Lägg projektet i GitHub
+## 1. GitHub
 
-Från projektmappen:
+Pusha `main` till GitHub-repot som Railway är kopplat till. Railway läser `railway.json` och kör:
 
-```powershell
-git init
-git add .
-git commit -m "Högskolekompassen v0.8 production deployment"
-git branch -M main
+```bash
+npm run build
 ```
 
-Skapa ett tomt GitHub-repository och följ sedan GitHubs instruktioner för att lägga till `origin` och pusha `main`.
+## 2. Railway-variabler
 
-## 2. Skapa Railway-projektet
-
-- Skapa ett nytt Railway project.
-- Välj Deploy from GitHub repo.
-- Välj Högskolekompassen-repot.
-- Railway läser `railway.json` och kör `npm run build`.
-
-## 3. Lägg till persistent volume
-
-På Högskolekompassen-servicen:
-
-- Add Volume.
-- Mount Path: `/data`.
-- Deploy/redeploy servicen.
-
-Du behöver normalt inte sätta `HK_DB_PATH`. Railway tillhandahåller `RAILWAY_VOLUME_MOUNT_PATH` automatiskt.
-
-## 4. Variabler
-
-Rekommenderade service variables:
+Sätt minst:
 
 ```text
 NODE_ENV=production
-SUSA_API_BASE_URL=https://api.skolverket.se/susa-navet/emil3
-SUSA_SCHOOL_TYPE=HS
+SUPABASE_DATABASE_URL=postgresql://...
+NEXT_PUBLIC_SITE_URL=https://www.xn--hgskolekompassen-mwb.se
+NEXT_PUBLIC_CONTACT_EMAIL=kontakt@hogskolekompassen.se
+NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-7522543243781751
 ```
 
-## 5. Skapa publik Railway-domän
+`SUPABASE_DATABASE_URL` ska vara server-side och får inte heta `NEXT_PUBLIC_*`.
 
-Under Networking: Generate Domain.
+## 3. Supabase-schema
 
-Kontrollera därefter:
+Kör vid behov från projektet:
+
+```bash
+npm run supabase:schema
+```
+
+Det applicerar `supabase/schema.sql`.
+
+## 4. Deploy
+
+Startkommandot är:
+
+```bash
+npm run start:prod
+```
+
+Det startar Next direkt. Det finns ingen produktions-bootstrap som kopierar eller migrerar SQLite.
+
+## 5. Verifiering
+
+Kontrollera efter deploy:
 
 ```text
-https://<din-railway-domän>/api/health
+https://www.xn--hgskolekompassen-mwb.se/api/health
+https://www.xn--hgskolekompassen-mwb.se/aktuellt
+https://www.xn--hgskolekompassen-mwb.se/datakvalitet
 ```
 
-Svaret ska ha `status: "ok"` och `database: "ready"`.
-
-## 6. Verifiera den persistenta databasen
-
-Anslut till den körande servicen med Railway SSH och kör:
-
-```bash
-npm run prod:db:info
-```
-
-`persistentVolumeDetected` ska vara `true` och `dbPath` ska ligga under `/data`.
-
-## 7. Första produktionssynken
-
-I samma SSH-session:
-
-```bash
-npm run prod:sync
-```
-
-Det kör full Susa-sync följt av v0.7-relink. v0.7.1-checkpoints sparas på samma persistenta volume.
-
-Efteråt:
-
-```bash
-npm run prod:db:info
-npm run susa:status
-npm run susa:quality
-```
-
-Förväntat är ungefär 51 providers och omkring 59 000 EducationInfos/EducationEvents. Exakta siffror förändras när Susa-data uppdateras.
-
-## 8. Verifiera webbplatsen
-
-Testa åtminstone:
-
-```text
-/
-/kompass
-/resultat
-/utbildningar
-/aktuellt
-/datakvalitet
-/api/health
-```
-
-## 9. Backup
-
-När den första produktion-synken är verifierad: skapa/aktivera en Railway Volume-backup innan nästa större kodändring.
-
-## Nästa del av punkt 1
-
-När den första produktion-deploymenten och databasen är verifierade kopplar vi på automatisk Susa-uppdatering och testar restore-flödet. Därefter kan punkt 1 markeras helt grön.
+`/api/health` ska rapportera `database: "supabase"` och `liveDataSource: "supabase"`. När Supabase-tabellerna innehåller data ska `eventCount` vara större än 0.

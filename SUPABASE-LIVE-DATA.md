@@ -1,75 +1,58 @@
-# Supabase live-data setup
+# Supabase live-data
 
-This moves the Susa live catalog out of native SQLite for the web process.
-Railway can then run with `HK_DISABLE_SQLITE=1` and read live data from Supabase/Postgres.
+Högskolekompassen använder Supabase/Postgres som enda databas för livekatalogen i webbruntime. Quizfrågor och canonical-profiler läses från versionerade JSON-filer i `data/`; verkliga programstarter läses från Supabase.
 
-## 1. Get the connection string
+## 1. Connection string
 
-In Supabase:
+I Supabase:
 
-1. Open the project.
-2. Click **Connect**.
-3. Choose **Direct connection** or **Transaction pooler**.
-4. Copy the Postgres URI and replace `[YOUR-PASSWORD]` with the database password.
+1. Öppna projektet.
+2. Välj **Connect**.
+3. Välj **Direct connection** eller **Transaction pooler**.
+4. Kopiera Postgres-URI:n och ersätt lösenordsplatshållaren.
 
-Use this as a server-only environment variable:
+Sätt den som server-only miljövariabel:
 
 ```bash
 SUPABASE_DATABASE_URL=postgresql://...
 ```
 
-Do not expose this as `NEXT_PUBLIC_*`.
+Använd inte `NEXT_PUBLIC_*` för databassträngen.
 
-## 2. Prepare the schema
+## 2. Schema
 
-From this repo:
+Från repot:
 
 ```bash
 npm run supabase:schema
 ```
 
-This applies `supabase/schema.sql`.
+Det applicerar `supabase/schema.sql` och skapar tabellerna:
 
-## 3. Upload current Susa live data
+- `susa_providers`
+- `susa_education_infos`
+- `susa_education_events`
+- `susa_sync_state`
 
-First make sure the local Susa database is synced and relinked:
+## 3. Webbruntime
 
-```bash
-npm run susa:sync:full
+Appens livedatafunktioner går direkt mot Supabase. Om `SUPABASE_DATABASE_URL` saknas startar appen ändå, men livekatalogen visas som tom och `/api/health` rapporterar `supabaseConfigured: false`.
+
+Det finns ingen SQLite-fallback i webbruntime längre.
+
+## 4. Verifiering
+
+Efter deploy:
+
+```text
+/api/health
+/api/live-quality
+/aktuellt
 ```
 
-Then upload the public live catalog to Supabase. This keeps only entry-level higher-education programs and excludes courses, master's programmes, magister programmes, and advanced-level programmes:
+Förväntat när tabellerna är fyllda:
 
-```bash
-npm run supabase:push-entry-programs
-```
-
-If you are uploading from a backup SQLite file, pass it through to the underlying script:
-
-```bash
-npm run supabase:push-live -- --replace --entry-programs-only --db db/hogskolekompassen-backup.sqlite
-```
-
-Shortcut:
-
-```bash
-npm run susa:sync:supabase
-```
-
-## 4. Railway variables
-
-Set these on the Railway service:
-
-```bash
-HK_DISABLE_SQLITE=1
-SUPABASE_DATABASE_URL=postgresql://...
-NEXT_PUBLIC_SITE_URL=https://www.xn--hgskolekompassen-mwb.se
-```
-
-After redeploy, `/api/live-quality` should report `"source":"supabase"` and live counts above zero.
-
-## Notes
-
-- The app still uses `data/programs.json` for the canonical match profiles during web boot.
-- Supabase stores only the public live Susa tables and sync metadata. The public upload is intentionally limited to programmes that look like first-cycle/entry programmes.
-- If `SUPABASE_DATABASE_URL` is missing or fails, the app falls back safely to the local/JSON catalog and shows no live events.
+- `database: "supabase"` i `/api/health`
+- `liveDataSource: "supabase"` i `/api/health`
+- `eventCount > 0`
+- `source: "supabase"` i live-dataresponser

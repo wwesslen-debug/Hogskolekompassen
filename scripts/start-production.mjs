@@ -1,21 +1,14 @@
 import path from "node:path";
-import { spawn, spawnSync } from "node:child_process";
+import { spawn } from "node:child_process";
 
 const root = process.cwd();
 const env = {
   ...process.env,
-  HK_DISABLE_SQLITE: process.env.HK_DISABLE_SQLITE || "1",
   NODE_ENV: process.env.NODE_ENV || "production",
 };
 
-const bootstrap = spawnSync(process.execPath, ["scripts/production-bootstrap.mjs"], {
-  cwd: root,
-  env,
-  stdio: "inherit",
-});
-
-if (bootstrap.status !== 0) {
-  process.exit(bootstrap.status ?? 1);
+if (!env.SUPABASE_DATABASE_URL) {
+  console.warn("SUPABASE_DATABASE_URL is not configured. The app will start, but live catalog data will be empty.");
 }
 
 const nextCli = path.join(root, "node_modules", "next", "dist", "bin", "next");
