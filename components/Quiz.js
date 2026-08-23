@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import priorityOptions from "@/data/priorities.json";
 import dealBreakerOptions from "@/data/dealbreakers.json";
 import { trackFunnelEvent } from "@/lib/analytics-client";
+import { QUIZ_MODES, getQuestionsForQuizMode, getQuizModeConfig, normalizeQuizMode } from "@/lib/quiz-modes";
 
 const answerOptions = [
   { value: 1, label: "Stämmer inte" },
@@ -24,6 +25,7 @@ const sectionDescriptions = {
 
 export default function Quiz({ questions }) {
   const router = useRouter();
+  const [quizMode, setQuizMode] = useState(null);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [adaptiveQuestions, setAdaptiveQuestions] = useState([]);
@@ -32,19 +34,24 @@ export default function Quiz({ questions }) {
   const [adaptiveInfo, setAdaptiveInfo] = useState(null);
   const [priorities, setPriorities] = useState([]);
   const [dealBreakers, setDealBreakers] = useState([]);
-  const [phase, setPhase] = useState("questions");
+  const [phase, setPhase] = useState("mode");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const question = questions[index];
+  const quizModeConfig = quizMode ? getQuizModeConfig(quizMode) : null;
+  const activeQuestions = useMemo(
+    () => quizMode ? getQuestionsForQuizMode(questions, quizMode) : [],
+    [questions, quizMode]
+  );
+  const question = activeQuestions[index];
   const adaptiveQuestion = adaptiveQuestions[adaptiveIndex];
   const hasCurrentAnswer = Object.prototype.hasOwnProperty.call(answers, question?.id);
   const currentAnswer = hasCurrentAnswer ? answers[question.id] : null;
   const hasAdaptiveAnswer = Object.prototype.hasOwnProperty.call(adaptiveAnswers, adaptiveQuestion?.id);
   const currentAdaptiveAnswer = hasAdaptiveAnswer ? adaptiveAnswers[adaptiveQuestion?.id] : null;
-  const progress = Math.round(((index + 1) / questions.length) * 100);
+  const progress = activeQuestions.length ? Math.round(((index + 1) / activeQuestions.length) * 100) : 0;
 
-  const sections = useMemo(() => [...new Set(questions.map((item) => item.section))], [questions]);
+  const sections = useMemo(() => [...new Set(activeQuestions.map((item) => item.section))], [activeQuestions]);
   const sectionIndex = sections.indexOf(question?.section);
   const answeredCount = useMemo(() => Object.keys(answers).length, [answers]);
   const uncertainCount = useMemo(
@@ -52,12 +59,30 @@ export default function Quiz({ questions }) {
     [answers]
   );
 
+  function startQuizMode(mode) {
+    const normalized = normalizeQuizMode(mode);
+    setQuizMode(normalized);
+    setIndex(0);
+    setAnswers({});
+    setAdaptiveQuestions([]);
+    setAdaptiveAnswers({});
+    setAdaptiveIndex(0);
+    setAdaptiveInfo(null);
+    setPriorities([]);
+    setDealBreakers([]);
+    setSubmitting(false);
+    setError("");
+    setPhase("questions");
+  }
+
   function choose(value) {
+    if (!question) return;
     setAnswers((previous) => ({ ...previous, [question.id]: value }));
     setError("");
   }
 
   function chooseAdaptive(value) {
+    if (!adaptiveQuestion) return;
     setAdaptiveAnswers((previous) => ({ ...previous, [adaptiveQuestion.id]: value }));
     setError("");
   }
@@ -78,13 +103,18 @@ export default function Quiz({ questions }) {
   }
 
   async function prepareAdaptive() {
+    if (!quizModeConfig?.adaptiveLimit) {
+      setPhase("dealbreakers");
+      return;
+    }
+
     setPhase("refining");
     setError("");
     try {
       const response = await fetch("/api/refine", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers }),
+        body: JSON.stringify({ answers, mode: quizMode }),
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || "Kunde inte analysera följdfrågor.");
@@ -106,7 +136,7 @@ export default function Quiz({ questions }) {
       const response = await fetch("/api/match", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, adaptiveAnswers, priorities, dealBreakers }),
+        body: JSON.stringify({ answers, adaptiveAnswers, priorities, dealBreakers, mode: quizMode }),
       });
 
       if (!response.ok) {
@@ -116,6 +146,7 @@ export default function Quiz({ questions }) {
 
       const result = await response.json();
       trackFunnelEvent("compass_completed", {
+        quizMode: result.quizMode,
         certainAnswers: result.certainAnswers,
         adaptiveQuestionCount: result.adaptiveQuestionCount || 0,
         selectedPriorities: result.selectedPriorities?.length || 0,
@@ -135,7 +166,7 @@ export default function Quiz({ questions }) {
       return;
     }
 
-    if (index < questions.length - 1) {
+    if (index < activeQuestions.length - 1) {
       setIndex((value) => value + 1);
       return;
     }
@@ -166,7 +197,7 @@ export default function Quiz({ questions }) {
         setAdaptiveIndex(adaptiveQuestions.length - 1);
       } else {
         setPhase("questions");
-        setIndex(questions.length - 1);
+        setIndex(activeQuestions.length - 1);
       }
       return;
     }
@@ -174,11 +205,45 @@ export default function Quiz({ questions }) {
       if (adaptiveIndex > 0) setAdaptiveIndex((value) => value - 1);
       else {
         setPhase("questions");
-        setIndex(questions.length - 1);
+        setIndex(activeQuestions.length - 1);
       }
       return;
     }
+    if (phase === "questions" && index === 0) {
+      setPhase("mode");
+      return;
+    }
     setIndex((value) => Math.max(0, value - 1));
+  }
+
+  if (phase === "mode") {
+    const quick = QUIZ_MODES.quick;
+    const full = QUIZ_MODES.full;
+    return (
+      <section className="quizWrap quizModeWrap">
+        <div className="quizModeIntro">
+          <span className="eyebrow">Starta kompassen</span>
+          <h1>Hur mycket vill du svara på?</h1>
+          <p>Välj ett kortare första test eller hela kompassen direkt. Båda använder samma matchningsmodell.</p>
+        </div>
+
+        <div className="quizModeGrid">
+          {[quick, full].map((mode) => (
+            <button
+              type="button"
+              className={`quizModeOption ${mode.id === "quick" ? "quickMode" : "fullMode"}`}
+              key={mode.id}
+              onClick={() => startQuizMode(mode.id)}
+            >
+              <span>{mode.label}</span>
+              <strong>{mode.questionLabel}</strong>
+              <small>{mode.description}</small>
+              <em>{mode.id === "quick" ? "Starta snabbtest" : "Starta hela kompassen"} →</em>
+            </button>
+          ))}
+        </div>
+      </section>
+    );
   }
 
   if (phase === "refining") {
@@ -360,7 +425,7 @@ export default function Quiz({ questions }) {
       </div>
 
       <div className="quizTopline">
-        <span>{question.section} · fråga {index + 1} av {questions.length}</span>
+        <span>{quizModeConfig?.label} · {question.section} · fråga {index + 1} av {activeQuestions.length}</span>
         <span>{progress}%</span>
       </div>
       <div className="progressTrack" aria-hidden="true"><div className="progressFill" style={{ width: `${progress}%` }} /></div>
@@ -393,9 +458,9 @@ export default function Quiz({ questions }) {
         {error ? <p className="formError">{error}</p> : null}
 
         <div className="quizActions">
-          <button type="button" className="textButton" onClick={previous} disabled={index === 0 || submitting}>← Föregående</button>
-          <div className="answeredText">{answeredCount}/{questions.length} svar · {uncertainCount} osäkra</div>
-          <button type="button" className="button" onClick={next} disabled={submitting}>{index === questions.length - 1 ? "Analysera mina svar →" : "Nästa →"}</button>
+          <button type="button" className="textButton" onClick={previous} disabled={submitting}>{index === 0 ? "← Byt test" : "← Föregående"}</button>
+          <div className="answeredText">{answeredCount}/{activeQuestions.length} svar · {uncertainCount} osäkra</div>
+          <button type="button" className="button" onClick={next} disabled={submitting}>{index === activeQuestions.length - 1 ? "Analysera mina svar →" : "Nästa →"}</button>
         </div>
       </div>
     </section>

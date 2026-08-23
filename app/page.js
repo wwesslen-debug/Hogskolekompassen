@@ -49,7 +49,7 @@ export default async function Home() {
               Hitta utbildningen som <span>faktiskt passar dig.</span>
             </h1>
             <p className="lead">
-              Svara på 50 genomtänkta grundfrågor i fem korta delar. Högskolekompassen analyserar dina
+              Välj snabbtest med 25 frågor eller hela kompassen med 50 genomtänkta grundfrågor. Högskolekompassen analyserar dina
               intressen, drivkrafter och arbetssätt, matchar dig mot utbildningsprofiler och hjälper dig gå vidare
               till utbildningar och officiell information med mer struktur.
             </p>
@@ -58,7 +58,7 @@ export default async function Home() {
               <Link href="/kompass" className="button buttonLarge">
                 Starta kompassen <span>→</span>
               </Link>
-              <span className="microcopy">50 frågor + upp till 5 adaptiva · cirka 8–10 min · gratis</span>
+              <span className="microcopy">25 eller 50 frågor · cirka 4–10 min · gratis</span>
             </div>
 
             <div className="trustRow">

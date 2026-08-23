@@ -66,6 +66,8 @@ export default function Results() {
   }
 
   const topArea = result.areaGroups?.[0];
+  const isQuickResult = result.quizMode === "quick";
+  const precisionLabel = result.profilePrecisionLabel || `${result.confidence}% säkert underlag`;
 
   return (
     <main>
@@ -74,15 +76,21 @@ export default function Results() {
           <div>
             <div className="resultHeroMeta">
               <span className="eyebrow">Din Högskoleprofil</span>
-              <span className="confidencePill">{result.confidence}% säkert underlag</span>
+              <span className="confidencePill">{precisionLabel}</span>
             </div>
             <h1>{result.profileTitle}</h1>
             <p className="lead">
               Dina svar pekar framför allt mot <strong>{result.areas.slice(0, 3).map((x) => x.category).join(", ")}</strong>.
               Profilmatchningen kombineras med aktuella utbildningstillfällen när livekatalogen är synkad, samtidigt som delpoängen visar <em>varför</em> en utbildning hamnar högt.
             </p>
+            {isQuickResult ? (
+              <p className="resultModeNotice">
+                Snabbtestet ger en första riktning baserad på {result.baseQuestionCount} av {result.fullQuestionCount} grundfrågor. Hela kompassen gör profilen stabilare.
+              </p>
+            ) : null}
             <div className="resultSummaryStats">
               <div><strong>{result.certainAnswers}</strong><span>tydliga svar</span></div>
+              <div><strong>{result.quizModeLabel || "Kompass"}</strong><span>{result.baseQuestionCount ? `${result.baseQuestionCount}/${result.fullQuestionCount} grundfrågor` : "frågeset"}</span></div>
               <div><strong>{result.adaptiveQuestionCount || 0}</strong><span>adaptiva frågor</span></div>
               <div><strong>{result.catalogCount}</strong><span>matchprofiler analyserade</span></div>
             </div>
@@ -195,9 +203,10 @@ export default function Results() {
         </div>
 
         <div className="centerActions">
+          {isQuickResult ? <Link className="button" href="/kompass">Gör hela kompassen</Link> : null}
           <Link className="button buttonGhost" href="/kompass">Gör om kompassen</Link>
           <Link className="button buttonGhost" href="/min-vag">Öppna Min väg</Link>
-          <Link className="button" href="/utbildningar">Utforska alla utbildningar</Link>
+          <Link className={isQuickResult ? "button buttonGhost" : "button"} href="/utbildningar">Utforska alla utbildningar</Link>
         </div>
       </section>
     </main>

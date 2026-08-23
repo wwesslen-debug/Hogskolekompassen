@@ -13,6 +13,7 @@ import {
   normalizeProvider,
   schoolTypeCode,
 } from "../lib/susa-normalize.mjs";
+import { liveEntryProgramSqlClause } from "../lib/live-entry-programs.mjs";
 
 const args = process.argv.slice(2);
 const argValue = (name, fallback = null) => {
@@ -390,6 +391,25 @@ function runChunked(db, rows, chunkSize, label, handler) {
   process.stdout.write("\n");
 }
 
+function pruneNonEntryProgramRows(db) {
+  const removedEvents = db.prepare(`
+    DELETE FROM susa_education_events
+    WHERE COALESCE((${liveEntryProgramSqlClause()}), 0) = 0
+  `).run().changes;
+
+  const removedInfos = db.prepare(`
+    DELETE FROM susa_education_infos
+    WHERE id NOT IN (
+      SELECT DISTINCT education_info_id
+      FROM susa_education_events
+      WHERE education_info_id IS NOT NULL AND education_info_id != ''
+    )
+  `).run().changes;
+
+  setState(db, "last_entry_program_prune", new Date().toISOString());
+  return { removedEvents, removedInfos };
+}
+
 function persist(db, rawCollections, flags) {
   const now = new Date().toISOString();
   const providers = [];
@@ -672,6 +692,10 @@ async function main() {
     summary.removedStaleEvents = reconcile("susa_education_events", rawCollections.events.items);
     summary.removedStaleInfos = reconcile("susa_education_infos", rawCollections.infos.items);
     summary.removedStaleProviders = reconcile("susa_providers", rawCollections.providers.items);
+  }
+
+  if (!KEEP_UNFILTERED) {
+    summary.prunedNonEntryPrograms = pruneNonEntryProgramRows(db);
   }
 
   const counts = {

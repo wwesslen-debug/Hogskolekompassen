@@ -18,6 +18,7 @@
     "susa:relink": "node scripts/relink-susa.mjs",
     "db:migrate:v07": "node scripts/migrate-v07.mjs",
     "susa:quality": "node scripts/susa-quality.mjs",
+    "susa:prune-entry-programs": "node scripts/prune-live-entry-programs.mjs",
     "setup:v07": "npm run db:migrate:v06 && npm run db:migrate:v07",
     "susa:update": "node scripts/sync-susa.mjs && node scripts/relink-susa.mjs",
     "start:prod": "node scripts/start-production.mjs",

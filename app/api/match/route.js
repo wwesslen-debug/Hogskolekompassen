@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getPrograms, getQuestions } from "@/lib/db";
 import { buildMatchResult, calculateProfile } from "@/lib/matching";
 import { getAdaptiveQuestionsByIds } from "@/lib/adaptive";
+import { getQuestionsForQuizMode, getQuizModeResultMeta, normalizeQuizMode } from "@/lib/quiz-modes";
 import priorities from "@/data/priorities.json";
 import dealBreakers from "@/data/dealbreakers.json";
 
@@ -15,6 +16,7 @@ export async function POST(request) {
     const body = await request.json();
     const answers = body?.answers || {};
     const adaptiveAnswers = body?.adaptiveAnswers || {};
+    const mode = normalizeQuizMode(body?.mode);
     const selectedPriorities = Array.isArray(body?.priorities)
       ? body.priorities.filter((id) => validPriorities.has(id)).slice(0, 3)
       : [];
@@ -22,7 +24,8 @@ export async function POST(request) {
       ? body.dealBreakers.filter((id) => validDealBreakers.has(id)).slice(0, 6)
       : [];
 
-    const questions = getQuestions();
+    const fullQuestionBank = getQuestions();
+    const questions = getQuestionsForQuizMode(fullQuestionBank, mode);
     const validAnswers = questions.filter((question) => {
       const answer = Number(answers[String(question.id)] ?? answers[question.id]);
       return Number.isInteger(answer) && answer >= 0 && answer <= 5;
@@ -43,14 +46,15 @@ export async function POST(request) {
       if (Number.isInteger(answer) && answer >= 0 && answer <= 5) validatedAdaptiveAnswers[question.id] = answer;
     }
 
-    const allQuestions = [...questions, ...adaptiveQuestions];
+    const profileQuestions = [...questions, ...adaptiveQuestions];
     const allAnswers = { ...answers, ...validatedAdaptiveAnswers };
-    const profileResult = calculateProfile(allQuestions, allAnswers);
+    const profileResult = calculateProfile(profileQuestions, allAnswers);
     const programs = getPrograms({ limit: 1000 });
     const result = buildMatchResult(profileResult, programs, selectedPriorities, selectedDealBreakers);
 
     return NextResponse.json({
       ...result,
+      ...getQuizModeResultMeta(mode, questions.length, fullQuestionBank.length),
       adaptiveQuestionCount: adaptiveQuestions.length,
     });
   } catch (error) {
