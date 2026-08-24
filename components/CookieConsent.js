@@ -11,12 +11,21 @@ import {
 export default function CookieConsent() {
   const [consent] = useConsentState();
   const [visible, setVisible] = useState(false);
+  const [ready, setReady] = useState(false);
   const [choices, setChoices] = useState({ analytics: false, ads: false });
 
   useEffect(() => {
+    const latest = readConsent();
+    setChoices({ analytics: latest.analytics, ads: latest.ads });
+    setVisible(!latest.decided);
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     setChoices({ analytics: consent.analytics, ads: consent.ads });
     if (!consent.decided) setVisible(true);
-  }, [consent.analytics, consent.ads, consent.decided]);
+  }, [consent.analytics, consent.ads, consent.decided, ready]);
 
   useEffect(() => {
     const open = () => {
@@ -26,7 +35,7 @@ export default function CookieConsent() {
     };
     window.addEventListener(CONSENT_OPEN_EVENT, open);
     return () => window.removeEventListener(CONSENT_OPEN_EVENT, open);
-  }, [consent]);
+  }, []);
 
   if (!visible) return null;
 
