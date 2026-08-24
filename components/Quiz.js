@@ -108,10 +108,6 @@ export default function Quiz({ questions }) {
   }
 
   function continueFromInterests() {
-    if (selectedInterests.length !== 3) {
-      setError("Välj exakt tre intressen innan du går vidare.");
-      return;
-    }
     setIndex(0);
     setError("");
     setPhase("questions");
@@ -277,20 +273,20 @@ export default function Quiz({ questions }) {
     return (
       <section className="quizWrap priorityWrap interestQuestionWrap">
         <div className="quizTopline">
-          <span>{quizModeConfig?.label} · första frågan</span>
+          <span>{quizModeConfig?.label} · valfritt intressesteg</span>
           <span>{selectedInterests.length}/3 valda</span>
         </div>
         <div className="progressTrack" aria-hidden="true"><div className="progressFill" style={{ width: "0%" }} /></div>
 
         <div className="quizCard priorityCard interestQuestionCard">
-          <div className="questionEyebrow">Första frågan</div>
-          <h1>Vilka tre saker vill du gärna läsa mer om?</h1>
+          <div className="questionEyebrow">Valfritt steg</div>
+          <h1>Finns det något du gärna vill läsa mer om?</h1>
           <p className="quizHint">
-            Välj tre intressen. De påverkar utbildningspoängen lite grann, medan resten av kompassen fortfarande styr
-            den största delen av resultatet.
+            Välj upp till tre intressen om du vill. De påverkar utbildningspoängen lite grann, men du kan också hoppa
+            över detta och låta frågorna styra resultatet.
           </p>
 
-          <div className="interestGrid" role="group" aria-label="Välj tre intressen">
+          <div className="interestGrid" role="group" aria-label="Välj upp till tre intressen">
             {educationInterestOptions.map((item) => {
               const selected = selectedInterests.includes(item.id);
               const disabled = !selected && selectedInterests.length >= 3;
@@ -314,9 +310,9 @@ export default function Quiz({ questions }) {
           {error ? <p className="formError">{error}</p> : null}
           <div className="quizActions">
             <button type="button" className="textButton" onClick={previous}>← Byt test</button>
-            <div className="answeredText">Välj exakt tre intressen</div>
-            <button type="button" className="button" onClick={continueFromInterests} disabled={selectedInterests.length !== 3}>
-              Börja frågorna →
+            <div className="answeredText">Valfritt · välj upp till 3</div>
+            <button type="button" className="button" onClick={continueFromInterests}>
+              {selectedInterests.length ? "Börja frågorna →" : "Hoppa över och börja →"}
             </button>
           </div>
         </div>
