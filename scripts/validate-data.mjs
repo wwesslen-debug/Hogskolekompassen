@@ -9,6 +9,7 @@ const adaptiveQuestions = read("adaptive-questions.json");
 const programs = read("programs.json");
 const priorities = read("priorities.json");
 const dealBreakers = read("dealbreakers.json");
+const educationInterests = read("education-interests.json");
 
 const traitKeys = Object.keys(traits);
 const traitSet = new Set(traitKeys);
@@ -56,4 +57,21 @@ for (const rule of dealBreakers) {
   if (!(rule.maxPenalty > 0 && rule.maxPenalty <= 0.25)) throw new Error(`Invalid penalty for ${rule.id}`);
 }
 
-console.log(`OK v0.7: ${questions.length} base questions + ${adaptiveQuestions.length} adaptive questions, ${sections.size} sections, ${traitKeys.length} traits, ${programs.length} programs, ${priorities.length} priorities, ${dealBreakers.length} deal-breakers.`);
+for (const interest of educationInterests) {
+  if (!interest.id || !interest.label || !interest.description) throw new Error(`Invalid education interest ${interest.id || "unknown"}`);
+  if (!Array.isArray(interest.categories) || !interest.categories.length) throw new Error(`Missing categories for interest ${interest.id}`);
+  if (!Array.isArray(interest.keywords) || !interest.keywords.length) throw new Error(`Missing keywords for interest ${interest.id}`);
+  for (const [trait, weight] of Object.entries(interest.traits || {})) {
+    if (!traitSet.has(trait)) throw new Error(`Unknown interest trait ${trait} in ${interest.id}`);
+    if (typeof weight !== "number" || weight <= 0 || weight > 1) throw new Error(`Invalid interest trait weight in ${interest.id}`);
+  }
+  for (const subgroup of interest.subgroups || []) {
+    if (!subgroup.label || !Array.isArray(subgroup.categories) || !subgroup.categories.length) throw new Error(`Invalid subgroup in ${interest.id}`);
+    if (!Array.isArray(subgroup.keywords) || !subgroup.keywords.length) throw new Error(`Missing subgroup keywords in ${interest.id}`);
+    if (subgroup.weight !== undefined && (typeof subgroup.weight !== "number" || subgroup.weight <= 0 || subgroup.weight > 1)) {
+      throw new Error(`Invalid subgroup weight in ${interest.id}`);
+    }
+  }
+}
+
+console.log(`OK v0.7: ${questions.length} base questions + ${adaptiveQuestions.length} adaptive questions, ${sections.size} sections, ${traitKeys.length} traits, ${programs.length} programs, ${priorities.length} priorities, ${dealBreakers.length} deal-breakers, ${educationInterests.length} education interests.`);

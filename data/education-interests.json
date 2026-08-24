@@ -1,62 +1,222 @@
 [
   {
-    "id": "tech-digital",
-    "label": "Teknik, IT & digitalt",
-    "description": "Programmering, system, teknik och digital utveckling.",
-    "categories": ["Teknik & IT"]
+    "id": "gaming-digital-worlds",
+    "label": "Gaming & digitala världar",
+    "description": "Spel, appar, interaktiv design, AI, kod och digitala produkter.",
+    "categories": ["Teknik & IT", "Design & Kommunikation"],
+    "keywords": ["spel", "gaming", "game", "interaktiv", "digital", "app", "webb", "ai", "ux", "grafik", "animation", "programmering"],
+    "traits": { "programmering": 0.95, "teknik": 0.9, "kreativitet": 0.75, "analys": 0.68, "praktik": 0.55 },
+    "subgroups": [
+      {
+        "label": "Spelutveckling",
+        "categories": ["Teknik & IT", "Design & Kommunikation"],
+        "keywords": ["spel", "game", "programmering", "grafik", "animation", "interaktiv"],
+        "weight": 1
+      },
+      {
+        "label": "Digital produkt & UX",
+        "categories": ["Teknik & IT", "Design & Kommunikation", "Ekonomi & Management"],
+        "keywords": ["ux", "app", "webb", "digitalisering", "produkt", "system"],
+        "weight": 0.85
+      }
+    ]
   },
   {
-    "id": "business-economy",
-    "label": "Ekonomi, affär & entreprenörskap",
-    "description": "Företag, strategi, marknad, ledning och värdeskapande.",
-    "categories": ["Ekonomi & Management"]
+    "id": "music-sound-performance",
+    "label": "Musik, ljud & scen",
+    "description": "Musik, ljudproduktion, sceniska uttryck, performance och kultur.",
+    "categories": ["Musik & Scenkonst", "Design & Kommunikation", "Humaniora & Språk"],
+    "keywords": ["musik", "ljud", "audio", "sang", "sång", "instrument", "komposition", "scen", "teater", "dans", "performance", "kultur"],
+    "traits": { "kreativitet": 1, "kommunikation": 0.76, "praktik": 0.72, "sjalvstandighet": 0.68, "manniskor": 0.48 },
+    "subgroups": [
+      {
+        "label": "Musik & ljudproduktion",
+        "categories": ["Musik & Scenkonst", "Design & Kommunikation"],
+        "keywords": ["musik", "ljud", "audio", "produktion", "komposition", "instrument"],
+        "weight": 1
+      },
+      {
+        "label": "Scen & kultur",
+        "categories": ["Musik & Scenkonst", "Humaniora & Språk", "Pedagogik & Lärare"],
+        "keywords": ["scen", "teater", "dans", "performance", "kultur", "musiklarare", "musiklärare"],
+        "weight": 0.9
+      }
+    ]
   },
   {
-    "id": "health-care",
-    "label": "Vård, hälsa & medicin",
-    "description": "Människors hälsa, vård, behandling och välmående.",
-    "categories": ["Vård & Hälsa"]
+    "id": "art-design-creation",
+    "label": "Konst, design & skapande",
+    "description": "Bild, form, mode, arkitektur, visuell kommunikation och egna idéer.",
+    "categories": ["Design & Kommunikation", "Arkitektur & Samhällsbyggnad", "Humaniora & Språk", "Musik & Scenkonst"],
+    "keywords": ["konst", "design", "form", "grafisk", "illustration", "foto", "visuell", "mode", "arkitektur", "film", "media", "kommunikation"],
+    "traits": { "kreativitet": 1, "kommunikation": 0.72, "sjalvstandighet": 0.72, "praktik": 0.66, "teknik": 0.35 },
+    "subgroups": [
+      {
+        "label": "Visuell design",
+        "categories": ["Design & Kommunikation"],
+        "keywords": ["design", "grafisk", "visuell", "illustration", "foto", "kommunikation"],
+        "weight": 1
+      },
+      {
+        "label": "Rum, form & arkitektur",
+        "categories": ["Arkitektur & Samhällsbyggnad", "Design & Kommunikation"],
+        "keywords": ["arkitektur", "rum", "form", "stadsplanering", "byggd miljo", "byggd miljö"],
+        "weight": 0.82
+      }
+    ]
   },
   {
-    "id": "people-psychology",
-    "label": "Människor, psykologi & lärande",
-    "description": "Beteende, relationer, utveckling, skola och stöd.",
-    "categories": ["Psykologi & Beteende", "Pedagogik & Lärare"]
+    "id": "film-media-stories",
+    "label": "Film, media & berättande",
+    "description": "Journalistik, film, språk, kommunikation, innehåll och påverkan.",
+    "categories": ["Design & Kommunikation", "Humaniora & Språk", "Samhälle & Politik"],
+    "keywords": ["film", "media", "journalistik", "kommunikation", "reklam", "content", "innehall", "innehåll", "sprak", "språk", "retorik", "berattande", "berättande"],
+    "traits": { "kommunikation": 0.95, "kreativitet": 0.82, "samhalle": 0.62, "manniskor": 0.58, "sjalvstandighet": 0.56 },
+    "subgroups": [
+      {
+        "label": "Media & journalistik",
+        "categories": ["Design & Kommunikation", "Samhälle & Politik"],
+        "keywords": ["media", "journalistik", "kommunikation", "samhall", "samhälle"],
+        "weight": 0.95
+      },
+      {
+        "label": "Språk & berättande",
+        "categories": ["Humaniora & Språk", "Design & Kommunikation"],
+        "keywords": ["sprak", "språk", "litteratur", "retorik", "berattande", "berättande", "text"],
+        "weight": 0.9
+      }
+    ]
   },
   {
-    "id": "society-law",
-    "label": "Samhälle, juridik & trygghet",
-    "description": "Politik, rättvisa, säkerhet, regler och samhällsförändring.",
-    "categories": ["Samhälle & Politik", "Juridik & Rättsvetenskap", "Säkerhet & Krishantering"]
+    "id": "people-psychology-learning",
+    "label": "Människor & beteende",
+    "description": "Psykologi, relationer, lärande, stöd, HR och social utveckling.",
+    "categories": ["Psykologi & Beteende", "Pedagogik & Lärare", "Vård & Hälsa", "Samhälle & Politik"],
+    "keywords": ["psykologi", "beteende", "manniskor", "människor", "relation", "larande", "lärande", "pedagogik", "larare", "lärare", "hr", "social", "socionom"],
+    "traits": { "manniskor": 1, "kommunikation": 0.82, "samhalle": 0.66, "halsa": 0.56, "ledarskap": 0.5 },
+    "subgroups": [
+      {
+        "label": "Psykologi & relationer",
+        "categories": ["Psykologi & Beteende", "Vård & Hälsa"],
+        "keywords": ["psykologi", "beteende", "relation", "kognitiv", "hr", "arbetsliv"],
+        "weight": 1
+      },
+      {
+        "label": "Lärande & stöd",
+        "categories": ["Pedagogik & Lärare", "Samhälle & Politik"],
+        "keywords": ["larare", "lärare", "pedagogik", "undervisning", "socialt arbete", "socionom"],
+        "weight": 0.95
+      }
+    ]
   },
   {
-    "id": "science-life",
-    "label": "Naturvetenskap & livsvetenskap",
-    "description": "Forskning, biologi, kemi, fysik och vetenskaplig fördjupning.",
-    "categories": ["Naturvetenskap", "Bioteknik & Livsvetenskap"]
+    "id": "society-justice-impact",
+    "label": "Samhälle, rättvisa & påverkan",
+    "description": "Politik, juridik, säkerhet, klimatfrågor, organisationer och förändring.",
+    "categories": ["Samhälle & Politik", "Juridik & Rättsvetenskap", "Säkerhet & Krishantering", "Miljö & Hållbarhet"],
+    "keywords": ["politik", "juridik", "rattvisa", "rättvisa", "lag", "sakerhet", "säkerhet", "kris", "klimat", "hallbar", "hållbar", "myndighet", "internationell"],
+    "traits": { "samhalle": 1, "analys": 0.78, "kommunikation": 0.7, "struktur": 0.68, "ledarskap": 0.56 },
+    "subgroups": [
+      {
+        "label": "Juridik & policy",
+        "categories": ["Juridik & Rättsvetenskap", "Samhälle & Politik"],
+        "keywords": ["juridik", "ratt", "rätt", "lag", "policy", "forvaltning", "förvaltning"],
+        "weight": 1
+      },
+      {
+        "label": "Trygghet & omställning",
+        "categories": ["Säkerhet & Krishantering", "Miljö & Hållbarhet", "Samhälle & Politik"],
+        "keywords": ["sakerhet", "säkerhet", "kris", "risk", "klimat", "hallbar", "hållbar"],
+        "weight": 0.88
+      }
+    ]
   },
   {
-    "id": "environment-animals",
-    "label": "Miljö, djur & hållbarhet",
-    "description": "Ekologi, hållbar utveckling, lantbruk, skog och djur.",
-    "categories": ["Miljö & Hållbarhet", "Djur, Lantbruk & Skog"]
+    "id": "business-money-entrepreneurship",
+    "label": "Företag, pengar & entreprenörskap",
+    "description": "Ekonomi, marknad, strategi, ledning, startups och att skapa värde.",
+    "categories": ["Ekonomi & Management", "Juridik & Rättsvetenskap", "Teknik & IT", "Turism, Mat & Service"],
+    "keywords": ["ekonomi", "foretag", "företag", "business", "management", "marknad", "finans", "redovisning", "entreprenor", "entreprenör", "startup", "handel", "logistik"],
+    "traits": { "affar": 1, "analys": 0.78, "ledarskap": 0.72, "struktur": 0.66, "kommunikation": 0.58 },
+    "subgroups": [
+      {
+        "label": "Ekonomi & finans",
+        "categories": ["Ekonomi & Management"],
+        "keywords": ["ekonomi", "finans", "redovisning", "analys", "handel"],
+        "weight": 1
+      },
+      {
+        "label": "Entreprenörskap & verksamhet",
+        "categories": ["Ekonomi & Management", "Teknik & IT", "Turism, Mat & Service"],
+        "keywords": ["entreprenor", "entreprenör", "startup", "innovation", "verksamhet", "management"],
+        "weight": 0.9
+      }
+    ]
   },
   {
-    "id": "design-culture-language",
-    "label": "Design, kultur & språk",
-    "description": "Form, kommunikation, media, språk, kultur och sceniska uttryck.",
-    "categories": ["Design & Kommunikation", "Humaniora & Språk", "Musik & Scenkonst"]
+    "id": "nature-animals-environment",
+    "label": "Natur, djur & miljö",
+    "description": "Djur, biologi, ekologi, skog, lantbruk, klimat och hållbar utveckling.",
+    "categories": ["Miljö & Hållbarhet", "Djur, Lantbruk & Skog", "Naturvetenskap", "Bioteknik & Livsvetenskap"],
+    "keywords": ["natur", "djur", "miljo", "miljö", "biologi", "ekologi", "skog", "lantbruk", "agronom", "veterinar", "veterinär", "klimat", "hallbar", "hållbar"],
+    "traits": { "natur": 1, "praktik": 0.7, "analys": 0.66, "samhalle": 0.52, "halsa": 0.36 },
+    "subgroups": [
+      {
+        "label": "Djur, skog & lantbruk",
+        "categories": ["Djur, Lantbruk & Skog", "Miljö & Hållbarhet"],
+        "keywords": ["djur", "skog", "lantbruk", "agronom", "veterinar", "veterinär", "naturresurs"],
+        "weight": 1
+      },
+      {
+        "label": "Biologi, klimat & ekologi",
+        "categories": ["Naturvetenskap", "Bioteknik & Livsvetenskap", "Miljö & Hållbarhet"],
+        "keywords": ["biologi", "ekologi", "klimat", "miljo", "miljö", "hallbar", "hållbar", "bioteknik"],
+        "weight": 0.92
+      }
+    ]
   },
   {
-    "id": "built-environment",
-    "label": "Arkitektur, bygg & samhällsplanering",
-    "description": "Byggd miljö, stadsutveckling, konstruktion och rumslig problemlösning.",
-    "categories": ["Arkitektur & Samhällsbyggnad"]
+    "id": "health-training-wellbeing",
+    "label": "Hälsa, träning & välmående",
+    "description": "Vård, medicin, psykisk hälsa, träning, rehabilitering och livskvalitet.",
+    "categories": ["Vård & Hälsa", "Idrott & Hälsa", "Psykologi & Beteende", "Bioteknik & Livsvetenskap"],
+    "keywords": ["halsa", "hälsa", "vard", "vård", "medicin", "sjukskoterska", "sjuksköterska", "lakare", "läkare", "traning", "träning", "idrott", "rehab", "fysioterapi", "psykisk"],
+    "traits": { "halsa": 1, "manniskor": 0.82, "praktik": 0.72, "struktur": 0.68, "natur": 0.48 },
+    "subgroups": [
+      {
+        "label": "Vård & medicin",
+        "categories": ["Vård & Hälsa", "Bioteknik & Livsvetenskap"],
+        "keywords": ["vard", "vård", "medicin", "sjukskoterska", "sjuksköterska", "lakare", "läkare", "biomedicin"],
+        "weight": 1
+      },
+      {
+        "label": "Träning & välmående",
+        "categories": ["Idrott & Hälsa", "Psykologi & Beteende"],
+        "keywords": ["traning", "träning", "idrott", "rehab", "fysioterapi", "psykisk", "valmaende", "välmående"],
+        "weight": 0.92
+      }
+    ]
   },
   {
-    "id": "practical-service",
-    "label": "Praktiskt, service & rörelse",
-    "description": "Konkret arbete, upplevelser, idrott, transport, mat och service.",
-    "categories": ["Idrott & Hälsa", "Turism, Mat & Service", "Transport & Sjöfart"]
+    "id": "building-tech-problem-solving",
+    "label": "Bygga, teknik & problemlösning",
+    "description": "Ingenjörskap, konstruktion, system, byggande, matematik och praktiska lösningar.",
+    "categories": ["Teknik & IT", "Arkitektur & Samhällsbyggnad", "Naturvetenskap", "Transport & Sjöfart"],
+    "keywords": ["teknik", "ingenjor", "ingenjör", "bygg", "konstruktion", "system", "automation", "energi", "matematik", "fysik", "transport", "sjofart", "sjöfart"],
+    "traits": { "teknik": 1, "analys": 0.88, "matematik": 0.82, "praktik": 0.68, "struktur": 0.66 },
+    "subgroups": [
+      {
+        "label": "Ingenjörskap & system",
+        "categories": ["Teknik & IT", "Naturvetenskap"],
+        "keywords": ["ingenjor", "ingenjör", "teknik", "system", "automation", "energi", "fysik"],
+        "weight": 1
+      },
+      {
+        "label": "Bygg, transport & infrastruktur",
+        "categories": ["Arkitektur & Samhällsbyggnad", "Transport & Sjöfart"],
+        "keywords": ["bygg", "infrastruktur", "transport", "sjofart", "sjöfart", "logistik", "konstruktion"],
+        "weight": 0.88
+      }
+    ]
   }
 ]
