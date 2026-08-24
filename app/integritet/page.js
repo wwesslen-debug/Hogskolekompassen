@@ -63,7 +63,7 @@ export default function PrivacyPage() {
               </tr>
               <tr>
                 <td>Samtyckesval i localStorage</td>
-                <td>För att komma ihåg om du godkänt analys och annonser.</td>
+                <td>För att komma ihåg om du samtyckt till analyscookies och annonscookies.</td>
                 <td>Nödvändig lagring av integritetsval.</td>
                 <td>Tills du ändrar valet eller rensar webbplatsdata.</td>
               </tr>
@@ -74,10 +74,10 @@ export default function PrivacyPage() {
                 <td>Tekniska loggar hos driftleverantören enligt deras logghantering.</td>
               </tr>
               <tr>
-                <td>Google AdSense</td>
-                <td>För att visa och mäta annonser.</td>
+                <td>Google AdSense och annonscookies</td>
+                <td>För att visa och mäta annonser när annonscookies har godkänts.</td>
                 <td>Samtycke.</td>
-                <td>Styrs av Google och dina cookieval.</td>
+                <td>Styrs av Google, ditt samtycke och dina webbläsarinställningar.</td>
               </tr>
             </tbody>
           </table>
@@ -91,18 +91,18 @@ export default function PrivacyPage() {
           matchlistor filtreras bort även om de skulle skickas av misstag.
         </p>
 
-        <h2>Annonser</h2>
+        <h2>Annonser och annonscookies</h2>
         <p>
-          Högskolekompassen kan visa annonser via Google AdSense, men AdSense laddas först om du godkänner annonser.
-          Google kan då använda cookies eller liknande tekniker enligt sina egna villkor och integritetspolicy.
-          Annonsformat får inte påverka resultat, ranking eller utbildningsrekommendationer.
+          Högskolekompassen kan visa annonser via Google AdSense, men AdSense laddas först om du samtycker till
+          annonscookies. Google kan då använda cookies eller liknande tekniker enligt sina egna villkor och
+          integritetspolicy. Annonsformat får inte påverka resultat, ranking eller utbildningsrekommendationer.
         </p>
 
         <h2>Tredje parter</h2>
         <p>
           Railway används för drift av webbappen och kan behandla tekniska serverloggar. Supabase används som databas
           för den offentliga utbildningskatalogen, inte för att lagra personliga quizprofiler. Google AdSense används
-          bara efter annonssamtycke och kan då behandla annonsrelaterade uppgifter enligt Googles villkor.
+          bara efter samtycke till annonscookies och kan då behandla annonsrelaterade uppgifter enligt Googles villkor.
         </p>
 
         <h2>Rensa eller ändra dina val</h2>

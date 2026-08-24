@@ -43,10 +43,10 @@ export default function CookieConsent() {
       <div className="cookieConsentPanel">
         <div className="cookieConsentCopy">
           <span className="eyebrow">Integritet</span>
-          <h2 id="cookieConsentTitle">Dina val för kakor och lagring</h2>
+          <h2 id="cookieConsentTitle">Samtycke för kakor och lagring</h2>
           <p>
-            Nödvändig lokal lagring används för resultat, jämförelser och Min väg. Analys och annonser är valfria och
-            startar först om du godkänner dem.
+            Nödvändig lokal lagring används för resultat, jämförelser och Min väg. Analyscookies och annonscookies
+            kräver samtycke. Utan samtycke till annonscookies laddas inte Google AdSense.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function CookieConsent() {
               checked={choices.ads}
               onChange={(event) => setChoices((current) => ({ ...current, ads: event.target.checked }))}
             />
-            <span><strong>Annonser</strong><small>Laddar Google AdSense och kan innebära tredjepartskakor.</small></span>
+            <span><strong>Annonscookies</strong><small>Används för att ladda Google AdSense och kan innebära tredjepartskakor.</small></span>
           </label>
         </div>
 
@@ -81,7 +81,7 @@ export default function CookieConsent() {
             Spara val
           </button>
           <button type="button" className="button buttonGhost" onClick={() => save({ analytics: true, ads: true })}>
-            Godkänn alla
+            Godkänn alla kakor
           </button>
         </div>
       </div>
