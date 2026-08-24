@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { trackExternalClick } from "@/lib/analytics-client";
 
+const PAGE_SIZE = 200;
+
 function formatDate(value) {
   if (!value) return null;
   const date = new Date(`${value}T12:00:00`);
@@ -33,8 +35,10 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   const [offerings, setOfferings] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(Boolean(initialStatus?.eventCount));
+  const [loadingMore, setLoadingMore] = useState(false);
 
   const hasFilters = Boolean(search || period || city || provider || kind || applicationStatus || distance);
+  const canLoadMore = !loading && !loadingMore && offerings.length < total;
   const options = useMemo(() => initialOptions || { periods: [], cities: [], providers: [], kinds: [] }, [initialOptions]);
   const kindOptions = options.kinds.filter(Boolean);
 
@@ -48,14 +52,8 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     const controller = new AbortController();
     const timer = setTimeout(async () => {
       setLoading(true);
-      const params = new URLSearchParams({ limit: "120" });
-      if (search) params.set("search", search);
-      if (period) params.set("period", period);
-      if (city) params.set("city", city);
-      if (provider) params.set("provider", provider);
-      if (kind) params.set("kind", kind);
-      if (applicationStatus) params.set("applicationStatus", applicationStatus);
-      if (distance) params.set("distance", "1");
+      setLoadingMore(false);
+      const params = buildQueryParams(0);
       try {
         const response = await fetch(`/api/live-educations?${params.toString()}`, { signal: controller.signal });
         const payload = await response.json();
@@ -75,6 +73,38 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       clearTimeout(timer);
     };
   }, [search, period, city, provider, kind, applicationStatus, distance, initialStatus?.eventCount]);
+
+  function buildQueryParams(offset) {
+    const params = new URLSearchParams({ limit: String(PAGE_SIZE), offset: String(offset) });
+    if (search) params.set("search", search);
+    if (period) params.set("period", period);
+    if (city) params.set("city", city);
+    if (provider) params.set("provider", provider);
+    if (kind) params.set("kind", kind);
+    if (applicationStatus) params.set("applicationStatus", applicationStatus);
+    if (distance) params.set("distance", "1");
+    return params;
+  }
+
+  async function loadMore() {
+    if (!canLoadMore) return;
+    setLoadingMore(true);
+    try {
+      const params = buildQueryParams(offerings.length);
+      const response = await fetch(`/api/live-educations?${params.toString()}`);
+      const payload = await response.json();
+      const nextOfferings = payload.offerings || [];
+      setOfferings((current) => {
+        const seen = new Set(current.map((item) => item.id));
+        return [...current, ...nextOfferings.filter((item) => !seen.has(item.id))];
+      });
+      setTotal(payload.total || 0);
+    } catch {
+      // Keep the already loaded list visible if an extra page fails.
+    } finally {
+      setLoadingMore(false);
+    }
+  }
 
   function clearFilters() {
     setSearch("");
@@ -162,7 +192,8 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
 
       <div className="browserToolbar liveToolbar">
         <div>
-          <strong>{loading ? "Hämtar…" : `${total} aktuella programstarter`}</strong>
+          <strong>{loading && !offerings.length ? "Hämtar…" : `${total} aktuella programstarter`}</strong>
+          {total ? <span> Visar {offerings.length} av {total}. Filter är frivilliga.</span> : null}
           <span> Källa: Skolverkets Susa-nav via Supabase.</span>
         </div>
         {hasFilters ? <button className="textButton" type="button" onClick={clearFilters}>Rensa filter</button> : null}
@@ -227,6 +258,14 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
           <h2>Inga aktuella tillfällen matchade filtren</h2>
           <p>Prova en annan termin, ett bredare sökord eller rensa filtren.</p>
           <button type="button" className="button buttonGhost" onClick={clearFilters}>Rensa filter</button>
+        </div>
+      ) : null}
+
+      {offerings.length > 0 && offerings.length < total ? (
+        <div className="liveLoadMore">
+          <button type="button" className="button" onClick={loadMore} disabled={!canLoadMore}>
+            {loadingMore ? "Laddar fler…" : `Visa fler programstarter (${offerings.length}/${total})`}
+          </button>
         </div>
       ) : null}
     </div>

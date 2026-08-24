@@ -1568,6 +1568,7 @@ img { max-width: 100%; }
 .liveToolbar strong { color: var(--ink); }
 
 .liveOfferingList { display: grid; gap: 11px; margin-top: 18px; }
+.liveLoadMore { display: flex; justify-content: center; margin: 28px 0 8px; }
 .liveOfferingCard { display: grid; grid-template-columns: minmax(0,1fr) 235px; gap: 24px; padding: 22px; border: 1px solid var(--line); border-radius: 17px; background: white; transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease; }
 .liveOfferingCard:hover { transform: translateY(-1px); border-color: #c7d6da; box-shadow: 0 13px 34px rgba(18,48,71,.06); }
 .liveOfferingMeta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
