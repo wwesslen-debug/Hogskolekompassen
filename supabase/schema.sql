@@ -90,3 +90,36 @@ CREATE INDEX IF NOT EXISTS idx_supa_susa_events_school_type ON susa_education_ev
 CREATE INDEX IF NOT EXISTS idx_supa_susa_events_kind ON susa_education_events(kind);
 CREATE INDEX IF NOT EXISTS idx_supa_susa_events_link_score ON susa_education_events(link_score);
 CREATE INDEX IF NOT EXISTS idx_supa_susa_infos_school_type ON susa_education_infos(school_type);
+
+CREATE TABLE IF NOT EXISTS hk_analytics_daily (
+  day date PRIMARY KEY,
+  total_events integer NOT NULL DEFAULT 0,
+  page_views integer NOT NULL DEFAULT 0,
+  visits integer NOT NULL DEFAULT 0,
+  starts integer NOT NULL DEFAULT 0,
+  completions integer NOT NULL DEFAULT 0,
+  result_views integer NOT NULL DEFAULT 0,
+  application_clicks integer NOT NULL DEFAULT 0,
+  compare_events integer NOT NULL DEFAULT 0,
+  save_events integer NOT NULL DEFAULT 0,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS hk_analytics_event_daily (
+  day date NOT NULL,
+  event text NOT NULL,
+  count integer NOT NULL DEFAULT 0,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (day, event)
+);
+
+CREATE TABLE IF NOT EXISTS hk_analytics_path_daily (
+  day date NOT NULL,
+  path text NOT NULL,
+  count integer NOT NULL DEFAULT 0,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (day, path)
+);
+
+CREATE INDEX IF NOT EXISTS idx_hk_analytics_event_day ON hk_analytics_event_daily(day);
+CREATE INDEX IF NOT EXISTS idx_hk_analytics_path_day ON hk_analytics_path_daily(day);

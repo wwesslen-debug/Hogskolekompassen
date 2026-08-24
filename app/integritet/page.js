@@ -71,7 +71,7 @@ export default function PrivacyPage() {
                 <td>Analys-event</td>
                 <td>För att förstå vilka delar av sidan som behöver förbättras.</td>
                 <td>Samtycke.</td>
-                <td>Tekniska loggar hos driftleverantören enligt deras logghantering.</td>
+                <td>Aggregerad statistik sparas i Supabase i upp till cirka 13 månader.</td>
               </tr>
               <tr>
                 <td>Google AdSense och annonscookies</td>
@@ -87,8 +87,8 @@ export default function PrivacyPage() {
         <p>
           Appen kan logga enkla funnel-event, till exempel sidvisning, öppnad utbildning, sparad/jämförd utbildning och
           klick vidare till ansökningsinformation. Detta sker bara om du godkänner analys. Eventen ska användas för att
-          förbättra tjänsten, inte för att skapa personliga profiler. Råa quizsvar, fulla resultat, profiler och
-          matchlistor filtreras bort även om de skulle skickas av misstag.
+          förbättra tjänsten, inte för att skapa personliga profiler. De sparas som aggregerade räknare i Supabase.
+          Råa quizsvar, fulla resultat, profiler och matchlistor filtreras bort även om de skulle skickas av misstag.
         </p>
 
         <h2>Annonser och annonscookies</h2>

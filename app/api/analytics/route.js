@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { recordSupabaseAnalyticsEvent } from "@/lib/supabase-db";
+
+export const runtime = "nodejs";
 
 const allowedEvents = new Set([
   "page_view",
@@ -99,6 +102,12 @@ export async function POST(request) {
     properties: sanitizeProperties(event, payload?.properties),
     ts: cleanTimestamp(payload?.ts),
   };
+
+  try {
+    await recordSupabaseAnalyticsEvent(record);
+  } catch (error) {
+    console.warn("Analytics aggregate write failed.", error?.message || error);
+  }
 
   console.log(JSON.stringify(record));
   return NextResponse.json({ ok: true });
