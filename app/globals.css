@@ -567,25 +567,28 @@ img { max-width: 100%; }
 
 .cookieConsent {
   position: fixed;
-  inset: auto 18px 18px;
-  z-index: 80;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(13,34,50,.42);
+  backdrop-filter: blur(6px);
 }
 
 .cookieConsentPanel {
-  width: min(1040px, 100%);
+  width: min(720px, 100%);
+  max-height: calc(100vh - 36px);
+  overflow: auto;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 18px;
-  padding: 20px;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 24px;
   border: 1px solid rgba(18,48,71,.16);
   border-radius: 18px;
-  background: rgba(255,255,255,.96);
+  background: rgba(255,255,255,.98);
   box-shadow: 0 24px 80px rgba(18,48,71,.22);
   backdrop-filter: blur(16px);
-  pointer-events: auto;
 }
 
 .cookieConsentCopy h2 { margin: 6px 0 8px; font-size: 24px; letter-spacing: -.04em; }
@@ -606,7 +609,7 @@ img { max-width: 100%; }
 .cookieChoice strong { font-size: 12px; color: var(--ink); }
 .cookieChoice small { color: var(--muted); font-size: 11px; line-height: 1.35; }
 .cookieChoice.disabled { opacity: .78; }
-.cookieConsentActions { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+.cookieConsentActions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
 .contactPanel { max-width: 760px; }
 
 .quizPage { min-height: calc(100vh - 78px); padding: 62px 0 100px; }
@@ -819,8 +822,8 @@ img { max-width: 100%; }
   .navShell { height: 68px; }
   .mainNav > a:not(.button) { display: none; }
   .brand { font-size: 16px; }
-  .cookieConsent { inset: auto 10px 10px; }
-  .cookieConsentPanel { grid-template-columns: 1fr; max-height: calc(100vh - 20px); overflow: auto; padding: 16px; }
+  .cookieConsent { padding: 10px; }
+  .cookieConsentPanel { max-height: calc(100vh - 20px); padding: 16px; }
   .cookieConsentActions { justify-content: stretch; }
   .cookieConsentActions .button { flex: 1 1 100%; justify-content: center; }
   .hero { padding: 58px 0 70px; }
