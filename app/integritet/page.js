@@ -25,9 +25,10 @@ export default function PrivacyPage() {
       <section className="shell infoSection legalText">
         <h2>Vad som skickas till servern</h2>
         <p>
-          När du slutför kompassen skickas dina svar till appens matchnings-API för att beräkna resultatet. Svaren
-          används för den beräkningen och sparas inte som en personlig profil i tjänsten. Råa quizsvar och fullständiga
-          resultat ska inte loggas i analytics eller serverloggar.
+          När du slutför kompassen skickas dina svar, dina tre intresseval och eventuella prioriteringar/deal-breakers
+          till appens matchnings-API för att beräkna resultatet. Uppgifterna används för den beräkningen och sparas inte
+          som en personlig profil i tjänsten. Råa quizsvar, valda intressen och fullständiga resultat ska inte loggas i
+          analytics eller serverloggar.
         </p>
 
         <h2>Vad som sparas, varför och hur länge</h2>
@@ -43,7 +44,7 @@ export default function PrivacyPage() {
             </thead>
             <tbody>
               <tr>
-                <td>Quizsvar som skickas till matchnings-API:t</td>
+                <td>Quizsvar, intresseval och övriga quizval som skickas till matchnings-API:t</td>
                 <td>För att räkna fram resultatet du begär.</td>
                 <td>Berättigat intresse att leverera funktionen.</td>
                 <td>Behandlas vid beräkningen och sparas inte som profil i tjänsten.</td>

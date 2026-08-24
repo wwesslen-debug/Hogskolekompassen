@@ -1,0 +1,62 @@
+[
+  {
+    "id": "tech-digital",
+    "label": "Teknik, IT & digitalt",
+    "description": "Programmering, system, teknik och digital utveckling.",
+    "categories": ["Teknik & IT"]
+  },
+  {
+    "id": "business-economy",
+    "label": "Ekonomi, affär & entreprenörskap",
+    "description": "Företag, strategi, marknad, ledning och värdeskapande.",
+    "categories": ["Ekonomi & Management"]
+  },
+  {
+    "id": "health-care",
+    "label": "Vård, hälsa & medicin",
+    "description": "Människors hälsa, vård, behandling och välmående.",
+    "categories": ["Vård & Hälsa"]
+  },
+  {
+    "id": "people-psychology",
+    "label": "Människor, psykologi & lärande",
+    "description": "Beteende, relationer, utveckling, skola och stöd.",
+    "categories": ["Psykologi & Beteende", "Pedagogik & Lärare"]
+  },
+  {
+    "id": "society-law",
+    "label": "Samhälle, juridik & trygghet",
+    "description": "Politik, rättvisa, säkerhet, regler och samhällsförändring.",
+    "categories": ["Samhälle & Politik", "Juridik & Rättsvetenskap", "Säkerhet & Krishantering"]
+  },
+  {
+    "id": "science-life",
+    "label": "Naturvetenskap & livsvetenskap",
+    "description": "Forskning, biologi, kemi, fysik och vetenskaplig fördjupning.",
+    "categories": ["Naturvetenskap", "Bioteknik & Livsvetenskap"]
+  },
+  {
+    "id": "environment-animals",
+    "label": "Miljö, djur & hållbarhet",
+    "description": "Ekologi, hållbar utveckling, lantbruk, skog och djur.",
+    "categories": ["Miljö & Hållbarhet", "Djur, Lantbruk & Skog"]
+  },
+  {
+    "id": "design-culture-language",
+    "label": "Design, kultur & språk",
+    "description": "Form, kommunikation, media, språk, kultur och sceniska uttryck.",
+    "categories": ["Design & Kommunikation", "Humaniora & Språk", "Musik & Scenkonst"]
+  },
+  {
+    "id": "built-environment",
+    "label": "Arkitektur, bygg & samhällsplanering",
+    "description": "Byggd miljö, stadsutveckling, konstruktion och rumslig problemlösning.",
+    "categories": ["Arkitektur & Samhällsbyggnad"]
+  },
+  {
+    "id": "practical-service",
+    "label": "Praktiskt, service & rörelse",
+    "description": "Konkret arbete, upplevelser, idrott, transport, mat och service.",
+    "categories": ["Idrott & Hälsa", "Turism, Mat & Service", "Transport & Sjöfart"]
+  }
+]

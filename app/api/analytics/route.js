@@ -29,6 +29,7 @@ const propertySchemas = {
     quizMode: "shortString",
     certainAnswers: "integer",
     adaptiveQuestionCount: "integer",
+    selectedInterests: "integer",
     selectedPriorities: "integer",
     selectedDealBreakers: "integer",
   },

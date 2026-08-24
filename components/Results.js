@@ -146,6 +146,14 @@ export default function Results() {
         </div>
 
         <div className="resultPreferenceGrid">
+          <div className="priorityResultBox interestResultBox">
+            <div><span className="eyebrow">Dina intressen</span><h3>Det här gav en liten boost</h3></div>
+            <div className="priorityResultChips">
+              {result.selectedInterests?.length
+                ? result.selectedInterests.map((item) => <span key={item.id}>{item.label}</span>)
+                : <span>Inga intressen valda</span>}
+            </div>
+          </div>
           <div className="priorityResultBox">
             <div><span className="eyebrow">Dina prioriteringar</span><h3>Det här fick väga lite extra</h3></div>
             <div className="priorityResultChips">

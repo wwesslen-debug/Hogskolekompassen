@@ -988,6 +988,31 @@ img { max-width: 100%; }
   font-weight: 900;
 }
 .priorityOption.selected .priorityCheck { background: var(--teal); color: white; border-color: var(--teal); }
+.interestQuestionCard h1 { max-width: 760px; }
+.interestGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 26px;
+}
+.interestOption {
+  position: relative;
+  min-height: 108px;
+  padding: 17px 18px 16px 54px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fbfcfb;
+  text-align: left;
+  cursor: pointer;
+  transition: .15s ease;
+}
+.interestOption:hover:not(:disabled) { transform: translateY(-1px); border-color: #9ccdc8; }
+.interestOption:disabled { opacity: .45; cursor: not-allowed; }
+.interestOption.selected { background: #edf9f6; border-color: var(--teal); box-shadow: inset 0 0 0 1px rgba(58,175,169,.28); }
+.interestOption strong, .interestOption > span:last-child { display: block; }
+.interestOption strong { font-size: 14px; letter-spacing: -.01em; }
+.interestOption > span:last-child { margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+.interestOption.selected .priorityCheck { background: var(--teal); color: white; border-color: var(--teal); }
 .priorityNote {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1330,7 +1355,7 @@ img { max-width: 100%; }
 @media (max-width: 760px) {
   .sectionStepper { grid-template-columns: repeat(5, 150px); margin: 0 -4px 22px; }
   .sectionStep small { display: none; }
-  .priorityGrid { grid-template-columns: 1fr; }
+  .priorityGrid,.interestGrid { grid-template-columns: 1fr; }
   .priorityNote { grid-template-columns: 1fr; }
   .resultSummaryStats { gap: 18px; }
   .resultSummaryStats strong { font-size: 20px; }
@@ -1402,8 +1427,10 @@ img { max-width: 100%; }
 .scoreBreakdownItem span { color: var(--muted); font-size: 9px; font-weight: 700; }
 .scoreBreakdownItem strong { font-size: 10px; }
 .penaltyBadge { display: inline-flex; padding: 7px 9px; border-radius: 999px; background: #fff0ed; color: #a24334; font-size: 9px; font-weight: 850; }
-.resultPreferenceGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
-.resultPreferenceGrid .priorityResultBox { margin: 0; }
+.resultPreferenceGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+.resultPreferenceGrid .priorityResultBox { margin: 0; flex-direction: column; align-items: flex-start; }
+.resultPreferenceGrid .priorityResultChips { justify-content: flex-start; }
+.interestResultBox { background: #123f3d; }
 .dealBreakerResultBox { background: #fffaf7; border-color: #eadbd3; }
 .closeRaceBanner { display: grid; grid-template-columns: 42px 1fr; gap: 13px; padding: 16px 18px; margin-bottom: 17px; border-radius: 16px; background: #f4f8e8; border: 1px solid #dce8b5; }
 .closeRaceBanner > span { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); }

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import priorityOptions from "@/data/priorities.json";
 import dealBreakerOptions from "@/data/dealbreakers.json";
+import educationInterestOptions from "@/data/education-interests.json";
 import { trackFunnelEvent } from "@/lib/analytics-client";
 import { QUIZ_MODES, getQuestionsForQuizMode, getQuizModeConfig, normalizeQuizMode } from "@/lib/quiz-modes";
 
@@ -32,6 +33,7 @@ export default function Quiz({ questions }) {
   const [adaptiveAnswers, setAdaptiveAnswers] = useState({});
   const [adaptiveIndex, setAdaptiveIndex] = useState(0);
   const [adaptiveInfo, setAdaptiveInfo] = useState(null);
+  const [selectedInterests, setSelectedInterests] = useState([]);
   const [priorities, setPriorities] = useState([]);
   const [dealBreakers, setDealBreakers] = useState([]);
   const [phase, setPhase] = useState("mode");
@@ -68,11 +70,12 @@ export default function Quiz({ questions }) {
     setAdaptiveAnswers({});
     setAdaptiveIndex(0);
     setAdaptiveInfo(null);
+    setSelectedInterests([]);
     setPriorities([]);
     setDealBreakers([]);
     setSubmitting(false);
     setError("");
-    setPhase("questions");
+    setPhase("interests");
   }
 
   function choose(value) {
@@ -93,6 +96,25 @@ export default function Quiz({ questions }) {
       if (current.length >= 3) return current;
       return [...current, id];
     });
+  }
+
+  function toggleInterest(id) {
+    setSelectedInterests((current) => {
+      if (current.includes(id)) return current.filter((item) => item !== id);
+      if (current.length >= 3) return current;
+      return [...current, id];
+    });
+    setError("");
+  }
+
+  function continueFromInterests() {
+    if (selectedInterests.length !== 3) {
+      setError("Välj exakt tre intressen innan du går vidare.");
+      return;
+    }
+    setIndex(0);
+    setError("");
+    setPhase("questions");
   }
 
   function toggleDealBreaker(id) {
@@ -136,7 +158,7 @@ export default function Quiz({ questions }) {
       const response = await fetch("/api/match", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, adaptiveAnswers, priorities, dealBreakers, mode: quizMode }),
+        body: JSON.stringify({ answers, adaptiveAnswers, interests: selectedInterests, priorities, dealBreakers, mode: quizMode }),
       });
 
       if (!response.ok) {
@@ -149,6 +171,7 @@ export default function Quiz({ questions }) {
         quizMode: result.quizMode,
         certainAnswers: result.certainAnswers,
         adaptiveQuestionCount: result.adaptiveQuestionCount || 0,
+        selectedInterests: result.selectedInterests?.length || 0,
         selectedPriorities: result.selectedPriorities?.length || 0,
         selectedDealBreakers: result.selectedDealBreakers?.length || 0,
       });
@@ -187,6 +210,10 @@ export default function Quiz({ questions }) {
   }
 
   function previous() {
+    if (phase === "interests") {
+      setPhase("mode");
+      return;
+    }
     if (phase === "priorities") {
       setPhase("dealbreakers");
       return;
@@ -210,7 +237,7 @@ export default function Quiz({ questions }) {
       return;
     }
     if (phase === "questions" && index === 0) {
-      setPhase("mode");
+      setPhase("interests");
       return;
     }
     setIndex((value) => Math.max(0, value - 1));
@@ -241,6 +268,57 @@ export default function Quiz({ questions }) {
               <em>{mode.id === "quick" ? "Starta snabbtest" : "Starta hela kompassen"} →</em>
             </button>
           ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "interests") {
+    return (
+      <section className="quizWrap priorityWrap interestQuestionWrap">
+        <div className="quizTopline">
+          <span>{quizModeConfig?.label} · första frågan</span>
+          <span>{selectedInterests.length}/3 valda</span>
+        </div>
+        <div className="progressTrack" aria-hidden="true"><div className="progressFill" style={{ width: "0%" }} /></div>
+
+        <div className="quizCard priorityCard interestQuestionCard">
+          <div className="questionEyebrow">Första frågan</div>
+          <h1>Vilka tre saker vill du gärna läsa mer om?</h1>
+          <p className="quizHint">
+            Välj tre intressen. De påverkar utbildningspoängen lite grann, medan resten av kompassen fortfarande styr
+            den största delen av resultatet.
+          </p>
+
+          <div className="interestGrid" role="group" aria-label="Välj tre intressen">
+            {educationInterestOptions.map((item) => {
+              const selected = selectedInterests.includes(item.id);
+              const disabled = !selected && selectedInterests.length >= 3;
+              return (
+                <button
+                  type="button"
+                  className={`interestOption ${selected ? "selected" : ""}`}
+                  key={item.id}
+                  onClick={() => toggleInterest(item.id)}
+                  disabled={disabled}
+                  aria-pressed={selected}
+                >
+                  <span className="priorityCheck">{selected ? "✓" : "+"}</span>
+                  <strong>{item.label}</strong>
+                  <span>{item.description}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {error ? <p className="formError">{error}</p> : null}
+          <div className="quizActions">
+            <button type="button" className="textButton" onClick={previous}>← Byt test</button>
+            <div className="answeredText">Välj exakt tre intressen</div>
+            <button type="button" className="button" onClick={continueFromInterests} disabled={selectedInterests.length !== 3}>
+              Börja frågorna →
+            </button>
+          </div>
         </div>
       </section>
     );

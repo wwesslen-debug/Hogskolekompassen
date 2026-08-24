@@ -111,6 +111,7 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
                       <span>Studiestil <strong>{scoreDetail.scoreBreakdown.studyStyle}%</strong></span>
                       <span>Arbetssätt <strong>{scoreDetail.scoreBreakdown.workStyle}%</strong></span>
                       <span>Framtidsmål <strong>{scoreDetail.scoreBreakdown.futureGoals}%</strong></span>
+                      {scoreDetail.interestBoost ? <span>Intresseval <strong>+{scoreDetail.interestBoost}</strong></span> : null}
                     </div>
                   ) : null}
                 </>

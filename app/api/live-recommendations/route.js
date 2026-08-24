@@ -135,6 +135,7 @@ export async function POST(request) {
   const scoreById = cleanScoreMap(body.scoreById);
   const selectedPriorities = cleanIdList(body.priorities || body.selectedPriorities);
   const selectedDealBreakers = cleanIdList(body.dealBreakers || body.selectedDealBreakers);
+  const selectedInterests = cleanIdList(body.interests || body.selectedInterests);
   const profileResult = {
     profile: body.profile,
     traitConfidence: body.traitConfidence && typeof body.traitConfidence === "object" ? body.traitConfidence : {},
@@ -146,6 +147,7 @@ export async function POST(request) {
       scoreById,
       selectedPriorities,
       selectedDealBreakers,
+      selectedInterests,
     }),
   })).map((offering) => ({
     ...offering,

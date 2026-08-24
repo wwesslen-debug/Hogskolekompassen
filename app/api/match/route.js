@@ -5,11 +5,13 @@ import { getAdaptiveQuestionsByIds } from "@/lib/adaptive";
 import { getQuestionsForQuizMode, getQuizModeResultMeta, normalizeQuizMode } from "@/lib/quiz-modes";
 import priorities from "@/data/priorities.json";
 import dealBreakers from "@/data/dealbreakers.json";
+import educationInterests from "@/data/education-interests.json";
 
 export const runtime = "nodejs";
 
 const validPriorities = new Set(priorities.map((item) => item.id));
 const validDealBreakers = new Set(dealBreakers.map((item) => item.id));
+const validInterests = new Set(educationInterests.map((item) => item.id));
 
 export async function POST(request) {
   try {
@@ -22,6 +24,9 @@ export async function POST(request) {
       : [];
     const selectedDealBreakers = Array.isArray(body?.dealBreakers)
       ? body.dealBreakers.filter((id) => validDealBreakers.has(id)).slice(0, 6)
+      : [];
+    const selectedInterests = Array.isArray(body?.interests)
+      ? body.interests.filter((id) => validInterests.has(id)).slice(0, 3)
       : [];
 
     const fullQuestionBank = getQuestions();
@@ -50,7 +55,7 @@ export async function POST(request) {
     const allAnswers = { ...answers, ...validatedAdaptiveAnswers };
     const profileResult = calculateProfile(profileQuestions, allAnswers);
     const programs = getPrograms({ limit: 1000 });
-    const result = buildMatchResult(profileResult, programs, selectedPriorities, selectedDealBreakers);
+    const result = buildMatchResult(profileResult, programs, selectedPriorities, selectedDealBreakers, selectedInterests);
 
     return NextResponse.json({
       ...result,

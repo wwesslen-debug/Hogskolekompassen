@@ -47,6 +47,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
         profile: result.profile,
         traitConfidence: result.traitConfidence,
         scoreById: result.scoreById,
+        interests: (result.selectedInterests || []).map((item) => item.id || item),
         priorities: (result.selectedPriorities || []).map((item) => item.id || item),
         dealBreakers: (result.selectedDealBreakers || []).map((item) => item.id || item),
       }),
