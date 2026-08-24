@@ -29,9 +29,10 @@ export default async function CurrentEducationPage() {
             <span className="eyebrow">Susa-navet · program på grundnivå</span>
             <h1>Aktuella programstarter</h1>
             <p className="lead">
-              Här visas verkliga universitets- och högskoleprogram som ser ut att kunna börja på grundnivå. Master-, magister- och avancerade program filtreras bort. Filtrera på starttermin,
-              ansökningsläge, lärosäte och ort. Högskolekompassens egna profiler används fortfarande för själva
-              matchningen; live-datan visar vilka utbildningar som faktiskt erbjuds.
+              Här kan du bläddra igenom hela det synkade utbudet av universitets- och högskoleprogram som ser ut att
+              börja på grundnivå. Master-, magister- och avancerade program filtreras bort. Filter för starttermin,
+              ansökningsläge, lärosäte och ort är frivilliga. Högskolekompassens egna profiler används fortfarande för
+              själva matchningen; live-datan visar vilka utbildningar som faktiskt erbjuds.
             </p>
             {status.periods?.length ? (
               <div className="livePeriodSummary">

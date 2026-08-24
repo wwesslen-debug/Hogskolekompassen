@@ -75,7 +75,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   }, [search, period, city, provider, kind, applicationStatus, distance, initialStatus?.eventCount]);
 
   function buildQueryParams(offset) {
-    const params = new URLSearchParams({ limit: String(PAGE_SIZE), offset: String(offset) });
+    const params = new URLSearchParams({ limit: String(PAGE_SIZE), offset: String(offset), upcoming: "0" });
     if (search) params.set("search", search);
     if (period) params.set("period", period);
     if (city) params.set("city", city);
@@ -192,7 +192,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
 
       <div className="browserToolbar liveToolbar">
         <div>
-          <strong>{loading && !offerings.length ? "Hämtar…" : `${total} aktuella programstarter`}</strong>
+          <strong>{loading && !offerings.length ? "Hämtar…" : `${total} synkade programstarter`}</strong>
           {total ? <span> Visar {offerings.length} av {total}. Filter är frivilliga.</span> : null}
           <span> Källa: Skolverkets Susa-nav via Supabase.</span>
         </div>
