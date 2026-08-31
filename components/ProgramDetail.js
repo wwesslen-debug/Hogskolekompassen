@@ -256,7 +256,6 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
                       Öppna utbildningen ↗
                     </a>
                   ) : null}
-                  {offering.linkScore ? <span>{offering.linkScore}% länksäkerhet</span> : null}
                 </div>
               </article>
             ))}

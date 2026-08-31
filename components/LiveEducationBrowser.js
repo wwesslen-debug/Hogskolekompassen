@@ -227,12 +227,6 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
               </div>
               <aside className="liveOfferingAside">
                 <span className={`applicationState ${application.tone}`}>{application.label}</span>
-                {offering.canonicalProgramId ? (
-                  <span className="liveLinkedProfile">
-                    <small>Matchningssignal</small>
-                    <strong>{offering.linkScore ? `${offering.linkScore}% länksäkerhet` : "Kopplad internt"}</strong>
-                  </span>
-                ) : <span className="liveUnlinked">Matchas direkt från livepostens text och ämnessignaler.</span>}
                 <CompareButton offeringId={offering.id} compact />
                 {target ? (
                   <a

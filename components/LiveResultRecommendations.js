@@ -119,7 +119,6 @@ export default function LiveResultRecommendations({ result, variant = "default" 
             ));
             const application = applicationLabel(offering);
             const target = offering.applicationUrl || offering.sourceUrl;
-            const directLiveMatch = offering.matchSource === "live_profile" || !parent;
             return (
               <article className="liveResultCard" key={offering.id}>
                 <div className="liveResultCardTop">
@@ -139,22 +138,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                   {offering.studyPace ? <span><small>Studietakt</small><strong>{offering.studyPace}</strong></span> : null}
                   {offering.level ? <span><small>Nivå</small><strong>{offering.level === "grund" ? "Grundnivå" : offering.level === "avancerad" ? "Avancerad" : offering.level}</strong></span> : null}
                 </div>
-                <div className="liveResultLinkInfo">
-                  {!directLiveMatch && offering.canonicalProgramId ? (
-                    <>
-                      <span>Kopplad till {parent?.title || "intern kompassprofil"}</span>
-                      <small>
-                        {offering.linkScore ? `${offering.linkScore}% länksäkerhet` : "Katalogkoppling"}
-                        {offering.matchConfidence ? ` · ${offering.matchConfidence}% metodsäkerhet` : ""}
-                      </small>
-                    </>
-                  ) : (
-                    <>
-                      <span>Matchad direkt mot livedatan{offering.inferredCategory ? ` inom ${offering.inferredCategory.toLowerCase()}` : ""}</span>
-                      {offering.matchConfidence ? <small>{offering.matchConfidence}% metodsäkerhet</small> : null}
-                    </>
-                  )}
-                </div>
+                {offering.inferredCategory ? <p className="liveResultCategoryHint">{offering.inferredCategory}</p> : null}
                 <div className="liveResultActions">
                   {target ? (
                     <a

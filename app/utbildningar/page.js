@@ -44,7 +44,7 @@ export default async function ProgramsPage() {
               <span className="liveDot" />
               <strong>{status.eventCount ? `${status.eventCount.toLocaleString("sv-SE")} synkade utbildningar` : "Ingen livesynk ännu"}</strong>
               <small>{status.lastSync?.value ? `Senast synkad ${new Date(status.lastSync.value).toLocaleString("sv-SE")}` : "Kontrollera Supabase-konfigurationen"}</small>
-              {status.linkedCount ? <small>{status.linkedCount.toLocaleString("sv-SE")} interna matchningssignaler · {status.linkRate}% täckning</small> : null}
+              {status.providerCount ? <small>{status.providerCount.toLocaleString("sv-SE")} lärosäten i synken</small> : null}
             </div>
             <a href="/datakvalitet" className="qualityStatusLink">Se datakvalitet →</a>
           </div>

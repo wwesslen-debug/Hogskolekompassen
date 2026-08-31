@@ -1619,10 +1619,7 @@ img { max-width: 100%; }
 .liveResultFacts span { padding: 8px; border-radius: 9px; background: #f6f7f4; }
 .liveResultFacts small { display: block; color: var(--muted); font-size: 6px; text-transform: uppercase; letter-spacing: .06em; font-weight: 850; }
 .liveResultFacts strong { display: block; margin-top: 3px; font-size: 8px; }
-.liveResultLinkInfo { margin-top: auto; padding: 10px; border-radius: 10px; background: #f5f9e9; color: #5e6f42; font-size: 8px; }
-.liveResultLinkInfo span, .liveResultLinkInfo small { display: block; }
-.liveResultLinkInfo a { text-decoration: underline; text-underline-offset: 2px; }
-.liveResultLinkInfo small { margin-top: 3px; color: #71805a; }
+.liveResultCategoryHint { margin: 8px 0 0; color: var(--muted); font-size: 10px; font-weight: 750; }
 .liveResultActions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
 .liveResultFooter { display: flex; justify-content: space-between; gap: 14px; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 9px; }
 .applicationState.unknown { background: #f0f2ef; color: #61717a; }

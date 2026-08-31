@@ -43,12 +43,6 @@ function scoreFor(offering, scoreByLiveOfferingId) {
   return Number.isFinite(score) && score > 0 ? Math.round(score) : null;
 }
 
-function matchSourceLabel(offering) {
-  if (offering.matchSource === "live_profile") return "Direkt från liveposten";
-  if (offering.matchSource === "catalog_link_and_live_profile") return "Livepost + profilkoppling";
-  return "Live API-data";
-}
-
 const rows = [
   ["Din match", (item, context) => {
     const score = scoreFor(item, context.scoreByLiveOfferingId);
@@ -65,7 +59,6 @@ const rows = [
   ["Nivå", (item) => item.level === "grund" ? "Grundnivå" : item.level || "Ej angiven"],
   ["Examen", (item) => item.degree || "Se utbildningssidan"],
   ["Ansökan", applicationLabel],
-  ["Matchkälla", matchSourceLabel],
 ];
 
 export default function ComparePage() {
