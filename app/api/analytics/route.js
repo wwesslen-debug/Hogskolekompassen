@@ -23,9 +23,9 @@ const allowedEvents = new Set([
 const propertySchemas = {
   page_view: { pathname: "path" },
   open_education: { programId: "integer" },
-  compare_add: { programId: "integer", count: "integer" },
-  compare_remove: { programId: "integer" },
-  compare_limit_reached: { programId: "integer", count: "integer" },
+  compare_add: { programId: "integer", offeringId: "integer", count: "integer" },
+  compare_remove: { programId: "integer", offeringId: "integer" },
+  compare_limit_reached: { programId: "integer", offeringId: "integer", count: "integer" },
   save_program: { programId: "integer", status: "status" },
   unsave_program: { programId: "integer", status: "status" },
   compass_completed: {

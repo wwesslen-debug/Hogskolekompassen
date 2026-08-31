@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getLiveDataStatus, getProgramCount } from "@/lib/db";
+import { getLiveDataStatus } from "@/lib/db";
 import { canonicalUrl, formatSyncDate } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +12,6 @@ export const metadata = {
 };
 
 export default async function AboutPage() {
-  const programCount = getProgramCount();
   const liveStatus = await getLiveDataStatus();
 
   return (
@@ -56,13 +55,13 @@ export default async function AboutPage() {
 
         <div className="launchChecklist">
           <div>
-            <span className="eyebrow">Launch-status</span>
-            <h2>Vad är redo just nu?</h2>
-          </div>
-          <ul>
-            <li><strong>Kompassflöde:</strong> 50 grundfrågor, adaptiva följdfrågor och personliga prioriteringar.</li>
-            <li><strong>Matchningskatalog:</strong> {programCount.toLocaleString("sv-SE")} utbildningsprofiler med stabila detaljsidor.</li>
-            <li><strong>Livekatalog:</strong> {liveStatus.eventCount ? `${liveStatus.eventCount.toLocaleString("sv-SE")} synkade utbildningstillfällen` : "redo för Susa-synk när produktionsdatan aktiveras"}.</li>
+          <span className="eyebrow">Launch-status</span>
+          <h2>Vad är redo just nu?</h2>
+        </div>
+        <ul>
+            <li><strong>Snabbkompassen:</strong> cirka 15–20 adaptiva frågor för en snabb riktning.</li>
+            <li><strong>Djupkompassen:</strong> cirka 40–60 adaptiva frågor för en mer nyanserad matchning.</li>
+            <li><strong>Utbildningar:</strong> {liveStatus.eventCount ? `${liveStatus.eventCount.toLocaleString("sv-SE")} synkade liveutbildningar` : "redo för Susa-synk när produktionsdatan aktiveras"}.</li>
             <li><strong>Senaste datauppdatering:</strong> {formatSyncDate(liveStatus.lastSync?.value)}.</li>
           </ul>
         </div>

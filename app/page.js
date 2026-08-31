@@ -1,4 +1,4 @@
-import { getLiveDataStatus, getProgramCount } from "@/lib/db";
+import { getLiveDataStatus } from "@/lib/db";
 import { getAdSenseConfig } from "@/lib/ads";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Link from "next/link";
@@ -19,7 +19,6 @@ const dimensions = [
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const programCount = getProgramCount();
   const liveStatus = await getLiveDataStatus();
   const homeLeftAd = getAdSenseConfig("homeLeft");
   const homeRightAd = getAdSenseConfig("homeRight");
@@ -49,22 +48,22 @@ export default async function Home() {
               Hitta utbildningen som <span>faktiskt passar dig.</span>
             </h1>
             <p className="lead">
-              Välj snabbtest med 25 frågor eller hela kompassen med 50 genomtänkta grundfrågor. Högskolekompassen analyserar dina
-              intressen, drivkrafter och arbetssätt, matchar dig mot utbildningsprofiler och hjälper dig gå vidare
-              till utbildningar och officiell information med mer struktur.
+              Välj Snabbkompassen med cirka 15–20 adaptiva frågor eller Djupkompassen med cirka 40–60 frågor.
+              Högskolekompassen analyserar intressen, drivkrafter och arbetssätt, utmanar sina egna hypoteser och
+              matchar dig mot aktuella utbildningar från livekatalogen.
             </p>
 
             <div className="heroActions">
               <Link href="/kompass" className="button buttonLarge">
                 Starta kompassen <span>→</span>
               </Link>
-              <span className="microcopy">25 eller 50 frågor · cirka 4–10 min · gratis</span>
+              <span className="microcopy">15–20 eller 40–60 frågor · cirka 5–15 min · gratis</span>
             </div>
 
             <div className="trustRow">
-              <div><strong>17</strong><span>profildimensioner</span></div>
-              <div><strong>{programCount}</strong><span>utbildningsposter</span></div>
-              <div><strong>{liveStatus.eventCount || "Live"}</strong><span>{liveStatus.eventCount ? "programstarter" : "live-data"}</span></div>
+              <div><strong>15–20</strong><span>frågor i Snabbkompassen</span></div>
+              <div><strong>40–60</strong><span>frågor i Djupkompassen</span></div>
+              <div><strong>{liveStatus.eventCount ? liveStatus.eventCount.toLocaleString("sv-SE") : "Live"}</strong><span>{liveStatus.eventCount ? "aktuella utbildningar" : "utbildningsdata"}</span></div>
             </div>
           </div>
 
@@ -73,17 +72,17 @@ export default async function Home() {
             <div className="profilePreview">
               <div className="previewTop">
                 <div>
-                  <span className="previewKicker">Din profil</span>
-                  <h2>Teknisk problemlösare</h2>
+                  <span className="previewKicker">Livebaserat resultat</span>
+                  <h2>Aktuella utbildningar</h2>
                 </div>
                 <div className="scoreOrb">92</div>
               </div>
 
               {[
-                ["Analys & problemlösning", 91],
-                ["Teknik & digitalt", 88],
-                ["Affär & entreprenörskap", 76],
-                ["Struktur & precision", 71],
+                ["Intressen & ämnesspår", 91],
+                ["Studie- och arbetssätt", 88],
+                ["Motivation & värderingar", 76],
+                ["Praktiska krav", 71],
               ].map(([label, value]) => (
                 <div className="previewBar" key={label}>
                   <div><span>{label}</span><strong>{value}%</strong></div>
@@ -92,21 +91,21 @@ export default async function Home() {
               ))}
 
               <div className="previewMatch">
-                <span>Starkaste matchning</span>
-                <strong>Teknik & IT</strong>
+                <span>Exempel på matchning</span>
+                <strong>Program från Susa-navet</strong>
                 <em>94% match</em>
               </div>
             </div>
 
             <div className="floatingCard floatingA">
               <span>02</span>
-              <strong>Systemvetenskap</strong>
-              <small>91% match</small>
+              <strong>Jämför lärosäten</strong>
+              <small>ort, start & studietakt</small>
             </div>
             <div className="floatingCard floatingB">
               <span>03</span>
-              <strong>Industriell ekonomi</strong>
-              <small>87% match</small>
+              <strong>Öppna originalkälla</strong>
+              <small>kontrollera behörighet</small>
             </div>
           </div>
         </div>
@@ -134,25 +133,25 @@ export default async function Home() {
           </div>
           <p>
             Varje svar påverkar flera delar av din profil. Resultatet bygger på
-            en viktad matchning, adaptiva följdfrågor och transparenta delpoäng – inte på en enda kategori.
+            en adaptiv matchning som både fördjupar starka signaler och testar alternativ som kan passa bättre.
           </p>
         </div>
 
         <div className="stepGrid">
           <article className="stepCard">
             <span className="stepNo">01</span>
-            <h3>Svara på grundfrågorna</h3>
-            <p>Ta ställning till konkreta påståenden om vad du gillar, hur du arbetar och vad som motiverar dig.</p>
+            <h3>Välj tempo</h3>
+            <p>Snabbkompassen ger en snabb riktning med 15–20 frågor. Djupkompassen går längre med 40–60 frågor och fler jämförelser.</p>
           </article>
           <article className="stepCard featuredStep">
             <span className="stepNo">02</span>
-            <h3>Vi förfinar det som är oklart</h3>
-            <p>Om två områden ligger nära varandra väljer motorn upp till fem personliga utslagsfrågor. Deal-breakers kan ge tydliga avdrag.</p>
+            <h3>Frågorna anpassas</h3>
+            <p>Motorn väljer nästa fråga efter dina svar: ibland fördjupning, ibland utslagsfrågor och ibland frågor som utmanar den nuvarande hypotesen.</p>
           </article>
           <article className="stepCard">
             <span className="stepNo">03</span>
-            <h3>Få ett förklarat resultat</h3>
-            <p>Se totalmatch, fyra delpoäng, vad som drog upp eller ner – och spara intressanta program i Min väg.</p>
+            <h3>Matchas mot liveutbildningar</h3>
+            <p>Resultatet poängsätter aktuella utbildningar från livekatalogen och visar varför de hamnar högt, med länkar till originalkällan.</p>
           </article>
         </div>
       </section>
@@ -185,11 +184,11 @@ export default async function Home() {
           <div>
             <span className="eyebrow">Redo?</span>
             <h2>Gör ditt utbildningsval lite mindre slumpmässigt.</h2>
-            <p>Du får en profil, adaptiva följdfrågor, transparenta delpoäng och tydligare vägar vidare till utbildningar som är värda att kontrollera närmare.</p>
+            <p>Du får adaptiva frågor, transparenta delpoäng och tydligare vägar vidare till utbildningar som finns i det aktuella utbudet.</p>
           </div>
           <div className="ctaButtonStack">
             <Link href="/kompass" className="button buttonLarge">Starta Högskolekompassen →</Link>
-            <Link href="/aktuellt" className="textButton">Se aktuellt utbildningsutbud</Link>
+            <Link href="/utbildningar" className="textButton">Utforska utbildningar</Link>
           </div>
         </div>
       </section>

@@ -2,58 +2,53 @@
 
 import { useEffect, useState } from "react";
 import { trackFunnelEvent } from "@/lib/analytics-client";
+import {
+  COMPARE_EVENT_NAME,
+  COMPARE_LIMIT,
+  compareEntryKey,
+  hasCompareEntry,
+  readCompareEntries,
+  writeCompareEntries,
+} from "@/lib/compare-storage";
 
-const STORAGE_KEY = "hogskolekompassen-compare";
-const EVENT_NAME = "hogskolekompassen-compare-change";
-
-function readIds() {
-  if (typeof window === "undefined") return [];
-  try {
-    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    return Array.isArray(parsed) ? parsed.map(Number).filter(Number.isInteger).slice(0, 3) : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeIds(ids) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
-  window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: ids }));
-}
-
-export default function CompareButton({ programId, compact = false }) {
-  const id = Number(programId);
-  const [ids, setIds] = useState([]);
+export default function CompareButton({ offeringId, compact = false }) {
+  const id = Number(offeringId);
+  const target = Number.isInteger(id) && id > 0 ? { kind: "live", id } : null;
+  const [entries, setEntries] = useState([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const update = (event) => setIds(event?.detail || readIds());
-    setIds(readIds());
-    window.addEventListener(EVENT_NAME, update);
-    return () => window.removeEventListener(EVENT_NAME, update);
+    const update = (event) => setEntries(event?.detail || readCompareEntries());
+    setEntries(readCompareEntries());
+    window.addEventListener(COMPARE_EVENT_NAME, update);
+    return () => window.removeEventListener(COMPARE_EVENT_NAME, update);
   }, []);
 
-  const selected = ids.includes(id);
+  if (!target) return null;
+
+  const selected = hasCompareEntry(entries, target);
 
   function toggle() {
     setMessage("");
-    const current = readIds();
-    if (current.includes(id)) {
-      const next = current.filter((item) => item !== id);
-      writeIds(next);
-      setIds(next);
-      trackFunnelEvent("compare_remove", { programId: id });
+    const current = readCompareEntries();
+    const currentHasTarget = hasCompareEntry(current, target);
+    if (currentHasTarget) {
+      const key = compareEntryKey(target);
+      const next = current.filter((item) => compareEntryKey(item) !== key);
+      writeCompareEntries(next);
+      setEntries(next);
+      trackFunnelEvent("compare_remove", { offeringId: id });
       return;
     }
-    if (current.length >= 3) {
+    if (current.length >= COMPARE_LIMIT) {
       setMessage("Du kan jämföra högst tre utbildningar.");
-      trackFunnelEvent("compare_limit_reached", { programId: id, count: current.length });
+      trackFunnelEvent("compare_limit_reached", { offeringId: id, count: current.length });
       return;
     }
-    const next = [...current, id];
-    writeIds(next);
-    setIds(next);
-    trackFunnelEvent("compare_add", { programId: id, count: next.length });
+    const next = [...current, target];
+    writeCompareEntries(next);
+    setEntries(next);
+    trackFunnelEvent("compare_add", { offeringId: id, count: next.length });
   }
 
   return (

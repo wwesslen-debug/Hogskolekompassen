@@ -8,12 +8,22 @@ import {
 
 export const runtime = "nodejs";
 
+function cleanIds(value) {
+  return String(value || "")
+    .split(",")
+    .map(Number)
+    .filter((id) => Number.isInteger(id) && id > 0)
+    .slice(0, 200);
+}
+
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const includeOptions = searchParams.get("options") === "1";
+  const ids = cleanIds(searchParams.get("ids"));
   const limit = Math.min(200, Math.max(1, Number(searchParams.get("limit") || 80)));
   const offset = Math.max(0, Number(searchParams.get("offset") || 0));
   const filters = {
+    ids,
     search: searchParams.get("search") || "",
     period: searchParams.get("period") || "",
     city: searchParams.get("city") || "",

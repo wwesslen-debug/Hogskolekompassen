@@ -113,7 +113,7 @@ export default function MyPath() {
                       <p className="institutionLine">{program.institution} · {program.city}</p>
                       <p>{program.description}</p>
                       <div className="pathCardActions">
-                        <Link href={`/utbildningar/${program.id}`} className="button buttonGhost buttonSmall">Läs mer</Link>
+                        <Link href={`/utbildningar?search=${encodeURIComponent(program.title)}`} className="button buttonGhost buttonSmall">Sök liveutbildningar</Link>
                         <CompareButton programId={program.id} compact />
                         <SaveProgramButton programId={program.id} compact />
                       </div>

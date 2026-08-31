@@ -112,8 +112,8 @@ export default function Results() {
               <ScoreBreakdown breakdown={topArea.scoreBreakdown} />
               {topArea.liveOfferCount ? <div className="resultLiveBadge">● {topArea.liveOfferCount} aktuella live-tillfällen kopplade till området</div> : null}
               <div className="topMatchActions">
-                <Link className="button buttonSmall" href="#live-resultat">Se aktuella programstarter →</Link>
-                <Link className="button buttonGhost buttonSmall" href="/aktuellt">Öppna livekatalogen</Link>
+                <Link className="button buttonSmall" href="#live-resultat">Se aktuella utbildningar →</Link>
+                <Link className="button buttonGhost buttonSmall" href="/utbildningar">Öppna utbildningar</Link>
               </div>
             </div>
           ) : null}
@@ -222,7 +222,7 @@ export default function Results() {
           {isQuickResult ? <Link className="button" href="/kompass">Gör hela kompassen</Link> : null}
           <Link className="button buttonGhost" href="/kompass">Gör om kompassen</Link>
           <Link className="button buttonGhost" href="/min-vag">Öppna Min väg</Link>
-          <Link className={isQuickResult ? "button buttonGhost" : "button"} href={liveOnly ? "/aktuellt" : "/utbildningar"}>{liveOnly ? "Utforska livekatalogen" : "Utforska alla utbildningar"}</Link>
+          <Link className={isQuickResult ? "button buttonGhost" : "button"} href="/utbildningar">Utforska utbildningar</Link>
         </div>
       </section>
     </main>

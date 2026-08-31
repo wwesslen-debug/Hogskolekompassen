@@ -2,42 +2,30 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const STORAGE_KEY = "hogskolekompassen-compare";
-const EVENT_NAME = "hogskolekompassen-compare-change";
-
-function readIds() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    return Array.isArray(parsed) ? parsed.map(Number).filter(Number.isInteger).slice(0, 3) : [];
-  } catch {
-    return [];
-  }
-}
+import { COMPARE_EVENT_NAME, readCompareEntries, writeCompareEntries } from "@/lib/compare-storage";
 
 export default function CompareTray() {
-  const [ids, setIds] = useState([]);
+  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
-    const update = (event) => setIds(event?.detail || readIds());
-    setIds(readIds());
-    window.addEventListener(EVENT_NAME, update);
-    return () => window.removeEventListener(EVENT_NAME, update);
+    const update = (event) => setEntries(event?.detail || readCompareEntries());
+    setEntries(readCompareEntries());
+    window.addEventListener(COMPARE_EVENT_NAME, update);
+    return () => window.removeEventListener(COMPARE_EVENT_NAME, update);
   }, []);
 
-  if (!ids.length) return null;
+  if (!entries.length) return null;
 
   function clear() {
-    localStorage.setItem(STORAGE_KEY, "[]");
-    window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: [] }));
-    setIds([]);
+    writeCompareEntries([]);
+    setEntries([]);
   }
 
   return (
     <div className="compareTray" role="status">
       <div>
-        <strong>{ids.length}/3 valda</strong>
-        <span>Jämför utbildningar sida vid sida</span>
+        <strong>{entries.length}/3 valda</strong>
+        <span>Jämför riktiga utbildningar sida vid sida</span>
       </div>
       <div className="compareTrayActions">
         <button type="button" onClick={clear}>Rensa</button>

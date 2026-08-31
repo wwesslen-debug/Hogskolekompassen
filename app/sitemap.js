@@ -1,4 +1,3 @@
-import { getPrograms } from "@/lib/db";
 import { canonicalUrl } from "@/lib/site";
 
 export default function sitemap() {
@@ -7,7 +6,6 @@ export default function sitemap() {
     "",
     "/kompass",
     "/utbildningar",
-    "/aktuellt",
     "/jamfor",
     "/karriar",
     "/min-vag",
@@ -25,12 +23,5 @@ export default function sitemap() {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  const programEntries = getPrograms({ limit: 1000 }).map((program) => ({
-    url: canonicalUrl(`/utbildningar/${program.id}`),
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  return [...staticEntries, ...programEntries];
+  return staticEntries;
 }

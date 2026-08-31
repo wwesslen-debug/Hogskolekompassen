@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import CompareButton from "@/components/CompareButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 
 function formatDate(value) {
@@ -141,7 +142,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                 <div className="liveResultLinkInfo">
                   {!directLiveMatch && offering.canonicalProgramId ? (
                     <>
-                      <span>Kopplad till <Link href={`/utbildningar/${offering.canonicalProgramId}`}>{parent?.title || "kompassprofil"}</Link></span>
+                      <span>Kopplad till {parent?.title || "intern kompassprofil"}</span>
                       <small>
                         {offering.linkScore ? `${offering.linkScore}% länksäkerhet` : "Katalogkoppling"}
                         {offering.matchConfidence ? ` · ${offering.matchConfidence}% metodsäkerhet` : ""}
@@ -171,7 +172,8 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                       Utbildningssidan ↗
                     </a>
                   ) : null}
-                  <Link href={`/aktuellt?search=${encodeURIComponent(offering.title)}`} className="button buttonGhost buttonSmall">Liknande live</Link>
+                  <CompareButton offeringId={offering.id} compact />
+                  <Link href={`/utbildningar?search=${encodeURIComponent(offering.title)}`} className="button buttonGhost buttonSmall">Liknande live</Link>
                 </div>
               </article>
             );
@@ -187,7 +189,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
               ? `${status.eventCount.toLocaleString("sv-SE")} synkade HS-tillfällen i databasen.`
               : "Livekatalog ansluten."}
         </span>
-        <Link href="/aktuellt" className="textButton">Utforska hela aktuella utbudet →</Link>
+        <Link href="/utbildningar" className="textButton">Utforska alla utbildningar →</Link>
       </div>
     </section>
   );

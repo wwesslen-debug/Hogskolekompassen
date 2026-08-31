@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import CompareButton from "@/components/CompareButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 
 const PAGE_SIZE = 200;
@@ -132,7 +133,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         <p className="liveEmptyFootnote">
           Health-checken visar om Supabase är konfigurerat och hur många liveposter som kan läsas.
         </p>
-        <Link href="/utbildningar" className="button buttonGhost">Utforska matchningskatalogen under tiden →</Link>
+        <Link href="/kompass" className="button buttonGhost">Gör kompassen under tiden →</Link>
       </div>
     );
   }
@@ -227,11 +228,12 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
               <aside className="liveOfferingAside">
                 <span className={`applicationState ${application.tone}`}>{application.label}</span>
                 {offering.canonicalProgramId ? (
-                  <Link href={`/utbildningar/${offering.canonicalProgramId}`} className="liveLinkedProfile">
-                    <small>Kopplad till kompassprofil</small>
-                    <strong>{offering.linkScore ? `${offering.linkScore}% länksäkerhet` : "Visa profil"} →</strong>
-                  </Link>
-                ) : <span className="liveUnlinked">Inte automatiskt kopplad till en profil ännu</span>}
+                  <span className="liveLinkedProfile">
+                    <small>Matchningssignal</small>
+                    <strong>{offering.linkScore ? `${offering.linkScore}% länksäkerhet` : "Kopplad internt"}</strong>
+                  </span>
+                ) : <span className="liveUnlinked">Matchas direkt från livepostens text och ämnessignaler.</span>}
+                <CompareButton offeringId={offering.id} compact />
                 {target ? (
                   <a
                     href={target}

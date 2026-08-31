@@ -123,7 +123,7 @@ export default function ProgramBrowser({ options }) {
               </div>
               <h2>{program.title}</h2>
               <p className="institutionLine">{program.institution} · {program.city}</p>
-              {program.liveOfferCount ? <Link href={`/utbildningar/${program.id}#aktuellt`} className="liveAvailabilityLine">● {program.liveOfferCount} synkade tillfällen via Susa-navet</Link> : null}
+              {program.liveOfferCount ? <Link href={`/utbildningar?search=${encodeURIComponent(program.title)}`} className="liveAvailabilityLine">● {program.liveOfferCount} synkade tillfällen via Susa-navet</Link> : null}
               <p>{program.description}</p>
 
               <div className="programStudyFacts compactFacts">
@@ -137,7 +137,7 @@ export default function ProgramBrowser({ options }) {
               </div>
 
               <div className="browseCardActions">
-                <Link href={`/utbildningar/${program.id}`} className="button buttonGhost buttonSmall">Läs mer</Link>
+                <Link href={`/utbildningar?search=${encodeURIComponent(program.title)}`} className="button buttonGhost buttonSmall">Sök liveutbildningar</Link>
                 <CompareButton programId={program.id} compact />
                 <SaveProgramButton programId={program.id} compact />
                 <a

@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Datakvalitet",
   description:
-    "Följ hur Högskolekompassen länkar aktuella utbildningstillfällen från Susa-navet till matchningsprofiler.",
+    "Följ liveutbildningar, datatäckning och interna matchningssignaler från Susa-navet.",
   alternates: { canonical: canonicalUrl("/datakvalitet") },
 };
 
@@ -45,22 +45,22 @@ export default async function DataQualityPage() {
         <span className="eyebrow">Datakvalitet · Live Matching</span>
         <h1>Datakvalitet & länkning</h1>
         <p className="lead">
-          Här går det att följa hur stor del av Susa-navets högskoleutbud som Högskolekompassen kan koppla till de egna
-          matchningsprofilerna. En omatchad post ligger fortfarande kvar i livekatalogen – den saknar bara personlig profilmatchning.
+          Här går det att följa hur mycket liveutbildningsdata som är synkad och hur många poster som har extra interna
+          matchningssignaler. Även poster utan sådan koppling kan fortfarande matchas direkt från sin livedata.
         </p>
         <div className="qualityMetaRow">
           <span>Skolform: <strong>{status.schoolType || "HS"}</strong></span>
           <span>Senaste synk: <strong>{status.lastSync?.value ? new Date(status.lastSync.value).toLocaleString("sv-SE") : "saknas"}</strong></span>
-          <Link href="/aktuellt" className="textButton">Öppna livekatalogen →</Link>
+          <Link href="/utbildningar" className="textButton">Öppna utbildningar →</Link>
         </div>
       </section>
 
       <section className="shell qualitySection">
         <div className="qualityStatsGrid">
           <article><span>Programstarter</span><strong>{quality.total.toLocaleString("sv-SE")}</strong><small>Grundnivå från Susa-navet</small></article>
-          <article><span>Kopplade</span><strong>{quality.linked.toLocaleString("sv-SE")}</strong><small>{quality.linkRate}% av live-utbudet</small></article>
+          <article><span>Med intern signal</span><strong>{quality.linked.toLocaleString("sv-SE")}</strong><small>{quality.linkRate}% av live-utbudet</small></article>
           <article><span>Hög länksäkerhet</span><strong>{quality.confidence.high.toLocaleString("sv-SE")}</strong><small>≥ 75% länkscore</small></article>
-          <article><span>Omatchade</span><strong>{quality.unlinked.toLocaleString("sv-SE")}</strong><small>synliga, men utan profilkoppling</small></article>
+          <article><span>Direktmatchade</span><strong>{quality.unlinked.toLocaleString("sv-SE")}</strong><small>synliga och matchbara från livedata</small></article>
         </div>
 
         <div className="qualityGrid">
@@ -90,7 +90,7 @@ export default async function DataQualityPage() {
         </div>
 
         <article className="qualityCard qualityWideCard">
-          <div className="qualityCardHeader"><span className="eyebrow">Förbättringskö</span><h2>Vanligaste omatchade utbildningarna</h2><p>Den här listan visar var nästa synonym, canonical-profil eller ämnesregel gör mest nytta.</p></div>
+            <div className="qualityCardHeader"><span className="eyebrow">Förbättringskö</span><h2>Utbildningar utan extra matchningssignal</h2><p>Den här listan visar var nästa synonym eller ämnesregel gör mest nytta.</p></div>
           <div className="qualityTableWrap">
             <table className="qualityTable">
               <thead><tr><th>Utbildning</th><th>Lärosäte</th><th>Typ</th><th>Tillfällen</th></tr></thead>
@@ -102,12 +102,12 @@ export default async function DataQualityPage() {
         </article>
 
         <article className="qualityCard qualityWideCard">
-          <div className="qualityCardHeader"><span className="eyebrow">Live-täckning</span><h2>Profiler med flest kopplade tillfällen</h2></div>
+          <div className="qualityCardHeader"><span className="eyebrow">Live-täckning</span><h2>Interna signaler med flest kopplade tillfällen</h2></div>
           <div className="qualityTableWrap">
             <table className="qualityTable">
-              <thead><tr><th>Profil</th><th>Område</th><th>Tillfällen</th><th>Snittscore</th></tr></thead>
+              <thead><tr><th>Signal</th><th>Område</th><th>Tillfällen</th><th>Snittscore</th></tr></thead>
               <tbody>{quality.topCanonical.map((row) => (
-                <tr key={row.id}><td><Link href={`/utbildningar/${row.id}`}><strong>{row.title}</strong></Link></td><td>{row.category}</td><td>{row.events}</td><td>{row.avgLinkScore}%</td></tr>
+                <tr key={row.id}><td><strong>{row.title}</strong></td><td>{row.category}</td><td>{row.events}</td><td>{row.avgLinkScore}%</td></tr>
               ))}</tbody>
             </table>
           </div>

@@ -225,7 +225,7 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
             <span className="eyebrow">Aktuellt utbud · Susa-navet</span>
             <h2>Verkliga utbildningstillfällen som liknar den här profilen</h2>
           </div>
-          <Link href="/aktuellt" className="textButton">Se hela live-katalogen →</Link>
+          <Link href="/utbildningar" className="textButton">Se alla utbildningar →</Link>
         </div>
 
         {liveOfferings.length ? (
@@ -265,7 +265,7 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
           <div className="liveInlineEmpty">
             <strong>Inga synkade tillfällen är kopplade till profilen ännu.</strong>
             <p>Det kan betyda att live-synken inte har körts, att inget aktuellt tillfälle finns eller att titeln ännu inte har fått en säker automatisk koppling.</p>
-            <Link href="/aktuellt" className="button buttonGhost buttonSmall">Öppna aktuellt utbud</Link>
+            <Link href="/utbildningar" className="button buttonGhost buttonSmall">Öppna utbildningar</Link>
           </div>
         )}
       </section>
@@ -280,7 +280,7 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
           </div>
           <div className="relatedGrid">
             {related.map((item) => (
-              <Link className="relatedCard" href={`/utbildningar/${item.id}`} key={item.id}>
+              <Link className="relatedCard" href={`/utbildningar?search=${encodeURIComponent(item.title)}`} key={item.id}>
                 <span>{item.degree} · {item.years} år</span>
                 <h3>{item.title}</h3>
                 <p>{item.institution} · {item.city}</p>
