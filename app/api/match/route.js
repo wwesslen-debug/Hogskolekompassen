@@ -3,7 +3,11 @@ import { getLiveDataStatus, getLiveRecommendationCandidates, getQuestions } from
 import { calculateProfile } from "@/lib/matching";
 import { buildLiveMatchResult, DEFAULT_LIVE_CANDIDATE_LIMIT } from "@/lib/live-matching";
 import { getAdaptiveQuestionsByIds } from "@/lib/adaptive";
-import { getRoutedAdaptiveQuestionCount, normalizeIntentCertainty } from "@/lib/question-router";
+import {
+  getRoutedAdaptiveQuestionCount,
+  inferSelectedInterestsFromAnswers,
+  resolveIntentCertainty,
+} from "@/lib/question-router";
 import { getQuestionsForQuizMode, getQuizModeResultMeta, normalizeQuizMode } from "@/lib/quiz-modes";
 import priorities from "@/data/priorities.json";
 import dealBreakers from "@/data/dealbreakers.json";
@@ -21,19 +25,22 @@ export async function POST(request) {
     const answers = body?.answers || {};
     const adaptiveAnswers = body?.adaptiveAnswers || {};
     const mode = normalizeQuizMode(body?.mode);
-    const intentCertainty = normalizeIntentCertainty(body?.intentCertainty);
+    const intentCertainty = resolveIntentCertainty(answers, body?.intentCertainty);
     const selectedPriorities = Array.isArray(body?.priorities)
       ? body.priorities.filter((id) => validPriorities.has(id)).slice(0, 3)
       : [];
     const selectedDealBreakers = Array.isArray(body?.dealBreakers)
       ? body.dealBreakers.filter((id) => validDealBreakers.has(id)).slice(0, 6)
       : [];
-    const selectedInterests = Array.isArray(body?.interests)
+    const explicitSelectedInterests = Array.isArray(body?.interests)
       ? body.interests.filter((id) => validInterests.has(id)).slice(0, 3)
       : [];
 
     const fullQuestionBank = getQuestions();
-    const questions = getQuestionsForQuizMode(fullQuestionBank, mode, answers, { selectedInterests, intentCertainty });
+    const questions = getQuestionsForQuizMode(fullQuestionBank, mode, answers, {
+      selectedInterests: explicitSelectedInterests,
+      intentCertainty,
+    });
     const validAnswers = questions.filter((question) => {
       const answer = Number(answers[String(question.id)] ?? answers[question.id]);
       return Number.isInteger(answer) && answer >= 0 && answer <= 5;
@@ -60,6 +67,7 @@ export async function POST(request) {
     const profileQuestions = [...questions, ...adaptiveQuestions];
     const allAnswers = { ...answers, ...validatedAdaptiveAnswers };
     const profileResult = calculateProfile(profileQuestions, allAnswers);
+    const selectedInterests = inferSelectedInterestsFromAnswers(profileQuestions, allAnswers, explicitSelectedInterests);
     const status = await getLiveDataStatus();
     const candidates = status.ready && status.eventCount
       ? await getLiveRecommendationCandidates({ limit: DEFAULT_LIVE_CANDIDATE_LIMIT })

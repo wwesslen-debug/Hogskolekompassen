@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import priorityOptions from "@/data/priorities.json";
 import dealBreakerOptions from "@/data/dealbreakers.json";
-import educationInterestOptions from "@/data/education-interests.json";
 import { trackFunnelEvent } from "@/lib/analytics-client";
 import { QUIZ_MODES, getQuestionsForQuizMode, getQuizModeConfig, normalizeQuizMode } from "@/lib/quiz-modes";
 
@@ -15,33 +14,6 @@ const answerOptions = [
   { value: 4, label: "Stämmer ganska bra" },
   { value: 5, label: "Stämmer helt" },
 ];
-
-const intentCertaintyOptions = [
-  {
-    id: "specific",
-    label: "Jag tror jag vet",
-    description: "Prioritera de områden jag väljer och ställ mer direkta följdfrågor.",
-  },
-  {
-    id: "some",
-    label: "Jag har några spår",
-    description: "Väg in mina idéer, men låt kompassen jämföra närliggande alternativ.",
-  },
-  {
-    id: "explore",
-    label: "Jag vill upptäcka",
-    description: "Ställ bredare frågor och låt liveutbudet öppna fler riktningar.",
-  },
-];
-
-const sectionDescriptions = {
-  "Intressen": "Vad du spontant dras till",
-  "Intresse & riktning": "Det du själv tror kan passa",
-  "Sätt att tänka": "Hur du angriper problem",
-  "Arbetssätt": "Vilken arbetsform du trivs med",
-  "Framtid & yrkesvardag": "Vad du vill få ut av ett framtida arbete",
-  "Studier & preferenser": "Hur du vill att utbildningen ska kännas",
-};
 
 export default function Quiz({ questions }) {
   const router = useRouter();
@@ -73,8 +45,6 @@ export default function Quiz({ questions }) {
   const currentAdaptiveAnswer = hasAdaptiveAnswer ? adaptiveAnswers[adaptiveQuestion?.id] : null;
   const progress = activeQuestions.length ? Math.round(((index + 1) / activeQuestions.length) * 100) : 0;
 
-  const sections = useMemo(() => [...new Set(activeQuestions.map((item) => item.section))], [activeQuestions]);
-  const sectionIndex = sections.indexOf(question?.section);
   const answeredCount = useMemo(
     () => activeQuestions.filter((item) => Object.prototype.hasOwnProperty.call(answers, item.id)).length,
     [activeQuestions, answers]
@@ -99,7 +69,7 @@ export default function Quiz({ questions }) {
     setDealBreakers([]);
     setSubmitting(false);
     setError("");
-    setPhase("interests");
+    setPhase("questions");
   }
 
   function choose(value) {
@@ -262,7 +232,7 @@ export default function Quiz({ questions }) {
       return;
     }
     if (phase === "questions" && index === 0) {
-      setPhase("interests");
+      setPhase("mode");
       return;
     }
     setIndex((value) => Math.max(0, value - 1));
@@ -274,9 +244,9 @@ export default function Quiz({ questions }) {
     return (
       <section className="quizWrap quizModeWrap">
         <div className="quizModeIntro">
-          <span className="eyebrow">Starta kompassen</span>
-          <h1>Hur mycket vill du svara på?</h1>
-          <p>Välj ett kortare första test eller hela kompassen direkt. Båda använder adaptiva frågor mot liveutbildningar.</p>
+          <span className="eyebrow">Högskolekompassen</span>
+          <h1>Hitta utbildningar som passar dig</h1>
+          <p>Frågorna anpassas efter dina svar. Ibland fördjupar vi oss i sådant som verkar passa dig, och ibland utmanar vi resultatet för att upptäcka alternativ du kanske inte själv hade tänkt på.</p>
         </div>
 
         <div className="quizModeGrid">
@@ -289,84 +259,11 @@ export default function Quiz({ questions }) {
             >
               <span>{mode.label}</span>
               <strong>{mode.questionLabel}</strong>
+              <small className="quizModeDuration">{mode.durationLabel}</small>
               <small>{mode.description}</small>
-              <em>{mode.id === "quick" ? "Starta snabbtest" : "Starta hela kompassen"} →</em>
+              <em>{mode.id === "quick" ? "Starta Snabbkompassen" : "Starta Djupkompassen"} →</em>
             </button>
           ))}
-        </div>
-      </section>
-    );
-  }
-
-  if (phase === "interests") {
-    return (
-      <section className="quizWrap priorityWrap interestQuestionWrap">
-        <div className="quizTopline">
-          <span>{quizModeConfig?.label} · riktning och intressen</span>
-          <span>{selectedInterests.length}/3 områden</span>
-        </div>
-        <div className="progressTrack" aria-hidden="true"><div className="progressFill" style={{ width: "0%" }} /></div>
-
-        <div className="quizCard priorityCard interestQuestionCard">
-          <div className="questionEyebrow">Först: var står du?</div>
-          <h1>Tror du redan att du vet ungefär vad du vill läsa?</h1>
-          <p className="quizHint">
-            Svaret styr vilka frågor som kommer senare. Väljer du en tydlig riktning får du fler raka frågor om just den.
-          </p>
-
-          <div className="priorityGrid intentChoiceGrid" role="group" aria-label="Välj hur tydlig din riktning är">
-            {intentCertaintyOptions.map((item) => (
-              <button
-                type="button"
-                className={`priorityOption intentChoiceOption ${intentCertainty === item.id ? "selected" : ""}`}
-                key={item.id}
-                onClick={() => {
-                  setIntentCertainty(item.id);
-                  setError("");
-                }}
-                aria-pressed={intentCertainty === item.id}
-              >
-                <span className="priorityCheck">{intentCertainty === item.id ? "✓" : "+"}</span>
-                <strong>{item.label}</strong>
-                <span>{item.description}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="questionEyebrow interestStepDivider">Välj riktningar att testa</div>
-          <p className="quizHint">
-            Välj upp till tre områden. De används både för att välja adaptiva frågor och för att poängsätta liveutbildningar.
-          </p>
-
-          <div className="interestGrid" role="group" aria-label="Välj upp till tre intressen">
-            {educationInterestOptions.map((item) => {
-              const selected = selectedInterests.includes(item.id);
-              const disabled = !selected && selectedInterests.length >= 3;
-              return (
-                <button
-                  type="button"
-                  className={`interestOption ${selected ? "selected" : ""}`}
-                  key={item.id}
-                  onClick={() => toggleInterest(item.id)}
-                  disabled={disabled}
-                  aria-pressed={selected}
-                >
-                  <span className="priorityCheck">{selected ? "✓" : "+"}</span>
-                  <strong>{item.label}</strong>
-                  <span>{item.description}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {error ? <p className="formError">{error}</p> : null}
-          <div className="quizActions">
-            <button type="button" className="textButton" onClick={previous}>← Byt test</button>
-            <div className="answeredText">{intentCertainty ? "Riktning vald" : "Välj riktning"} · {selectedInterests.length}/3 områden</div>
-            <button type="button" className="button" onClick={continueFromInterests}>
-              {selectedInterests.length ? "Börja adaptiva frågor →" : "Börja brett →"}
-            </button>
-          </div>
         </div>
       </section>
     );
@@ -541,25 +438,16 @@ export default function Quiz({ questions }) {
 
   return (
     <section className="quizWrap">
-      <div className="sectionStepper" aria-label="Testets delar">
-        {sections.map((section, i) => (
-          <div className={`sectionStep ${i < sectionIndex ? "done" : ""} ${i === sectionIndex ? "active" : ""}`} key={section}>
-            <span>{i < sectionIndex ? "✓" : i + 1}</span>
-            <div><strong>{section}</strong><small>{sectionDescriptions[section]}</small></div>
-          </div>
-        ))}
-      </div>
-
       <div className="quizTopline">
-        <span>{quizModeConfig?.label} · {question.section} · fråga {index + 1} av {activeQuestions.length}</span>
+        <span>{quizModeConfig?.label} · fråga {index + 1}</span>
         <span>{progress}%</span>
       </div>
       <div className="progressTrack" aria-hidden="true"><div className="progressFill" style={{ width: `${progress}%` }} /></div>
 
       <div className="quizCard">
-        <div className="questionEyebrow">Vad stämmer bäst in på dig?</div>
+        <div className="questionEyebrow">Fråga {index + 1}</div>
         <h1>{question.text}</h1>
-        <p className="quizHint">Svara spontant. Det finns inga rätt eller fel svar.</p>
+        <p className="quizHint">Svara spontant. Nästa fråga väljs utifrån vad systemet behöver förstå bättre.</p>
 
         <div className="answerGrid" role="radiogroup" aria-label="Svarsalternativ">
           {answerOptions.map((option) => (
@@ -578,7 +466,7 @@ export default function Quiz({ questions }) {
         </div>
 
         <button type="button" className={`unsureOption ${currentAnswer === 0 ? "selected" : ""}`} onClick={() => choose(0)} aria-pressed={currentAnswer === 0}>
-          <span>?</span><div><strong>Osäker / vet inte</strong><small>Svaret räknas inte in i just de profildimensionerna och kan utlösa riktade följdfrågor.</small></div>
+          <span>?</span><div><strong>Osäker / vet inte</strong><small>Svaret räknas inte in för just den här frågan och kan göra att en annan kontrollfråga väljs senare.</small></div>
         </button>
 
         {error ? <p className="formError">{error}</p> : null}

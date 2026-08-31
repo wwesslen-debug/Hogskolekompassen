@@ -92,13 +92,13 @@ export default function Results() {
             </p>
             {isQuickResult ? (
               <p className="resultModeNotice">
-                Snabbtestet ger en första riktning baserad på {result.baseQuestionCount} av {result.fullQuestionCount} frågor. Hela kompassen gör profilen stabilare.
+                Snabbkompassen ger en första riktning baserad på {result.baseQuestionCount} adaptivt valda frågor. Djupkompassen gör profilen stabilare.
               </p>
             ) : null}
             <div className="resultSummaryStats">
               <div><strong>{result.certainAnswers}</strong><span>tydliga svar</span></div>
-              <div><strong>{result.quizModeLabel || "Kompass"}</strong><span>{result.baseQuestionCount ? `${result.baseQuestionCount}/${result.fullQuestionCount} frågor` : "frågeset"}</span></div>
-              <div><strong>{result.adaptiveQuestionCount || 0}</strong><span>adaptivt valda</span></div>
+              <div><strong>{result.quizModeLabel || "Kompass"}</strong><span>{result.baseQuestionCount ? `${result.baseQuestionCount} frågor` : "frågeset"}</span></div>
+              <div><strong>{result.adaptiveQuestionCount || 0}</strong><span>valda av motorn</span></div>
               <div><strong>{result.liveCatalogCount ?? result.catalogCount}</strong><span>{liveOnly ? "liveutbildningar analyserade" : "matchprofiler analyserade"}</span></div>
             </div>
           </div>
@@ -151,12 +151,12 @@ export default function Results() {
 
         <div className="resultPreferenceGrid">
           <div className="priorityResultBox interestResultBox">
-            <div><span className="eyebrow">Riktning & intressen</span><h3>Det här styrde de adaptiva frågorna</h3></div>
+            <div><span className="eyebrow">Riktning & intressen</span><h3>Det här fångade motorn upp</h3></div>
             <div className="priorityResultChips">
               {result.intentCertaintyLabel ? <span>{result.intentCertaintyLabel}</span> : null}
               {result.selectedInterests?.length
                 ? result.selectedInterests.map((item) => <span key={item.id}>{item.label}</span>)
-                : <span>Inga intressen valda</span>}
+                : <span>Inga tydliga riktningar fångades upp</span>}
             </div>
           </div>
           <div className="priorityResultBox">
