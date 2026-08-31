@@ -68,6 +68,10 @@ export default function Results() {
   const topArea = result.areaGroups?.[0];
   const isQuickResult = result.quizMode === "quick";
   const precisionLabel = result.profilePrecisionLabel || `${result.confidence}% säkert underlag`;
+  const topAreasText = result.areas?.length
+    ? result.areas.slice(0, 3).map((x) => x.category).join(", ")
+    : "din personliga profil";
+  const liveOnly = result.recommendationMode === "live_only";
 
   return (
     <main>
@@ -80,28 +84,28 @@ export default function Results() {
             </div>
             <h1>{result.profileTitle}</h1>
             <p className="lead">
-              Dina svar pekar framför allt mot <strong>{result.areas.slice(0, 3).map((x) => x.category).join(", ")}</strong>.
-              Profilmatchningen kombineras med aktuella utbildningstillfällen när livekatalogen är synkad, samtidigt som delpoängen visar <em>varför</em> en utbildning hamnar högt.
+              Dina svar pekar framför allt mot <strong>{topAreasText}</strong>.
+              Matchningen räknas mot aktuella utbildningstillfällen i livekatalogen, samtidigt som delpoängen visar <em>varför</em> en utbildning hamnar högt.
             </p>
             <p className="resultHelperNotice">
               Högskolekompassen är ett hjälpande verktyg för att utforska möjliga riktningar. Resultatet säger inte vad du borde eller inte borde plugga.
             </p>
             {isQuickResult ? (
               <p className="resultModeNotice">
-                Snabbtestet ger en första riktning baserad på {result.baseQuestionCount} av {result.fullQuestionCount} grundfrågor. Hela kompassen gör profilen stabilare.
+                Snabbtestet ger en första riktning baserad på {result.baseQuestionCount} av {result.fullQuestionCount} frågor. Hela kompassen gör profilen stabilare.
               </p>
             ) : null}
             <div className="resultSummaryStats">
               <div><strong>{result.certainAnswers}</strong><span>tydliga svar</span></div>
-              <div><strong>{result.quizModeLabel || "Kompass"}</strong><span>{result.baseQuestionCount ? `${result.baseQuestionCount}/${result.fullQuestionCount} grundfrågor` : "frågeset"}</span></div>
-              <div><strong>{result.adaptiveQuestionCount || 0}</strong><span>adaptiva frågor</span></div>
-              <div><strong>{result.catalogCount}</strong><span>matchprofiler analyserade</span></div>
+              <div><strong>{result.quizModeLabel || "Kompass"}</strong><span>{result.baseQuestionCount ? `${result.baseQuestionCount}/${result.fullQuestionCount} frågor` : "frågeset"}</span></div>
+              <div><strong>{result.adaptiveQuestionCount || 0}</strong><span>adaptivt valda</span></div>
+              <div><strong>{result.liveCatalogCount ?? result.catalogCount}</strong><span>{liveOnly ? "liveutbildningar analyserade" : "matchprofiler analyserade"}</span></div>
             </div>
           </div>
 
           {topArea ? (
             <div className="topMatchCard topMatchCardV3">
-              <div className="matchBadge">{topArea.score}% områdesmatch</div>
+              <div className="matchBadge">{topArea.score}% {liveOnly ? "liveområdesmatch" : "områdesmatch"}</div>
               <span className="cardKicker">Starkaste riktning</span>
               <h2>{topArea.category}</h2>
               <p>{topArea.description}</p>
@@ -147,8 +151,9 @@ export default function Results() {
 
         <div className="resultPreferenceGrid">
           <div className="priorityResultBox interestResultBox">
-            <div><span className="eyebrow">Dina intressen</span><h3>Det här gav en liten boost</h3></div>
+            <div><span className="eyebrow">Riktning & intressen</span><h3>Det här styrde de adaptiva frågorna</h3></div>
             <div className="priorityResultChips">
+              {result.intentCertaintyLabel ? <span>{result.intentCertaintyLabel}</span> : null}
               {result.selectedInterests?.length
                 ? result.selectedInterests.map((item) => <span key={item.id}>{item.label}</span>)
                 : <span>Inga intressen valda</span>}
@@ -188,7 +193,7 @@ export default function Results() {
           ) : null}
 
           <div className="areaResultList">
-            {result.areaGroups.map((area, index) => (
+            {(result.areaGroups || []).map((area, index) => (
               <article className={`areaResultCard ${index === 0 ? "featuredArea" : ""}`} key={area.category}>
                 <div className="areaResultScore"><span>#{index + 1}</span><strong>{area.score}%</strong><small>områdesmatch</small></div>
                 <div className="areaResultBody">
@@ -206,7 +211,7 @@ export default function Results() {
       <section className="shell resultSection">
         <div className="sectionHeading">
           <div><span className="eyebrow">Nästa steg</span><h2>Använd matchningen som urval, inte facit</h2></div>
-          <p>De gamla katalogprofilerna används nu som intern förklaringsmodell. När sidan visar utbildningar för dig prioriteras aktuella liveposter.</p>
+          <p>Resultaten bygger på aktuella liveposter. Kontrollera alltid utbildningssidan för behörighet, upplägg och ansökningsdatum.</p>
         </div>
 
         <div className="dataNotice dataNoticeV2">
@@ -217,7 +222,7 @@ export default function Results() {
           {isQuickResult ? <Link className="button" href="/kompass">Gör hela kompassen</Link> : null}
           <Link className="button buttonGhost" href="/kompass">Gör om kompassen</Link>
           <Link className="button buttonGhost" href="/min-vag">Öppna Min väg</Link>
-          <Link className={isQuickResult ? "button buttonGhost" : "button"} href="/utbildningar">Utforska alla utbildningar</Link>
+          <Link className={isQuickResult ? "button buttonGhost" : "button"} href={liveOnly ? "/aktuellt" : "/utbildningar"}>{liveOnly ? "Utforska livekatalogen" : "Utforska alla utbildningar"}</Link>
         </div>
       </section>
     </main>

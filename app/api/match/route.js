@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
-import { getPrograms, getQuestions } from "@/lib/db";
-import { buildMatchResult, calculateProfile } from "@/lib/matching";
+import { getLiveDataStatus, getLiveRecommendationCandidates, getQuestions } from "@/lib/db";
+import { calculateProfile } from "@/lib/matching";
+import { buildLiveMatchResult, DEFAULT_LIVE_CANDIDATE_LIMIT } from "@/lib/live-matching";
 import { getAdaptiveQuestionsByIds } from "@/lib/adaptive";
+import { getRoutedAdaptiveQuestionCount, normalizeIntentCertainty } from "@/lib/question-router";
 import { getQuestionsForQuizMode, getQuizModeResultMeta, normalizeQuizMode } from "@/lib/quiz-modes";
 import priorities from "@/data/priorities.json";
 import dealBreakers from "@/data/dealbreakers.json";
@@ -19,6 +21,7 @@ export async function POST(request) {
     const answers = body?.answers || {};
     const adaptiveAnswers = body?.adaptiveAnswers || {};
     const mode = normalizeQuizMode(body?.mode);
+    const intentCertainty = normalizeIntentCertainty(body?.intentCertainty);
     const selectedPriorities = Array.isArray(body?.priorities)
       ? body.priorities.filter((id) => validPriorities.has(id)).slice(0, 3)
       : [];
@@ -30,7 +33,7 @@ export async function POST(request) {
       : [];
 
     const fullQuestionBank = getQuestions();
-    const questions = getQuestionsForQuizMode(fullQuestionBank, mode);
+    const questions = getQuestionsForQuizMode(fullQuestionBank, mode, answers, { selectedInterests, intentCertainty });
     const validAnswers = questions.filter((question) => {
       const answer = Number(answers[String(question.id)] ?? answers[question.id]);
       return Number.isInteger(answer) && answer >= 0 && answer <= 5;
@@ -43,7 +46,10 @@ export async function POST(request) {
       );
     }
 
-    const adaptiveIds = Object.keys(adaptiveAnswers).map(Number).filter(Number.isInteger);
+    const routedQuestionIds = new Set(questions.map((question) => Number(question.id)));
+    const adaptiveIds = Object.keys(adaptiveAnswers)
+      .map(Number)
+      .filter((id) => Number.isInteger(id) && !routedQuestionIds.has(id));
     const adaptiveQuestions = getAdaptiveQuestionsByIds(adaptiveIds);
     const validatedAdaptiveAnswers = {};
     for (const question of adaptiveQuestions) {
@@ -54,13 +60,22 @@ export async function POST(request) {
     const profileQuestions = [...questions, ...adaptiveQuestions];
     const allAnswers = { ...answers, ...validatedAdaptiveAnswers };
     const profileResult = calculateProfile(profileQuestions, allAnswers);
-    const programs = getPrograms({ limit: 1000 });
-    const result = buildMatchResult(profileResult, programs, selectedPriorities, selectedDealBreakers, selectedInterests);
+    const status = await getLiveDataStatus();
+    const candidates = status.ready && status.eventCount
+      ? await getLiveRecommendationCandidates({ limit: DEFAULT_LIVE_CANDIDATE_LIMIT })
+      : [];
+    const result = buildLiveMatchResult(profileResult, candidates, {
+      selectedPriorities,
+      selectedDealBreakers,
+      selectedInterests,
+      intentCertainty,
+    });
 
     return NextResponse.json({
       ...result,
+      liveStatus: status,
       ...getQuizModeResultMeta(mode, questions.length, fullQuestionBank.length),
-      adaptiveQuestionCount: adaptiveQuestions.length,
+      adaptiveQuestionCount: adaptiveQuestions.length + getRoutedAdaptiveQuestionCount(questions),
     });
   } catch (error) {
     console.error("Match calculation failed:", error?.message || error);

@@ -16,8 +16,27 @@ const answerOptions = [
   { value: 5, label: "Stämmer helt" },
 ];
 
+const intentCertaintyOptions = [
+  {
+    id: "specific",
+    label: "Jag tror jag vet",
+    description: "Prioritera de områden jag väljer och ställ mer direkta följdfrågor.",
+  },
+  {
+    id: "some",
+    label: "Jag har några spår",
+    description: "Väg in mina idéer, men låt kompassen jämföra närliggande alternativ.",
+  },
+  {
+    id: "explore",
+    label: "Jag vill upptäcka",
+    description: "Ställ bredare frågor och låt liveutbudet öppna fler riktningar.",
+  },
+];
+
 const sectionDescriptions = {
   "Intressen": "Vad du spontant dras till",
+  "Intresse & riktning": "Det du själv tror kan passa",
   "Sätt att tänka": "Hur du angriper problem",
   "Arbetssätt": "Vilken arbetsform du trivs med",
   "Framtid & yrkesvardag": "Vad du vill få ut av ett framtida arbete",
@@ -34,6 +53,7 @@ export default function Quiz({ questions }) {
   const [adaptiveIndex, setAdaptiveIndex] = useState(0);
   const [adaptiveInfo, setAdaptiveInfo] = useState(null);
   const [selectedInterests, setSelectedInterests] = useState([]);
+  const [intentCertainty, setIntentCertainty] = useState("");
   const [priorities, setPriorities] = useState([]);
   const [dealBreakers, setDealBreakers] = useState([]);
   const [phase, setPhase] = useState("mode");
@@ -42,8 +62,8 @@ export default function Quiz({ questions }) {
 
   const quizModeConfig = quizMode ? getQuizModeConfig(quizMode) : null;
   const activeQuestions = useMemo(
-    () => quizMode ? getQuestionsForQuizMode(questions, quizMode) : [],
-    [questions, quizMode]
+    () => quizMode ? getQuestionsForQuizMode(questions, quizMode, answers, { selectedInterests, intentCertainty }) : [],
+    [answers, questions, quizMode, selectedInterests, intentCertainty]
   );
   const question = activeQuestions[index];
   const adaptiveQuestion = adaptiveQuestions[adaptiveIndex];
@@ -55,10 +75,13 @@ export default function Quiz({ questions }) {
 
   const sections = useMemo(() => [...new Set(activeQuestions.map((item) => item.section))], [activeQuestions]);
   const sectionIndex = sections.indexOf(question?.section);
-  const answeredCount = useMemo(() => Object.keys(answers).length, [answers]);
+  const answeredCount = useMemo(
+    () => activeQuestions.filter((item) => Object.prototype.hasOwnProperty.call(answers, item.id)).length,
+    [activeQuestions, answers]
+  );
   const uncertainCount = useMemo(
-    () => Object.values(answers).filter((value) => Number(value) === 0).length,
-    [answers]
+    () => activeQuestions.filter((item) => Number(answers[item.id]) === 0).length,
+    [activeQuestions, answers]
   );
 
   function startQuizMode(mode) {
@@ -71,6 +94,7 @@ export default function Quiz({ questions }) {
     setAdaptiveIndex(0);
     setAdaptiveInfo(null);
     setSelectedInterests([]);
+    setIntentCertainty("");
     setPriorities([]);
     setDealBreakers([]);
     setSubmitting(false);
@@ -108,6 +132,10 @@ export default function Quiz({ questions }) {
   }
 
   function continueFromInterests() {
+    if (!intentCertainty) {
+      setError("Välj om du redan har en riktning eller vill upptäcka brett.");
+      return;
+    }
     setIndex(0);
     setError("");
     setPhase("questions");
@@ -132,7 +160,7 @@ export default function Quiz({ questions }) {
       const response = await fetch("/api/refine", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, mode: quizMode }),
+        body: JSON.stringify({ answers, interests: selectedInterests, intentCertainty, mode: quizMode }),
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || "Kunde inte analysera följdfrågor.");
@@ -154,7 +182,7 @@ export default function Quiz({ questions }) {
       const response = await fetch("/api/match", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, adaptiveAnswers, interests: selectedInterests, priorities, dealBreakers, mode: quizMode }),
+        body: JSON.stringify({ answers, adaptiveAnswers, interests: selectedInterests, intentCertainty, priorities, dealBreakers, mode: quizMode }),
       });
 
       if (!response.ok) {
@@ -168,6 +196,7 @@ export default function Quiz({ questions }) {
         certainAnswers: result.certainAnswers,
         adaptiveQuestionCount: result.adaptiveQuestionCount || 0,
         selectedInterests: result.selectedInterests?.length || 0,
+        intentCertainty: result.intentCertainty || intentCertainty,
         selectedPriorities: result.selectedPriorities?.length || 0,
         selectedDealBreakers: result.selectedDealBreakers?.length || 0,
       });
@@ -247,7 +276,7 @@ export default function Quiz({ questions }) {
         <div className="quizModeIntro">
           <span className="eyebrow">Starta kompassen</span>
           <h1>Hur mycket vill du svara på?</h1>
-          <p>Välj ett kortare första test eller hela kompassen direkt. Båda använder samma matchningsmodell.</p>
+          <p>Välj ett kortare första test eller hela kompassen direkt. Båda använder adaptiva frågor mot liveutbildningar.</p>
         </div>
 
         <div className="quizModeGrid">
@@ -273,17 +302,40 @@ export default function Quiz({ questions }) {
     return (
       <section className="quizWrap priorityWrap interestQuestionWrap">
         <div className="quizTopline">
-          <span>{quizModeConfig?.label} · valfritt intressesteg</span>
-          <span>{selectedInterests.length}/3 valda</span>
+          <span>{quizModeConfig?.label} · riktning och intressen</span>
+          <span>{selectedInterests.length}/3 områden</span>
         </div>
         <div className="progressTrack" aria-hidden="true"><div className="progressFill" style={{ width: "0%" }} /></div>
 
         <div className="quizCard priorityCard interestQuestionCard">
-          <div className="questionEyebrow">Valfritt steg</div>
-          <h1>Finns det något du gärna vill läsa mer om?</h1>
+          <div className="questionEyebrow">Först: var står du?</div>
+          <h1>Tror du redan att du vet ungefär vad du vill läsa?</h1>
           <p className="quizHint">
-            Välj upp till tre intressen om du vill. De påverkar utbildningspoängen lite grann, men du kan också hoppa
-            över detta och låta frågorna styra resultatet.
+            Svaret styr vilka frågor som kommer senare. Väljer du en tydlig riktning får du fler raka frågor om just den.
+          </p>
+
+          <div className="priorityGrid intentChoiceGrid" role="group" aria-label="Välj hur tydlig din riktning är">
+            {intentCertaintyOptions.map((item) => (
+              <button
+                type="button"
+                className={`priorityOption intentChoiceOption ${intentCertainty === item.id ? "selected" : ""}`}
+                key={item.id}
+                onClick={() => {
+                  setIntentCertainty(item.id);
+                  setError("");
+                }}
+                aria-pressed={intentCertainty === item.id}
+              >
+                <span className="priorityCheck">{intentCertainty === item.id ? "✓" : "+"}</span>
+                <strong>{item.label}</strong>
+                <span>{item.description}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="questionEyebrow interestStepDivider">Välj riktningar att testa</div>
+          <p className="quizHint">
+            Välj upp till tre områden. De används både för att välja adaptiva frågor och för att poängsätta liveutbildningar.
           </p>
 
           <div className="interestGrid" role="group" aria-label="Välj upp till tre intressen">
@@ -310,9 +362,9 @@ export default function Quiz({ questions }) {
           {error ? <p className="formError">{error}</p> : null}
           <div className="quizActions">
             <button type="button" className="textButton" onClick={previous}>← Byt test</button>
-            <div className="answeredText">Valfritt · välj upp till 3</div>
+            <div className="answeredText">{intentCertainty ? "Riktning vald" : "Välj riktning"} · {selectedInterests.length}/3 områden</div>
             <button type="button" className="button" onClick={continueFromInterests}>
-              {selectedInterests.length ? "Börja frågorna →" : "Hoppa över och börja →"}
+              {selectedInterests.length ? "Börja adaptiva frågor →" : "Börja brett →"}
             </button>
           </div>
         </div>

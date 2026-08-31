@@ -35,6 +35,13 @@ export default function LiveResultRecommendations({ result, variant = "default" 
       setOfferings([]);
       return;
     }
+    if (Array.isArray(result.liveOfferings)) {
+      setStatus(result.liveStatus || null);
+      setCoverage(result.liveCoverage || null);
+      setOfferings(result.liveOfferings);
+      setLoading(false);
+      return;
+    }
     const controller = new AbortController();
     setLoading(true);
     fetch("/api/live-recommendations", {
@@ -48,6 +55,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
         traitConfidence: result.traitConfidence,
         scoreById: result.scoreById,
         interests: (result.selectedInterests || []).map((item) => item.id || item),
+        intentCertainty: result.intentCertainty,
         priorities: (result.selectedPriorities || []).map((item) => item.id || item),
         dealBreakers: (result.selectedDealBreakers || []).map((item) => item.id || item),
       }),
@@ -68,6 +76,23 @@ export default function LiveResultRecommendations({ result, variant = "default" 
     return () => controller.abort();
   }, [idKey, result, isPrimary]);
 
+  if (!loading && !offerings.length && result?.recommendationMode === "live_only") {
+    return (
+      <section className={`liveResultSection ${isPrimary ? "primaryLiveResults" : ""}`}>
+        <div className="sectionHeading liveResultHeading">
+          <div>
+            <span className="eyebrow">Live från Susa-navet</span>
+            <h2>Inga aktuella liveutbildningar kunde matchas</h2>
+          </div>
+          <p>Din profil är sparad, men livekatalogen behöver innehålla synkade aktuella programstarter innan personliga utbildningsförslag kan visas.</p>
+        </div>
+        <div className="dataNotice">
+          <strong>Live-only-läge:</strong> matchningen använder inte den lokala katalogen som reserv. När livekatalogen är synkad visas resultaten här.
+        </div>
+      </section>
+    );
+  }
+
   if (!loading && !offerings.length) return null;
 
   return (
@@ -79,7 +104,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
         </div>
         <p>
           {isPrimary
-            ? "Här poängsätts verkliga utbildningstillfällen direkt mot din profil. Den gamla katalogkopplingen används bara som extra signal när den finns."
+            ? "Här poängsätts verkliga utbildningstillfällen direkt mot din profil. Resultatet bygger på de aktuella liveposterna som finns synkade just nu."
             : "Din personliga procent kommer från profilen och livedatan. Live-posten visar det faktiska utbildningstillfället och lärosätet."}
         </p>
       </div>
@@ -89,10 +114,11 @@ export default function LiveResultRecommendations({ result, variant = "default" 
           {offerings.slice(0, isPrimary ? 12 : 9).map((offering) => {
             const parent = programById[offering.canonicalProgramId];
             const personalScore = Math.round(Number(
-              offering.personalScore ?? result?.scoreById?.[offering.canonicalProgramId] ?? parent?.score ?? 0
+              offering.personalScore ?? result?.scoreByLiveOfferingId?.[offering.id] ?? result?.scoreById?.[offering.canonicalProgramId] ?? parent?.score ?? 0
             ));
             const application = applicationLabel(offering);
             const target = offering.applicationUrl || offering.sourceUrl;
+            const directLiveMatch = offering.matchSource === "live_profile" || !parent;
             return (
               <article className="liveResultCard" key={offering.id}>
                 <div className="liveResultCardTop">
@@ -113,7 +139,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                   {offering.level ? <span><small>Nivå</small><strong>{offering.level === "grund" ? "Grundnivå" : offering.level === "avancerad" ? "Avancerad" : offering.level}</strong></span> : null}
                 </div>
                 <div className="liveResultLinkInfo">
-                  {offering.canonicalProgramId ? (
+                  {!directLiveMatch && offering.canonicalProgramId ? (
                     <>
                       <span>Kopplad till <Link href={`/utbildningar/${offering.canonicalProgramId}`}>{parent?.title || "kompassprofil"}</Link></span>
                       <small>

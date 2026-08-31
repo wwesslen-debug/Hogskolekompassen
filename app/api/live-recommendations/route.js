@@ -4,7 +4,7 @@ import {
   getLiveRecommendationCandidates,
   getLiveRecommendationsForPrograms,
 } from "@/lib/db";
-import { scoreLiveOfferingForProfile } from "@/lib/live-profile-inference";
+import { compareLiveOfferings, scoreLiveCandidates } from "@/lib/live-matching";
 
 export const runtime = "nodejs";
 
@@ -19,28 +19,6 @@ function cleanIdList(value) {
   return (Array.isArray(value) ? value : [])
     .map((item) => (typeof item === "string" ? item : item?.id))
     .filter(Boolean);
-}
-
-function cleanScoreMap(value) {
-  if (!value || typeof value !== "object") return {};
-  return Object.fromEntries(
-    Object.entries(value)
-      .map(([key, score]) => [key, Number(score)])
-      .filter(([, score]) => Number.isFinite(score))
-  );
-}
-
-function dateValue(value) {
-  const time = value ? new Date(`${value}T12:00:00`).getTime() : Number.POSITIVE_INFINITY;
-  return Number.isFinite(time) ? time : Number.POSITIVE_INFINITY;
-}
-
-function applicationRank(offering) {
-  const today = new Date().toISOString().slice(0, 10);
-  if (offering.applicationDeadline && offering.applicationDeadline >= today && (!offering.applicationOpen || offering.applicationOpen <= today)) return 0;
-  if (offering.applicationOpen && offering.applicationOpen > today) return 1;
-  if (!offering.applicationDeadline && !offering.applicationOpen) return 2;
-  return 3;
 }
 
 function normalizeKey(value) {
@@ -59,37 +37,6 @@ function offeringKey(offering) {
     offering.period || offering.startDate || "",
     normalizeKey(offering.city),
   ].join("|");
-}
-
-function demandPriority(offering) {
-  const text = normalizeKey([
-    offering.title,
-    offering.degree,
-    offering.inferredCategory,
-    offering.providerName,
-  ].join(" "));
-
-  let score = 0;
-  if (/(lakare|jurist|psykolog|sjukskoterska|sjukskoterske|socionom|civilingenjor|hogskoleingenjor|systemvetenskap|datavetenskap|dataingenjor|ekonom|ekonomi|foretagsekonomi|larare|amneslarare|grundlarare|forskollarare|arkitekt|fysioterapeut|biomedicinsk analytiker|tandlakare|apotekare|röntgensjukskoterska|rontgensjukskoterska)/.test(text)) score += 8;
-  if (/(kandidatprogram|programmet|program i|yrkesexamen|kandidatexamen|hogskoleexamen)/.test(text)) score += 3;
-  if (/(pianostamm|kyrkomusiker|opera|cirkus|dockteater|konsthantverk)/.test(text)) score -= 8;
-  if (/(senare del|utbytesstudier|exchange studies|later part)/.test(text)) score -= 20;
-
-  return Math.max(-10, Math.min(10, score));
-}
-
-function rankingScore(offering) {
-  return Number(offering.personalScore || 0) + demandPriority(offering);
-}
-
-function compareOfferings(a, b) {
-  return rankingScore(b) - rankingScore(a)
-    || Number(b.personalScore || 0) - Number(a.personalScore || 0)
-    || applicationRank(a) - applicationRank(b)
-    || Number(b.matchConfidence || 0) - Number(a.matchConfidence || 0)
-    || Number(b.linkScore || 0) - Number(a.linkScore || 0)
-    || dateValue(a.startDate) - dateValue(b.startDate)
-    || String(a.title || "").localeCompare(String(b.title || ""), "sv");
 }
 
 export async function GET(request) {
@@ -132,7 +79,6 @@ export async function POST(request) {
   }
 
   const candidates = await getLiveRecommendationCandidates({ limit: candidateLimit });
-  const scoreById = cleanScoreMap(body.scoreById);
   const selectedPriorities = cleanIdList(body.priorities || body.selectedPriorities);
   const selectedDealBreakers = cleanIdList(body.dealBreakers || body.selectedDealBreakers);
   const selectedInterests = cleanIdList(body.interests || body.selectedInterests);
@@ -141,24 +87,18 @@ export async function POST(request) {
     traitConfidence: body.traitConfidence && typeof body.traitConfidence === "object" ? body.traitConfidence : {},
   };
 
-  const scored = candidates.map((offering) => ({
-    ...offering,
-    ...scoreLiveOfferingForProfile(offering, profileResult, {
-      scoreById,
-      selectedPriorities,
-      selectedDealBreakers,
-      selectedInterests,
-    }),
-  })).map((offering) => ({
-    ...offering,
-    demandPriority: demandPriority(offering),
-  }));
+  const scored = scoreLiveCandidates(profileResult, candidates, {
+    selectedPriorities,
+    selectedDealBreakers,
+    selectedInterests,
+    intentCertainty: body.intentCertainty,
+  });
 
   const preferredIds = new Set(ids);
   const eligible = scored
     .filter((offering) => offering.personalScore >= 42 || preferredIds.has(Number(offering.canonicalProgramId)))
-    .sort(compareOfferings);
-  const pool = eligible.length ? eligible : scored.sort(compareOfferings);
+    .sort(compareLiveOfferings);
+  const pool = eligible.length ? eligible : scored.sort(compareLiveOfferings);
   const seen = new Set();
   const offerings = [];
 
@@ -178,8 +118,8 @@ export async function POST(request) {
       candidateCount: candidates.length,
       scoredCount: scored.length,
       eligibleCount: eligible.length,
-      linkedScoreCount: scored.filter((item) => item.linkedScore != null).length,
-      inferredOnlyCount: scored.filter((item) => item.matchSource === "live_profile").length,
+      linkedScoreCount: 0,
+      inferredOnlyCount: scored.length,
     },
   });
 }

@@ -992,6 +992,9 @@ img { max-width: 100%; }
 }
 .priorityOption.selected .priorityCheck { background: var(--teal); color: white; border-color: var(--teal); }
 .interestQuestionCard h1 { max-width: 760px; }
+.intentChoiceGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; margin-bottom: 30px; }
+.intentChoiceOption { min-height: 136px; }
+.interestStepDivider { display: block; margin-top: 4px; padding-top: 24px; border-top: 1px solid var(--line); }
 .interestGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
