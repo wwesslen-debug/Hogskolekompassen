@@ -37,6 +37,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(Boolean(initialStatus?.eventCount));
   const [loadingMore, setLoadingMore] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   const hasFilters = Boolean(search || period || city || provider || kind || applicationStatus || distance);
   const canLoadMore = !loading && !loadingMore && offerings.length < total;
@@ -44,36 +45,64 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   const kindOptions = options.kinds.filter(Boolean);
 
   useEffect(() => {
-    const initialSearch = new URLSearchParams(window.location.search).get("search");
-    if (initialSearch) setSearch(initialSearch);
+    const params = new URLSearchParams(window.location.search);
+    setSearch(params.get("search") || "");
+    setPeriod(params.get("period") || "");
+    setCity(params.get("city") || "");
+    setProvider(params.get("provider") || "");
+    setKind(params.get("kind") || "");
+    setApplicationStatus(params.get("applicationStatus") || "");
+    setDistance(params.get("distance") === "1" || params.get("distance") === "true");
+    setHydrated(true);
   }, []);
 
   useEffect(() => {
-    if (!initialStatus?.eventCount) return;
+    if (!hydrated) return;
+    const params = new URLSearchParams(window.location.search);
+    const values = { search, period, city, provider, kind, applicationStatus };
+    for (const [key, value] of Object.entries(values)) {
+      if (value) params.set(key, value);
+      else params.delete(key);
+    }
+    if (distance) params.set("distance", "1");
+    else params.delete("distance");
+
+    const query = params.toString();
+    window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+  }, [search, period, city, provider, kind, applicationStatus, distance, hydrated]);
+
+  useEffect(() => {
+    if (!initialStatus?.eventCount || !hydrated) return;
     const controller = new AbortController();
+    let cancelled = false;
+    setLoading(true);
+    setLoadingMore(false);
+    setOfferings([]);
+    setTotal(0);
     const timer = setTimeout(async () => {
-      setLoading(true);
-      setLoadingMore(false);
       const params = buildQueryParams(0);
       try {
         const response = await fetch(`/api/live-educations?${params.toString()}`, { signal: controller.signal });
+        if (!response.ok) throw new Error(`Live education search failed with ${response.status}`);
         const payload = await response.json();
+        if (cancelled) return;
         setOfferings(payload.offerings || []);
         setTotal(payload.total || 0);
       } catch (error) {
-        if (error.name !== "AbortError") {
+        if (!cancelled && error.name !== "AbortError") {
           setOfferings([]);
           setTotal(0);
         }
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }, 180);
     return () => {
+      cancelled = true;
       controller.abort();
       clearTimeout(timer);
     };
-  }, [search, period, city, provider, kind, applicationStatus, distance, initialStatus?.eventCount]);
+  }, [search, period, city, provider, kind, applicationStatus, distance, initialStatus?.eventCount, hydrated]);
 
   function buildQueryParams(offset) {
     const params = new URLSearchParams({ limit: String(PAGE_SIZE), offset: String(offset), upcoming: "0" });
@@ -143,7 +172,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       <div className="liveFilterGrid">
         <label className="searchField liveSearchField">
           <span>Sök utbildning</span>
-          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Ex. bioteknik, datateknik, psykologi…" />
+          <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Ex. bioteknik, datateknik, psykologi…" />
         </label>
         <label>
           <span>Starttermin</span>
@@ -192,15 +221,15 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       </div>
 
       <div className="browserToolbar liveToolbar">
-        <div>
-          <strong>{loading && !offerings.length ? "Hämtar…" : `${total} synkade programstarter`}</strong>
-          {total ? <span> Visar {offerings.length} av {total}. Filter är frivilliga.</span> : null}
+        <div aria-live="polite">
+          <strong>{loading ? (hasFilters ? "Söker…" : "Hämtar…") : `${total} synkade programstarter`}</strong>
+          {loading ? <span> Uppdaterar träfflistan.</span> : total ? <span> Visar {offerings.length} av {total}. Filter är frivilliga.</span> : null}
           <span> Källa: Skolverkets Susa-nav via Supabase.</span>
         </div>
         {hasFilters ? <button className="textButton" type="button" onClick={clearFilters}>Rensa filter</button> : null}
       </div>
 
-      <div className="liveOfferingList">
+      <div className="liveOfferingList" aria-busy={loading}>
         {offerings.map((offering) => {
           const application = applicationState(offering);
           const target = offering.applicationUrl || offering.sourceUrl;
@@ -248,6 +277,13 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
           );
         })}
       </div>
+
+      {loading && !offerings.length ? (
+        <div className="emptyBrowserState">
+          <h2>{hasFilters ? "Söker i livekatalogen…" : "Hämtar utbildningar…"}</h2>
+          <p>Träfflistan uppdateras med dina filter.</p>
+        </div>
+      ) : null}
 
       {!loading && !offerings.length ? (
         <div className="emptyBrowserState">
