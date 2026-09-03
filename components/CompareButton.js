@@ -11,9 +11,14 @@ import {
   writeCompareEntries,
 } from "@/lib/compare-storage";
 
-export default function CompareButton({ offeringId, compact = false }) {
-  const id = Number(offeringId);
-  const target = Number.isInteger(id) && id > 0 ? { kind: "live", id } : null;
+export default function CompareButton({ offeringId, programId, compact = false }) {
+  const liveId = Number(offeringId);
+  const fallbackProgramId = Number(programId);
+  const target = Number.isInteger(liveId) && liveId > 0
+    ? { kind: "live", id: liveId }
+    : Number.isInteger(fallbackProgramId) && fallbackProgramId > 0
+      ? { kind: "program", id: fallbackProgramId }
+      : null;
   const [entries, setEntries] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -27,6 +32,7 @@ export default function CompareButton({ offeringId, compact = false }) {
   if (!target) return null;
 
   const selected = hasCompareEntry(entries, target);
+  const analyticsPayload = target.kind === "live" ? { offeringId: target.id } : { programId: target.id };
 
   function toggle() {
     setMessage("");
@@ -37,18 +43,18 @@ export default function CompareButton({ offeringId, compact = false }) {
       const next = current.filter((item) => compareEntryKey(item) !== key);
       writeCompareEntries(next);
       setEntries(next);
-      trackFunnelEvent("compare_remove", { offeringId: id });
+      trackFunnelEvent("compare_remove", analyticsPayload);
       return;
     }
     if (current.length >= COMPARE_LIMIT) {
       setMessage("Du kan jämföra högst tre utbildningar.");
-      trackFunnelEvent("compare_limit_reached", { offeringId: id, count: current.length });
+      trackFunnelEvent("compare_limit_reached", { ...analyticsPayload, count: current.length });
       return;
     }
     const next = [...current, target];
     writeCompareEntries(next);
     setEntries(next);
-    trackFunnelEvent("compare_add", { offeringId: id, count: next.length });
+    trackFunnelEvent("compare_add", { ...analyticsPayload, count: next.length });
   }
 
   return (

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import CompareButton from "@/components/CompareButton";
-import { COMPARE_EVENT_NAME, readCompareEntries } from "@/lib/compare-storage";
+import { COMPARE_EVENT_NAME, compareEntryKey, readCompareEntries } from "@/lib/compare-storage";
 
 const breakdownLabels = {
   interests: "Intressen",
@@ -38,14 +38,45 @@ function targetUrl(offering) {
   return offering.applicationUrl || offering.sourceUrl || "";
 }
 
-function scoreFor(offering, scoreByLiveOfferingId) {
-  const score = Number(offering.personalScore ?? scoreByLiveOfferingId[offering.id]);
+function scoreFor(offering, context = {}) {
+  const score = Number(
+    offering.personalScore
+    ?? context.scoreByLiveOfferingId?.[offering.id]
+    ?? context.scoreByProgramId?.[offering.canonicalProgramId]
+  );
   return Number.isFinite(score) && score > 0 ? Math.round(score) : null;
+}
+
+function mergeScoreData(offering, context = {}) {
+  const {
+    scoreByLiveOfferingId = {},
+    scoreByProgramId = {},
+    scoreDetailsByProgramId = {},
+    scoredOfferingsById = {},
+  } = context;
+  const scoredOffering = scoredOfferingsById[offering.id] || {};
+  const programScoreDetails = scoreDetailsByProgramId[offering.canonicalProgramId] || {};
+
+  return {
+    ...offering,
+    inferredCategory: scoredOffering.inferredCategory ?? offering.inferredCategory,
+    personalScore: scoredOffering.personalScore
+      ?? programScoreDetails.score
+      ?? scoreByLiveOfferingId[offering.id]
+      ?? scoreByProgramId[offering.canonicalProgramId]
+      ?? offering.personalScore,
+    scoreBreakdown: scoredOffering.scoreBreakdown ?? programScoreDetails.scoreBreakdown ?? offering.scoreBreakdown,
+    interestBoost: scoredOffering.interestBoost ?? programScoreDetails.interestBoost ?? offering.interestBoost,
+    dealBreakerPenalty: scoredOffering.dealBreakerPenalty ?? programScoreDetails.dealBreakerPenalty ?? offering.dealBreakerPenalty,
+    matchSource: scoredOffering.matchSource ?? programScoreDetails.matchSource ?? offering.matchSource,
+    matchConfidence: scoredOffering.matchConfidence ?? programScoreDetails.matchConfidence ?? offering.matchConfidence,
+    matchLabel: scoredOffering.matchLabel ?? offering.matchLabel,
+  };
 }
 
 const rows = [
   ["Din match", (item, context) => {
-    const score = scoreFor(item, context.scoreByLiveOfferingId);
+    const score = scoreFor(item, context);
     return score ? `${score}%` : "Gör kompassen";
   }],
   ["Område", (item) => item.inferredCategory || "Beräknas från liveposten"],
@@ -66,11 +97,17 @@ export default function ComparePage() {
   const [offerings, setOfferings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [scoreByLiveOfferingId, setScoreByLiveOfferingId] = useState({});
+  const [scoreByProgramId, setScoreByProgramId] = useState({});
+  const [scoreDetailsByProgramId, setScoreDetailsByProgramId] = useState({});
   const [scoredOfferingsById, setScoredOfferingsById] = useState({});
 
   useEffect(() => {
     try {
       const result = JSON.parse(sessionStorage.getItem("hogskolekompassen-result") || "null");
+      if (result?.schemaVersion >= 6) {
+        setScoreByProgramId(result.scoreById || {});
+        setScoreDetailsByProgramId(result.scoreDetailsById || {});
+      }
       if (result?.schemaVersion >= 9) {
         setScoreByLiveOfferingId(result.scoreByLiveOfferingId || {});
         setScoredOfferingsById(Object.fromEntries((result.liveOfferings || []).map((item) => [item.id, item])));
@@ -83,45 +120,73 @@ export default function ComparePage() {
     return () => window.removeEventListener(COMPARE_EVENT_NAME, update);
   }, []);
 
-  const ids = useMemo(() => entries.map((entry) => entry.id), [entries]);
-  const idKey = ids.join(",");
+  const entryKey = useMemo(() => entries.map(compareEntryKey).join(","), [entries]);
 
   useEffect(() => {
-    if (!ids.length) {
+    if (!entries.length) {
       setOfferings([]);
       setLoading(false);
       return;
     }
 
     const controller = new AbortController();
-    const params = new URLSearchParams({
-      ids: idKey,
-      limit: String(Math.max(1, ids.length)),
-      upcoming: "0",
-    });
+    const liveIds = entries.filter((entry) => entry.kind === "live").map((entry) => entry.id);
+    const programIds = entries.filter((entry) => entry.kind === "program").map((entry) => entry.id);
+
+    async function fetchJson(url) {
+      const response = await fetch(url, { signal: controller.signal });
+      if (!response.ok) throw new Error(`Compare fetch failed with ${response.status}`);
+      return response.json();
+    }
 
     setLoading(true);
-    fetch(`/api/live-educations?${params.toString()}`, { signal: controller.signal })
-      .then((res) => res.json())
-      .then((payload) => {
-        const byId = new Map((payload.offerings || []).map((item) => [Number(item.id), item]));
-        setOfferings(ids.map((id) => byId.get(id)).filter(Boolean));
+    Promise.allSettled([
+      liveIds.length
+        ? fetchJson(`/api/live-educations?${new URLSearchParams({ ids: liveIds.join(","), limit: String(Math.max(1, liveIds.length)), upcoming: "0" })}`)
+        : Promise.resolve({ offerings: [] }),
+      ...programIds.map((programId) => fetchJson(`/api/live-educations?${new URLSearchParams({ programId: String(programId), limit: "1" })}`)),
+    ])
+      .then((results) => {
+        if (controller.signal.aborted) return;
+        const [liveResult, ...programResults] = results;
+        const liveOfferings = liveResult.status === "fulfilled" ? liveResult.value.offerings || [] : [];
+        const programOfferings = programResults.flatMap((result) => result.status === "fulfilled" ? result.value.offerings || [] : []);
+        const liveById = new Map(liveOfferings.map((item) => [Number(item.id), item]));
+        const liveByProgramId = new Map();
+
+        for (const item of programOfferings) {
+          const programId = Number(item.canonicalProgramId);
+          if (Number.isInteger(programId) && !liveByProgramId.has(programId)) liveByProgramId.set(programId, item);
+        }
+
+        const seen = new Set();
+        const selected = [];
+        for (const entry of entries) {
+          const offering = entry.kind === "live" ? liveById.get(entry.id) : liveByProgramId.get(entry.id);
+          if (!offering || seen.has(offering.id)) continue;
+          seen.add(offering.id);
+          selected.push(offering);
+        }
+
+        setOfferings(selected);
       })
       .catch((error) => { if (error.name !== "AbortError") setOfferings([]); })
-      .finally(() => setLoading(false));
+      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
 
     return () => controller.abort();
-  }, [idKey]);
+  }, [entryKey, entries]);
 
-  const mergedOfferings = useMemo(() => offerings.map((offering) => ({
-    ...offering,
-    ...(scoredOfferingsById[offering.id] || {}),
-  })), [offerings, scoredOfferingsById]);
+  const mergedOfferings = useMemo(() => offerings.map((offering) => mergeScoreData(offering, {
+    scoreByLiveOfferingId,
+    scoreByProgramId,
+    scoreDetailsByProgramId,
+    scoredOfferingsById,
+  })), [offerings, scoreByLiveOfferingId, scoreByProgramId, scoreDetailsByProgramId, scoredOfferingsById]);
 
   const ranked = useMemo(() => [...mergedOfferings]
-    .map((offering) => ({ offering, score: scoreFor(offering, scoreByLiveOfferingId) }))
+    .map((offering) => ({ offering, score: scoreFor(offering, { scoreByLiveOfferingId, scoreByProgramId }) }))
     .filter((item) => item.score)
-    .sort((a, b) => b.score - a.score), [mergedOfferings, scoreByLiveOfferingId]);
+    .sort((a, b) => b.score - a.score), [mergedOfferings, scoreByLiveOfferingId, scoreByProgramId]);
 
   const best = ranked[0] || null;
   const gap = ranked.length >= 2 ? best.score - ranked[1].score : null;
@@ -175,6 +240,13 @@ export default function ComparePage() {
       <section className="shell compareSection">
         {loading ? <div className="compareLoading">Laddar jämförelsen…</div> : (
           <>
+            {entries.length > mergedOfferings.length ? (
+              <div className="compareProfilePrompt">
+                <strong>{entries.length - mergedOfferings.length} val kunde inte kopplas till en aktuell livepost.</strong>
+                <Link href="/utbildningar">Välj direkt från livekatalogen →</Link>
+              </div>
+            ) : null}
+
             {best ? (
               <div className="compareVerdict">
                 <div className="verdictMain">
@@ -212,7 +284,7 @@ export default function ComparePage() {
             <div className="compareProgramHeaders" style={{ "--compare-count": mergedOfferings.length }}>
               <div className="compareCorner">Jämförelse</div>
               {mergedOfferings.map((offering) => {
-                const score = scoreFor(offering, scoreByLiveOfferingId);
+                const score = scoreFor(offering, { scoreByLiveOfferingId, scoreByProgramId });
                 return (
                   <div className="compareProgramHeader" key={offering.id}>
                     {score ? <span className={`compareScore ${score === best?.score ? "best" : ""}`}>{score}% match</span> : null}
@@ -243,7 +315,7 @@ export default function ComparePage() {
               {rows.map(([label, getter]) => (
                 <div className="compareRow" key={label}>
                   <div className="compareRowLabel">{label}</div>
-                  {mergedOfferings.map((offering) => <div className="compareCell" key={offering.id}>{getter(offering, { scoreByLiveOfferingId })}</div>)}
+                  {mergedOfferings.map((offering) => <div className="compareCell" key={offering.id}>{getter(offering, { scoreByLiveOfferingId, scoreByProgramId })}</div>)}
                 </div>
               ))}
             </div>

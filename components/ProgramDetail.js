@@ -241,6 +241,7 @@ export default function ProgramDetail({ program, related, liveOfferings = [] }) 
                 <p>{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
                 {offering.applicationDeadline ? <small>Sista ansökningsdag: {offering.applicationDeadline}</small> : <small>Ansökningsdatum: kontrollera originalkällan.</small>}
                 <div className="programLiveActions">
+                  <CompareButton offeringId={offering.id} compact />
                   {offering.applicationUrl || offering.sourceUrl ? (
                     <a
                       href={offering.applicationUrl || offering.sourceUrl}

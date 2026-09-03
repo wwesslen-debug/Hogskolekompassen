@@ -16,6 +16,11 @@ function cleanIds(value) {
     .slice(0, 200);
 }
 
+function cleanId(value) {
+  const id = Number(value);
+  return Number.isInteger(id) && id > 0 ? id : "";
+}
+
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const includeOptions = searchParams.get("options") === "1";
@@ -31,6 +36,7 @@ export async function GET(request) {
     kind: searchParams.get("kind") || "",
     applicationStatus: searchParams.get("applicationStatus") || "",
     distance: searchParams.get("distance") || "",
+    programId: cleanId(searchParams.get("programId")),
     upcoming: searchParams.get("upcoming") !== "0",
   };
 
