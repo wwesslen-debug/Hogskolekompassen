@@ -2,60 +2,47 @@
 
 import { useEffect, useState } from "react";
 import { trackFunnelEvent } from "@/lib/analytics-client";
+import {
+  PATH_EVENT_NAME,
+  getPathStatus,
+  normalizePathTarget,
+  pathEntryKey,
+  pathStatuses,
+  readPathEntries,
+  setPathStatus,
+} from "@/lib/path-storage";
 
-const STORAGE_KEY = "hogskolekompassen-path";
-const EVENT_NAME = "hogskolekompassen-path-change";
-
-const options = [
-  { id: "favorite", label: "Favorit", icon: "★" },
-  { id: "interesting", label: "Intressant", icon: "+" },
-  { id: "unsure", label: "Osäker", icon: "?" },
-  { id: "no", label: "Inte för mig", icon: "×" },
-];
-
-function readPath() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
-  } catch {
-    return {};
-  }
-}
-
-function writePath(value) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
-  window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: value }));
-}
-
-export default function SaveProgramButton({ programId, compact = false }) {
+export default function SaveProgramButton({ offeringId, programId, compact = false }) {
+  const target = normalizePathTarget({ offeringId, programId });
+  const targetKey = target ? pathEntryKey(target) : "";
   const [status, setStatus] = useState("");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const update = (event) => {
-      const path = event?.detail || readPath();
-      setStatus(path[String(programId)] || "");
+      const entries = event?.detail || readPathEntries();
+      setStatus(target ? getPathStatus(entries, target) : "");
     };
     update();
-    window.addEventListener(EVENT_NAME, update);
-    return () => window.removeEventListener(EVENT_NAME, update);
-  }, [programId]);
+    window.addEventListener(PATH_EVENT_NAME, update);
+    return () => window.removeEventListener(PATH_EVENT_NAME, update);
+  }, [targetKey]);
 
   function choose(nextStatus) {
-    const path = readPath();
-    const previousStatus = path[String(programId)] || "";
-    const removing = !nextStatus || previousStatus === nextStatus;
-    if (removing) delete path[String(programId)];
-    else path[String(programId)] = nextStatus;
-    writePath(path);
-    trackFunnelEvent(removing ? "unsave_program" : "save_program", {
-      programId: Number(programId),
-      status: removing ? previousStatus : nextStatus,
+    if (!target) return;
+    const result = setPathStatus(target, nextStatus);
+    const programNumber = Number(programId);
+    trackFunnelEvent(result.removing ? "unsave_program" : "save_program", {
+      ...(target.kind === "live" ? { offeringId: target.id } : { programId: target.id }),
+      ...(target.kind === "live" && Number.isInteger(programNumber) && programNumber > 0 ? { programId: programNumber } : {}),
+      status: result.removing ? result.previousStatus : result.status,
     });
     setOpen(false);
   }
 
-  const active = options.find((item) => item.id === status);
+  if (!target) return null;
+
+  const active = pathStatuses.find((item) => item.id === status);
 
   return (
     <div className={`saveProgram ${compact ? "compact" : ""}`}>
@@ -69,7 +56,7 @@ export default function SaveProgramButton({ programId, compact = false }) {
       </button>
       {open ? (
         <div className="saveMenu">
-          {options.map((item) => (
+          {pathStatuses.map((item) => (
             <button type="button" key={item.id} className={status === item.id ? "active" : ""} onClick={() => choose(item.id)}>
               <span>{item.icon}</span><strong>{item.label}</strong>
             </button>
@@ -80,5 +67,3 @@ export default function SaveProgramButton({ programId, compact = false }) {
     </div>
   );
 }
-
-export { STORAGE_KEY as PATH_STORAGE_KEY, EVENT_NAME as PATH_EVENT_NAME, options as pathStatuses };

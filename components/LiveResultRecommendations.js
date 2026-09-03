@@ -3,20 +3,16 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import CompareButton from "@/components/CompareButton";
+import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
-
-function formatDate(value) {
-  if (!value) return null;
-  try { return new Date(`${value}T12:00:00`).toLocaleDateString("sv-SE", { year: "numeric", month: "short", day: "numeric" }); }
-  catch { return value; }
-}
+import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 
 function applicationLabel(offering) {
-  const today = new Date().toISOString().slice(0, 10);
-  if (offering.applicationOpen && offering.applicationOpen > today) return { label: `Öppnar ${formatDate(offering.applicationOpen)}`, tone: "future" };
-  if (offering.applicationDeadline && offering.applicationDeadline >= today && (!offering.applicationOpen || offering.applicationOpen <= today)) return { label: `Ansök senast ${formatDate(offering.applicationDeadline)}`, tone: "open" };
-  if (offering.applicationDeadline && offering.applicationDeadline < today) return { label: "Ansökan stängd", tone: "closed" };
-  return { label: "Se ansökningsinfo", tone: "unknown" };
+  return getLiveApplicationStatus(offering, {
+    deadlineVerb: "Ansök senast",
+    fallback: "Se ansökningsinfo",
+    unknownTone: "unknown",
+  });
 }
 
 export default function LiveResultRecommendations({ result, variant = "default" }) {
@@ -129,12 +125,12 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                   {offering.period ? <span>{offering.period}</span> : null}
                   {offering.kind ? <span>{offering.kind === "program" ? "Program" : offering.kind === "course" || offering.kind === "kurs" ? "Kurs" : offering.kind}</span> : null}
                   {offering.distance ? <span>Distans</span> : null}
-                  {offering.credits ? <span>{offering.credits} {offering.creditsUnit || "hp"}</span> : null}
+                  {offering.credits ? <span>{getLiveCreditsLabel(offering)}</span> : null}
                 </div>
                 <h3>{offering.title}</h3>
                 <p className="institutionLine">{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
                 <div className="liveResultFacts">
-                  {offering.startDate ? <span><small>Start</small><strong>{formatDate(offering.startDate)}</strong></span> : null}
+                  {offering.startDate ? <span><small>Start</small><strong>{formatLiveDate(offering.startDate)}</strong></span> : null}
                   {offering.studyPace ? <span><small>Studietakt</small><strong>{offering.studyPace}</strong></span> : null}
                   {offering.level ? <span><small>Nivå</small><strong>{offering.level === "grund" ? "Grundnivå" : offering.level === "avancerad" ? "Avancerad" : offering.level}</strong></span> : null}
                 </div>
@@ -157,6 +153,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                     </a>
                   ) : null}
                   <CompareButton offeringId={offering.id} compact />
+                  <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
                   <Link href={`/utbildningar?search=${encodeURIComponent(offering.title)}`} className="button buttonGhost buttonSmall">Liknande live</Link>
                 </div>
               </article>

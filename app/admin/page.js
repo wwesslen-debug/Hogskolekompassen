@@ -29,7 +29,6 @@ const eventLabels = {
   start_compass: "Startad kompass",
   compass_completed: "Slutförd kompass",
   view_results: "Resultatsida",
-  open_education: "Öppnad utbildning",
   compare_add: "Lagd i jämförelse",
   compare_remove: "Borttagen från jämförelse",
   compare_limit_reached: "Jämförelsegräns nådd",

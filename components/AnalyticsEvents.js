@@ -12,14 +12,6 @@ function routeEvent(pathname) {
   if (pathname === "/jamfor") return { event: "compare_view" };
   if (pathname === "/min-vag") return { event: "saved_list_view" };
 
-  const educationMatch = pathname.match(/^\/utbildningar\/(\d+)/);
-  if (educationMatch) {
-    return {
-      event: "open_education",
-      properties: { programId: Number(educationMatch[1]) },
-    };
-  }
-
   return null;
 }
 

@@ -9,7 +9,6 @@ const allowedEvents = new Set([
   "start_compass",
   "compass_completed",
   "view_results",
-  "open_education",
   "compare_add",
   "compare_remove",
   "compare_limit_reached",
@@ -22,12 +21,11 @@ const allowedEvents = new Set([
 
 const propertySchemas = {
   page_view: { pathname: "path" },
-  open_education: { programId: "integer" },
   compare_add: { programId: "integer", offeringId: "shortString", count: "integer" },
   compare_remove: { programId: "integer", offeringId: "shortString" },
   compare_limit_reached: { programId: "integer", offeringId: "shortString", count: "integer" },
-  save_program: { programId: "integer", status: "status" },
-  unsave_program: { programId: "integer", status: "status" },
+  save_program: { programId: "integer", offeringId: "shortString", status: "status" },
+  unsave_program: { programId: "integer", offeringId: "shortString", status: "status" },
   compass_completed: {
     quizMode: "shortString",
     certainAnswers: "integer",

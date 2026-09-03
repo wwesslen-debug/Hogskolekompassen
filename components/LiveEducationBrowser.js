@@ -3,26 +3,14 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import CompareButton from "@/components/CompareButton";
+import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
+import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 
 const PAGE_SIZE = 200;
 
-function formatDate(value) {
-  if (!value) return null;
-  const date = new Date(`${value}T12:00:00`);
-  if (Number.isNaN(date.getTime())) return value;
-  return new Intl.DateTimeFormat("sv-SE", { day: "numeric", month: "short", year: "numeric" }).format(date);
-}
-
 function applicationState(offering) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const opens = offering.applicationOpen ? new Date(`${offering.applicationOpen}T00:00:00`) : null;
-  const deadline = offering.applicationDeadline ? new Date(`${offering.applicationDeadline}T23:59:59`) : null;
-  if (deadline && deadline < today) return { label: "Ansökan stängd", tone: "closed" };
-  if (opens && opens > today) return { label: `Öppnar ${formatDate(offering.applicationOpen)}`, tone: "future" };
-  if (deadline) return { label: `Sök senast ${formatDate(offering.applicationDeadline)}`, tone: "open" };
-  return { label: "Kontrollera ansökan", tone: "neutral" };
+  return getLiveApplicationStatus(offering, { fallback: "Kontrollera ansökan", unknownTone: "neutral" });
 }
 
 export default function LiveEducationBrowser({ initialOptions, initialStatus }) {
@@ -241,13 +229,13 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
                   {offering.kind ? <span>{offering.kind === "program" ? "Program" : offering.kind === "course" || offering.kind === "kurs" ? "Kurs" : offering.kind}</span> : null}
                   {offering.degree ? <span>{offering.degree}</span> : null}
                   {offering.distance ? <span>Distans</span> : null}
-                  {offering.credits ? <span>{offering.credits} {offering.creditsUnit || "hp"}</span> : null}
+                  {offering.credits ? <span>{getLiveCreditsLabel(offering)}</span> : null}
                 </div>
                 <h2>{offering.title}</h2>
                 <p className="institutionLine">{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
                 {offering.description ? <p className="liveOfferingDescription">{offering.description}</p> : null}
                 <div className="liveOfferingFacts">
-                  {offering.startDate ? <span><small>Start</small><strong>{formatDate(offering.startDate)}</strong></span> : null}
+                  {offering.startDate ? <span><small>Start</small><strong>{formatLiveDate(offering.startDate)}</strong></span> : null}
                   {offering.studyForm ? <span><small>Studieform</small><strong>{offering.studyForm}</strong></span> : null}
                   {offering.studyPace ? <span><small>Studietakt</small><strong>{offering.studyPace}</strong></span> : null}
                   {offering.level ? <span><small>Nivå</small><strong>{offering.level === "grund" ? "Grundnivå" : offering.level === "avancerad" ? "Avancerad nivå" : offering.level}</strong></span> : null}
@@ -257,6 +245,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
               <aside className="liveOfferingAside">
                 <span className={`applicationState ${application.tone}`}>{application.label}</span>
                 <CompareButton offeringId={offering.id} compact />
+                <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
                 {target ? (
                   <a
                     href={target}

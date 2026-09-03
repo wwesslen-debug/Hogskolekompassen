@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import CompareButton from "@/components/CompareButton";
+import SaveProgramButton from "@/components/SaveProgramButton";
 import { COMPARE_EVENT_NAME, compareEntryKey, readCompareEntries } from "@/lib/compare-storage";
+import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { cleanLiveText } from "@/lib/live-text";
 
 const breakdownLabels = {
@@ -12,28 +14,6 @@ const breakdownLabels = {
   workStyle: "Arbetssätt",
   futureGoals: "Framtidsmål",
 };
-
-function formatDate(value) {
-  if (!value) return null;
-  const date = new Date(`${value}T12:00:00`);
-  if (Number.isNaN(date.getTime())) return value;
-  return new Intl.DateTimeFormat("sv-SE", { day: "numeric", month: "short", year: "numeric" }).format(date);
-}
-
-function applicationLabel(offering) {
-  const today = new Date().toISOString().slice(0, 10);
-  if (offering.applicationOpen && offering.applicationOpen > today) return `Öppnar ${formatDate(offering.applicationOpen)}`;
-  if (offering.applicationDeadline && offering.applicationDeadline >= today && (!offering.applicationOpen || offering.applicationOpen <= today)) {
-    return `Sök senast ${formatDate(offering.applicationDeadline)}`;
-  }
-  if (offering.applicationDeadline && offering.applicationDeadline < today) return "Ansökan stängd";
-  return "Kontrollera hos lärosätet";
-}
-
-function creditsLabel(offering) {
-  if (!offering.credits) return "Ej angiven";
-  return `${offering.credits} ${offering.creditsUnit || "hp"}`;
-}
 
 function targetUrl(offering) {
   return offering.applicationUrl || offering.sourceUrl || "";
@@ -110,13 +90,13 @@ const rows = [
   ["Lärosäte", (item) => item.providerName || "Ej angivet"],
   ["Ort", (item) => item.city || (item.distance ? "Distans" : "Ej angiven")],
   ["Starttermin", (item) => item.period || "Ej angiven"],
-  ["Startdatum", (item) => formatDate(item.startDate) || "Ej angivet"],
+  ["Startdatum", (item) => formatLiveDate(item.startDate) || "Ej angivet"],
   ["Studieform", (item) => item.distance ? "Distans" : item.studyForm || "Ej angiven"],
   ["Studietakt", (item) => item.studyPace || "Ej angiven"],
-  ["Omfattning", creditsLabel],
+  ["Omfattning", getLiveCreditsLabel],
   ["Nivå", (item) => item.level === "grund" ? "Grundnivå" : item.level || "Ej angiven"],
   ["Examen", (item) => item.degree || "Se utbildningssidan"],
-  ["Ansökan", applicationLabel],
+  ["Ansökan", (item) => getLiveApplicationStatus(item, { fallback: "Kontrollera hos lärosätet" }).label],
 ];
 
 export default function ComparePage() {
@@ -318,7 +298,10 @@ export default function ComparePage() {
                     <span>{offering.period || offering.inferredCategory || "Liveutbildning"}</span>
                     <h2>{offering.title}</h2>
                     <p>{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
-                    <div className="compareHeaderActions"><CompareButton offeringId={offering.id} compact /></div>
+                    <div className="compareHeaderActions">
+                      <CompareButton offeringId={offering.id} compact />
+                      <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
+                    </div>
                   </div>
                 );
               })}
