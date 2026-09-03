@@ -6,6 +6,7 @@ import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
+import { liveEducationPath } from "@/lib/live-urls";
 
 function applicationLabel(offering) {
   return getLiveApplicationStatus(offering, {
@@ -115,6 +116,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
             ));
             const application = applicationLabel(offering);
             const target = offering.applicationUrl || offering.sourceUrl;
+            const detailPath = liveEducationPath(offering);
             return (
               <article className="liveResultCard" key={offering.id}>
                 <div className="liveResultCardTop">
@@ -127,7 +129,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                   {offering.distance ? <span>Distans</span> : null}
                   {offering.credits ? <span>{getLiveCreditsLabel(offering)}</span> : null}
                 </div>
-                <h3>{offering.title}</h3>
+                <h3><Link href={detailPath}>{offering.title}</Link></h3>
                 <p className="institutionLine">{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
                 <div className="liveResultFacts">
                   {offering.startDate ? <span><small>Start</small><strong>{formatLiveDate(offering.startDate)}</strong></span> : null}
@@ -136,12 +138,13 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                 </div>
                 {offering.inferredCategory ? <p className="liveResultCategoryHint">{offering.inferredCategory}</p> : null}
                 <div className="liveResultActions">
+                  <Link href={detailPath} className="button buttonSmall">Visa detaljer</Link>
                   {target ? (
                     <a
                       href={target}
                       target="_blank"
                       rel="noreferrer"
-                      className="button buttonSmall"
+                      className="button buttonGhost buttonSmall"
                       onClick={() => trackExternalClick(target, {
                         source: "result_live_recommendation",
                         offeringId: offering.id,
@@ -149,7 +152,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                         matchSource: offering.matchSource,
                       })}
                     >
-                      Utbildningssidan ↗
+                      Originalkälla ↗
                     </a>
                   ) : null}
                   <CompareButton offeringId={offering.id} compact />

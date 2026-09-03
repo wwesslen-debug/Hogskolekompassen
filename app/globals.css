@@ -1352,6 +1352,7 @@ img { max-width: 100%; }
 .liveOfferingMeta span { padding: 5px 7px; border-radius: 999px; background: #f4f7f8; color: #506572; font-size: 8px; font-weight: 750; }
 .liveOfferingMeta .periodBadge { background: var(--teal-soft); color: var(--teal-dark); }
 .liveOfferingMain h2 { margin: 10px 0 6px; font-size: 22px; letter-spacing: -.035em; line-height: 1.12; }
+.liveOfferingMain h2 a:hover, .liveResultCard h3 a:hover, .compareProgramHeader h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .liveOfferingMain .institutionLine { margin: 0; color: #536a78; font-size: 10px; font-weight: 750; }
 .liveOfferingDescription { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; max-width: 760px; margin: 11px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
 .liveOfferingFacts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
@@ -1469,6 +1470,77 @@ img { max-width: 100%; }
 }
 .areaTitleRow { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .areaTitleRow h3 { margin-bottom: 0; }
+
+/* Live education detail pages */
+.educationDetailPage { min-height: 75vh; background: #f7f9f8; }
+.educationDetailHero { padding: 54px 0 34px; }
+.educationBreadcrumb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 22px; color: var(--muted); font-size: 11px; font-weight: 750; }
+.educationBreadcrumb a { color: var(--teal-dark); }
+.educationDetailGrid { display: grid; grid-template-columns: minmax(0,1fr) 320px; gap: 28px; align-items: stretch; }
+.educationDetailMain, .educationDetailAside, .educationDetailPanel {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 15px 45px rgba(18,48,71,.05);
+}
+.educationDetailMain { padding: 32px; }
+.educationDetailMain h1 { max-width: 850px; margin: 12px 0 9px; font-size: clamp(38px,5vw,64px); line-height: 1; letter-spacing: 0; }
+.educationDetailMain .lead { max-width: 760px; margin-top: 18px; color: var(--muted); font-size: 15px; line-height: 1.65; }
+.educationDetailActions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+.educationDetailAside { display: flex; flex-direction: column; gap: 16px; justify-content: center; padding: 24px; }
+.educationAsideFacts { display: grid; gap: 8px; }
+.educationAsideFacts div, .educationFactGrid div {
+  min-width: 0;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: #f6f8f7;
+  border: 1px solid #edf2f0;
+}
+.educationAsideFacts span, .educationFactGrid span {
+  display: block;
+  color: var(--muted);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 850;
+}
+.educationAsideFacts strong, .educationFactGrid strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+.educationDetailSection { padding-bottom: 92px; }
+.educationDetailContent { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(300px,.75fr); gap: 16px; align-items: start; }
+.educationDetailContent.secondary { margin-top: 16px; grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+.educationDetailPanel { padding: 26px; }
+.educationDetailPanel h2 { margin: 8px 0 14px; font-size: 26px; line-height: 1.1; letter-spacing: 0; }
+.educationDetailPanel p { margin: 0 0 14px; color: #506572; font-size: 14px; line-height: 1.72; }
+.educationDetailPanel p:last-child { margin-bottom: 0; }
+.educationFactsPanel { position: sticky; top: 96px; }
+.educationFactGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.educationTrustPanel { background: #102e43; color: #fff; border-color: rgba(255,255,255,.08); }
+.educationTrustPanel .eyebrow { color: #8bd7d2; }
+.educationTrustPanel p { color: #c8d8df; }
+.educationSourceList { display: grid; gap: 8px; margin-top: 16px; }
+.educationSourceList > span { display: grid; gap: 4px; padding: 10px 11px; border-radius: 10px; background: rgba(255,255,255,.07); color: #dceaf0; font-size: 10px; line-height: 1.45; }
+.educationSourceList strong { color: #93cfd0; font-size: 8px; text-transform: uppercase; letter-spacing: .06em; }
+.educationSourceList code { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; }
+.educationSourceActions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.educationTrustPanel .buttonGhost { color: #fff; border-color: rgba(255,255,255,.2); }
+.educationTrustPanel .buttonGhost:hover { background: rgba(255,255,255,.08); }
+
+@media (max-width: 960px) {
+  .educationDetailGrid, .educationDetailContent, .educationDetailContent.secondary { grid-template-columns: 1fr; }
+  .educationFactsPanel { position: static; }
+}
+
+@media (max-width: 680px) {
+  .educationDetailHero { padding-top: 36px; }
+  .educationDetailMain, .educationDetailAside, .educationDetailPanel { padding: 20px; border-radius: 15px; }
+  .educationDetailMain h1 { font-size: 36px; }
+  .educationFactGrid { grid-template-columns: 1fr; }
+}
 
 /* Admin analytics */
 .adminPage { min-height: 100vh; padding: 44px 0 80px; background: #f6f8f5; }

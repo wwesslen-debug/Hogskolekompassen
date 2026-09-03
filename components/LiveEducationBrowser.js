@@ -6,6 +6,7 @@ import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
+import { liveEducationPath } from "@/lib/live-urls";
 
 const PAGE_SIZE = 200;
 
@@ -221,6 +222,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         {offerings.map((offering) => {
           const application = applicationState(offering);
           const target = offering.applicationUrl || offering.sourceUrl;
+          const detailPath = liveEducationPath(offering);
           return (
             <article className="liveOfferingCard" key={offering.id}>
               <div className="liveOfferingMain">
@@ -231,7 +233,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
                   {offering.distance ? <span>Distans</span> : null}
                   {offering.credits ? <span>{getLiveCreditsLabel(offering)}</span> : null}
                 </div>
-                <h2>{offering.title}</h2>
+                <h2><Link href={detailPath}>{offering.title}</Link></h2>
                 <p className="institutionLine">{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
                 {offering.description ? <p className="liveOfferingDescription">{offering.description}</p> : null}
                 <div className="liveOfferingFacts">
@@ -244,6 +246,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
               </div>
               <aside className="liveOfferingAside">
                 <span className={`applicationState ${application.tone}`}>{application.label}</span>
+                <Link href={detailPath} className="button buttonGhost buttonSmall">Visa detaljer</Link>
                 <CompareButton offeringId={offering.id} compact />
                 <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
                 {target ? (

@@ -8,6 +8,7 @@ import { trackExternalClick } from "@/lib/analytics-client";
 import { pathEntryKey, PATH_EVENT_NAME, pathStatuses, readPathEntries } from "@/lib/path-storage";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { cleanLiveText } from "@/lib/live-text";
+import { liveEducationPath } from "@/lib/live-urls";
 
 function shortenText(value, maxLength = 280) {
   const text = cleanLiveText(value);
@@ -115,6 +116,7 @@ export default function MyPath() {
                 ["Ansökan", application.label],
               ].filter(Boolean),
               targetUrl: offering.applicationUrl || offering.sourceUrl || "",
+              detailUrl: liveEducationPath(offering),
             };
           }
 
@@ -139,6 +141,7 @@ export default function MyPath() {
               ["Katalog", "Profil"],
             ].filter(Boolean),
             targetUrl: "",
+            detailUrl: "",
           };
         }).filter(Boolean));
       })
@@ -234,6 +237,9 @@ export default function MyPath() {
                         ))}
                       </div>
                       <div className="pathCardActions">
+                        {item.kind === "live" ? (
+                          <Link href={item.detailUrl} className="button buttonSmall">Visa detaljer</Link>
+                        ) : null}
                         {item.kind === "live" && item.targetUrl ? (
                           <a
                             href={item.targetUrl}

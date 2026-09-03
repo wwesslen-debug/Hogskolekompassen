@@ -7,6 +7,7 @@ import SaveProgramButton from "@/components/SaveProgramButton";
 import { COMPARE_EVENT_NAME, compareEntryKey, readCompareEntries } from "@/lib/compare-storage";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { cleanLiveText } from "@/lib/live-text";
+import { liveEducationPath } from "@/lib/live-urls";
 
 const breakdownLabels = {
   interests: "Intressen",
@@ -14,10 +15,6 @@ const breakdownLabels = {
   workStyle: "Arbetssätt",
   futureGoals: "Framtidsmål",
 };
-
-function targetUrl(offering) {
-  return offering.applicationUrl || offering.sourceUrl || "";
-}
 
 function scoreFor(offering, context = {}) {
   const score = Number(
@@ -267,7 +264,7 @@ export default function ComparePage() {
                         : `Den ligger ${gap} procentenheter före nästa alternativ i din nuvarande profil.`}
                   </p>
                   <div className="verdictActions">
-                    {targetUrl(best.offering) ? <a href={targetUrl(best.offering)} target="_blank" rel="noreferrer" className="button buttonSmall">Öppna utbildningen →</a> : null}
+                    <Link href={liveEducationPath(best.offering)} className="button buttonSmall">Visa detaljer →</Link>
                     <Link href="/kompass" className="button buttonGhost buttonSmall">Förfina min profil</Link>
                   </div>
                 </div>
@@ -296,7 +293,7 @@ export default function ComparePage() {
                   <div className="compareProgramHeader" key={offering.id}>
                     {score ? <span className={`compareScore ${score === best?.score ? "best" : ""}`}>{score}% match</span> : null}
                     <span>{offering.period || offering.inferredCategory || "Liveutbildning"}</span>
-                    <h2>{offering.title}</h2>
+                    <h2><Link href={liveEducationPath(offering)}>{offering.title}</Link></h2>
                     <p>{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
                     <div className="compareHeaderActions">
                       <CompareButton offeringId={offering.id} compact />
@@ -347,9 +344,7 @@ export default function ComparePage() {
 
             <div className="compareBottomActions">
               {mergedOfferings.map((offering) => (
-                targetUrl(offering)
-                  ? <a href={targetUrl(offering)} target="_blank" rel="noreferrer" className="button buttonGhost" key={offering.id}>Öppna {offering.title} →</a>
-                  : <Link href={`/utbildningar?search=${encodeURIComponent(offering.title)}`} className="button buttonGhost" key={offering.id}>Sök efter {offering.title} →</Link>
+                <Link href={liveEducationPath(offering)} className="button buttonGhost" key={offering.id}>Visa detaljer om {offering.title} →</Link>
               ))}
             </div>
           </>
