@@ -79,7 +79,7 @@ const rows = [
     const score = scoreFor(item, context);
     return score ? `${score}%` : "Gör kompassen";
   }],
-  ["Område", (item) => item.inferredCategory || "Beräknas från liveposten"],
+  ["Område", (item) => item.inferredCategory || "Brett utbildningsområde"],
   ["Lärosäte", (item) => item.providerName || "Ej angivet"],
   ["Ort", (item) => item.city || (item.distance ? "Distans" : "Ej angiven")],
   ["Starttermin", (item) => item.period || "Ej angiven"],
