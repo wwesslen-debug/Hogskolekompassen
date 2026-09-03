@@ -268,15 +268,27 @@ export default async function LiveEducationDetailPage({ params }) {
 
       <section className="shell educationDetailSection">
         <div className="educationDetailContent">
-          <article className="educationDetailPanel">
-            <span className="eyebrow">Beskrivning</span>
-            <h2>Om utbildningen</h2>
-            {descriptionParagraphs.length ? (
-              descriptionParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-            ) : (
-              <p>Beskrivning saknas i livedatan. Öppna originalkällan för mer information.</p>
-            )}
-          </article>
+          <div className="educationDetailMainColumn">
+            <article className="educationDetailPanel">
+              <span className="eyebrow">Beskrivning</span>
+              <h2>Om utbildningen</h2>
+              {descriptionParagraphs.length ? (
+                descriptionParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
+              ) : (
+                <p>Beskrivning saknas i livedatan. Öppna originalkällan för mer information.</p>
+              )}
+            </article>
+
+            <article className="educationDetailPanel">
+              <span className="eyebrow">Behörighet</span>
+              <h2>Kontrollera kraven</h2>
+              {eligibilityParagraphs.length ? (
+                eligibilityParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
+              ) : (
+                <p>Behörighet saknas i livedatan. Kontrollera kraven hos lärosätet eller Antagning.se.</p>
+              )}
+            </article>
+          </div>
 
           <aside className="educationDetailPanel educationFactsPanel">
             <span className="eyebrow">Fakta</span>
@@ -294,18 +306,6 @@ export default async function LiveEducationDetailPage({ params }) {
               <Link href="/jamfor" className="button buttonGhost buttonSmall">Gå till jämför</Link>
             </div>
           </aside>
-        </div>
-
-        <div className="educationDetailContent secondary single">
-          <article className="educationDetailPanel">
-            <span className="eyebrow">Behörighet</span>
-            <h2>Kontrollera kraven</h2>
-            {eligibilityParagraphs.length ? (
-              eligibilityParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-            ) : (
-              <p>Behörighet saknas i livedatan. Kontrollera kraven hos lärosätet eller Antagning.se.</p>
-            )}
-          </article>
         </div>
       </section>
     </main>
