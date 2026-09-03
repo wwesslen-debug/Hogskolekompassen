@@ -1401,6 +1401,68 @@ img { max-width: 100%; }
 .livePeriodSummary > span { margin-right: 3px; color: var(--muted); font-size: 8px; text-transform: uppercase; letter-spacing: .07em; font-weight: 850; }
 .livePeriodSummary strong { padding: 6px 8px; border-radius: 999px; background: rgba(255,255,255,.75); border: 1px solid var(--line); font-size: 8px; }
 
+.categoryIndexSection { padding: 0 0 28px; }
+.categoryIndexHeading { margin-bottom: 18px; }
+.categoryLinkGrid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
+.categoryLinkCard {
+  display: grid;
+  gap: 8px;
+  min-height: 156px;
+  padding: 18px;
+  border: 1px solid #dce6eb;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(18,48,71,.035);
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.categoryLinkCard:hover { transform: translateY(-1px); border-color: #bfd3da; box-shadow: 0 16px 36px rgba(18,48,71,.065); }
+.categoryLinkCard span { color: var(--teal-dark); font-size: 12px; text-transform: uppercase; letter-spacing: 0; font-weight: 900; }
+.categoryLinkCard strong { font-size: 18px; line-height: 1.12; letter-spacing: 0; }
+.categoryLinkCard small { color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+.educationCategoryPage { min-height: 80vh; background: #f7f9f8; }
+.categoryHero { padding: 48px 0 18px; }
+.categoryHeroGrid { display: grid; grid-template-columns: minmax(0,1fr) 320px; gap: 24px; align-items: stretch; }
+.categoryHeroCopy, .categoryHeroFacts, .categoryGuideCard, .categoryEmptyLive {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 15px 45px rgba(18,48,71,.05);
+}
+.categoryHeroCopy { padding: 34px; }
+.categoryHeroCopy h1 { max-width: 900px; margin: 12px 0 15px; font-size: 60px; line-height: 1; letter-spacing: 0; }
+.categoryHeroCopy .lead { max-width: 760px; color: var(--muted); font-size: 16px; line-height: 1.68; }
+.categoryHeroActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.categoryHeroFacts { display: grid; align-content: center; gap: 10px; padding: 22px; }
+.categoryHeroFacts div { padding: 13px 14px; border: 1px solid #edf2f0; border-radius: 11px; background: #f6f8f7; }
+.categoryHeroFacts span { display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0; font-weight: 850; }
+.categoryHeroFacts strong { display: block; margin-top: 5px; font-size: 14px; line-height: 1.3; }
+.categoryGuideSection { padding: 0 0 18px; }
+.categoryGuideGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.categoryGuideCard { padding: 20px; }
+.categoryGuideCard span { color: var(--teal-dark); font-size: 12px; text-transform: uppercase; letter-spacing: 0; font-weight: 900; }
+.categoryGuideCard p { margin: 9px 0 0; color: #506572; font-size: 14px; line-height: 1.62; }
+.categoryLiveSection { padding-bottom: 36px; }
+.categoryLiveHeading { margin-top: 14px; margin-bottom: 18px; }
+.categoryIndexHeading h2, .categoryLiveHeading h2, .categoryMoreSection .sectionHeading h2 { letter-spacing: 0; }
+.categoryOfferingList { margin-top: 0; }
+.categoryOfferingCard .liveOfferingDescription { max-width: 880px; }
+.categoryEmptyLive { max-width: 760px; padding: 28px; text-align: center; }
+.categoryEmptyLive h2 { margin: 0 0 8px; font-size: 25px; letter-spacing: 0; }
+.categoryEmptyLive p { margin: 0 auto 18px; max-width: 600px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.categoryMoreSection { padding: 20px 0 82px; }
+.categoryLinkCloud { display: flex; flex-wrap: wrap; gap: 8px; }
+.categoryLinkCloud a {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 850;
+}
+.categoryLinkCloud a:hover { border-color: #bfd3da; color: var(--teal-dark); }
+
 /* Live Matching & data quality */
 .livePersonalSection { padding-top: 8px; }
 .livePersonalSection:empty { display: none; }
@@ -1460,6 +1522,9 @@ img { max-width: 100%; }
   .liveResultGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .qualityStatsGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .qualityGrid { grid-template-columns: 1fr; }
+  .categoryLinkGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .categoryHeroGrid { grid-template-columns: 1fr; }
+  .categoryGuideGrid { grid-template-columns: 1fr; }
 }
 @media (max-width: 680px) {
   .liveResultSection { padding: 18px; border-radius: 17px; }
@@ -1467,6 +1532,10 @@ img { max-width: 100%; }
   .liveResultFooter { align-items: flex-start; flex-direction: column; }
   .qualityStatsGrid { grid-template-columns: 1fr; }
   .qualityCard { padding: 15px; }
+  .categoryLinkGrid { grid-template-columns: 1fr; }
+  .categoryHero { padding-top: 36px; }
+  .categoryHeroCopy, .categoryHeroFacts, .categoryGuideCard, .categoryEmptyLive { padding: 20px; border-radius: 15px; }
+  .categoryHeroCopy h1 { font-size: 36px; }
 }
 .areaTitleRow { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .areaTitleRow h3 { margin-bottom: 0; }

@@ -1,6 +1,7 @@
 import { canonicalUrl } from "@/lib/site";
 import { getLiveSitemapEntries } from "@/lib/db";
 import { liveEducationPath } from "@/lib/live-urls";
+import { educationCategoryPages, getEducationCategoryPath } from "@/lib/education-categories";
 
 export default async function sitemap() {
   const now = new Date();
@@ -33,5 +34,12 @@ export default async function sitemap() {
     priority: 0.62,
   }));
 
-  return [...staticEntries, ...educationEntries];
+  const categoryEntries = educationCategoryPages.map((category) => ({
+    url: canonicalUrl(getEducationCategoryPath(category)),
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.78,
+  }));
+
+  return [...staticEntries, ...categoryEntries, ...educationEntries];
 }

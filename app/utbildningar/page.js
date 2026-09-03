@@ -3,6 +3,8 @@ import { getLiveDataStatus, getLiveFilterOptions } from "@/lib/db";
 import { canonicalUrl } from "@/lib/site";
 import { getAdSenseConfig } from "@/lib/ads";
 import AdSenseUnit from "@/components/AdSenseUnit";
+import Link from "next/link";
+import { educationCategoryPages, getEducationCategoryPath } from "@/lib/education-categories";
 
 export const dynamic = "force-dynamic";
 
@@ -57,6 +59,25 @@ export default async function ProgramsPage() {
         label="Annons i utbildningslista"
         format="horizontal"
       />
+
+      <section className="shell categoryIndexSection" aria-labelledby="category-index-title">
+        <div className="sectionHeading compactHeading categoryIndexHeading">
+          <div>
+            <span className="eyebrow">Utbildningsområden</span>
+            <h2 id="category-index-title">Hitta rätt område snabbare</h2>
+          </div>
+          <p>Varje område har en egen sida med kort vägledning, metadata för sök och aktuella programstarter från livekatalogen.</p>
+        </div>
+        <div className="categoryLinkGrid">
+          {educationCategoryPages.map((category) => (
+            <Link className="categoryLinkCard" href={getEducationCategoryPath(category)} key={category.slug}>
+              <span>{category.label}</span>
+              <strong>{category.title}</strong>
+              <small>{category.indexDescription}</small>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section className="shell browserSection">
         <LiveEducationBrowser initialOptions={options} initialStatus={status} />

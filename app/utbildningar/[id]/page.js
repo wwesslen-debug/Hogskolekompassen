@@ -4,10 +4,12 @@ import { notFound } from "next/navigation";
 import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
+import EducationCategoryPage from "@/components/EducationCategoryPage";
 import { getLiveOfferings } from "@/lib/db";
 import { cleanLiveText } from "@/lib/live-text";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { getLiveApplicationLink, getLiveSourceLink, liveEducationIdFromRouteParam, liveEducationPath } from "@/lib/live-urls";
+import { getEducationCategoryBySlug, getEducationCategoryPath } from "@/lib/education-categories";
 import { canonicalUrl, cleanDescription } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -119,6 +121,29 @@ function structuredData(offering) {
 
 export async function generateMetadata({ params }) {
   const routeParams = await params;
+  const category = getEducationCategoryBySlug(routeParams?.id);
+
+  if (category) {
+    const path = getEducationCategoryPath(category);
+    return {
+      title: category.title,
+      description: category.metaDescription,
+      alternates: { canonical: canonicalUrl(path) },
+      openGraph: {
+        type: "website",
+        url: canonicalUrl(path),
+        title: category.title,
+        description: category.metaDescription,
+        siteName: "Högskolekompassen",
+        locale: "sv_SE",
+      },
+      robots: {
+        index: true,
+        follow: true,
+      },
+    };
+  }
+
   const offering = await getOfferingByRouteId(routeParams?.id);
 
   if (!offering) {
@@ -153,6 +178,10 @@ export async function generateMetadata({ params }) {
 
 export default async function LiveEducationDetailPage({ params }) {
   const routeParams = await params;
+  const category = getEducationCategoryBySlug(routeParams?.id);
+
+  if (category) return <EducationCategoryPage category={category} />;
+
   const offering = await getOfferingByRouteId(routeParams?.id);
 
   if (!offering) notFound();
