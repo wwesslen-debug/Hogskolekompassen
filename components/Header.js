@@ -16,7 +16,6 @@ export default function Header() {
           <Link href="/#hur">Så fungerar det</Link>
           <Link href="/utbildningar">Utbildningar</Link>
           <Link href="/jamfor">Jämför</Link>
-          <Link href="/datakalla">Datakälla</Link>
           <Link href="/min-vag">Min väg</Link>
           <Link href="/kompass" className="button buttonSmall">
             Starta kompassen
