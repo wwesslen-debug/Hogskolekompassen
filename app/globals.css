@@ -1513,25 +1513,17 @@ img { max-width: 100%; }
 .educationDetailSection { padding-bottom: 92px; }
 .educationDetailContent { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(300px,.75fr); gap: 16px; align-items: start; }
 .educationDetailContent.secondary { margin-top: 16px; grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+.educationDetailContent.single { grid-template-columns: 1fr; }
 .educationDetailPanel { padding: 26px; }
 .educationDetailPanel h2 { margin: 8px 0 14px; font-size: 26px; line-height: 1.1; letter-spacing: 0; }
 .educationDetailPanel p { margin: 0 0 14px; color: #506572; font-size: 14px; line-height: 1.72; }
 .educationDetailPanel p:last-child { margin-bottom: 0; }
 .educationFactsPanel { position: sticky; top: 96px; }
 .educationFactGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
-.educationTrustPanel { background: #102e43; color: #fff; border-color: rgba(255,255,255,.08); }
-.educationTrustPanel .eyebrow { color: #8bd7d2; }
-.educationTrustPanel p { color: #c8d8df; }
-.educationSourceList { display: grid; gap: 8px; margin-top: 16px; }
-.educationSourceList > span { display: grid; gap: 4px; padding: 10px 11px; border-radius: 10px; background: rgba(255,255,255,.07); color: #dceaf0; font-size: 10px; line-height: 1.45; }
-.educationSourceList strong { color: #93cfd0; font-size: 8px; text-transform: uppercase; letter-spacing: .06em; }
-.educationSourceList code { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; }
-.educationSourceActions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.educationTrustPanel .buttonGhost { color: #fff; border-color: rgba(255,255,255,.2); }
-.educationTrustPanel .buttonGhost:hover { background: rgba(255,255,255,.08); }
+.educationFactActions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
 
 @media (max-width: 960px) {
-  .educationDetailGrid, .educationDetailContent, .educationDetailContent.secondary { grid-template-columns: 1fr; }
+  .educationDetailGrid, .educationDetailContent, .educationDetailContent.secondary, .educationDetailContent.single { grid-template-columns: 1fr; }
   .educationFactsPanel { position: static; }
 }
 

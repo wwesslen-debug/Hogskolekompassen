@@ -4,11 +4,11 @@ import { notFound } from "next/navigation";
 import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
-import { getLiveDataStatus, getLiveOfferings } from "@/lib/db";
+import { getLiveOfferings } from "@/lib/db";
 import { cleanLiveText } from "@/lib/live-text";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
-import { liveEducationIdFromRouteParam, liveEducationPath } from "@/lib/live-urls";
-import { canonicalUrl, cleanDescription, formatSyncDate } from "@/lib/site";
+import { getLiveApplicationLink, isAntagningUrl, liveEducationIdFromRouteParam, liveEducationPath } from "@/lib/live-urls";
+import { canonicalUrl, cleanDescription } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -59,7 +59,6 @@ function buildFacts(offering, application) {
     fact("Studiemedel", offering.studentAid === "ja" ? "CSN-berättigad" : offering.studentAid),
     fact("Språk", offering.language),
     fact("Anmälningskod", offering.applicationCode),
-    fact("Senast synkad", offering.syncedAt ? formatSyncDate(offering.syncedAt) : null),
   ].filter(Boolean);
 }
 
@@ -154,10 +153,7 @@ export async function generateMetadata({ params }) {
 
 export default async function LiveEducationDetailPage({ params }) {
   const routeParams = await params;
-  const [offering, status] = await Promise.all([
-    getOfferingByRouteId(routeParams?.id),
-    getLiveDataStatus(),
-  ]);
+  const offering = await getOfferingByRouteId(routeParams?.id);
 
   if (!offering) notFound();
 
@@ -167,7 +163,13 @@ export default async function LiveEducationDetailPage({ params }) {
     unknownTone: "neutral",
   });
   const sourceUrl = offering.sourceUrl || "";
-  const applicationUrl = offering.applicationUrl || "";
+  const applicationLink = getLiveApplicationLink(offering);
+  const showAntagningSearchLink = applicationLink && !isAntagningUrl(applicationLink.href);
+  const antagningSearchLink = showAntagningSearchLink ? {
+    href: `https://www.antagning.se/se/search?${new URLSearchParams({ freeText: offering.title }).toString()}`,
+    label: "Sök på Antagning.se ↗",
+    source: "antagning_search",
+  } : null;
   const descriptionParagraphs = splitText(offering.description);
   const eligibilityParagraphs = splitText(offering.eligibility);
   const facts = buildFacts(offering, application);
@@ -208,20 +210,33 @@ export default async function LiveEducationDetailPage({ params }) {
             <div className="educationDetailActions">
               <CompareButton offeringId={offering.id} compact />
               <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
-              {applicationUrl ? (
+              {applicationLink ? (
                 <TrackedExternalLink
-                  href={applicationUrl}
+                  href={applicationLink.href}
                   className="button buttonSmall"
                   properties={{
-                    source: "education_detail_application",
+                    source: `education_detail_${applicationLink.source}`,
                     offeringId: offering.id,
                     programId: offering.canonicalProgramId,
                   }}
                 >
-                  Öppna ansökan ↗
+                  {applicationLink.label}
                 </TrackedExternalLink>
               ) : null}
-              {sourceUrl && sourceUrl !== applicationUrl ? (
+              {antagningSearchLink ? (
+                <TrackedExternalLink
+                  href={antagningSearchLink.href}
+                  className="button buttonGhost buttonSmall"
+                  properties={{
+                    source: `education_detail_${antagningSearchLink.source}`,
+                    offeringId: offering.id,
+                    programId: offering.canonicalProgramId,
+                  }}
+                >
+                  {antagningSearchLink.label}
+                </TrackedExternalLink>
+              ) : null}
+              {sourceUrl && sourceUrl !== applicationLink?.href ? (
                 <TrackedExternalLink
                   href={sourceUrl}
                   className="button buttonGhost buttonSmall"
@@ -274,10 +289,14 @@ export default async function LiveEducationDetailPage({ params }) {
                 </div>
               ))}
             </div>
+            <div className="educationFactActions">
+              <Link href={`/utbildningar?${relatedSearch.toString()}`} className="button buttonGhost buttonSmall">Liknande utbildningar</Link>
+              <Link href="/jamfor" className="button buttonGhost buttonSmall">Gå till jämför</Link>
+            </div>
           </aside>
         </div>
 
-        <div className="educationDetailContent secondary">
+        <div className="educationDetailContent secondary single">
           <article className="educationDetailPanel">
             <span className="eyebrow">Behörighet</span>
             <h2>Kontrollera kraven</h2>
@@ -286,23 +305,6 @@ export default async function LiveEducationDetailPage({ params }) {
             ) : (
               <p>Behörighet saknas i livedatan. Kontrollera kraven hos lärosätet eller Antagning.se.</p>
             )}
-          </article>
-
-          <article className="educationDetailPanel educationTrustPanel">
-            <span className="eyebrow">Källa</span>
-            <h2>Livepost från Susa-navet</h2>
-            <p>
-              Högskolekompassen visar posten som den är synkad i livekatalogen. Ansökan, urval, behörighet och schema kan ändras hos lärosätet.
-            </p>
-            <div className="educationSourceList">
-              <span><strong>Live-id</strong><code>{offering.id}</code></span>
-              {offering.educationInfoId ? <span><strong>Utbildnings-id</strong><code>{offering.educationInfoId}</code></span> : null}
-              {status?.lastSync?.value ? <span><strong>Katalogsynk</strong>{formatSyncDate(status.lastSync.value)}</span> : null}
-            </div>
-            <div className="educationSourceActions">
-              <Link href={`/utbildningar?${relatedSearch.toString()}`} className="button buttonGhost buttonSmall">Liknande utbildningar</Link>
-              <Link href="/jamfor" className="button buttonGhost buttonSmall">Gå till jämför</Link>
-            </div>
           </article>
         </div>
       </section>
