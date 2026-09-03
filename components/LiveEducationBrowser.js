@@ -6,7 +6,7 @@ import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
-import { liveEducationPath } from "@/lib/live-urls";
+import { getLiveExternalLink, liveEducationPath } from "@/lib/live-urls";
 
 const PAGE_SIZE = 200;
 
@@ -221,7 +221,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       <div className="liveOfferingList" aria-busy={loading}>
         {offerings.map((offering) => {
           const application = applicationState(offering);
-          const target = offering.applicationUrl || offering.sourceUrl;
+          const target = getLiveExternalLink(offering);
           const detailPath = liveEducationPath(offering);
           return (
             <article className="liveOfferingCard" key={offering.id}>
@@ -251,17 +251,17 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
                 <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
                 {target ? (
                   <a
-                    href={target}
+                    href={target.href}
                     target="_blank"
                     rel="noreferrer"
                     className="button buttonSmall"
-                    onClick={() => trackExternalClick(target, {
-                      source: "live_catalog",
+                    onClick={() => trackExternalClick(target.href, {
+                      source: `live_catalog_${target.source}`,
                       offeringId: offering.id,
                       programId: offering.canonicalProgramId,
                     })}
                   >
-                    Öppna originalkälla ↗
+                    {target.label}
                   </a>
                 ) : null}
               </aside>

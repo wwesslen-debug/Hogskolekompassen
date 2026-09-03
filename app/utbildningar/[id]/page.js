@@ -7,7 +7,7 @@ import TrackedExternalLink from "@/components/TrackedExternalLink";
 import { getLiveOfferings } from "@/lib/db";
 import { cleanLiveText } from "@/lib/live-text";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
-import { getLiveApplicationLink, isAntagningUrl, liveEducationIdFromRouteParam, liveEducationPath } from "@/lib/live-urls";
+import { getLiveApplicationLink, getLiveSourceLink, liveEducationIdFromRouteParam, liveEducationPath } from "@/lib/live-urls";
 import { canonicalUrl, cleanDescription } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
@@ -88,7 +88,7 @@ function removeEmpty(value) {
 
 function structuredData(offering) {
   const path = liveEducationPath(offering);
-  const source = offering.applicationUrl || offering.sourceUrl || "";
+  const source = getLiveApplicationLink(offering)?.href || getLiveSourceLink(offering)?.href || "";
   const data = {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -162,14 +162,8 @@ export default async function LiveEducationDetailPage({ params }) {
     fallback: "Kontrollera ansökan",
     unknownTone: "neutral",
   });
-  const sourceUrl = offering.sourceUrl || "";
   const applicationLink = getLiveApplicationLink(offering);
-  const showAntagningSearchLink = applicationLink && !isAntagningUrl(applicationLink.href);
-  const antagningSearchLink = showAntagningSearchLink ? {
-    href: `https://www.antagning.se/se/search?${new URLSearchParams({ freeText: offering.title }).toString()}`,
-    label: "Sök på Antagning.se ↗",
-    source: "antagning_search",
-  } : null;
+  const sourceLink = getLiveSourceLink(offering);
   const descriptionParagraphs = splitText(offering.description);
   const eligibilityParagraphs = splitText(offering.eligibility);
   const facts = buildFacts(offering, application);
@@ -223,30 +217,17 @@ export default async function LiveEducationDetailPage({ params }) {
                   {applicationLink.label}
                 </TrackedExternalLink>
               ) : null}
-              {antagningSearchLink ? (
+              {sourceLink && sourceLink.href !== applicationLink?.href ? (
                 <TrackedExternalLink
-                  href={antagningSearchLink.href}
+                  href={sourceLink.href}
                   className="button buttonGhost buttonSmall"
                   properties={{
-                    source: `education_detail_${antagningSearchLink.source}`,
+                    source: `education_detail_${sourceLink.source}`,
                     offeringId: offering.id,
                     programId: offering.canonicalProgramId,
                   }}
                 >
-                  {antagningSearchLink.label}
-                </TrackedExternalLink>
-              ) : null}
-              {sourceUrl && sourceUrl !== applicationLink?.href ? (
-                <TrackedExternalLink
-                  href={sourceUrl}
-                  className="button buttonGhost buttonSmall"
-                  properties={{
-                    source: "education_detail_source",
-                    offeringId: offering.id,
-                    programId: offering.canonicalProgramId,
-                  }}
-                >
-                  Originalkälla ↗
+                  {sourceLink.label}
                 </TrackedExternalLink>
               ) : null}
             </div>

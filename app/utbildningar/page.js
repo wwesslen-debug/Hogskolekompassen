@@ -29,7 +29,7 @@ export default async function ProgramsPage() {
             <h1>Aktuella utbildningar</h1>
             <p className="lead">
               Här visas det synkade utbudet av svenska högskoleprogram på grundnivå. Du kan söka, filtrera, jämföra
-              riktiga utbildningar och öppna originalkällan hos lärosäte eller antagningstjänst. Master-, magister-,
+              riktiga utbildningar och öppna länkar till lärosätenas egna sidor när de finns i livedatan. Master-, magister-,
               senare-del- och avancerade program filtreras bort.
             </p>
             {status.periods?.length ? (

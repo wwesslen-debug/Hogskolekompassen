@@ -6,7 +6,7 @@ import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
-import { liveEducationPath } from "@/lib/live-urls";
+import { getLiveExternalLink, liveEducationPath } from "@/lib/live-urls";
 
 function applicationLabel(offering) {
   return getLiveApplicationStatus(offering, {
@@ -115,7 +115,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
               offering.personalScore ?? result?.scoreByLiveOfferingId?.[offering.id] ?? result?.scoreById?.[offering.canonicalProgramId] ?? parent?.score ?? 0
             ));
             const application = applicationLabel(offering);
-            const target = offering.applicationUrl || offering.sourceUrl;
+            const target = getLiveExternalLink(offering);
             const detailPath = liveEducationPath(offering);
             return (
               <article className="liveResultCard" key={offering.id}>
@@ -141,18 +141,18 @@ export default function LiveResultRecommendations({ result, variant = "default" 
                   <Link href={detailPath} className="button buttonSmall">Visa detaljer</Link>
                   {target ? (
                     <a
-                      href={target}
+                      href={target.href}
                       target="_blank"
                       rel="noreferrer"
                       className="button buttonGhost buttonSmall"
-                      onClick={() => trackExternalClick(target, {
-                        source: "result_live_recommendation",
+                      onClick={() => trackExternalClick(target.href, {
+                        source: `result_live_recommendation_${target.source}`,
                         offeringId: offering.id,
                         programId: offering.canonicalProgramId,
                         matchSource: offering.matchSource,
                       })}
                     >
-                      Originalkälla ↗
+                      {target.label}
                     </a>
                   ) : null}
                   <CompareButton offeringId={offering.id} compact />

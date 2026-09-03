@@ -8,7 +8,7 @@ import { trackExternalClick } from "@/lib/analytics-client";
 import { pathEntryKey, PATH_EVENT_NAME, pathStatuses, readPathEntries } from "@/lib/path-storage";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { cleanLiveText } from "@/lib/live-text";
-import { liveEducationPath } from "@/lib/live-urls";
+import { getLiveExternalLink, liveEducationPath } from "@/lib/live-urls";
 
 function shortenText(value, maxLength = 280) {
   const text = cleanLiveText(value);
@@ -95,6 +95,7 @@ export default function MyPath() {
             const offering = liveById.get(String(entry.id));
             if (!offering) return null;
             const application = getLiveApplicationStatus(offering, { fallback: "Kontrollera ansökan" });
+            const target = getLiveExternalLink(offering);
             return {
               key: pathEntryKey(entry),
               kind: "live",
@@ -115,7 +116,9 @@ export default function MyPath() {
                 offering.credits ? ["Omfattning", getLiveCreditsLabel(offering)] : null,
                 ["Ansökan", application.label],
               ].filter(Boolean),
-              targetUrl: offering.applicationUrl || offering.sourceUrl || "",
+              targetUrl: target?.href || "",
+              targetLabel: target?.label || "",
+              targetSource: target?.source || "",
               detailUrl: liveEducationPath(offering),
             };
           }
@@ -141,6 +144,8 @@ export default function MyPath() {
               ["Katalog", "Profil"],
             ].filter(Boolean),
             targetUrl: "",
+            targetLabel: "",
+            targetSource: "",
             detailUrl: "",
           };
         }).filter(Boolean));
@@ -247,12 +252,12 @@ export default function MyPath() {
                             rel="noreferrer"
                             className="button buttonGhost buttonSmall"
                             onClick={() => trackExternalClick(item.targetUrl, {
-                              source: "my_path",
+                              source: item.targetSource ? `my_path_${item.targetSource}` : "my_path",
                               offeringId: item.id,
                               programId: item.canonicalProgramId,
                             })}
                           >
-                            Öppna originalkälla ↗
+                            {item.targetLabel || "Lärosätets sida ↗"}
                           </a>
                         ) : (
                           <Link href={`/utbildningar?search=${encodeURIComponent(item.title)}`} className="button buttonGhost buttonSmall">Sök liveutbildningar</Link>
