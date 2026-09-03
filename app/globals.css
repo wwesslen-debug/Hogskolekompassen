@@ -1303,6 +1303,8 @@ img { max-width: 100%; }
 .compareDetailsGrid { margin-top: 18px; }
 .compareDetailsGrid .compareCorner { border-bottom: 0; }
 .compareDetailCell { padding: 18px; background: white; border: 1px solid var(--line); border-left: 0; }
+.compareExpandableText p { margin: 0; }
+.compareReadMore { margin-top: 10px; padding: 0; border: 0; background: transparent; color: var(--teal-dark); font-size: 10px; font-weight: 850; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .compareDetailCell ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 10px; line-height: 1.7; }
 .smallTags { margin: 0; gap: 6px; }
 .smallTags span { padding: 7px 8px; font-size: 9px; }

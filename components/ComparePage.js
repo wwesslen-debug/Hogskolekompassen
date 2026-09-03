@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import CompareButton from "@/components/CompareButton";
 import { COMPARE_EVENT_NAME, compareEntryKey, readCompareEntries } from "@/lib/compare-storage";
+import { cleanLiveText } from "@/lib/live-text";
 
 const breakdownLabels = {
   interests: "Intressen",
@@ -72,6 +73,32 @@ function mergeScoreData(offering, context = {}) {
     matchConfidence: scoredOffering.matchConfidence ?? programScoreDetails.matchConfidence ?? offering.matchConfidence,
     matchLabel: scoredOffering.matchLabel ?? offering.matchLabel,
   };
+}
+
+function ExpandableCompareText({ text, emptyText, maxLength = 520 }) {
+  const [expanded, setExpanded] = useState(false);
+  const cleanText = cleanLiveText(text);
+  const hasText = Boolean(cleanText);
+  const isLong = cleanText.length > maxLength;
+  const visibleText = expanded || !isLong ? cleanText : `${cleanText.slice(0, maxLength).trim()}...`;
+
+  if (!hasText) return emptyText;
+
+  return (
+    <div className="compareExpandableText">
+      <p>{visibleText}</p>
+      {isLong ? (
+        <button
+          type="button"
+          className="compareReadMore"
+          onClick={() => setExpanded((value) => !value)}
+          aria-expanded={expanded}
+        >
+          {expanded ? "Visa mindre" : "Se mer"}
+        </button>
+      ) : null}
+    </div>
+  );
 }
 
 const rows = [
@@ -322,9 +349,17 @@ export default function ComparePage() {
 
             <div className="compareDetailsGrid" style={{ "--compare-count": mergedOfferings.length }}>
               <div className="compareCorner">Beskrivning</div>
-              {mergedOfferings.map((offering) => <div className="compareDetailCell" key={offering.id}>{offering.description || "Beskrivning saknas i livedatan. Öppna originalkällan för mer information."}</div>)}
+              {mergedOfferings.map((offering) => (
+                <div className="compareDetailCell" key={offering.id}>
+                  <ExpandableCompareText text={offering.description} emptyText="Beskrivning saknas i livedatan. Öppna originalkällan för mer information." />
+                </div>
+              ))}
               <div className="compareCorner">Behörighet</div>
-              {mergedOfferings.map((offering) => <div className="compareDetailCell" key={offering.id}>{offering.eligibility || "Kontrollera behörighet hos lärosätet eller Antagning.se."}</div>)}
+              {mergedOfferings.map((offering) => (
+                <div className="compareDetailCell" key={offering.id}>
+                  <ExpandableCompareText text={offering.eligibility} emptyText="Kontrollera behörighet hos lärosätet eller Antagning.se." />
+                </div>
+              ))}
             </div>
 
             <div className="compareBottomActions">
