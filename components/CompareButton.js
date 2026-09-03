@@ -12,9 +12,9 @@ import {
 } from "@/lib/compare-storage";
 
 export default function CompareButton({ offeringId, programId, compact = false }) {
-  const liveId = Number(offeringId);
+  const liveId = String(offeringId ?? "").trim();
   const fallbackProgramId = Number(programId);
-  const target = Number.isInteger(liveId) && liveId > 0
+  const target = liveId
     ? { kind: "live", id: liveId }
     : Number.isInteger(fallbackProgramId) && fallbackProgramId > 0
       ? { kind: "program", id: fallbackProgramId }

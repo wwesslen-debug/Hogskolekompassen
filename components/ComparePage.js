@@ -151,7 +151,7 @@ export default function ComparePage() {
         const [liveResult, ...programResults] = results;
         const liveOfferings = liveResult.status === "fulfilled" ? liveResult.value.offerings || [] : [];
         const programOfferings = programResults.flatMap((result) => result.status === "fulfilled" ? result.value.offerings || [] : []);
-        const liveById = new Map(liveOfferings.map((item) => [Number(item.id), item]));
+        const liveById = new Map(liveOfferings.map((item) => [String(item.id), item]));
         const liveByProgramId = new Map();
 
         for (const item of programOfferings) {
@@ -162,7 +162,7 @@ export default function ComparePage() {
         const seen = new Set();
         const selected = [];
         for (const entry of entries) {
-          const offering = entry.kind === "live" ? liveById.get(entry.id) : liveByProgramId.get(entry.id);
+          const offering = entry.kind === "live" ? liveById.get(String(entry.id)) : liveByProgramId.get(entry.id);
           if (!offering || seen.has(offering.id)) continue;
           seen.add(offering.id);
           selected.push(offering);

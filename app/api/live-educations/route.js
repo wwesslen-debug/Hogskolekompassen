@@ -11,8 +11,8 @@ export const runtime = "nodejs";
 function cleanIds(value) {
   return String(value || "")
     .split(",")
-    .map(Number)
-    .filter((id) => Number.isInteger(id) && id > 0)
+    .map((id) => id.trim())
+    .filter(Boolean)
     .slice(0, 200);
 }
 
