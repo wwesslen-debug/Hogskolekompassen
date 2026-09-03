@@ -32,7 +32,12 @@ export default function SaveProgramButton({ offeringId, programId, compact = fal
     if (!target) return;
     const result = setPathStatus(target, nextStatus);
     const programNumber = Number(programId);
-    trackFunnelEvent(result.removing ? "unsave_program" : "save_program", {
+    const eventName = result.removing
+      ? "unsave_program"
+      : target.kind === "live"
+        ? "saved_live_program"
+        : "save_program";
+    trackFunnelEvent(eventName, {
       ...(target.kind === "live" ? { offeringId: target.id } : { programId: target.id }),
       ...(target.kind === "live" && Number.isInteger(programNumber) && programNumber > 0 ? { programId: programNumber } : {}),
       status: result.removing ? result.previousStatus : result.status,

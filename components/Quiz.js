@@ -56,6 +56,12 @@ export default function Quiz({ questions }) {
 
   function startQuizMode(mode) {
     const normalized = normalizeQuizMode(mode);
+    const config = getQuizModeConfig(normalized);
+    trackFunnelEvent("quiz_started", {
+      quizMode: normalized,
+      baseQuestionCount: getQuestionsForQuizMode(questions, normalized, {}, { selectedInterests: [], intentCertainty: "" }).length,
+      adaptiveLimit: config?.adaptiveLimit || 0,
+    });
     setQuizMode(normalized);
     setIndex(0);
     setAnswers({});
@@ -161,7 +167,7 @@ export default function Quiz({ questions }) {
       }
 
       const result = await response.json();
-      trackFunnelEvent("compass_completed", {
+      trackFunnelEvent("quiz_completed", {
         quizMode: result.quizMode,
         certainAnswers: result.certainAnswers,
         adaptiveQuestionCount: result.adaptiveQuestionCount || 0,

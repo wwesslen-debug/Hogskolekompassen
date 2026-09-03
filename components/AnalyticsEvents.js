@@ -7,7 +7,6 @@ import { useConsentState } from "@/lib/consent-client";
 
 function routeEvent(pathname) {
   if (pathname === "/") return { event: "visit" };
-  if (pathname === "/kompass") return { event: "start_compass" };
   if (pathname === "/resultat") return { event: "view_results" };
   if (pathname === "/jamfor") return { event: "compare_view" };
   if (pathname === "/min-vag") return { event: "saved_list_view" };

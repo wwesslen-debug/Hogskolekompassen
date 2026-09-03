@@ -6,41 +6,63 @@ export const runtime = "nodejs";
 const allowedEvents = new Set([
   "page_view",
   "visit",
+  "quiz_started",
+  "quiz_completed",
   "start_compass",
   "compass_completed",
   "view_results",
+  "compare_used",
   "compare_add",
   "compare_remove",
   "compare_limit_reached",
   "compare_view",
+  "saved_live_program",
   "save_program",
   "unsave_program",
   "saved_list_view",
+  "external_application_click",
   "application_click",
 ]);
 
+const quizStartProperties = {
+  quizMode: "shortString",
+  baseQuestionCount: "integer",
+  adaptiveLimit: "integer",
+};
+
+const quizCompletionProperties = {
+  quizMode: "shortString",
+  certainAnswers: "integer",
+  adaptiveQuestionCount: "integer",
+  selectedInterests: "integer",
+  selectedPriorities: "integer",
+  selectedDealBreakers: "integer",
+};
+
+const compareProperties = { programId: "integer", offeringId: "shortString", count: "integer" };
+const saveProperties = { programId: "integer", offeringId: "shortString", status: "status" };
+const externalClickProperties = {
+  target: "url",
+  source: "shortString",
+  programId: "integer",
+  offeringId: "shortString",
+  matchSource: "shortString",
+};
+
 const propertySchemas = {
   page_view: { pathname: "path" },
-  compare_add: { programId: "integer", offeringId: "shortString", count: "integer" },
+  quiz_started: quizStartProperties,
+  quiz_completed: quizCompletionProperties,
+  compare_used: compareProperties,
+  compare_add: compareProperties,
   compare_remove: { programId: "integer", offeringId: "shortString" },
   compare_limit_reached: { programId: "integer", offeringId: "shortString", count: "integer" },
-  save_program: { programId: "integer", offeringId: "shortString", status: "status" },
-  unsave_program: { programId: "integer", offeringId: "shortString", status: "status" },
-  compass_completed: {
-    quizMode: "shortString",
-    certainAnswers: "integer",
-    adaptiveQuestionCount: "integer",
-    selectedInterests: "integer",
-    selectedPriorities: "integer",
-    selectedDealBreakers: "integer",
-  },
-  application_click: {
-    target: "url",
-    source: "shortString",
-    programId: "integer",
-    offeringId: "shortString",
-    matchSource: "shortString",
-  },
+  saved_live_program: saveProperties,
+  save_program: saveProperties,
+  unsave_program: saveProperties,
+  compass_completed: quizCompletionProperties,
+  external_application_click: externalClickProperties,
+  application_click: externalClickProperties,
 };
 
 const allowedStatuses = new Set(["favorite", "interesting", "unsure", "no"]);

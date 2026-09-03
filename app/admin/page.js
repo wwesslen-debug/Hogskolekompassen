@@ -26,16 +26,21 @@ const metricLabels = [
 const eventLabels = {
   page_view: "Sidvisning",
   visit: "Startsida",
+  quiz_started: "Quiz startat",
+  quiz_completed: "Quiz slutfört",
   start_compass: "Startad kompass",
   compass_completed: "Slutförd kompass",
   view_results: "Resultatsida",
+  compare_used: "Jämförelse använd",
   compare_add: "Lagd i jämförelse",
   compare_remove: "Borttagen från jämförelse",
   compare_limit_reached: "Jämförelsegräns nådd",
   compare_view: "Jämförelsesida",
+  saved_live_program: "Sparad liveutbildning",
   save_program: "Sparad i Min väg",
   unsave_program: "Borttagen från Min väg",
   saved_list_view: "Min väg-sida",
+  external_application_click: "Externt ansökningsklick",
   application_click: "Klick vidare",
 };
 

@@ -54,7 +54,7 @@ export default function CompareButton({ offeringId, programId, compact = false }
     const next = [...current, target];
     writeCompareEntries(next);
     setEntries(next);
-    trackFunnelEvent("compare_add", { ...analyticsPayload, count: next.length });
+    trackFunnelEvent("compare_used", { ...analyticsPayload, count: next.length });
   }
 
   return (
