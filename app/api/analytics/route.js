@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { ADMIN_SESSION_COOKIE, isValidAdminSession } from "@/lib/admin-auth";
 import { recordSupabaseAnalyticsEvent } from "@/lib/supabase-db";
 
 export const runtime = "nodejs";
@@ -103,6 +104,11 @@ function cleanTimestamp(value) {
 }
 
 export async function POST(request) {
+  const adminSession = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
+  if (isValidAdminSession(adminSession)) {
+    return NextResponse.json({ ok: true, skipped: true });
+  }
+
   let payload;
   try {
     payload = await request.json();

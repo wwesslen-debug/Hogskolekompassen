@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
 import { ADMIN_SESSION_COOKIE, isAdminConfigured, isValidAdminSession } from "@/lib/admin-auth";
 import { getSupabaseAnalyticsOverview } from "@/lib/supabase-db";
+import AnalyticsExclusionControl from "@/components/AnalyticsExclusionControl";
+import AnalyticsResetForm from "@/components/AnalyticsResetForm";
 
 export const metadata = {
   title: "Admin",
@@ -42,6 +44,12 @@ const eventLabels = {
   saved_list_view: "Min väg-sida",
   external_application_click: "Externt ansökningsklick",
   application_click: "Klick vidare",
+};
+
+const resetMessages = {
+  ok: "All analytics-statistik är nollställd.",
+  "missing-config": "Statistiken kunde inte nollställas eftersom Supabase inte är konfigurerat.",
+  error: "Statistiken kunde inte nollställas. Försök igen eller kontrollera Supabase-anslutningen.",
 };
 
 function formatNumber(value) {
@@ -148,9 +156,13 @@ export default async function AdminPage({ searchParams }) {
             Aggregat från Supabase för användare som godkänt analytics. Unika personer mäts inte här.
           </p>
         </div>
-        <form action="/api/admin/logout" method="post">
-          <button type="submit" className="button buttonGhost">Logga ut</button>
-        </form>
+        <div className="adminActions">
+          <AnalyticsExclusionControl />
+          <AnalyticsResetForm />
+          <form action="/api/admin/logout" method="post">
+            <button type="submit" className="button buttonGhost">Logga ut</button>
+          </form>
+        </div>
       </section>
 
       <nav className="adminRangeNav" aria-label="Tidsperiod">
@@ -163,6 +175,11 @@ export default async function AdminPage({ searchParams }) {
         <div className="adminNotice">Supabase är inte konfigurerat. Sätt <code>SUPABASE_DATABASE_URL</code>.</div>
       ) : null}
       {overview.error ? <div className="adminNotice">Kunde inte läsa analytics: {overview.error}</div> : null}
+      {resetMessages[params?.reset] ? (
+        <div className={params.reset === "ok" ? "adminNotice adminNoticeSuccess" : "adminNotice"}>
+          {resetMessages[params.reset]}
+        </div>
+      ) : null}
 
       <section className="adminMetricGrid">
         <MetricCard label="Totala events" value={overview.totals.totalEvents} />

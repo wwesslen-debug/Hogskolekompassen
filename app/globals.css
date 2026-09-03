@@ -1621,6 +1621,21 @@ img { max-width: 100%; }
 }
 .adminHeader h1, .adminLogin h1 { margin: 8px 0 8px; font-size: clamp(34px, 5vw, 58px); line-height: 1; letter-spacing: -.055em; }
 .adminHeader p, .adminLogin p { max-width: 680px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.adminActions { display: grid; justify-items: end; gap: 12px; min-width: 300px; }
+.adminOptOut {
+  display: grid;
+  gap: 11px;
+  width: min(100%, 330px);
+  padding: 14px;
+  border: 1px solid #dce6eb;
+  border-radius: 14px;
+  background: #f7faf9;
+}
+.adminOptOut.isExcluded { border-color: #9fd6c7; background: #eff9f6; }
+.adminOptOut strong { display: block; color: var(--ink); font-size: 13px; line-height: 1.35; }
+.adminOptOut span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.dangerButton { color: #963c30; border-color: #ead2ca; }
+.dangerButton:hover { background: #fff5f2; }
 .adminLogin {
   max-width: 620px;
   margin-top: 80px;
@@ -1659,6 +1674,11 @@ img { max-width: 100%; }
   color: #8d4c35;
   font-size: 11px;
   line-height: 1.55;
+}
+.adminNoticeSuccess {
+  border-color: #c9e8d9;
+  background: #f3fbf7;
+  color: #287953;
 }
 .adminMetricGrid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; margin-top: 18px; }
 .adminMetric {
@@ -1703,6 +1723,8 @@ img { max-width: 100%; }
 
 @media (max-width: 680px) {
   .adminHeader { flex-direction: column; padding: 22px; }
+  .adminActions { width: 100%; justify-items: stretch; min-width: 0; }
+  .adminOptOut { width: 100%; }
   .adminMetricGrid { grid-template-columns: 1fr; }
   .adminLogin { margin-top: 38px; padding: 22px; }
 }
