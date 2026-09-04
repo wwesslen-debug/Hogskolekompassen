@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import CompareTray from "@/components/CompareTray";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import AdSenseLoader from "@/components/AdSenseLoader";
+import BrandMark from "@/components/BrandMark";
 import CookieConsent from "@/components/CookieConsent";
 import CookieSettingsButton from "@/components/CookieSettingsButton";
 import { adsenseClient } from "@/lib/ads";
@@ -67,7 +68,7 @@ export default function RootLayout({ children }) {
           <div className="shell footerGrid">
             <div>
               <div className="brand footerBrand">
-                <span className="brandMark" aria-hidden="true"><span /><span /><span /></span>
+                <BrandMark />
                 <span>Högskolekompassen</span>
               </div>
               <p>Oberoende vägledning för smartare och mer personligt utbildningsval.</p>

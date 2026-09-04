@@ -1,15 +1,12 @@
 import Link from "next/link";
+import BrandMark from "@/components/BrandMark";
 
 export default function Header() {
   return (
     <header className="siteHeader">
       <div className="shell navShell">
         <Link href="/" className="brand" aria-label="Högskolekompassen startsida">
-          <span className="brandMark" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
+          <BrandMark />
           <span>Högskolekompassen</span>
         </Link>
         <nav className="mainNav" aria-label="Huvudnavigation">
