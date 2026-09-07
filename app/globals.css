@@ -1629,7 +1629,7 @@ img { max-width: 100%; }
 
 /* Admin analytics */
 .adminPage { min-height: 100vh; padding: 44px 0 80px; background: #f6f8f5; }
-.adminHeader, .adminLogin, .adminRangeNav, .adminMetricGrid, .adminGrid, .adminMeta, .adminNotice {
+.adminHeader, .adminLogin, .adminRangeNav, .adminMetricGrid, .adminGrid, .adminMeta, .adminNotice, .adminQuizModeBlock {
   width: min(1120px, calc(100% - 32px));
   margin-left: auto;
   margin-right: auto;
@@ -1716,6 +1716,7 @@ img { max-width: 100%; }
 .adminMetric span { display: block; color: var(--muted); font-size: 8px; font-weight: 850; text-transform: uppercase; letter-spacing: .07em; }
 .adminMetric strong { display: block; margin-top: 10px; color: var(--ink); font-size: 28px; line-height: 1; letter-spacing: -.04em; }
 .adminMeta { margin-top: 12px; color: var(--muted); font-size: 10px; }
+.adminQuizModeBlock { margin-top: 18px; }
 .adminGrid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 12px; margin-top: 18px; align-items: start; }
 .adminTableBlock {
   padding: 20px;

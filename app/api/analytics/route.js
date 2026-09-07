@@ -54,6 +54,7 @@ const propertySchemas = {
   page_view: { pathname: "path" },
   quiz_started: quizStartProperties,
   quiz_completed: quizCompletionProperties,
+  start_compass: quizStartProperties,
   compare_used: compareProperties,
   compare_add: compareProperties,
   compare_remove: { programId: "integer", offeringId: "shortString" },

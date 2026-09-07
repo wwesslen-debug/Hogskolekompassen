@@ -121,5 +121,15 @@ CREATE TABLE IF NOT EXISTS hk_analytics_path_daily (
   PRIMARY KEY (day, path)
 );
 
+CREATE TABLE IF NOT EXISTS hk_analytics_quiz_mode_daily (
+  day date NOT NULL,
+  quiz_mode text NOT NULL,
+  starts integer NOT NULL DEFAULT 0,
+  completions integer NOT NULL DEFAULT 0,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (day, quiz_mode)
+);
+
 CREATE INDEX IF NOT EXISTS idx_hk_analytics_event_day ON hk_analytics_event_daily(day);
 CREATE INDEX IF NOT EXISTS idx_hk_analytics_path_day ON hk_analytics_path_daily(day);
+CREATE INDEX IF NOT EXISTS idx_hk_analytics_quiz_mode_day ON hk_analytics_quiz_mode_daily(day);

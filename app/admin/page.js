@@ -52,12 +52,23 @@ const resetMessages = {
   error: "Statistiken kunde inte nollställas. Försök igen eller kontrollera Supabase-anslutningen.",
 };
 
+const quizModeLabels = {
+  quick: "Snabbkompassen",
+  full: "Djupkompassen",
+};
+
 function formatNumber(value) {
   return new Intl.NumberFormat("sv-SE").format(Number(value || 0));
 }
 
 function formatMetricValue(value) {
   return typeof value === "string" ? value : formatNumber(value);
+}
+
+function formatPercent(part, total) {
+  const denominator = Number(total || 0);
+  if (!denominator) return "0%";
+  return `${Math.round((Number(part || 0) / denominator) * 100)}%`;
 }
 
 function formatDate(value) {
@@ -109,9 +120,9 @@ function MetricCard({ label, value }) {
   );
 }
 
-function AdminTable({ title, emptyText, columns, rows }) {
+function AdminTable({ title, emptyText, columns, rows, className = "" }) {
   return (
-    <section className="adminTableBlock">
+    <section className={`adminTableBlock ${className}`}>
       <h2>{title}</h2>
       {rows.length ? (
         <div className="adminTableWrap">
@@ -188,6 +199,19 @@ export default async function AdminPage({ searchParams }) {
       </section>
 
       <p className="adminMeta">Senast uppdaterad: {formatDate(overview.lastUpdated)}</p>
+
+      <AdminTable
+        title="Quiztyp"
+        emptyText="Inga quizstarter med quiztyp har samlats in i perioden ännu."
+        className="adminQuizModeBlock"
+        rows={overview.quizModes}
+        columns={[
+          { key: "quizMode", label: "Kompass", render: (row) => quizModeLabels[row.quizMode] || row.quizMode },
+          { key: "starts", label: "Påbörjade", render: (row) => formatNumber(row.starts) },
+          { key: "completions", label: "Slutförda", render: (row) => formatNumber(row.completions) },
+          { key: "completionRate", label: "Completion", render: (row) => formatPercent(row.completions, row.starts) },
+        ]}
+      />
 
       <div className="adminGrid">
         <AdminTable
