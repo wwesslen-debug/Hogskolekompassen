@@ -122,6 +122,38 @@ img { max-width: 100%; }
 .buttonLight { background: var(--white); color: var(--ink); }
 .buttonLight:hover { background: #edf9f7; }
 
+.pathTabsShell { padding-top: 24px; }
+.pathTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255,255,255,.78);
+}
+.pathTabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 6px;
+  color: #526879;
+  font-size: 12px;
+  font-weight: 780;
+}
+.pathTabs a[aria-current="page"] {
+  background: var(--ink);
+  color: white;
+  box-shadow: 0 9px 20px rgba(18,48,71,.12);
+}
+.pathTabs a:not([aria-current="page"]):hover {
+  background: #f2f6f7;
+  color: var(--ink);
+}
+
 .eyebrow {
   color: var(--teal-dark);
   text-transform: uppercase;

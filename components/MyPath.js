@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import CompareButton from "@/components/CompareButton";
+import PathTabs from "@/components/PathTabs";
 import { trackExternalClick } from "@/lib/analytics-client";
 import { pathEntryKey, PATH_EVENT_NAME, pathStatuses, readPathEntries } from "@/lib/path-storage";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
@@ -169,6 +170,9 @@ export default function MyPath() {
   if (loading && !items.length) {
     return (
       <main className="myPathPage">
+        <section className="shell pathTabsShell">
+          <PathTabs active="path" />
+        </section>
         <section className="shell myPathEmpty">
           <span className="eyebrow">Min väg</span>
           <h1>Hämtar din shortlist.</h1>
@@ -181,6 +185,9 @@ export default function MyPath() {
   if (!loading && !savedCount) {
     return (
       <main className="myPathPage">
+        <section className="shell pathTabsShell">
+          <PathTabs active="path" />
+        </section>
         <section className="shell myPathEmpty">
           <span className="eyebrow">Min väg</span>
           <h1>Bygg din egen shortlist.</h1>
@@ -209,6 +216,10 @@ export default function MyPath() {
             <div><strong>{topSaved ? `${topSaved.score}%` : "–"}</strong><span>bästa sparade match</span></div>
           </div>
         </div>
+      </section>
+
+      <section className="shell pathTabsShell">
+        <PathTabs active="path" />
       </section>
 
       <section className="shell myPathSection">

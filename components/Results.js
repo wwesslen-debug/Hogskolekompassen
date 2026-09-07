@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import ProfileRadar from "@/components/ProfileRadar";
 import LiveResultRecommendations from "@/components/LiveResultRecommendations";
+import PathTabs from "@/components/PathTabs";
 
 function percent(value) {
   return `${Math.round((Number(value) || 0) * 100)}%`;
@@ -56,12 +57,17 @@ export default function Results() {
 
   if (!result) {
     return (
-      <div className="emptyState shell">
-        <div className="emptyIcon">↗</div>
-        <h1>Inget resultat ännu</h1>
-        <p>Gör kompassen först så bygger vi din personliga utbildningsprofil.</p>
-        <Link className="button" href="/kompass">Starta kompassen</Link>
-      </div>
+      <main>
+        <section className="shell pathTabsShell">
+          <PathTabs active="result" />
+        </section>
+        <div className="emptyState shell">
+          <div className="emptyIcon">↗</div>
+          <h1>Inget resultat ännu</h1>
+          <p>För att kunna se ditt resultat behöver du först göra kompassen.</p>
+          <Link className="button" href="/kompass">Starta kompassen</Link>
+        </div>
+      </main>
     );
   }
 
@@ -75,6 +81,10 @@ export default function Results() {
 
   return (
     <main>
+      <section className="shell pathTabsShell">
+        <PathTabs active="result" />
+      </section>
+
       <section className="resultHero resultHeroV3">
         <div className="shell resultHeroGrid">
           <div>
