@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import educationInterestOptions from "@/data/education-interests.json";
 import priorityOptions from "@/data/priorities.json";
 import dealBreakerOptions from "@/data/dealbreakers.json";
 import { trackFunnelEvent } from "@/lib/analytics-client";
@@ -53,6 +54,7 @@ export default function Quiz({ questions }) {
     () => activeQuestions.filter((item) => Number(answers[item.id]) === 0).length,
     [activeQuestions, answers]
   );
+  const interestLimit = intentCertainty === "specific" ? 1 : 2;
 
   function startQuizMode(mode) {
     const normalized = normalizeQuizMode(mode);
@@ -75,7 +77,7 @@ export default function Quiz({ questions }) {
     setDealBreakers([]);
     setSubmitting(false);
     setError("");
-    setPhase("questions");
+    setPhase("interests");
   }
 
   function choose(value) {
@@ -99,9 +101,10 @@ export default function Quiz({ questions }) {
   }
 
   function toggleInterest(id) {
+    if (intentCertainty === "explore") return;
     setSelectedInterests((current) => {
       if (current.includes(id)) return current.filter((item) => item !== id);
-      if (current.length >= 3) return current;
+      if (current.length >= interestLimit) return current;
       return [...current, id];
     });
     setError("");
@@ -112,9 +115,20 @@ export default function Quiz({ questions }) {
       setError("Välj om du redan har en riktning eller vill upptäcka brett.");
       return;
     }
+    if (intentCertainty !== "explore" && !selectedInterests.length) {
+      setError("Välj minst ett huvudområde, eller välj att du vill upptäcka brett.");
+      return;
+    }
     setIndex(0);
     setError("");
     setPhase("questions");
+  }
+
+  function chooseIntentCertainty(value) {
+    setIntentCertainty(value);
+    setError("");
+    if (value === "explore") setSelectedInterests([]);
+    if (value === "specific") setSelectedInterests((current) => current.slice(0, 1));
   }
 
   function toggleDealBreaker(id) {
@@ -238,7 +252,7 @@ export default function Quiz({ questions }) {
       return;
     }
     if (phase === "questions" && index === 0) {
-      setPhase("mode");
+      setPhase("interests");
       return;
     }
     setIndex((value) => Math.max(0, value - 1));
@@ -270,6 +284,87 @@ export default function Quiz({ questions }) {
               <em>{mode.id === "quick" ? "Starta Snabbkompassen" : "Starta Djupkompassen"} →</em>
             </button>
           ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "interests") {
+    const showInterestGrid = intentCertainty && intentCertainty !== "explore";
+    return (
+      <section className="quizWrap priorityWrap">
+        <div className="quizTopline">
+          <span>{quizModeConfig?.label} · riktning</span>
+          <span>Steg 1</span>
+        </div>
+        <div className="progressTrack" aria-hidden="true"><div className="progressFill" style={{ width: "8%" }} /></div>
+
+        <div className="quizCard interestQuestionCard">
+          <div className="questionEyebrow">Huvudområde</div>
+          <h1>Vet du redan ungefär vad du vill plugga?</h1>
+          <p className="quizHint">Valet hjälper kompassen att visa starka förslag inom din riktning, men andra oväntade matchningar kan fortfarande komma med i resultatet.</p>
+
+          <div className="intentChoiceGrid" role="radiogroup" aria-label="Riktning">
+            {[
+              ["specific", "Ja, jag har ett huvudområde", "Visa först bra matchningar inom det området."],
+              ["some", "Jag står mellan några områden", "Låt två riktningar påverka frågorna och resultatet."],
+              ["explore", "Nej, jag vill upptäcka brett", "Hoppa över områdesval och låt profilen styra fritt."],
+            ].map(([value, label, description]) => (
+              <button
+                type="button"
+                className={`intentChoice ${intentCertainty === value ? "selected" : ""}`}
+                key={value}
+                onClick={() => chooseIntentCertainty(value)}
+                role="radio"
+                aria-checked={intentCertainty === value}
+              >
+                <span className="priorityCheck">{intentCertainty === value ? "✓" : ""}</span>
+                <strong>{label}</strong>
+                <span>{description}</span>
+              </button>
+            ))}
+          </div>
+
+          {showInterestGrid ? (
+            <>
+              <div className="interestStepHeader">
+                <strong>{intentCertainty === "specific" ? "Välj ett huvudområde" : "Välj upp till två områden"}</strong>
+                <span>{selectedInterests.length}/{interestLimit} valda</span>
+              </div>
+              <div className="interestGrid">
+                {educationInterestOptions.map((item) => {
+                  const selected = selectedInterests.includes(item.id);
+                  const disabled = !selected && selectedInterests.length >= interestLimit;
+                  return (
+                    <button
+                      type="button"
+                      className={`interestOption ${selected ? "selected" : ""}`}
+                      key={item.id}
+                      onClick={() => toggleInterest(item.id)}
+                      disabled={disabled}
+                      aria-pressed={selected}
+                    >
+                      <span className="priorityCheck">{selected ? "✓" : "+"}</span>
+                      <strong>{item.label}</strong>
+                      <span>{item.description}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          ) : null}
+
+          <div className="priorityNote">
+            <strong>Så används valet</strong>
+            <span>Det ger en mjuk bonus och en egen resultatsektion. Den generella matchningen räknas också fram separat för att fånga utbildningar utanför din första tanke.</span>
+          </div>
+
+          {error ? <p className="formError">{error}</p> : null}
+          <div className="quizActions">
+            <button type="button" className="textButton" onClick={previous}>← Byt test</button>
+            <div className="answeredText">Gäller både frågorna och resultatet</div>
+            <button type="button" className="button" onClick={continueFromInterests}>Fortsätt →</button>
+          </div>
         </div>
       </section>
     );

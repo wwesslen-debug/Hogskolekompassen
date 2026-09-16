@@ -910,7 +910,40 @@ img { max-width: 100%; }
   font-weight: 900;
 }
 .priorityOption.selected .priorityCheck { background: var(--teal); color: white; border-color: var(--teal); }
+.intentChoiceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+.intentChoice {
+  position: relative;
+  min-height: 118px;
+  padding: 18px 18px 17px 54px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fbfcfb;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.intentChoice:hover { transform: translateY(-1px); border-color: #9ccdc8; }
+.intentChoice.selected { background: var(--teal-soft); border-color: var(--teal); }
+.intentChoice strong, .intentChoice > span:last-child { display: block; }
+.intentChoice strong { font-size: 14px; letter-spacing: -.01em; }
+.intentChoice > span:last-child { margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+.intentChoice.selected .priorityCheck { background: var(--teal); color: white; border-color: var(--teal); }
 .interestQuestionCard h1 { max-width: 760px; }
+.interestStepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 28px;
+  color: var(--ink);
+}
+.interestStepHeader strong { font-size: 14px; }
+.interestStepHeader span { color: var(--muted); font-size: 12px; font-weight: 800; }
 .interestGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1168,7 +1201,7 @@ img { max-width: 100%; }
 }
 
 @media (max-width: 760px) {
-  .priorityGrid,.interestGrid { grid-template-columns: 1fr; }
+  .priorityGrid,.interestGrid,.intentChoiceGrid { grid-template-columns: 1fr; }
   .priorityNote { grid-template-columns: 1fr; }
   .resultSummaryStats { gap: 18px; }
   .resultSummaryStats strong { font-size: 20px; }
@@ -1496,6 +1529,40 @@ img { max-width: 100%; }
 .primaryLiveResults { border-color: #b9d9d2; background: linear-gradient(180deg,#eef8f5 0%,#fff 84%); box-shadow: 0 24px 60px rgba(18,48,71,.08); }
 .liveResultHeading { margin-bottom: 20px; }
 .liveResultLoading { padding: 24px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); font-size: 10px; }
+.liveResultSections { display: grid; gap: 18px; }
+.liveResultGroup {
+  padding-top: 18px;
+  border-top: 1px solid #dfeae7;
+}
+.liveResultGroup:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.liveResultGroupHeading {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 13px;
+}
+.liveResultGroupHeading span {
+  color: var(--teal-dark);
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.liveResultGroupHeading h3 {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+}
+.liveResultGroupHeading p {
+  max-width: 820px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
 .liveResultGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
 .liveResultCard { display: flex; flex-direction: column; min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
 .liveResultCardTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }

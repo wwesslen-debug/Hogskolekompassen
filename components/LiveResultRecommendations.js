@@ -26,6 +26,20 @@ export default function LiveResultRecommendations({ result, variant = "default" 
   const ids = useMemo(() => (result?.matches || []).slice(0, 30).map((item) => item.id), [result]);
   const programById = useMemo(() => Object.fromEntries((result?.matches || []).map((item) => [item.id, item])), [result]);
   const idKey = ids.join(",");
+  const resultSections = useMemo(() => {
+    if (!Array.isArray(result?.liveResultSections)) return null;
+    const sections = result.liveResultSections
+      .map((section) => ({
+        ...section,
+        offerings: Array.isArray(section.offerings) ? section.offerings : [],
+      }))
+      .filter((section) => section.offerings.length);
+
+    return sections.length ? sections : null;
+  }, [result]);
+  const visibleOfferings = resultSections
+    ? resultSections.flatMap((section) => section.offerings)
+    : offerings;
 
   useEffect(() => {
     if (!result?.profile) {
@@ -74,7 +88,7 @@ export default function LiveResultRecommendations({ result, variant = "default" 
     return () => controller.abort();
   }, [idKey, result, isPrimary]);
 
-  if (!loading && !offerings.length && result?.recommendationMode === "live_only") {
+  if (!loading && !visibleOfferings.length && result?.recommendationMode === "live_only") {
     return (
       <section className={`liveResultSection ${isPrimary ? "primaryLiveResults" : ""}`}>
         <div className="sectionHeading liveResultHeading">
@@ -91,7 +105,66 @@ export default function LiveResultRecommendations({ result, variant = "default" 
     );
   }
 
-  if (!loading && !offerings.length) return null;
+  if (!loading && !visibleOfferings.length) return null;
+
+  function renderOfferingCard(offering, section = null) {
+    const parent = programById[offering.canonicalProgramId];
+    const sectionUsesGeneralScore = section?.scoreKind === "general";
+    const personalScore = Math.round(Number(
+      sectionUsesGeneralScore
+        ? offering.generalPersonalScore ?? offering.personalScore ?? result?.scoreByLiveOfferingId?.[offering.id] ?? result?.scoreById?.[offering.canonicalProgramId] ?? parent?.score ?? 0
+        : offering.personalScore ?? result?.scoreByLiveOfferingId?.[offering.id] ?? result?.scoreById?.[offering.canonicalProgramId] ?? parent?.score ?? 0
+    ));
+    const scoreLabel = sectionUsesGeneralScore ? "generell match" : offering.matchLabel || "din match";
+    const application = applicationLabel(offering);
+    const target = getLiveExternalLink(offering);
+    const detailPath = liveEducationPath(offering);
+
+    return (
+      <article className="liveResultCard" key={`${section?.id || "default"}-${offering.id}`}>
+        <div className="liveResultCardTop">
+          <div className="personalLiveScore"><strong>{personalScore}%</strong><span>{scoreLabel}</span></div>
+          <span className={`applicationState ${application.tone}`}>{application.label}</span>
+        </div>
+        <div className="liveResultMeta">
+          {offering.period ? <span>{offering.period}</span> : null}
+          {offering.kind ? <span>{offering.kind === "program" ? "Program" : offering.kind === "course" || offering.kind === "kurs" ? "Kurs" : offering.kind}</span> : null}
+          {offering.distance ? <span>Distans</span> : null}
+          {offering.credits ? <span>{getLiveCreditsLabel(offering)}</span> : null}
+        </div>
+        <h3><Link href={detailPath}>{offering.title}</Link></h3>
+        <p className="institutionLine">{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
+        <div className="liveResultFacts">
+          {offering.startDate ? <span><small>Start</small><strong>{formatLiveDate(offering.startDate)}</strong></span> : null}
+          {offering.studyPace ? <span><small>Studietakt</small><strong>{offering.studyPace}</strong></span> : null}
+          {offering.level ? <span><small>Nivå</small><strong>{offering.level === "grund" ? "Grundnivå" : offering.level === "avancerad" ? "Avancerad" : offering.level}</strong></span> : null}
+        </div>
+        {offering.inferredCategory ? <p className="liveResultCategoryHint">{offering.inferredCategory}</p> : null}
+        <div className="liveResultActions">
+          <Link href={detailPath} className="button buttonSmall">Visa detaljer</Link>
+          {target ? (
+            <a
+              href={target.href}
+              target="_blank"
+              rel="noreferrer"
+              className="button buttonGhost buttonSmall"
+              onClick={() => trackExternalClick(target.href, {
+                source: `result_live_recommendation_${target.source}`,
+                offeringId: offering.id,
+                programId: offering.canonicalProgramId,
+                matchSource: offering.matchSource,
+              })}
+            >
+              {target.label}
+            </a>
+          ) : null}
+          <CompareButton offeringId={offering.id} compact />
+          <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
+          <Link href={`/utbildningar?search=${encodeURIComponent(offering.title)}`} className="button buttonGhost buttonSmall">Liknande live</Link>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <section className={`liveResultSection ${isPrimary ? "primaryLiveResults" : ""}`}>
@@ -107,61 +180,24 @@ export default function LiveResultRecommendations({ result, variant = "default" 
         </p>
       </div>
 
-      {loading ? <div className="liveResultLoading">Hämtar aktuella utbildningstillfällen…</div> : (
+      {loading ? <div className="liveResultLoading">Hämtar aktuella utbildningstillfällen…</div> : resultSections ? (
+        <div className="liveResultSections">
+          {resultSections.map((section) => (
+            <section className="liveResultGroup" key={section.id}>
+              <div className="liveResultGroupHeading">
+                {section.eyebrow ? <span>{section.eyebrow}</span> : null}
+                <h3>{section.title}</h3>
+                {section.description ? <p>{section.description}</p> : null}
+              </div>
+              <div className="liveResultGrid">
+                {section.offerings.map((offering) => renderOfferingCard(offering, section))}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : (
         <div className="liveResultGrid">
-          {offerings.slice(0, isPrimary ? 12 : 9).map((offering) => {
-            const parent = programById[offering.canonicalProgramId];
-            const personalScore = Math.round(Number(
-              offering.personalScore ?? result?.scoreByLiveOfferingId?.[offering.id] ?? result?.scoreById?.[offering.canonicalProgramId] ?? parent?.score ?? 0
-            ));
-            const application = applicationLabel(offering);
-            const target = getLiveExternalLink(offering);
-            const detailPath = liveEducationPath(offering);
-            return (
-              <article className="liveResultCard" key={offering.id}>
-                <div className="liveResultCardTop">
-                  <div className="personalLiveScore"><strong>{personalScore}%</strong><span>{offering.matchLabel || "din match"}</span></div>
-                  <span className={`applicationState ${application.tone}`}>{application.label}</span>
-                </div>
-                <div className="liveResultMeta">
-                  {offering.period ? <span>{offering.period}</span> : null}
-                  {offering.kind ? <span>{offering.kind === "program" ? "Program" : offering.kind === "course" || offering.kind === "kurs" ? "Kurs" : offering.kind}</span> : null}
-                  {offering.distance ? <span>Distans</span> : null}
-                  {offering.credits ? <span>{getLiveCreditsLabel(offering)}</span> : null}
-                </div>
-                <h3><Link href={detailPath}>{offering.title}</Link></h3>
-                <p className="institutionLine">{offering.providerName || "Lärosäte ej angivet"}{offering.city ? ` · ${offering.city}` : ""}</p>
-                <div className="liveResultFacts">
-                  {offering.startDate ? <span><small>Start</small><strong>{formatLiveDate(offering.startDate)}</strong></span> : null}
-                  {offering.studyPace ? <span><small>Studietakt</small><strong>{offering.studyPace}</strong></span> : null}
-                  {offering.level ? <span><small>Nivå</small><strong>{offering.level === "grund" ? "Grundnivå" : offering.level === "avancerad" ? "Avancerad" : offering.level}</strong></span> : null}
-                </div>
-                {offering.inferredCategory ? <p className="liveResultCategoryHint">{offering.inferredCategory}</p> : null}
-                <div className="liveResultActions">
-                  <Link href={detailPath} className="button buttonSmall">Visa detaljer</Link>
-                  {target ? (
-                    <a
-                      href={target.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="button buttonGhost buttonSmall"
-                      onClick={() => trackExternalClick(target.href, {
-                        source: `result_live_recommendation_${target.source}`,
-                        offeringId: offering.id,
-                        programId: offering.canonicalProgramId,
-                        matchSource: offering.matchSource,
-                      })}
-                    >
-                      {target.label}
-                    </a>
-                  ) : null}
-                  <CompareButton offeringId={offering.id} compact />
-                  <SaveProgramButton offeringId={offering.id} programId={offering.canonicalProgramId} compact />
-                  <Link href={`/utbildningar?search=${encodeURIComponent(offering.title)}`} className="button buttonGhost buttonSmall">Liknande live</Link>
-                </div>
-              </article>
-            );
-          })}
+          {offerings.slice(0, isPrimary ? 12 : 9).map((offering) => renderOfferingCard(offering))}
         </div>
       )}
 
