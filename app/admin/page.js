@@ -524,13 +524,13 @@ export default async function AdminPage({ searchParams }) {
 
         <AdminTable
           title="Var lämnar användare?"
-          description="Antal användare som inte går vidare till nästa spårade steg."
+          description="Antal användare som inte går vidare till nästa spårade steg. Andelen räknas av användarna som kom in i respektive steg."
           emptyText="Inget bortfall har registrerats i perioden."
           rows={dropoffs}
           columns={[
             { key: "stage", label: "Steg" },
             { key: "count", label: "Antal avhopp", numeric: true, render: (row) => formatNumber(row.count) },
-            { key: "share", label: "Andel", numeric: true },
+            { key: "share", label: "Andel av steget", numeric: true },
           ]}
         />
 
