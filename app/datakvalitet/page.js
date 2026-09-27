@@ -57,7 +57,7 @@ export default async function DataQualityPage() {
 
       <section className="shell qualitySection">
         <div className="qualityStatsGrid">
-          <article><span>Programstarter</span><strong>{quality.total.toLocaleString("sv-SE")}</strong><small>Grundnivå från Susa-navet</small></article>
+          <article><span>Programstarter</span><strong>{quality.total.toLocaleString("sv-SE")}</strong><small>Grundläggande behörighet</small></article>
           <article><span>Med intern signal</span><strong>{quality.linked.toLocaleString("sv-SE")}</strong><small>{quality.linkRate}% av live-utbudet</small></article>
           <article><span>Hög länksäkerhet</span><strong>{quality.confidence.high.toLocaleString("sv-SE")}</strong><small>≥ 75% länkscore</small></article>
           <article><span>Direktmatchade</span><strong>{quality.unlinked.toLocaleString("sv-SE")}</strong><small>synliga och matchbara från livedata</small></article>

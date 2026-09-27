@@ -30,9 +30,10 @@ export default async function ProgramsPage() {
             <span className="eyebrow">Utbildningar · live från Susa-navet</span>
             <h1>Aktuella utbildningar</h1>
             <p className="lead">
-              Här visas det synkade utbudet av svenska högskoleprogram på grundnivå. Du kan söka, filtrera, jämföra
-              riktiga utbildningar och öppna länkar till lärosätenas egna sidor när de finns i livedatan. Master-, magister-,
-              senare-del- och avancerade program filtreras bort.
+              Här visas det synkade utbudet av svenska högskoleprogram på grundnivå som bara kräver grundläggande
+              behörighet, gymnasiekompetens eller motsvarande. Du kan söka, filtrera, jämföra riktiga utbildningar och
+              öppna länkar till lärosätenas egna sidor när de finns i livedatan. Program med särskild behörighet,
+              arbetsprov, tidigare högskolestudier eller avancerad nivå filtreras bort.
             </p>
             {status.periods?.length ? (
               <div className="livePeriodSummary">
