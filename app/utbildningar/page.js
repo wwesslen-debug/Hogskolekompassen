@@ -1,5 +1,5 @@
 import LiveEducationBrowser from "@/components/LiveEducationBrowser";
-import { getLiveDataStatus, getLiveFilterOptions } from "@/lib/db";
+import { getLiveDataStatus } from "@/lib/db";
 import { canonicalUrl } from "@/lib/site";
 import { getAdSenseConfig } from "@/lib/ads";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -21,10 +21,7 @@ export const metadata = {
 };
 
 export default async function ProgramsPage() {
-  const [status, options] = await Promise.all([
-    getLiveDataStatus(),
-    getLiveFilterOptions(),
-  ]);
+  const status = await getLiveDataStatus();
   const catalogAd = getAdSenseConfig("catalogInline");
   const popularSeoLinks = getPopularSeoLinks();
   const stockholm = educationCityPages.find((item) => item.slug === "stockholm");
@@ -125,7 +122,7 @@ export default async function ProgramsPage() {
       </section>
 
       <section className="shell browserSection">
-        <LiveEducationBrowser initialOptions={options} initialStatus={status} />
+        <LiveEducationBrowser initialStatus={status} />
       </section>
     </main>
   );

@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { getLiveExternalLink, liveEducationPath } from "@/lib/live-urls";
 
-const PAGE_SIZE = 200;
+const PAGE_SIZE = 60;
+const EMPTY_OPTIONS = { periods: [], cities: [], providers: [], kinds: [] };
 
 function applicationState(offering) {
   return getLiveApplicationStatus(offering, { fallback: "Kontrollera ansökan", unknownTone: "neutral" });
@@ -23,15 +24,25 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   const [applicationStatus, setApplicationStatus] = useState("");
   const [distance, setDistance] = useState(false);
   const [offerings, setOfferings] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(null);
+  const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(Boolean(initialStatus?.eventCount));
   const [loadingMore, setLoadingMore] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const [options, setOptions] = useState(initialOptions || EMPTY_OPTIONS);
+  const [optionsLoading, setOptionsLoading] = useState(!initialOptions && Boolean(initialStatus?.eventCount));
 
   const hasFilters = Boolean(search || period || city || provider || kind || applicationStatus || distance);
-  const canLoadMore = !loading && !loadingMore && offerings.length < total;
-  const options = useMemo(() => initialOptions || { periods: [], cities: [], providers: [], kinds: [] }, [initialOptions]);
+  const canLoadMore = !loading && !loadingMore && hasMore;
   const kindOptions = options.kinds.filter(Boolean);
+  const displayedCountLabel = total == null
+    ? `${offerings.length}${hasMore ? "+" : ""} programstarter`
+    : `${total} synkade programstarter`;
+
+  function ensureOption(values, current) {
+    if (!current || values.includes(current)) return values;
+    return [current, ...values];
+  }
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -44,6 +55,32 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     setDistance(params.get("distance") === "1" || params.get("distance") === "true");
     setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    if (!hydrated || initialOptions || !initialStatus?.eventCount) return;
+    const controller = new AbortController();
+    let cancelled = false;
+    setOptionsLoading(true);
+
+    async function loadOptions() {
+      try {
+        const response = await fetch("/api/live-educations?optionsOnly=1", { signal: controller.signal });
+        if (!response.ok) throw new Error(`Live education options failed with ${response.status}`);
+        const payload = await response.json();
+        if (!cancelled) setOptions(payload.options || EMPTY_OPTIONS);
+      } catch (error) {
+        if (!cancelled && error.name !== "AbortError") setOptions(EMPTY_OPTIONS);
+      } finally {
+        if (!cancelled) setOptionsLoading(false);
+      }
+    }
+
+    loadOptions();
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [hydrated, initialOptions, initialStatus?.eventCount]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -67,7 +104,8 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     setLoading(true);
     setLoadingMore(false);
     setOfferings([]);
-    setTotal(0);
+    setTotal(null);
+    setHasMore(false);
     const timer = setTimeout(async () => {
       const params = buildQueryParams(0);
       try {
@@ -76,16 +114,18 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         const payload = await response.json();
         if (cancelled) return;
         setOfferings(payload.offerings || []);
-        setTotal(payload.total || 0);
+        setTotal(Number.isFinite(payload.total) ? payload.total : null);
+        setHasMore(Boolean(payload.hasMore));
       } catch (error) {
         if (!cancelled && error.name !== "AbortError") {
           setOfferings([]);
-          setTotal(0);
+          setTotal(null);
+          setHasMore(false);
         }
       } finally {
         if (!cancelled) setLoading(false);
       }
-    }, 180);
+    }, hasFilters ? 180 : 0);
     return () => {
       cancelled = true;
       controller.abort();
@@ -117,7 +157,8 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         const seen = new Set(current.map((item) => item.id));
         return [...current, ...nextOfferings.filter((item) => !seen.has(item.id))];
       });
-      setTotal(payload.total || 0);
+      setTotal(Number.isFinite(payload.total) ? payload.total : null);
+      setHasMore(Boolean(payload.hasMore));
     } catch {
       // Keep the already loaded list visible if an extra page fails.
     } finally {
@@ -166,22 +207,22 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         <label>
           <span>Starttermin</span>
           <select value={period} onChange={(event) => setPeriod(event.target.value)}>
-            <option value="">Alla terminer</option>
-            {options.periods.map((value) => <option key={value}>{value}</option>)}
+            <option value="">{optionsLoading ? "Laddar terminer…" : "Alla terminer"}</option>
+            {ensureOption(options.periods, period).map((value) => <option key={value}>{value}</option>)}
           </select>
         </label>
         <label>
           <span>Lärosäte</span>
           <select value={provider} onChange={(event) => setProvider(event.target.value)}>
-            <option value="">Alla lärosäten</option>
-            {options.providers.map((value) => <option key={value}>{value}</option>)}
+            <option value="">{optionsLoading ? "Laddar lärosäten…" : "Alla lärosäten"}</option>
+            {ensureOption(options.providers, provider).map((value) => <option key={value}>{value}</option>)}
           </select>
         </label>
         <label>
           <span>Ort</span>
           <select value={city} onChange={(event) => setCity(event.target.value)}>
-            <option value="">Alla orter</option>
-            {options.cities.map((value) => <option key={value}>{value}</option>)}
+            <option value="">{optionsLoading ? "Laddar orter…" : "Alla orter"}</option>
+            {ensureOption(options.cities, city).map((value) => <option key={value}>{value}</option>)}
           </select>
         </label>
         {kindOptions.length > 1 ? (
@@ -211,8 +252,8 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
 
       <div className="browserToolbar liveToolbar">
         <div aria-live="polite">
-          <strong>{loading ? (hasFilters ? "Söker…" : "Hämtar…") : `${total} synkade programstarter`}</strong>
-          {loading ? <span> Uppdaterar träfflistan.</span> : total ? <span> Visar {offerings.length} av {total}. Filter är frivilliga.</span> : null}
+          <strong>{loading ? (hasFilters ? "Söker…" : "Hämtar…") : displayedCountLabel}</strong>
+          {loading ? <span> Uppdaterar träfflistan.</span> : offerings.length ? <span> Visar {displayedCountLabel}. Filter är frivilliga.</span> : null}
           <span> Källa: Skolverkets Susa-nav via Supabase.</span>
         </div>
         {hasFilters ? <button className="textButton" type="button" onClick={clearFilters}>Rensa filter</button> : null}
@@ -285,10 +326,10 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         </div>
       ) : null}
 
-      {offerings.length > 0 && offerings.length < total ? (
+      {offerings.length > 0 && hasMore ? (
         <div className="liveLoadMore">
           <button type="button" className="button" onClick={loadMore} disabled={!canLoadMore}>
-            {loadingMore ? "Laddar fler…" : `Visa fler programstarter (${offerings.length}/${total})`}
+            {loadingMore ? "Laddar fler…" : total == null ? "Visa fler programstarter" : `Visa fler programstarter (${offerings.length}/${total})`}
           </button>
         </div>
       ) : null}
