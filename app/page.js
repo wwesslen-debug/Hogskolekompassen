@@ -2,6 +2,8 @@ import { getLiveDataStatus } from "@/lib/db";
 import { getAdSenseConfig } from "@/lib/ads";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Link from "next/link";
+import { canonicalUrl, siteName } from "@/lib/site";
+import { getPopularSeoLinks } from "@/lib/seo-landings";
 
 const dimensions = [
   ["Analys", "Problem, logik & mönster"],
@@ -18,11 +20,28 @@ const dimensions = [
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "Vilken utbildning passar mig?",
+  description:
+    "Gör Högskolekompassen, hitta utbildningar som passar dig och jämför aktuella högskoleprogram efter intresse, ort och studiestil.",
+  alternates: { canonical: canonicalUrl("/") },
+  openGraph: {
+    type: "website",
+    url: canonicalUrl("/"),
+    siteName,
+    title: "Vilken utbildning passar mig? Hitta rätt utbildning",
+    description:
+      "Ett transparent utbildningstest och en livekatalog för dig som vill hitta, spara och jämföra svenska högskoleutbildningar.",
+    locale: "sv_SE",
+  },
+};
+
 export default async function Home() {
   const liveStatus = await getLiveDataStatus();
   const homeLeftAd = getAdSenseConfig("homeLeft");
   const homeRightAd = getAdSenseConfig("homeRight");
   const homeInlineAd = getAdSenseConfig("homeInline");
+  const seoLinks = getPopularSeoLinks().slice(0, 8);
 
   return (
     <main>
@@ -176,6 +195,23 @@ export default async function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section shell seoHomeSection">
+        <div className="sectionHeading compactHeading">
+          <div>
+            <span className="eyebrow">Vanliga sökningar</span>
+            <h2>Hitta in från frågan du faktiskt har.</h2>
+          </div>
+          <p>
+            Börja med ett test, en guide, ett utbildningsområde eller en ort och gå sedan vidare till aktuella programstarter.
+          </p>
+        </div>
+        <div className="seoQueryGrid">
+          {seoLinks.map((item) => (
+            <Link href={item.href} key={item.href}>{item.label}</Link>
+          ))}
         </div>
       </section>
 

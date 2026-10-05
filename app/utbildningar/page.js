@@ -5,6 +5,11 @@ import { getAdSenseConfig } from "@/lib/ads";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Link from "next/link";
 import { educationCategoryPages, getEducationCategoryPath } from "@/lib/education-categories";
+import {
+  educationCityPages,
+  getEducationCategoryCityPath,
+  getPopularSeoLinks,
+} from "@/lib/seo-landings";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +26,30 @@ export default async function ProgramsPage() {
     getLiveFilterOptions(),
   ]);
   const catalogAd = getAdSenseConfig("catalogInline");
+  const popularSeoLinks = getPopularSeoLinks();
+  const stockholm = educationCityPages.find((item) => item.slug === "stockholm");
+  const goteborg = educationCityPages.find((item) => item.slug === "goteborg");
+  const economy = educationCategoryPages.find((item) => item.slug === "ekonomi");
+  const tech = educationCategoryPages.find((item) => item.slug === "teknik-it");
+  const psychology = educationCategoryPages.find((item) => item.slug === "psykologi");
+  const programmaticExamples = [
+    economy && stockholm ? {
+      label: "Ekonomiutbildningar i Stockholm",
+      href: getEducationCategoryCityPath(economy, stockholm),
+    } : null,
+    tech && stockholm ? {
+      label: "IT-utbildningar i Stockholm",
+      href: getEducationCategoryCityPath(tech, stockholm),
+    } : null,
+    tech && goteborg ? {
+      label: "IT-utbildningar i Göteborg",
+      href: getEducationCategoryCityPath(tech, goteborg),
+    } : null,
+    psychology && stockholm ? {
+      label: "Psykologiutbildningar i Stockholm",
+      href: getEducationCategoryCityPath(psychology, stockholm),
+    } : null,
+  ].filter(Boolean);
 
   return (
     <main className="browserPage liveBrowserPage">
@@ -76,6 +105,21 @@ export default async function ProgramsPage() {
               <strong>{category.title}</strong>
               <small>{category.indexDescription}</small>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="shell seoQuerySection" aria-labelledby="popular-searches-title">
+        <div className="sectionHeading compactHeading categoryIndexHeading">
+          <div>
+            <span className="eyebrow">Populära sökningar</span>
+            <h2 id="popular-searches-title">Fler vägar in i utbildningsutbudet</h2>
+          </div>
+          <p>Guider, orter och kombinationer av område och stad ger snabbare ingångar till vanliga utbildningssökningar.</p>
+        </div>
+        <div className="seoQueryGrid">
+          {[...popularSeoLinks, ...programmaticExamples].map((item) => (
+            <Link href={item.href} key={item.href}>{item.label}</Link>
           ))}
         </div>
       </section>

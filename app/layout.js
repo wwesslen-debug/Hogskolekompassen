@@ -54,10 +54,26 @@ export const metadata = {
   },
 };
 
+const websiteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: canonicalUrl("/"),
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${canonicalUrl("/utbildningar")}?search={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="sv">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+        />
         <CookieConsent />
         <AdSenseLoader client={adsenseClient} />
         <AnalyticsEvents />

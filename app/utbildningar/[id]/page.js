@@ -5,12 +5,14 @@ import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
 import EducationCategoryPage from "@/components/EducationCategoryPage";
+import EducationSeoLandingPage from "@/components/EducationSeoLandingPage";
 import { getLiveOfferings } from "@/lib/db";
 import { cleanLiveText } from "@/lib/live-text";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { getLiveApplicationLink, getLiveSourceLink, liveEducationIdFromRouteParam, liveEducationPath } from "@/lib/live-urls";
 import { getEducationCategoryBySlug, getEducationCategoryPath } from "@/lib/education-categories";
-import { canonicalUrl, cleanDescription } from "@/lib/site";
+import { canonicalUrl, cleanDescription, siteName } from "@/lib/site";
+import { getEducationCityBySlug, getEducationCityPath } from "@/lib/seo-landings";
 
 export const dynamic = "force-dynamic";
 
@@ -122,6 +124,7 @@ function structuredData(offering) {
 export async function generateMetadata({ params }) {
   const routeParams = await params;
   const category = getEducationCategoryBySlug(routeParams?.id);
+  const cityPage = getEducationCityBySlug(routeParams?.id);
 
   if (category) {
     const path = getEducationCategoryPath(category);
@@ -134,7 +137,28 @@ export async function generateMetadata({ params }) {
         url: canonicalUrl(path),
         title: category.title,
         description: category.metaDescription,
-        siteName: "Högskolekompassen",
+        siteName,
+        locale: "sv_SE",
+      },
+      robots: {
+        index: true,
+        follow: true,
+      },
+    };
+  }
+
+  if (cityPage) {
+    const path = getEducationCityPath(cityPage);
+    return {
+      title: cityPage.title,
+      description: cityPage.metaDescription,
+      alternates: { canonical: canonicalUrl(path) },
+      openGraph: {
+        type: "website",
+        url: canonicalUrl(path),
+        title: cityPage.title,
+        description: cityPage.metaDescription,
+        siteName,
         locale: "sv_SE",
       },
       robots: {
@@ -166,7 +190,7 @@ export async function generateMetadata({ params }) {
       url: canonicalUrl(path),
       title: `${offering.title}${offering.providerName ? ` – ${offering.providerName}` : ""}`,
       description,
-      siteName: "Högskolekompassen",
+      siteName,
       locale: "sv_SE",
     },
     robots: {
@@ -179,8 +203,10 @@ export async function generateMetadata({ params }) {
 export default async function LiveEducationDetailPage({ params }) {
   const routeParams = await params;
   const category = getEducationCategoryBySlug(routeParams?.id);
+  const cityPage = getEducationCityBySlug(routeParams?.id);
 
   if (category) return <EducationCategoryPage category={category} />;
+  if (cityPage) return <EducationSeoLandingPage cityPage={cityPage} />;
 
   const offering = await getOfferingByRouteId(routeParams?.id);
 

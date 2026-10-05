@@ -2,6 +2,12 @@ import { canonicalUrl } from "@/lib/site";
 import { getLiveSitemapEntries } from "@/lib/db";
 import { liveEducationPath } from "@/lib/live-urls";
 import { educationCategoryPages, getEducationCategoryPath } from "@/lib/education-categories";
+import {
+  educationCityPages,
+  getEducationCategoryCityPath,
+  getEducationCityPath,
+  seoGuidePages,
+} from "@/lib/seo-landings";
 
 export default async function sitemap() {
   const now = new Date();
@@ -41,5 +47,35 @@ export default async function sitemap() {
     priority: 0.78,
   }));
 
-  return [...staticEntries, ...categoryEntries, ...educationEntries];
+  const guideEntries = seoGuidePages.map((page) => ({
+    url: canonicalUrl(page.path),
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.72,
+  }));
+
+  const cityEntries = educationCityPages.map((cityPage) => ({
+    url: canonicalUrl(getEducationCityPath(cityPage)),
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.76,
+  }));
+
+  const categoryCityEntries = educationCategoryPages.flatMap((category) => (
+    educationCityPages.map((cityPage) => ({
+      url: canonicalUrl(getEducationCategoryCityPath(category, cityPage)),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }))
+  ));
+
+  return [
+    ...staticEntries,
+    ...guideEntries,
+    ...categoryEntries,
+    ...cityEntries,
+    ...categoryCityEntries,
+    ...educationEntries,
+  ];
 }
