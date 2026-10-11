@@ -1,5 +1,4 @@
 import LiveEducationBrowser from "@/components/LiveEducationBrowser";
-import { getLiveDataStatus } from "@/lib/db";
 import { canonicalUrl } from "@/lib/site";
 import { getAdSenseConfig } from "@/lib/ads";
 import AdSenseUnit from "@/components/AdSenseUnit";
@@ -11,8 +10,6 @@ import {
   getPopularSeoLinks,
 } from "@/lib/seo-landings";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   title: "Utbildningar",
   description:
@@ -20,8 +17,7 @@ export const metadata = {
   alternates: { canonical: canonicalUrl("/utbildningar") },
 };
 
-export default async function ProgramsPage() {
-  const status = await getLiveDataStatus();
+export default function ProgramsPage() {
   const catalogAd = getAdSenseConfig("catalogInline");
   const popularSeoLinks = getPopularSeoLinks();
   const stockholm = educationCityPages.find((item) => item.slug === "stockholm");
@@ -61,19 +57,12 @@ export default async function ProgramsPage() {
               öppna länkar till lärosätenas egna sidor när de finns i livedatan. Program med särskild behörighet,
               arbetsprov, tidigare högskolestudier eller avancerad nivå filtreras bort.
             </p>
-            {status.periods?.length ? (
-              <div className="livePeriodSummary">
-                <span>Synkade startperioder</span>
-                {status.periods.slice(0, 6).map((item) => <strong key={item.period}>{item.period} · {item.count}</strong>)}
-              </div>
-            ) : null}
           </div>
           <div className="liveStatusColumn">
-            <div className={`liveStatusCard ${status.eventCount ? "isLive" : "isEmpty"}`}>
+            <div className="liveStatusCard isLive">
               <span className="liveDot" />
-              <strong>{status.eventCount ? `${status.eventCount.toLocaleString("sv-SE")} synkade utbildningar` : "Ingen livesynk ännu"}</strong>
-              <small>{status.lastSync?.value ? `Senast synkad ${new Date(status.lastSync.value).toLocaleString("sv-SE")}` : "Kontrollera Supabase-konfigurationen"}</small>
-              {status.providerCount ? <small>{status.providerCount.toLocaleString("sv-SE")} lärosäten i synken</small> : null}
+              <strong>Livekatalog</strong>
+              <small>Hämtas från Susa-navet via Supabase</small>
             </div>
             <a href="/datakvalitet" className="qualityStatusLink">Se datakvalitet →</a>
           </div>
@@ -122,7 +111,7 @@ export default async function ProgramsPage() {
       </section>
 
       <section className="shell browserSection">
-        <LiveEducationBrowser initialStatus={status} />
+        <LiveEducationBrowser />
       </section>
     </main>
   );

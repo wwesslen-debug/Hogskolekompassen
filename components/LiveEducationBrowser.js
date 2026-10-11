@@ -26,11 +26,12 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   const [offerings, setOfferings] = useState([]);
   const [total, setTotal] = useState(null);
   const [hasMore, setHasMore] = useState(false);
-  const [loading, setLoading] = useState(Boolean(initialStatus?.eventCount));
+  const [status, setStatus] = useState(initialStatus || null);
+  const [loading, setLoading] = useState(!initialStatus || Boolean(initialStatus?.eventCount));
   const [loadingMore, setLoadingMore] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [options, setOptions] = useState(initialOptions || EMPTY_OPTIONS);
-  const [optionsLoading, setOptionsLoading] = useState(!initialOptions && Boolean(initialStatus?.eventCount));
+  const [optionsLoading, setOptionsLoading] = useState(!initialOptions);
 
   const hasFilters = Boolean(search || period || city || provider || kind || applicationStatus || distance);
   const canLoadMore = !loading && !loadingMore && hasMore;
@@ -57,7 +58,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   }, []);
 
   useEffect(() => {
-    if (!hydrated || initialOptions || !initialStatus?.eventCount) return;
+    if (!hydrated || (initialOptions && initialStatus)) return;
     const controller = new AbortController();
     let cancelled = false;
     setOptionsLoading(true);
@@ -67,9 +68,14 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         const response = await fetch("/api/live-educations?optionsOnly=1", { signal: controller.signal });
         if (!response.ok) throw new Error(`Live education options failed with ${response.status}`);
         const payload = await response.json();
-        if (!cancelled) setOptions(payload.options || EMPTY_OPTIONS);
+        if (cancelled) return;
+        setStatus(payload.status || null);
+        setOptions(payload.options || EMPTY_OPTIONS);
       } catch (error) {
-        if (!cancelled && error.name !== "AbortError") setOptions(EMPTY_OPTIONS);
+        if (!cancelled && error.name !== "AbortError") {
+          setStatus({ ready: false, eventCount: 0 });
+          setOptions(EMPTY_OPTIONS);
+        }
       } finally {
         if (!cancelled) setOptionsLoading(false);
       }
@@ -80,7 +86,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       cancelled = true;
       controller.abort();
     };
-  }, [hydrated, initialOptions, initialStatus?.eventCount]);
+  }, [hydrated, initialOptions, initialStatus]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -98,7 +104,14 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   }, [search, period, city, provider, kind, applicationStatus, distance, hydrated]);
 
   useEffect(() => {
-    if (!initialStatus?.eventCount || !hydrated) return;
+    if (!hydrated || !status) return;
+    if (!status.eventCount) {
+      setLoading(false);
+      setOfferings([]);
+      setTotal(null);
+      setHasMore(false);
+      return;
+    }
     const controller = new AbortController();
     let cancelled = false;
     setLoading(true);
@@ -131,7 +144,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       controller.abort();
       clearTimeout(timer);
     };
-  }, [search, period, city, provider, kind, applicationStatus, distance, initialStatus?.eventCount, hydrated]);
+  }, [search, period, city, provider, kind, applicationStatus, distance, status, hydrated]);
 
   function buildQueryParams(offset) {
     const params = new URLSearchParams({ limit: String(PAGE_SIZE), offset: String(offset), upcoming: "0" });
@@ -176,7 +189,16 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     setDistance(false);
   }
 
-  if (!initialStatus?.eventCount) {
+  if (!status && loading) {
+    return (
+      <div className="emptyBrowserState">
+        <h2>Hämtar livekatalogen…</h2>
+        <p>Utbildningssidan öppnas direkt medan status, filter och programstarter laddas.</p>
+      </div>
+    );
+  }
+
+  if (status && !status.eventCount) {
     return (
       <div className="liveEmptyState">
         <div className="liveEmptyIcon">↻</div>
