@@ -1,4 +1,3 @@
-import { getLiveDataStatus } from "@/lib/db";
 import { getAdSenseConfig } from "@/lib/ads";
 import AdSenseUnit from "@/components/AdSenseUnit";
 import Link from "next/link";
@@ -18,8 +17,6 @@ const dimensions = [
   ["Struktur", "Precision & ordning"],
 ];
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   title: "Vilken utbildning passar mig?",
   description:
@@ -36,8 +33,7 @@ export const metadata = {
   },
 };
 
-export default async function Home() {
-  const liveStatus = await getLiveDataStatus();
+export default function Home() {
   const homeLeftAd = getAdSenseConfig("homeLeft");
   const homeRightAd = getAdSenseConfig("homeRight");
   const homeInlineAd = getAdSenseConfig("homeInline");
@@ -82,7 +78,7 @@ export default async function Home() {
             <div className="trustRow">
               <div><strong>15–20</strong><span>frågor i Snabbkompassen</span></div>
               <div><strong>40–60</strong><span>frågor i Djupkompassen</span></div>
-              <div><strong>{liveStatus.eventCount ? liveStatus.eventCount.toLocaleString("sv-SE") : "Live"}</strong><span>{liveStatus.eventCount ? "aktuella utbildningar" : "utbildningsdata"}</span></div>
+              <div><strong>Live</strong><span>aktuell utbildningsdata</span></div>
             </div>
           </div>
 
