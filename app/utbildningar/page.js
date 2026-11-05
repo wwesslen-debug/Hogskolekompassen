@@ -52,10 +52,11 @@ export default function ProgramsPage() {
             <span className="eyebrow">Utbildningar · live från Susa-navet</span>
             <h1>Aktuella utbildningar</h1>
             <p className="lead">
-              Här visas det synkade utbudet av svenska högskoleprogram på grundnivå som bara kräver grundläggande
-              behörighet, gymnasiekompetens eller motsvarande. Du kan söka, filtrera, jämföra riktiga utbildningar och
-              öppna länkar till lärosätenas egna sidor när de finns i livedatan. Program med särskild behörighet,
-              arbetsprov, tidigare högskolestudier eller avancerad nivå filtreras bort.
+              Här visas det synkade utbudet av svenska högskoleprogram som kan påbörjas efter gymnasiet.
+              Program som kräver särskilda gymnasiekurser, till exempel Matematik 4 eller Naturkunskap 2, ingår också.
+              Du kan söka, filtrera, jämföra utbildningar och öppna länkar till lärosätenas egna sidor.
+              Program som kräver tidigare högskolestudier, högskoleexamen, yrkeserfarenhet eller särskilda prov samt
+              utbildningar på avancerad nivå filtreras bort.
             </p>
           </div>
           <div className="liveStatusColumn">
