@@ -65,4 +65,6 @@ https://www.xn--hgskolekompassen-mwb.se/aktuellt
 https://www.xn--hgskolekompassen-mwb.se/datakvalitet
 ```
 
-`/api/health` ska rapportera `database: "supabase"` och `liveDataSource: "supabase"`. När Supabase-tabellerna innehåller data ska `eventCount` vara större än 0.
+`/api/health` kontrollerar att webbservern svarar utan att vänta på databasen. Railway använder denna adress vid uppstart.
+
+Använd `/api/health?details=1` för databasdiagnostik och katalogstatistik. När Supabase-tabellerna innehåller data ska `eventCount` vara större än 0. Databasfrågor har en tidsgräns så att ett långsamt anrop inte kan hålla anslutningar upptagna obegränsat.

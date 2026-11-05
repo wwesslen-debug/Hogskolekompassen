@@ -12,7 +12,9 @@ if (!env.SUPABASE_DATABASE_URL) {
 }
 
 const nextCli = path.join(root, "node_modules", "next", "dist", "bin", "next");
-const server = spawn(process.execPath, [nextCli, "start", "-H", "0.0.0.0"], {
+const port = env.PORT || "3000";
+console.log(`Starting Next.js on 0.0.0.0:${port}`);
+const server = spawn(process.execPath, [nextCli, "start", "-H", "0.0.0.0", "-p", port], {
   cwd: root,
   env,
   stdio: "inherit",

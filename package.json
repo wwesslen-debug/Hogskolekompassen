@@ -8,6 +8,7 @@
     "start": "next start",
     "validate": "node scripts/validate-data.mjs",
     "test": "node --test lib/*.test.mjs",
+    "test:health": "node scripts/verify-production-health.mjs",
     "start:prod": "node scripts/start-production.mjs",
     "supabase:schema": "node scripts/apply-supabase-schema.mjs"
   },
