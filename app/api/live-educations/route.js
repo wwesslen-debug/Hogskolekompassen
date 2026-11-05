@@ -44,7 +44,7 @@ export async function GET(request) {
   if (optionsOnly) {
     const [status, options] = await Promise.all([
       getLiveDataStatus(),
-      getLiveFilterOptions(),
+      getLiveFilterOptions(filters),
     ]);
     return NextResponse.json({
       status,
@@ -59,7 +59,7 @@ export async function GET(request) {
       total: null,
       hasMore: false,
       status,
-      options: includeOptions ? await getLiveFilterOptions() : undefined,
+      options: includeOptions ? await getLiveFilterOptions(filters) : undefined,
     });
   }
 
@@ -67,7 +67,7 @@ export async function GET(request) {
   const [offerings, total, options] = await Promise.all([
     getLiveOfferings({ ...filters, limit: queryLimit, offset }),
     searchParams.get("count") === "1" ? getLiveOfferingCount(filters) : Promise.resolve(null),
-    includeOptions ? getLiveFilterOptions() : Promise.resolve(undefined),
+    includeOptions ? getLiveFilterOptions(filters) : Promise.resolve(undefined),
   ]);
   const hasMore = offerings.length > limit;
 

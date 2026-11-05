@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CompareButton from "@/components/CompareButton";
 import SaveProgramButton from "@/components/SaveProgramButton";
 import { trackExternalClick } from "@/lib/analytics-client";
 import { formatLiveDate, getLiveApplicationStatus, getLiveCreditsLabel } from "@/lib/live-format";
 import { getLiveExternalLink, liveEducationPath } from "@/lib/live-urls";
+import { emptyLiveFilterOptions, LIVE_APPLICATION_STATUS_OPTIONS, normalizeLiveFilterCity } from "@/lib/live-filter-options.mjs";
 
 const PAGE_SIZE = 60;
-const EMPTY_OPTIONS = { periods: [], cities: [], providers: [], kinds: [] };
+const EMPTY_OPTIONS = emptyLiveFilterOptions();
 
 function applicationState(offering) {
   return getLiveApplicationStatus(offering, { fallback: "Kontrollera ansökan", unknownTone: "neutral" });
@@ -30,8 +31,11 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   const [loading, setLoading] = useState(!initialStatus || Boolean(initialStatus?.eventCount));
   const [loadingMore, setLoadingMore] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-  const [options, setOptions] = useState(initialOptions || EMPTY_OPTIONS);
+  const [options, setOptions] = useState({ ...EMPTY_OPTIONS, ...initialOptions });
   const [optionsLoading, setOptionsLoading] = useState(!initialOptions);
+  const [loadError, setLoadError] = useState("");
+  const [reload, setReload] = useState(0);
+  const requestVersion = useRef(0);
 
   const hasFilters = Boolean(search || period || city || provider || kind || applicationStatus || distance);
   const canLoadMore = !loading && !loadingMore && hasMore;
@@ -40,9 +44,13 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     ? `${offerings.length}${hasMore ? "+" : ""} programstarter`
     : `${total} synkade programstarter`;
 
-  function ensureOption(values, current) {
-    if (!current || values.includes(current)) return values;
-    return [current, ...values];
+  function filterOptions(values, current, label = (value) => value, normalize = (value) => value) {
+    const matchesCurrent = (value) => normalize(value) === normalize(current);
+    const choices = current && !values.some(matchesCurrent) ? [current, ...values] : values;
+    return choices.map((value) => {
+      const unavailable = !optionsLoading && !values.includes(value);
+      return <option key={value} value={matchesCurrent(value) ? current : value} disabled={unavailable}>{label(value)}{unavailable ? " (inga träffar)" : ""}</option>;
+    });
   }
 
   useEffect(() => {
@@ -56,37 +64,6 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     setDistance(params.get("distance") === "1" || params.get("distance") === "true");
     setHydrated(true);
   }, []);
-
-  useEffect(() => {
-    if (!hydrated || (initialOptions && initialStatus)) return;
-    const controller = new AbortController();
-    let cancelled = false;
-    setOptionsLoading(true);
-
-    async function loadOptions() {
-      try {
-        const response = await fetch("/api/live-educations?optionsOnly=1", { signal: controller.signal });
-        if (!response.ok) throw new Error(`Live education options failed with ${response.status}`);
-        const payload = await response.json();
-        if (cancelled) return;
-        setStatus(payload.status || null);
-        setOptions(payload.options || EMPTY_OPTIONS);
-      } catch (error) {
-        if (!cancelled && error.name !== "AbortError") {
-          setStatus({ ready: false, eventCount: 0 });
-          setOptions(EMPTY_OPTIONS);
-        }
-      } finally {
-        if (!cancelled) setOptionsLoading(false);
-      }
-    }
-
-    loadOptions();
-    return () => {
-      cancelled = true;
-      controller.abort();
-    };
-  }, [hydrated, initialOptions, initialStatus]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -104,39 +81,47 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
   }, [search, period, city, provider, kind, applicationStatus, distance, hydrated]);
 
   useEffect(() => {
-    if (!hydrated || !status) return;
-    if (!status.eventCount) {
-      setLoading(false);
-      setOfferings([]);
-      setTotal(null);
-      setHasMore(false);
-      return;
-    }
+    if (!hydrated) return;
     const controller = new AbortController();
+    requestVersion.current += 1;
     let cancelled = false;
     setLoading(true);
+    setOptionsLoading(true);
+    setLoadError("");
     setLoadingMore(false);
     setOfferings([]);
     setTotal(null);
     setHasMore(false);
     const timer = setTimeout(async () => {
       const params = buildQueryParams(0);
+      params.set("options", "1");
+      params.set("count", "1");
       try {
         const response = await fetch(`/api/live-educations?${params.toString()}`, { signal: controller.signal });
         if (!response.ok) throw new Error(`Live education search failed with ${response.status}`);
         const payload = await response.json();
         if (cancelled) return;
+        setStatus(payload.status || null);
+        if (payload.options?.supabaseError || payload.status?.supabaseError) {
+          setLoadError("Utbildningarna eller filtren kunde inte hämtas. Försök igen.");
+        } else {
+          setOptions({ ...EMPTY_OPTIONS, ...payload.options });
+        }
         setOfferings(payload.offerings || []);
         setTotal(Number.isFinite(payload.total) ? payload.total : null);
         setHasMore(Boolean(payload.hasMore));
       } catch (error) {
         if (!cancelled && error.name !== "AbortError") {
+          setLoadError("Utbildningarna eller filtren kunde inte hämtas. Försök igen.");
           setOfferings([]);
           setTotal(null);
           setHasMore(false);
         }
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+          setOptionsLoading(false);
+        }
       }
     }, hasFilters ? 180 : 0);
     return () => {
@@ -144,7 +129,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
       controller.abort();
       clearTimeout(timer);
     };
-  }, [search, period, city, provider, kind, applicationStatus, distance, status, hydrated]);
+  }, [search, period, city, provider, kind, applicationStatus, distance, hydrated, reload]);
 
   function buildQueryParams(offset) {
     const params = new URLSearchParams({ limit: String(PAGE_SIZE), offset: String(offset), upcoming: "0" });
@@ -160,22 +145,25 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
 
   async function loadMore() {
     if (!canLoadMore) return;
+    const version = requestVersion.current;
     setLoadingMore(true);
     try {
       const params = buildQueryParams(offerings.length);
       const response = await fetch(`/api/live-educations?${params.toString()}`);
+      if (!response.ok) throw new Error(`Live education search failed with ${response.status}`);
       const payload = await response.json();
+      if (version !== requestVersion.current) return;
       const nextOfferings = payload.offerings || [];
       setOfferings((current) => {
         const seen = new Set(current.map((item) => item.id));
         return [...current, ...nextOfferings.filter((item) => !seen.has(item.id))];
       });
-      setTotal(Number.isFinite(payload.total) ? payload.total : null);
+      if (Number.isFinite(payload.total)) setTotal(payload.total);
       setHasMore(Boolean(payload.hasMore));
     } catch {
       // Keep the already loaded list visible if an extra page fails.
     } finally {
-      setLoadingMore(false);
+      if (version === requestVersion.current) setLoadingMore(false);
     }
   }
 
@@ -189,16 +177,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
     setDistance(false);
   }
 
-  if (!status && loading) {
-    return (
-      <div className="emptyBrowserState">
-        <h2>Hämtar livekatalogen…</h2>
-        <p>Utbildningssidan öppnas direkt medan status, filter och programstarter laddas.</p>
-      </div>
-    );
-  }
-
-  if (status && !status.eventCount) {
+  if (status && !status.eventCount && !status.supabaseError) {
     return (
       <div className="liveEmptyState">
         <div className="liveEmptyIcon">↻</div>
@@ -221,7 +200,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
 
   return (
     <div>
-      <div className="liveFilterGrid">
+      <div className="liveFilterGrid" aria-busy={optionsLoading}>
         <label className="searchField liveSearchField">
           <span>Sök utbildning</span>
           <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Ex. bioteknik, datateknik, psykologi…" />
@@ -230,52 +209,53 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
           <span>Starttermin</span>
           <select value={period} onChange={(event) => setPeriod(event.target.value)}>
             <option value="">{optionsLoading ? "Laddar terminer…" : "Alla terminer"}</option>
-            {ensureOption(options.periods, period).map((value) => <option key={value}>{value}</option>)}
+            {filterOptions(options.periods, period)}
           </select>
         </label>
         <label>
           <span>Lärosäte</span>
           <select value={provider} onChange={(event) => setProvider(event.target.value)}>
             <option value="">{optionsLoading ? "Laddar lärosäten…" : "Alla lärosäten"}</option>
-            {ensureOption(options.providers, provider).map((value) => <option key={value}>{value}</option>)}
+            {filterOptions(options.providers, provider)}
           </select>
         </label>
         <label>
           <span>Ort</span>
           <select value={city} onChange={(event) => setCity(event.target.value)}>
             <option value="">{optionsLoading ? "Laddar orter…" : "Alla orter"}</option>
-            {ensureOption(options.cities, city).map((value) => <option key={value}>{value}</option>)}
+            {filterOptions(options.cities, city, undefined, normalizeLiveFilterCity)}
           </select>
         </label>
-        {kindOptions.length > 1 ? (
+        {kindOptions.length > 1 || kind ? (
           <label>
             <span>Typ</span>
             <select value={kind} onChange={(event) => setKind(event.target.value)}>
               <option value="">Alla typer</option>
-              {kindOptions.map((value) => <option key={value}>{value}</option>)}
+              {filterOptions(kindOptions, kind)}
             </select>
           </label>
         ) : null}
         <label>
           <span>Ansökningsläge</span>
           <select value={applicationStatus} onChange={(event) => setApplicationStatus(event.target.value)}>
-            <option value="">Alla lägen</option>
-            <option value="open">Öppen nu</option>
-            <option value="future">Öppnar senare</option>
-            <option value="closed">Stängd</option>
-            <option value="unknown">Datum saknas</option>
+            <option value="">{optionsLoading ? "Laddar lägen…" : "Alla lägen"}</option>
+            {filterOptions(options.applicationStatuses, applicationStatus, (value) => LIVE_APPLICATION_STATUS_OPTIONS.find((item) => item.value === value)?.label || value)}
           </select>
         </label>
         <label className="distanceToggle">
-          <input type="checkbox" checked={distance} onChange={(event) => setDistance(event.target.checked)} />
-          <span><strong>Endast distans</strong><small>Visa poster markerade som distans/online.</small></span>
+          <input type="checkbox" checked={distance} disabled={!optionsLoading && !distance && !options.distanceAvailable} onChange={(event) => setDistance(event.target.checked)} />
+          <span><strong>Endast distans</strong><small>{!optionsLoading && !options.distanceAvailable ? "Ingen distansutbildning matchar dina val." : "Visa poster markerade som distans/online."}</small></span>
         </label>
       </div>
+
+      {loadError ? (
+        <p role="alert">{loadError} <button type="button" className="textButton" onClick={() => setReload((value) => value + 1)}>Försök igen</button></p>
+      ) : null}
 
       <div className="browserToolbar liveToolbar">
         <div aria-live="polite">
           <strong>{loading ? (hasFilters ? "Söker…" : "Hämtar…") : displayedCountLabel}</strong>
-          {loading ? <span> Uppdaterar träfflistan.</span> : offerings.length ? <span> Visar {displayedCountLabel}. Filter är frivilliga.</span> : null}
+          {loading ? <span> Uppdaterar träfflistan.</span> : offerings.length ? <span> Visar {offerings.length}{total != null ? ` av ${total}` : ""} programstarter. Filter är frivilliga.</span> : null}
           <span> Källa: Skolverkets Susa-nav via Supabase.</span>
         </div>
         {hasFilters ? <button className="textButton" type="button" onClick={clearFilters}>Rensa filter</button> : null}
@@ -340,7 +320,7 @@ export default function LiveEducationBrowser({ initialOptions, initialStatus }) 
         </div>
       ) : null}
 
-      {!loading && !offerings.length ? (
+      {!loading && !loadError && !offerings.length ? (
         <div className="emptyBrowserState">
           <h2>Inga aktuella tillfällen matchade filtren</h2>
           <p>Prova en annan termin, ett bredare sökord eller rensa filtren.</p>

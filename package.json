@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "validate": "node scripts/validate-data.mjs",
+    "test": "node --test lib/*.test.mjs",
     "start:prod": "node scripts/start-production.mjs",
     "supabase:schema": "node scripts/apply-supabase-schema.mjs"
   },
